@@ -86,7 +86,7 @@ namespace OSLibrary.ADO.NET.Repositories
             SqlConnection connection = new SqlConnection(
                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
                 );
-            var sql = "SELECT * FROM Product WHERE Product_ID=@Product_ID";
+            var sql = "SELECT * FROM Product ";
             SqlCommand command = new SqlCommand(sql,connection);
             connection.Open();
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
