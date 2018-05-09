@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -51,6 +52,7 @@
   <ItemGroup>
     <Compile Include="ADO.NET.Repositories\CustomerRepository.cs" />
     <Compile Include="ADO.NET.Repositories\OrdersRepository.cs" />
+    <Compile Include="ADO.NET.Repositories\ProductImageRepository.cs" />
     <Compile Include="ADO.NET.Repositories\ProductsRepository.cs" />
     <Compile Include="ADO.NET.Repositories\ShoppingCartRepository.cs" />
     <Compile Include="Models\Customers.cs" />
@@ -67,6 +69,8 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
