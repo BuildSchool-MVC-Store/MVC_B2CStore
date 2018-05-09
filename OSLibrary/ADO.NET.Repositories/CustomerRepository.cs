@@ -44,7 +44,7 @@ namespace OSLibrary.ADO.NET.Repositories
 
             connection.Open();
             command.ExecuteNonQuery();
-            connection.Close();
+            connection.Close(); 
         }
         public void Delete(Customers model)
         {
