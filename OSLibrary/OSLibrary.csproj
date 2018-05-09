@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="ADO.NET.Repositories\CustomerRepository.cs" />
     <Compile Include="ADO.NET.Repositories\OrdersRepository.cs" />
+    <Compile Include="ADO.NET.Repositories\ProductSizeQuantityRepository.cs" />
     <Compile Include="ADO.NET.Repositories\ProductsRepository.cs" />
     <Compile Include="ADO.NET.Repositories\ShoppingCartRepository.cs" />
     <Compile Include="Models\Customers.cs" />
