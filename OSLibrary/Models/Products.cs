@@ -1,10 +1,8 @@
 namespace OSLibrary
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     public partial class Products
     {
@@ -30,6 +28,10 @@ namespace OSLibrary
         [Required]
         [StringLength(50)]
         public string Product_Types_Name { get; set; }
+
+        [Required]
+        [StringLength(10)]
+        public string Gender { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_Details> Order_Details { get; set; }
