@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSLibrary", "OSLibrary\OSLibrary.csproj", "{182F06B1-710F-45FC-978F-544506C0F002}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomersRepositoryUnitTest", "OSLibraryTests\CustomersRepositoryUnitTest.csproj", "{A93FAA14-D1E8-4A93-B526-DF1996C64D96}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RepositoryUnitTest", "RepositoryUnitTest", "{E9BB1A4C-0C79-4296-9727-E1BC32D5AC89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{182F06B1-710F-45FC-978F-544506C0F002}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{182F06B1-710F-45FC-978F-544506C0F002}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{182F06B1-710F-45FC-978F-544506C0F002}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A93FAA14-D1E8-4A93-B526-DF1996C64D96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A93FAA14-D1E8-4A93-B526-DF1996C64D96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A93FAA14-D1E8-4A93-B526-DF1996C64D96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A93FAA14-D1E8-4A93-B526-DF1996C64D96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A93FAA14-D1E8-4A93-B526-DF1996C64D96} = {E9BB1A4C-0C79-4296-9727-E1BC32D5AC89}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C8200AFC-A897-41E0-8B41-EAFE40206432}
