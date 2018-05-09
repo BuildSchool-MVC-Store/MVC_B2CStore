@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ADO.NET.Repositories\CustomerRepository.cs" />
+    <Compile Include="ADO.NET.Repositories\ProductSizeQuantityRepository.cs" />
     <Compile Include="ADO.NET.Repositories\ShoppingCartRepository.cs" />
     <Compile Include="Models\Customers.cs" />
     <Compile Include="Models\Orders.cs" />
