@@ -36,15 +36,15 @@ namespace OSLibrary.ADO.NET.Repositories
             var sql = "UPDATE Customers SET Acount = @Account, Name = @Name ,Password =  @Password,Email = @Email,Phone = @Phone,Address = @Address WHERE Account = @Account";
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@Account", model.Account);
-            command.Parameters.AddWithValue("@Name", model.Account);
-            command.Parameters.AddWithValue("@Password", model.Account);
-            command.Parameters.AddWithValue("@Email", model.Account);
-            command.Parameters.AddWithValue("@Phone", model.Account);
-            command.Parameters.AddWithValue("@Address", model.Account);
+            command.Parameters.AddWithValue("@Name", model.Name);
+            command.Parameters.AddWithValue("@Password", model.Password);
+            command.Parameters.AddWithValue("@Email", model.Email);
+            command.Parameters.AddWithValue("@Phone", model.Phone);
+            command.Parameters.AddWithValue("@Address", model.Address);
 
             connection.Open();
             command.ExecuteNonQuery();
-            connection.Close();
+            connection.Close(); 
         }
         public void Delete(Customers model)
         {
