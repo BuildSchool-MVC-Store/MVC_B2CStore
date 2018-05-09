@@ -11,7 +11,7 @@ namespace OSLibrary.ADO.NET.Repositories.Tests
     public class CustomerRepositoryTests
     {
         [TestMethod()]
-        public void GetAllTest()
+        public void CustomerRepositoryTests_GetAllTest()
         {
             CustomerRepository repository = new CustomerRepository();
             var result = repository.GetAll();
