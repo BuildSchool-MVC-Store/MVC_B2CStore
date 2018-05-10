@@ -19,8 +19,8 @@ namespace OSLibraryTests.ADO.NET.Repositories
         public void ProductsRepositoryTests_GetByProduct_ID()
         {
             ProductsRepository repository = new ProductsRepository();
-            var result = repository.GetByProduct_ID(1);
-            Assert.IsTrue(result.Product_Name=="衣服");
+            var result = repository.GetByProduct_ID(2);
+            Assert.IsTrue(result.Product_Name=="短褲");
         }
     }
 }
