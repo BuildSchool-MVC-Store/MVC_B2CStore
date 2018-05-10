@@ -76,7 +76,7 @@ namespace OSLibrary.ADO.NET.Repositories
             Products products = null;
             while (reader.Read())
             {
-                var product = DbReaderModelBinder<Products>.Bind(reader);
+               products = DbReaderModelBinder<Products>.Bind(reader);
                 //products = new Products();
                 //for (var i = 0; i < reader.FieldCount; i++)
                 //{
