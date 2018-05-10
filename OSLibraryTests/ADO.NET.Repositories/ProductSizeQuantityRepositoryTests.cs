@@ -40,5 +40,20 @@ namespace OSLibraryTests.ADO.NET.Repositories
             Assert.IsTrue(result != null);
         }
 
+        [TestMethod]
+        public void ProductSizeQuantityRepositoryTests_Update()
+        {
+            ProductSizeQuantityRepository repository = new ProductSizeQuantityRepository();
+            var model = new Product_Size_Quantity()
+            {
+                Product_ID = 1,
+                Quantity = 100,
+                Product_Size = "S"
+            };
+            repository.Update(model);
+            var result = repository.GetByID(1, "S");
+            Assert.IsTrue(result.Quantity == 100);
+        }
+
     }
 }
