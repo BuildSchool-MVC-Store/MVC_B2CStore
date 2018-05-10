@@ -59,7 +59,7 @@ namespace OSLibrary.ADO.NET.Repositories
             connection.Close();
         }
 
-        public Product_Image GetByID(int Product_ID)
+        public IEnumerable<Product_Image> GetByProduct_ID(int Product_ID)
         {
             SqlConnection connection = new SqlConnection(
                 "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
@@ -70,11 +70,14 @@ namespace OSLibrary.ADO.NET.Repositories
 
             connection.Open();
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var properties = typeof(Product_Image).GetProperties();
-            Product_Image productImage = null;
+
+            List<Product_Image> productImages = new List<Product_Image>();
+            
             while (reader.Read())
             {
-                productImage = new Product_Image();
+                var productImage = new Product_Image();
+                var properties = typeof(Product_Image).GetProperties();
+
                 for(var i = 0; i<reader.FieldCount; i++)
                 {
                     var fieldName = reader.GetName(i);
@@ -89,17 +92,11 @@ namespace OSLibrary.ADO.NET.Repositories
                         property.SetValue(productImage, reader.GetValue(i));
                     }
                 }
+                productImages.Add(productImage);
             }
-            //var ProductImage = new Product_Image();
-            //while (reader.Read())
-            //{
-            //    ProductImage.Product_Image_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_Image_ID")).ToString());
-            //    ProductImage.Product_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
-            //    ProductImage.Pictrue = ObjectToByteArray(reader.GetValue(reader.GetOrdinal("Pictrue")));
-            //    ProductImage.Product_Image_Only = reader.GetValue(reader.GetOrdinal("Product_Image_Only")).ToString();
-            //}
+            
             reader.Close();
-            return productImage;
+            return productImages;
         }
         public IEnumerable<Product_Image> GetAll()
         {

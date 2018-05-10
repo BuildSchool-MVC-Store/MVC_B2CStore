@@ -15,5 +15,13 @@ namespace OSLibraryTests.ADO.NET.Repositories
             var result = repository.GetAll();
             Assert.IsTrue(result.Count() == 4);
         }
+
+        [TestMethod]
+        public void ProductImageRepositoryTests_GetByProduct_ID()
+        {
+            ProductImageRepository repository = new ProductImageRepository();
+            var result = repository.GetByProduct_ID(1);
+            Assert.IsTrue(result.Count() == 2);
+        }
     }
 }
