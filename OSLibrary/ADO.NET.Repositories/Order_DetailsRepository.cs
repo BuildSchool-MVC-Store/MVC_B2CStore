@@ -108,8 +108,8 @@ namespace OSLibrary.ADO.NET.Repositories
             //    Order_Details.Discount = float.Parse(reader.GetValue(reader.GetOrdinal("Discount")).ToString());
             //    Order_Details.size = reader.GetValue(reader.GetOrdinal("size")).ToString();
             //}
-            //reader.Close();
-            return Order_Details;
+            reader.Close();
+            return order_details;
         }
 
         public IEnumerable<Order_Details> GetAll()
