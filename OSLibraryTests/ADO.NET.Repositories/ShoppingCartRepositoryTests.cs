@@ -23,8 +23,8 @@ namespace OSLibraryTests.ADO.NET.Repositories
         public void ShoppingCartRepositoryTests_GetByID()
         {
             ShoppingCartRepository repository = new ShoppingCartRepository();
-            var result = repository.GetByID("Osborn");
-            Assert.IsTrue(result.Count() == 1);
+            var result = repository.GetByAccount("Osborn");
+            Assert.IsTrue(result.Count() == 2);
         }
 
         [TestMethod]

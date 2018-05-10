@@ -62,14 +62,14 @@ namespace OSLibrary.ADO.NET.Repositories
             connection.Close();
         }
 
-        public IEnumerable<Shopping_Cart> GetByID(string Osborn)
+        public IEnumerable<Shopping_Cart> GetByAccount(string Account)
         {
             SqlConnection connection = new SqlConnection(
                 "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
             );
-            var sql = "SELECT * FROM Shopping_Cart WHERE Shopping_Cart_ID = @Shopping_Cart_ID";
+            var sql = "SELECT * FROM Shopping_Cart WHERE Account = @Account";
             SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@Shopping_Cart_ID", Osborn);
+            command.Parameters.AddWithValue("@Account", Account);
 
             connection.Open();
 
