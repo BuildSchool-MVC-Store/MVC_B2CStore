@@ -13,14 +13,14 @@ namespace OSLibraryTests.ADO.NET.Repositories
         {
             ProductsRepository repository = new ProductsRepository();
             var result = repository.GetAll();
-            Assert.IsTrue(result.Count()==1);
+            Assert.IsTrue(result.Count()>=2);
         }
         [TestMethod]
         public void ProductsRepositoryTests_GetByProduct_ID()
         {
             ProductsRepository repository = new ProductsRepository();
-            var result = repository.GetByProduct_ID();
-            Assert.IsTrue(result.Product_ID == 1);
+            var result = repository.GetByProduct_ID(1);
+            Assert.IsTrue(result.Product_Name=="衣服");
         }
     }
 }
