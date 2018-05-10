@@ -71,19 +71,42 @@ namespace OSLibrary.ADO.NET.Repositories
             command.Parameters.AddWithValue("@Shopping_Cart_ID", Shopping_Cart_ID);
 
             connection.Open();
+
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var shoppingCart = new Shopping_Cart();
+     //       var shoppingCart = new Shopping_Cart();
+
+            var properties = typeof(Shopping_Cart).GetProperties();
+            Shopping_Cart shoppingCart = null;
+
             while (reader.Read())
             {
-                shoppingCart.Shopping_Cart_ID = Convert.ToInt32( reader.GetValue(reader.GetOrdinal("Shopping_Cart_ID")).ToString());
-                shoppingCart.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
-                shoppingCart.Product_ID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Product_ID")));
-                shoppingCart.Quantity = Convert.ToInt16(reader.GetValue(reader.GetOrdinal("Quantity")).ToString());
-                shoppingCart.UnitPrice = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("UnitPrice")).ToString());
-                shoppingCart.Discount = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Discount")).ToString());
-                shoppingCart.size = reader.GetValue(reader.GetOrdinal("size")).ToString();
+                shoppingCart = new Shopping_Cart();
+                for(var i=0;i<reader.FieldCount; i++)
+                {
+                    var fieldName = reader.GetName(i);
+                    var property = properties.FirstOrDefault(
+                        p => p.Name == fieldName);
+
+                    if (property == null)
+                        continue;
+
+                    if (!reader.IsDBNull(i))
+                        property.SetValue(shoppingCart,
+                            reader.GetValue(i));
+                }
+
+
+                //shoppingCart.Shopping_Cart_ID = Convert.ToInt32( reader.GetValue(reader.GetOrdinal("Shopping_Cart_ID")).ToString());
+                //shoppingCart.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
+                //shoppingCart.Product_ID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Product_ID")));
+                //shoppingCart.Quantity = Convert.ToInt16(reader.GetValue(reader.GetOrdinal("Quantity")).ToString());
+                //shoppingCart.UnitPrice = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("UnitPrice")).ToString());
+                //shoppingCart.Discount = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Discount")).ToString());
+                //shoppingCart.size = reader.GetValue(reader.GetOrdinal("size")).ToString();
                 
             }
+
+
             reader.Close();
             return shoppingCart;
         }
@@ -100,14 +123,32 @@ namespace OSLibrary.ADO.NET.Repositories
             var shoppingCarts = new List<Shopping_Cart>();
             while (reader.Read())
             {
-                var shoppingCart = new Shopping_Cart();
-                shoppingCart.Shopping_Cart_ID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Shopping_Cart_ID")).ToString());
-                shoppingCart.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
-                shoppingCart.Product_ID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Product_ID")));
-                shoppingCart.Quantity = Convert.ToInt16(reader.GetValue(reader.GetOrdinal("Quantity")).ToString());
-                shoppingCart.UnitPrice = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("UnitPrice")).ToString());
-                shoppingCart.Discount = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Discount")).ToString());
-                shoppingCart.size = reader.GetValue(reader.GetOrdinal("size")).ToString();
+                //var shoppingCart = new Shopping_Cart();
+                //shoppingCart.Shopping_Cart_ID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Shopping_Cart_ID")).ToString());
+                //shoppingCart.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
+                //shoppingCart.Product_ID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Product_ID")));
+                //shoppingCart.Quantity = Convert.ToInt16(reader.GetValue(reader.GetOrdinal("Quantity")).ToString());
+                //shoppingCart.UnitPrice = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("UnitPrice")).ToString());
+                //shoppingCart.Discount = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Discount")).ToString());
+                //shoppingCart.size = reader.GetValue(reader.GetOrdinal("size")).ToString();
+
+                var properties = typeof(Shopping_Cart).GetProperties();
+                Shopping_Cart shoppingCart = null;
+                shoppingCart = new Shopping_Cart();
+                for (var i = 0; i < reader.FieldCount; i++)
+                {
+                    var fieldName = reader.GetName(i);
+                    var property = properties.FirstOrDefault(
+                        p => p.Name == fieldName);
+
+                    if (property == null)
+                        continue;
+
+                    if (!reader.IsDBNull(i))
+                        property.SetValue(shoppingCart,
+                            reader.GetValue(i));
+                }
+                
                 shoppingCarts.Add(shoppingCart);
             }
             reader.Close();
