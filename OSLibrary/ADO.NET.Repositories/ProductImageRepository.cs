@@ -84,7 +84,7 @@ namespace OSLibrary.ADO.NET.Repositories
                     {
                         continue;
                     }
-                    if (reader.IsDBNull(i))
+                    if (!reader.IsDBNull(i))
                     {
                         property.SetValue(productImage, reader.GetValue(i));
                     }
