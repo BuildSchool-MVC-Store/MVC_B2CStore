@@ -130,7 +130,7 @@ namespace OSLibrary.ADO.NET.Repositories
                 Order_details.Quantity = short.Parse(reader.GetValue(reader.GetOrdinal("Quantity")).ToString());
                 Order_details.UnitPrice = decimal.Parse(reader.GetValue(reader.GetOrdinal("UnitPrice")).ToString());
                 Order_details.Discount = int.Parse(reader.GetValue(reader.GetOrdinal("Discount")).ToString());
-                Order_details.size = reader.GetValue(reader.GetOrdinal("szie")).ToString();
+                Order_details.size = reader.GetValue(reader.GetOrdinal("size")).ToString();
             }
             reader.Close();
             return Order_Details;
