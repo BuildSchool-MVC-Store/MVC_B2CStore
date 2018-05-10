@@ -5,18 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace OSLibraryTests.ADO.NET.Repositories
 {
     [TestClass]
-    public class OrdersRepositoryTests
+    public class ShoppingCartRepositoryTests
     {
         [TestMethod]
-        public void OrdersRepositoryTests_GetAll()
+        public void ShoppingCartRepositoryTests_GetAllTest()
         {
-            OrdersRepository repository = new OrdersRepository();
+            ShoppingCartRepository repository = new ShoppingCartRepository();
             var result = repository.GetAll();
-            Assert.IsTrue(result.Count() == 0);
+            Assert.IsTrue(result.Count() ==2);
         }
     }
 }
