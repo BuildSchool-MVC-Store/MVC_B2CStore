@@ -77,17 +77,38 @@ namespace OSLibrary.ADO.NET.Repositories
             command.Parameters.AddWithValue("@Order_Details_ID", Order_Details_ID);
             connection.Open();
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var Order_Details = new Order_Details();
+            var properties = typeof(Order_Details).GetProperties();
+            Order_Details order_details = null;
             while (reader.Read())
             {
-                Order_Details.Order_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Order_ID")).ToString());
-                Order_Details.Product_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
-                Order_Details.Quantity = short.Parse(reader.GetValue(reader.GetOrdinal("Quantity")).ToString());
-                Order_Details.UnitPrice = decimal.Parse(reader.GetValue(reader.GetOrdinal("UnitPrice")).ToString());
-                Order_Details.Discount = float.Parse(reader.GetValue(reader.GetOrdinal("Discount")).ToString());
-                Order_Details.size = reader.GetValue(reader.GetOrdinal("size")).ToString();
+                order_details = new Order_Details();
+                for(var i = 0; i<reader.FieldCount; i++)
+                {
+                    var fieldName = reader.GetName(i);
+                    var property = properties.FirstOrDefault((x) => x.Name == fieldName);
+                    if(property == null)
+                    {
+                        continue;
+                    }
+                    if (reader.IsDBNull(i))
+                    {
+                        property.SetValue(order_details, reader.GetValue(i));
+                    }
+                }
             }
-            reader.Close();
+
+            //var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            //var Order_Details = new Order_Details();
+            //while (reader.Read())
+            //{
+            //    Order_Details.Order_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Order_ID")).ToString());
+            //    Order_Details.Product_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
+            //    Order_Details.Quantity = short.Parse(reader.GetValue(reader.GetOrdinal("Quantity")).ToString());
+            //    Order_Details.UnitPrice = decimal.Parse(reader.GetValue(reader.GetOrdinal("UnitPrice")).ToString());
+            //    Order_Details.Discount = float.Parse(reader.GetValue(reader.GetOrdinal("Discount")).ToString());
+            //    Order_Details.size = reader.GetValue(reader.GetOrdinal("size")).ToString();
+            //}
+            //reader.Close();
             return Order_Details;
         }
 
