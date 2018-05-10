@@ -70,16 +70,36 @@ namespace OSLibrary.ADO.NET.Repositories
 
             connection.Open();
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var ProductImage = new Product_Image();
+            var properties = typeof(Product_Image).GetProperties();
+            Product_Image productImage = null;
             while (reader.Read())
             {
-                ProductImage.Product_Image_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_Image_ID")).ToString());
-                ProductImage.Product_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
-                ProductImage.Pictrue = ObjectToByteArray(reader.GetValue(reader.GetOrdinal("Pictrue")));
-                ProductImage.Product_Image_Only = reader.GetValue(reader.GetOrdinal("Product_Image_Only")).ToString();
+                productImage = new Product_Image();
+                for(var i = 0; i<reader.FieldCount; i++)
+                {
+                    var fieldName = reader.GetName(i);
+                    var property = properties.FirstOrDefault((x) => x.Name == fieldName);
+
+                    if(property == null)
+                    {
+                        continue;
+                    }
+                    if (reader.IsDBNull(i))
+                    {
+                        property.SetValue(productImage, reader.GetValue(i));
+                    }
+                }
             }
+            //var ProductImage = new Product_Image();
+            //while (reader.Read())
+            //{
+            //    ProductImage.Product_Image_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_Image_ID")).ToString());
+            //    ProductImage.Product_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
+            //    ProductImage.Pictrue = ObjectToByteArray(reader.GetValue(reader.GetOrdinal("Pictrue")));
+            //    ProductImage.Product_Image_Only = reader.GetValue(reader.GetOrdinal("Product_Image_Only")).ToString();
+            //}
             reader.Close();
-            return ProductImage;
+            return productImage;
         }
         public IEnumerable<Product_Image> GetAll()
         {
