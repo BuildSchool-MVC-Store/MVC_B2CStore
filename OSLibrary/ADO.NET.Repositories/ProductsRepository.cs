@@ -60,46 +60,83 @@ namespace OSLibrary.ADO.NET.Repositories
 
 
 
-        public Products GetByProduct_ID() {
+        public Products GetByProduct_ID()
+        {
             SqlConnection connection = new SqlConnection(
                      "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
                 );
             var sql = "SELECT * FROM Product WHERE Product_ID=@Product_ID";
-            SqlCommand command = new SqlCommand(sql,connection);
+            SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var product = new Products();
-            while (reader.Read()) {
-              
-                product.Product_ID =int.Parse( reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
-                product.Product_Name = (reader.GetValue(reader.GetOrdinal("Product_Name")).ToString());
-                product.UnitPrice= int.Parse(reader.GetValue(reader.GetOrdinal("UnitPrice")).ToString());
-                product.Product_Types_Name = reader.GetValue(reader.GetOrdinal("Product_Types_Name")).ToString();
-                product.Gender =reader.GetValue(reader.GetOrdinal("Gender")).ToString();
-                
+            //      var product = new Products();
+            var properties = typeof(Products).GetProperties();
+            Products products = null;
+
+            while (reader.Read())
+            {
+                for (var i = 0; i < reader.FieldCount; i++)
+                {
+                    products = new Products();
+                    var fieldName = reader.GetName(i);
+                    var property = properties.FirstOrDefault((x) => x.Name == fieldName);
+                    if (property == null)
+                    { continue; }
+                    if (reader.IsDBNull(i))
+                    {
+                        property.SetValue(products, reader.GetValue(i));
+                    }
+
+                }
+
+                //product.Product_ID =Convert.ToInt32( reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
+                //product.Product_Name = (reader.GetValue(reader.GetOrdinal("Product_Name")).ToString());
+                //product.UnitPrice= Convert.ToInt32(reader.GetValue(reader.GetOrdinal("UnitPrice")).ToString());
+                //product.Product_Types_Name = reader.GetValue(reader.GetOrdinal("Product_Types_Name")).ToString();
+                //product.Gender =reader.GetValue(reader.GetOrdinal("Gender")).ToString();
+
             }
             reader.Close();
-            return product;
+            return products;
 
         }
-        public IEnumerable<Products> GetAll() {
+        public IEnumerable<Products> GetAll()
+        {
             SqlConnection connection = new SqlConnection(
                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
                 );
             var sql = "SELECT * FROM Product ";
-            SqlCommand command = new SqlCommand(sql,connection);
+            SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var products = new List<Products>();
+            //var products = new List<Products>();
+            List<Products> products = new List<Products>();
             while (reader.Read())
             {
                 var product = new Products();
-                product.Product_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
-                product.Product_Name = (reader.GetValue(reader.GetOrdinal("Product_Name")).ToString());
-                product.UnitPrice = int.Parse(reader.GetValue(reader.GetOrdinal("UnitPrice")).ToString());
-                product.Product_Types_Name = reader.GetValue(reader.GetOrdinal("Product_Types_Name")).ToString();
-                product.Gender = reader.GetValue(reader.GetOrdinal("Gender")).ToString();
+                var properties = typeof(Products).GetProperties();
+
+                for (var i = 0; i < reader.FieldCount; i++)
+                {
+                    var fieldName = reader.GetName(i);
+                    var property = properties.FirstOrDefault((x) => x.Name == fieldName);
+                    if (property == null)
+                    { continue; }
+                    if (reader.IsDBNull(i))
+                    {
+                        property.SetValue(product, reader.GetValue(i));
+                    }
+
+                }
                 products.Add(product);
+                //    var product = new Products();
+                //    product.Product_ID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
+                //    product.Product_Name = (reader.GetValue(reader.GetOrdinal("Product_Name")).ToString());
+                //    product.UnitPrice = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("UnitPrice")).ToString());
+                //    product.Product_Types_Name = reader.GetValue(reader.GetOrdinal("Product_Types_Name")).ToString();
+                //    product.Gender = reader.GetValue(reader.GetOrdinal("Gender")).ToString();
+                //    products.Add(product);
+
             }
             reader.Close();
             return products;
