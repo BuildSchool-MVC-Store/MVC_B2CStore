@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OSLibrary.Utils;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -16,7 +17,7 @@ namespace OSLibrary.ADO.NET.Repositories
                 "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
             );
             var sql = "INSERT INTO Customers VALUES (@Account, @Name, @Password, @Email, @Phone, @Address)";
-            SqlCommand command = new SqlCommand(sql,connection);
+            SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@Account", model.Account);
             command.Parameters.AddWithValue("@Name", model.Account);
             command.Parameters.AddWithValue("@Password", model.Account);
@@ -44,7 +45,7 @@ namespace OSLibrary.ADO.NET.Repositories
 
             connection.Open();
             command.ExecuteNonQuery();
-            connection.Close(); 
+            connection.Close();
         }
         public void Delete(Customers model)
         {
@@ -74,17 +75,20 @@ namespace OSLibrary.ADO.NET.Repositories
             Customers customer = new Customers();
             while (reader.Read())
             {
-                customer = new Customers();
-                for (var i = 0;i<reader.FieldCount;i++)
-                {
-                    var fieldname = reader.GetName(i);
-                    var property = properties.FirstOrDefault(x => x.Name == fieldname);
-                    if (property == null)
-                        continue;
-                    if (!reader.IsDBNull(i))
-                        property.SetValue(customer, reader.GetValue(i));
+                customer = DbReaderModelBinder<Customers>.Bind(reader);
 
-                }
+                //customer = new Customers();
+                //for (var i = 0; i < reader.FieldCount; i++)
+                //{
+                //    var fieldname = reader.GetName(i);
+                //    var property = properties.FirstOrDefault(x => x.Name == fieldname);
+                //    if (property == null)
+                //        continue;
+                //    if (!reader.IsDBNull(i))
+                //        property.SetValue(customer, reader.GetValue(i));
+
+                //}
+
                 //customer.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
                 //customer.Name = reader.GetValue(reader.GetOrdinal("Name")).ToString();
                 //customer.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
@@ -105,21 +109,22 @@ namespace OSLibrary.ADO.NET.Repositories
             connection.Open();
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             List<Customers> customers = new List<Customers>();
-            while(reader.Read())
+            while (reader.Read())
             {
 
-                var customer = new Customers();
-                var properties = typeof(Customers).GetProperties();
+                //var customer = new Customers();
+                //var properties = typeof(Customers).GetProperties();
 
-                for (var i = 0; i < reader.FieldCount; i++)
-                {
-                    var fieldname = reader.GetName(i);
-                    var property = properties.FirstOrDefault(x => x.Name == fieldname);
-                    if (property == null)
-                        continue;
-                    if (!reader.IsDBNull(i))
-                        property.SetValue(customer, reader.GetValue(i));
-                }
+                var customer = DbReaderModelBinder<Customers>.Bind(reader);
+                //for (var i = 0; i < reader.FieldCount; i++)
+                //{
+                //    var fieldname = reader.GetName(i);
+                //    var property = properties.FirstOrDefault(x => x.Name == fieldname);
+                //    if (property == null)
+                //        continue;
+                //    if (!reader.IsDBNull(i))
+                //        property.SetValue(customer, reader.GetValue(i));
+                //}
                 customers.Add(customer);
 
                 //customer.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
