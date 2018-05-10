@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Runtime.Serialization.Formatters.Binary;
-using OSLibrary.Utils;
 
 namespace OSLibrary.ADO.NET.Repositories
 {
@@ -76,7 +75,23 @@ namespace OSLibrary.ADO.NET.Repositories
             
             while (reader.Read())
             {
-                var productImage = DbReaderModelBinder<Product_Image>.Bind(reader);
+                var productImage = new Product_Image();
+                var properties = typeof(Product_Image).GetProperties();
+
+                for(var i = 0; i<reader.FieldCount; i++)
+                {
+                    var fieldName = reader.GetName(i);
+                    var property = properties.FirstOrDefault((x) => x.Name == fieldName);
+
+                    if(property == null)
+                    {
+                        continue;
+                    }
+                    if (!reader.IsDBNull(i))
+                    {
+                        property.SetValue(productImage, reader.GetValue(i));
+                    }
+                }
                 productImages.Add(productImage);
             }
             
@@ -96,12 +111,11 @@ namespace OSLibrary.ADO.NET.Repositories
             var ProductImages = new List<Product_Image>();
             while (reader.Read())
             {
-
-                var ProductImage =DbReaderModelBinder<Product_Image>.Bind(reader);
-                //ProductImage.Product_Image_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_Image_ID")).ToString());
-                //ProductImage.Product_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
-                //ProductImage.Pictrue = ObjectToByteArray(reader.GetValue(reader.GetOrdinal("Pictrue")));
-                //ProductImage.Product_Image_Only = reader.GetValue(reader.GetOrdinal("Product_Image_Only")).ToString();
+                var ProductImage = new Product_Image();
+                ProductImage.Product_Image_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_Image_ID")).ToString());
+                ProductImage.Product_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
+                ProductImage.Pictrue = ObjectToByteArray(reader.GetValue(reader.GetOrdinal("Pictrue")));
+                ProductImage.Product_Image_Only = reader.GetValue(reader.GetOrdinal("Product_Image_Only")).ToString();
                 ProductImages.Add(ProductImage);
             }
             reader.Close();
