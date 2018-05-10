@@ -16,13 +16,13 @@ namespace OSLibrary.ADO.NET.Repositories
             SqlConnection connection = new SqlConnection(
                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
                 );
-            var sql = ("INSERT INTO Porducts VALUES (@Product_ID,@Product_Name,@UnitPrice,@Product_Types_Name,@Gender)");
+            var sql = ("SET IDENTITY_INSERT Products ON INSERT INTO Products (Product_ID,Product_Name,UnitPrice,Product_Types_Name,Gender) VALUES (@Product_ID,@Product_Name,@UnitPrice,@Product_Types_Name,@Gender) SET IDENTITY_INSERT Products OFF");
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@Product_ID", model.Product_ID);
-            command.Parameters.AddWithValue("@Product_Name", model.Product_ID);
-            command.Parameters.AddWithValue("@UnitPrice", model.Product_ID);
-            command.Parameters.AddWithValue("@Product_Types_Name", model.Product_ID);
-            command.Parameters.AddWithValue("@Gender", model.Product_ID);
+            command.Parameters.AddWithValue("@Product_Name", model.Product_Name);
+            command.Parameters.AddWithValue("@UnitPrice", model.UnitPrice);
+            command.Parameters.AddWithValue("@Product_Types_Name", model.Product_Types_Name);
+            command.Parameters.AddWithValue("@Gender", model.Gender);
 
             connection.Open();
             command.ExecuteNonQuery();
@@ -33,7 +33,7 @@ namespace OSLibrary.ADO.NET.Repositories
             SqlConnection connection = new SqlConnection(
              "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
               );
-            var sql = ("UPDATE Porducts SET Product_ID=@Product_ID,Product_Name=@Product_Name,UnitPrice=@UnitPrice,Product_Types_Name=@Product_Types_Name,Gender=@Gender");
+            var sql = ("UPDATE Products SET Product_Name=@Product_Name,UnitPrice=@UnitPrice,Product_Types_Name=@Product_Types_Name,Gender=@Gender WHERE Product_ID=@Product_ID");
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@Product_ID", model.Product_ID);
             command.Parameters.AddWithValue("@Product_Name", model.Product_Name);

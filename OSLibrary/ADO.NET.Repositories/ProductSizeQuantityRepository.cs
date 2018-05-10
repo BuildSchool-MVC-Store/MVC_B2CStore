@@ -1,5 +1,4 @@
-﻿using OSLibrary.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -77,11 +76,26 @@ namespace OSLibrary.ADO.NET.Repositories
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
 
             var properties = typeof(Product_Size_Quantity).GetProperties();
-            Product_Size_Quantity productSizeQuantity = new Product_Size_Quantity();
+            Product_Size_Quantity productSizeQuantity = null;
             while (reader.Read())
             {
-                productSizeQuantity = DbReaderModelBinder<Product_Size_Quantity>.Bind(reader);
-                
+                productSizeQuantity = new Product_Size_Quantity();
+                for (var i=0; i<reader.FieldCount; i++)
+                {
+                    var fieldName = reader.GetName(i);
+                    var property = properties.FirstOrDefault(p => p.Name == fieldName);
+
+                    if (property == null)
+                    {
+                        continue;
+                    }
+
+                    if (!reader.IsDBNull(i))
+                    {
+                        property.SetValue(productSizeQuantity, reader.GetValue(i));
+                    }
+                }
+
             }
             reader.Close();
             return productSizeQuantity;
@@ -99,7 +113,11 @@ namespace OSLibrary.ADO.NET.Repositories
             var productSizeQuantitys = new List<Product_Size_Quantity>();
             while (reader.Read())
             {
-                var productSizeQuantity = DbReaderModelBinder<Product_Size_Quantity>.Bind(reader);
+                var productSizeQuantity = new Product_Size_Quantity();
+
+                productSizeQuantity.Product_ID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
+                productSizeQuantity.Quantity = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Quantity")).ToString());
+                productSizeQuantity.Product_Size = reader.GetValue(reader.GetOrdinal("Product_Size")).ToString();
 
                 productSizeQuantitys.Add(productSizeQuantity);
             }
