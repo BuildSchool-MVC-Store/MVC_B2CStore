@@ -62,60 +62,32 @@ namespace OSLibrary.ADO.NET.Repositories
             connection.Close();
         }
 
-        public Shopping_Cart GetByID(int Shopping_Cart_ID)
+        public IEnumerable<Shopping_Cart> GetByAccount(string Account)
         {
             SqlConnection connection = new SqlConnection(
                 "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
             );
-            var sql = "SELECT * FROM Shopping_Cart WHERE Shopping_Cart_ID = @Shopping_Cart_ID";
+            var sql = "SELECT * FROM Shopping_Cart WHERE Account = @Account";
             SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@Shopping_Cart_ID", Shopping_Cart_ID);
+            command.Parameters.AddWithValue("@Account", Account);
 
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-     //       var shoppingCart = new Shopping_Cart();
+     //     var shoppingCart = new Shopping_Cart();
 
             var properties = typeof(Shopping_Cart).GetProperties();
-            Shopping_Cart shoppingCart = null;
+            List<Shopping_Cart> shoppingCarts = new List<Shopping_Cart>();
 
             while (reader.Read())
             {
-
-
-
-                //shoppingCart = new Shopping_Cart();
-                //for(var i=0;i<reader.FieldCount; i++)
-                //{
-                //    var fieldName = reader.GetName(i);
-                //    var property = properties.FirstOrDefault(
-                //        p => p.Name == fieldName);
-
-                //    if (property == null)
-                //        continue;
-
-                //    if (!reader.IsDBNull(i))
-                //        property.SetValue(shoppingCart,
-                //            reader.GetValue(i));
-                //}
-
-
-                //shoppingCart.Shopping_Cart_ID = Convert.ToInt32( reader.GetValue(reader.GetOrdinal("Shopping_Cart_ID")).ToString());
-                //shoppingCart.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
-                //shoppingCart.Product_ID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Product_ID")));
-                //shoppingCart.Quantity = Convert.ToInt16(reader.GetValue(reader.GetOrdinal("Quantity")).ToString());
-                //shoppingCart.UnitPrice = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("UnitPrice")).ToString());
-                //shoppingCart.Discount = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Discount")).ToString());
-                //shoppingCart.size = reader.GetValue(reader.GetOrdinal("size")).ToString();
-
-
-                 shoppingCart = DbReaderModelBinder<Shopping_Cart>.Bind(reader);
-
+                Shopping_Cart shoppingCart = DbReaderModelBinder<Shopping_Cart>.Bind(reader);
+                shoppingCarts.Add(shoppingCart);
             }
 
 
             reader.Close();
-            return shoppingCart;
+            return shoppingCarts;
         }
 
         public IEnumerable<Shopping_Cart> GetAll()
