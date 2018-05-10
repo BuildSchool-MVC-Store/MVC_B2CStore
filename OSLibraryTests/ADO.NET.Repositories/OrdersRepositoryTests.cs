@@ -17,7 +17,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         {
             OrdersRepository repository = new OrdersRepository();
             var result = repository.GetAll();
-            Assert.IsTrue(result.Count() == 4);
+            Assert.IsTrue(result.Count() == 6);
         }
 
         [TestMethod]
