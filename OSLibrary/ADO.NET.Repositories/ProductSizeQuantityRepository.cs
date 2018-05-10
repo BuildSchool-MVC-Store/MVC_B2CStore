@@ -74,13 +74,27 @@ namespace OSLibrary.ADO.NET.Repositories
 
             connection.Open();
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var productSizeQuantity = new Product_Size_Quantity();
+
+            var properties = typeof(Product_Size_Quantity).GetProperties();
+            Product_Size_Quantity productSizeQuantity = null;
             while (reader.Read())
             {
-                productSizeQuantity.Product_ID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
-                productSizeQuantity.Quantity = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Quantity")).ToString());
-                productSizeQuantity.Product_Size = reader.GetValue(reader.GetOrdinal("Product_Size")).ToString();
+                productSizeQuantity = new Product_Size_Quantity();
+                for (var i=0; i<reader.FieldCount; i++)
+                {
+                    var fieldName = reader.GetName(i);
+                    var property = properties.FirstOrDefault(p => p.Name == fieldName);
 
+                    if (property == null)
+                    {
+                        continue;
+                    }
+
+                    if (!reader.IsDBNull(i))
+                    {
+                        property.SetValue(productSizeQuantity, reader.GetValue(i));
+                    }
+                }
 
             }
             reader.Close();
