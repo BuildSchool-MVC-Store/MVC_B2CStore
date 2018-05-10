@@ -24,7 +24,5 @@ namespace OSLibrary.ADO.NET.Repositories.Tests
             var result = repository.GetByID("Osborn");
             Assert.IsTrue(result.Name == "陳兆煇");
         }
-        [TestMethod()]
-        public void 
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Runtime.Serialization.Formatters.Binary;
+using OSLibrary.Utils;
 
 namespace OSLibrary.ADO.NET.Repositories
 {
@@ -75,23 +76,7 @@ namespace OSLibrary.ADO.NET.Repositories
             
             while (reader.Read())
             {
-                var productImage = new Product_Image();
-                var properties = typeof(Product_Image).GetProperties();
-
-                for(var i = 0; i<reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault((x) => x.Name == fieldName);
-
-                    if(property == null)
-                    {
-                        continue;
-                    }
-                    if (!reader.IsDBNull(i))
-                    {
-                        property.SetValue(productImage, reader.GetValue(i));
-                    }
-                }
+                Product_Image productImage = DbReaderModelBinder<Product_Image>.Bind(reader);
                 productImages.Add(productImage);
             }
             
