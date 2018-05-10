@@ -21,8 +21,9 @@ namespace OSLibrary.ADO.NET.Repositories.Tests
         public void CustomerRepositoryTests_GetByID()
         {
             CustomerRepository repository = new CustomerRepository();
-            var result = repository.GetAll();
-            Assert.IsTrue(result.Count() == 1);
+            var result = repository.GetByID("Osborn");
+            Assert.IsTrue(result.Name == "陳兆煇");
+
         }
 
     }
