@@ -19,7 +19,7 @@ namespace OSLibrary.ADO.NET.Repositories
             SqlConnection connection = new SqlConnection(
                 "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password=123456789;"
                 );
-            var sql = "INSERT INTO FROM Product_Image VALUES (@Product_ID, @Picture, @Product_Image_Only)";
+            var sql = "INSERT INTO Product_Image VALUES (@Product_ID, @Picture, @Product_Image_Only)";
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("Product_ID", model.Product_ID);
             command.Parameters.AddWithValue("Picture", model.Pictrue);
