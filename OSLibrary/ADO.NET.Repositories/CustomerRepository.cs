@@ -71,7 +71,7 @@ namespace OSLibrary.ADO.NET.Repositories
             connection.Open();
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             var properties = typeof(Customers).GetProperties();
-            Customers customer = null;
+            Customers customer = new Customers();
             while (reader.Read())
             {
                 customer = new Customers();
