@@ -76,23 +76,7 @@ namespace OSLibrary.ADO.NET.Repositories
             
             while (reader.Read())
             {
-                var productImage = new Product_Image();
-                var properties = typeof(Product_Image).GetProperties();
-
-                for(var i = 0; i<reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault((x) => x.Name == fieldName);
-
-                    if(property == null)
-                    {
-                        continue;
-                    }
-                    if (!reader.IsDBNull(i))
-                    {
-                        property.SetValue(productImage, reader.GetValue(i));
-                    }
-                }
+                var productImage = DbReaderModelBinder<Product_Image>.Bind(reader);
                 productImages.Add(productImage);
             }
             
