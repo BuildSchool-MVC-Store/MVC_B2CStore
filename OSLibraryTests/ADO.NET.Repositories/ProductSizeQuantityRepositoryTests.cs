@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OSLibrary;
 using OSLibrary.ADO.NET.Repositories;
 
 namespace OSLibraryTests.ADO.NET.Repositories
@@ -23,5 +24,21 @@ namespace OSLibraryTests.ADO.NET.Repositories
             var result = repository.GetByID(1, "M");
             Assert.IsTrue(result.Quantity == 8);
         }
+
+        [TestMethod]
+        public void ProductSizeQuantityRepositoryTests_Create()
+        {
+            ProductSizeQuantityRepository repository = new ProductSizeQuantityRepository();
+            var model = new Product_Size_Quantity()
+            {
+                Product_ID = 1,
+                Quantity = 20,
+                Product_Size = "S"
+            };
+            repository.Create(model);
+            var result = repository.GetByID(1, "S");
+            Assert.IsTrue(result != null);
+        }
+
     }
 }

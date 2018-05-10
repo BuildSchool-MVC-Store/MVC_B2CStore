@@ -69,9 +69,7 @@ namespace OSLibrary.ADO.NET.Repositories
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@Product_ID", Product_ID);
             command.Parameters.AddWithValue("@Product_Size", Product_Size);
-
-
-
+            
 
             connection.Open();
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
