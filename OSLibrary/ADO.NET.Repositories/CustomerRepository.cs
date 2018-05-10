@@ -70,15 +70,27 @@ namespace OSLibrary.ADO.NET.Repositories
 
             connection.Open();
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var customer = new Customers();
-            while(reader.Read())
+            var properties = typeof(Customers).GetProperties();
+            Customers customer = null;
+            while (reader.Read())
             {
-                customer.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
-                customer.Name = reader.GetValue(reader.GetOrdinal("Name")).ToString();
-                customer.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
-                customer.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
-                customer.Phone = reader.GetValue(reader.GetOrdinal("Phone")).ToString();
-                customer.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
+                customer = new Customers();
+                for (var i = 0;i<reader.FieldCount;i++)
+                {
+                    var fieldname = reader.GetName(i);
+                    var property = properties.FirstOrDefault(x => x.Name == fieldname);
+                    if (property == null)
+                        continue;
+                    if (!reader.IsDBNull(i))
+                        property.SetValue(customer, reader.GetValue(i));
+
+                }
+                //customer.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
+                //customer.Name = reader.GetValue(reader.GetOrdinal("Name")).ToString();
+                //customer.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
+                //customer.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
+                //customer.Phone = reader.GetValue(reader.GetOrdinal("Phone")).ToString();
+                //customer.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
             }
             reader.Close();
             return customer;
@@ -92,17 +104,31 @@ namespace OSLibrary.ADO.NET.Repositories
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var customers = new List<Customers>();
+            List<Customers> customers = new List<Customers>();
             while(reader.Read())
             {
+
                 var customer = new Customers();
-                customer.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
-                customer.Name = reader.GetValue(reader.GetOrdinal("Name")).ToString();
-                customer.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
-                customer.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
-                customer.Phone = reader.GetValue(reader.GetOrdinal("Phone")).ToString();
-                customer.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
+                var properties = typeof(Customers).GetProperties();
+
+                for (var i = 0; i < reader.FieldCount; i++)
+                {
+                    var fieldname = reader.GetName(i);
+                    var property = properties.FirstOrDefault(x => x.Name == fieldname);
+                    if (property == null)
+                        continue;
+                    if (!reader.IsDBNull(i))
+                        property.SetValue(customer, reader.GetValue(i));
+                }
                 customers.Add(customer);
+
+                //customer.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
+                //customer.Name = reader.GetValue(reader.GetOrdinal("Name")).ToString();
+                //customer.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
+                //customer.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
+                //customer.Phone = reader.GetValue(reader.GetOrdinal("Phone")).ToString();
+                //customer.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
+                //customers.Add(customer);
             }
             reader.Close();
             return customers;
