@@ -16,7 +16,7 @@ namespace OSLibrary.ADO.NET.Repositories
             SqlConnection connection = new SqlConnection(
                 "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password=123456789;"
                 );
-            var sql = "INSERT INTO FROM Orders VALUES (@Order_Date, @Account, @Pay, @Transport, @Order_Check, @Total, @TranMoney)";
+            var sql = "INSERT INTO Orders (Order_Date, Account, Pay, Transport, Order_Check, Total, TranMoney) VALUES (@Order_Date, @Account, @Pay, @Transport, @Order_Check, @Total, @TranMoney)";
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("Order_Date", model.Order_Date);
             command.Parameters.AddWithValue("Account", model.Account);
@@ -36,8 +36,9 @@ namespace OSLibrary.ADO.NET.Repositories
             SqlConnection connection = new SqlConnection(
                 "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password=123456789;"
                 );
-            var sql = "UPDATE Orders SET Order_Date = @Order_Date, Account = @Account, Pay = @Pay, Transport = @Transport, Order_Check = @Order_Check, Total = @Total, TranMoney = @TranMoney WHERE Order_ID = @Order_ID";
+            var sql = "SET IDENTITY_INSERT Orders ON UPDATE Orders SET Order_Date = @Order_Date, Account = @Account, Pay = @Pay, Transport = @Transport, Order_Check = @Order_Check, Total = @Total, TranMoney = @TranMoney WHERE Order_ID = @Order_ID SET IDENTITY_INSERT Orders OFF";
             SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("Order_ID", model.Order_ID);
             command.Parameters.AddWithValue("Order_Date", model.Order_Date);
             command.Parameters.AddWithValue("Account", model.Account);
             command.Parameters.AddWithValue("Pay", model.Pay);
