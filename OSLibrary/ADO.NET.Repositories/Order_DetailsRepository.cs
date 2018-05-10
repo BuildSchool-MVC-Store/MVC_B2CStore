@@ -72,7 +72,7 @@ namespace OSLibrary.ADO.NET.Repositories
             SqlConnection connection = new SqlConnection(
                 "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
                 );
-            var sql = "SELECT * FROM Order_Datials WHERE Order_Datials_ID = @Order_Detials_ID";
+            var sql = "SELECT * FROM Order_Details WHERE Order_Details_ID = @Order_Details_ID";
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@Order_Details_ID", Order_Details_ID);
             connection.Open();
@@ -90,24 +90,12 @@ namespace OSLibrary.ADO.NET.Repositories
                     {
                         continue;
                     }
-                    if (reader.IsDBNull(i))
+                    if (!reader.IsDBNull(i))
                     {
                         property.SetValue(order_details, reader.GetValue(i));
                     }
                 }
             }
-
-            //var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            //var Order_Details = new Order_Details();
-            //while (reader.Read())
-            //{
-            //    Order_Details.Order_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Order_ID")).ToString());
-            //    Order_Details.Product_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
-            //    Order_Details.Quantity = short.Parse(reader.GetValue(reader.GetOrdinal("Quantity")).ToString());
-            //    Order_Details.UnitPrice = decimal.Parse(reader.GetValue(reader.GetOrdinal("UnitPrice")).ToString());
-            //    Order_Details.Discount = float.Parse(reader.GetValue(reader.GetOrdinal("Discount")).ToString());
-            //    Order_Details.size = reader.GetValue(reader.GetOrdinal("size")).ToString();
-            //}
             reader.Close();
             return order_details;
         }
