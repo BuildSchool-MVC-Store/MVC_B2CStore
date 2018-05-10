@@ -13,7 +13,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         {
             ProductsRepository repository = new ProductsRepository();
             var result = repository.GetAll();
-            Assert.IsTrue(result.Count()==2);
+            Assert.IsTrue(result.Count()>=2);
         }
         [TestMethod]
         public void ProductsRepositoryTests_GetByProduct_ID()
