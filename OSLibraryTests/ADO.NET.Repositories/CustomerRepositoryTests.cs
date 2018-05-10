@@ -17,5 +17,13 @@ namespace OSLibrary.ADO.NET.Repositories.Tests
             var result = repository.GetAll();
             Assert.IsTrue(result.Count()==1);
         }
+        [TestMethod()]
+        public void CustomerRepositoryTests_GetByID()
+        {
+            CustomerRepository repository = new CustomerRepository();
+            var result = repository.GetAll();
+            Assert.IsTrue(result.Count() == 1);
+        }
+
     }
 }
