@@ -62,6 +62,7 @@
     <Compile Include="ADO.NET.Repositories\ProductSizeQuantityRepositoryTests.cs" />
     <Compile Include="ADO.NET.Repositories\ProductsRepositoryTests.cs" />
     <Compile Include="ADO.NET.Repositories\ShoppingCartRepositoryTests.cs" />
+    <Compile Include="ADO.NET.Repositories\ProductImageRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
