@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OSLibrary.Utils;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -81,18 +82,20 @@ namespace OSLibrary.ADO.NET.Repositories
             Orders Order = null;
             while(reader.Read())
             {
-                Order = new Orders();
-                for(var i = 0; i < reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault((x) => x.Name == fieldName);
+                Order = DbReaderModelBinder<Orders>.Bind(reader);
 
-                    if (property == null)
-                        continue;
+                //Order = new Orders();
+                //for(var i = 0; i < reader.FieldCount; i++)
+                //{
+                //    var fieldName = reader.GetName(i);
+                //    var property = properties.FirstOrDefault((x) => x.Name == fieldName);
 
-                    if (!reader.IsDBNull(i))
-                        property.SetValue(Order, reader.GetValue(i));
-                }
+                //    if (property == null)
+                //        continue;
+
+                //    if (!reader.IsDBNull(i))
+                //        property.SetValue(Order, reader.GetValue(i));
+                //}
 
                 //Order.Order_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Order_ID")).ToString());
                 //Order.Order_Date = DateTime.Parse(reader.GetValue(reader.GetOrdinal("Order_Date")).ToString());
@@ -121,18 +124,21 @@ namespace OSLibrary.ADO.NET.Repositories
             List<Orders> Orders = new List<Orders>();
             while (reader.Read())
             {
-                var Order = new Orders();
-                var properties = typeof(Orders).GetProperties();
-                for (var i = 0; i < reader.FieldCount; i++)
-                {
-                    var fieldname = reader.GetName(i);
-                    var property = properties.FirstOrDefault(x => x.Name == fieldname);
-                    if (property == null)
-                        continue;
-                    if (!reader.IsDBNull(i))
-                        property.SetValue(Order, reader.GetValue(i));
-                }
+                var Order = DbReaderModelBinder<Orders>.Bind(reader);
                 Orders.Add(Order);
+
+                //var Order = new Orders();
+                //var properties = typeof(Orders).GetProperties();
+                //for (var i = 0; i < reader.FieldCount; i++)
+                //{
+                //    var fieldname = reader.GetName(i);
+                //    var property = properties.FirstOrDefault(x => x.Name == fieldname);
+                //    if (property == null)
+                //        continue;
+                //    if (!reader.IsDBNull(i))
+                //        property.SetValue(Order, reader.GetValue(i));
+                //}
+                //Orders.Add(Order);
 
                 //Order.Order_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Order_ID")).ToString());
                 //Order.Order_Date = DateTime.Parse(reader.GetValue(reader.GetOrdinal("Order_Date")).ToString());
