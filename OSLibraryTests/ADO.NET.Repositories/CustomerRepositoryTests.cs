@@ -23,8 +23,6 @@ namespace OSLibrary.ADO.NET.Repositories.Tests
             CustomerRepository repository = new CustomerRepository();
             var result = repository.GetByID("Osborn");
             Assert.IsTrue(result.Name == "陳兆煇");
-
         }
-
     }
 }
