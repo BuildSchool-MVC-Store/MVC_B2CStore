@@ -60,32 +60,33 @@ namespace OSLibrary.ADO.NET.Repositories
 
 
 
-        public Products GetByProduct_ID()
+        public Products GetByProduct_ID(int Product_ID)
         {
             SqlConnection connection = new SqlConnection(
                      "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
                 );
-            var sql = "SELECT * FROM Product WHERE Product_ID=@Product_ID";
+            var sql = "SELECT * FROM Products WHERE Product_ID=@Product_ID";
             SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@Product_ID", Product_ID);
             connection.Open();
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             //      var product = new Products();
             var properties = typeof(Products).GetProperties();
             Products products = null;
-
             while (reader.Read())
             {
+                products = new Products();
                 for (var i = 0; i < reader.FieldCount; i++)
                 {
-                    products = new Products();
                     var fieldName = reader.GetName(i);
                     var property = properties.FirstOrDefault((x) => x.Name == fieldName);
                     if (property == null)
-                    { continue; }
-                    if (reader.IsDBNull(i))
-                    {
+                        continue;
+
+                    if (!reader.IsDBNull(i))
+
                         property.SetValue(products, reader.GetValue(i));
-                    }
+
 
                 }
 
@@ -105,7 +106,7 @@ namespace OSLibrary.ADO.NET.Repositories
             SqlConnection connection = new SqlConnection(
                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
                 );
-            var sql = "SELECT * FROM Product ";
+            var sql = "SELECT * FROM Products";
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
@@ -121,12 +122,10 @@ namespace OSLibrary.ADO.NET.Repositories
                     var fieldName = reader.GetName(i);
                     var property = properties.FirstOrDefault((x) => x.Name == fieldName);
                     if (property == null)
-                    { continue; }
-                    if (reader.IsDBNull(i))
-                    {
+                        continue;
+                    if (!reader.IsDBNull(i))
                         property.SetValue(product, reader.GetValue(i));
-                    }
-
+                    
                 }
                 products.Add(product);
                 //    var product = new Products();
