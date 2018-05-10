@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OSLibrary.Utils;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -61,7 +62,7 @@ namespace OSLibrary.ADO.NET.Repositories
             connection.Close();
         }
 
-        public Shopping_Cart GetByID(string Shopping_Cart_ID)
+        public Shopping_Cart GetByID(int Shopping_Cart_ID)
         {
             SqlConnection connection = new SqlConnection(
                 "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
@@ -80,20 +81,23 @@ namespace OSLibrary.ADO.NET.Repositories
 
             while (reader.Read())
             {
-                shoppingCart = new Shopping_Cart();
-                for(var i=0;i<reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault(
-                        p => p.Name == fieldName);
 
-                    if (property == null)
-                        continue;
 
-                    if (!reader.IsDBNull(i))
-                        property.SetValue(shoppingCart,
-                            reader.GetValue(i));
-                }
+
+                //shoppingCart = new Shopping_Cart();
+                //for(var i=0;i<reader.FieldCount; i++)
+                //{
+                //    var fieldName = reader.GetName(i);
+                //    var property = properties.FirstOrDefault(
+                //        p => p.Name == fieldName);
+
+                //    if (property == null)
+                //        continue;
+
+                //    if (!reader.IsDBNull(i))
+                //        property.SetValue(shoppingCart,
+                //            reader.GetValue(i));
+                //}
 
 
                 //shoppingCart.Shopping_Cart_ID = Convert.ToInt32( reader.GetValue(reader.GetOrdinal("Shopping_Cart_ID")).ToString());
@@ -103,7 +107,10 @@ namespace OSLibrary.ADO.NET.Repositories
                 //shoppingCart.UnitPrice = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("UnitPrice")).ToString());
                 //shoppingCart.Discount = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Discount")).ToString());
                 //shoppingCart.size = reader.GetValue(reader.GetOrdinal("size")).ToString();
-                
+
+
+                 shoppingCart = DbReaderModelBinder<Shopping_Cart>.Bind(reader);
+
             }
 
 
@@ -132,23 +139,25 @@ namespace OSLibrary.ADO.NET.Repositories
                 //shoppingCart.Discount = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Discount")).ToString());
                 //shoppingCart.size = reader.GetValue(reader.GetOrdinal("size")).ToString();
 
-                var properties = typeof(Shopping_Cart).GetProperties();
-                Shopping_Cart shoppingCart = null;
-                shoppingCart = new Shopping_Cart();
-                for (var i = 0; i < reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault(
-                        p => p.Name == fieldName);
 
-                    if (property == null)
-                        continue;
+                //var properties = typeof(Shopping_Cart).GetProperties();
+                //Shopping_Cart shoppingCart = null;
+                //shoppingCart = new Shopping_Cart();
+                //for (var i = 0; i < reader.FieldCount; i++)
+                //{
+                //    var fieldName = reader.GetName(i);
+                //    var property = properties.FirstOrDefault(
+                //        p => p.Name == fieldName);
 
-                    if (!reader.IsDBNull(i))
-                        property.SetValue(shoppingCart,
-                            reader.GetValue(i));
-                }
-                
+                //    if (property == null)
+                //        continue;
+
+                //    if (!reader.IsDBNull(i))
+                //        property.SetValue(shoppingCart,
+                //            reader.GetValue(i));
+                //}
+
+                var shoppingCart = DbReaderModelBinder<Shopping_Cart>.Bind(reader);
                 shoppingCarts.Add(shoppingCart);
             }
             reader.Close();

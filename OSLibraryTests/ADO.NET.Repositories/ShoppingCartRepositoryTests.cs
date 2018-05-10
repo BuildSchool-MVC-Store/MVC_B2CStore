@@ -17,5 +17,14 @@ namespace OSLibraryTests.ADO.NET.Repositories
             var result = repository.GetAll();
             Assert.IsTrue(result.Count() ==2);
         }
+        [TestMethod]
+        public void ShoppingCartRepositoryTests_GetByID()
+        {
+            ShoppingCartRepository repository = new ShoppingCartRepository();
+            var result = repository.GetByID(1);
+            Assert.IsTrue(result.Product_ID == 1);
+        }
+
+
     }
 }
