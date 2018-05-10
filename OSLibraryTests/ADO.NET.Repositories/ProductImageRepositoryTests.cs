@@ -14,7 +14,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         {
             ProductImageRepository repository = new ProductImageRepository();
             var result = repository.GetAll();
-            Assert.IsTrue(result.Count() == 4);
+            Assert.IsTrue(result.Count() == 7);
         }
 
         [TestMethod]
@@ -22,7 +22,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         {
             ProductImageRepository repository = new ProductImageRepository();
             var result = repository.GetByProduct_ID(1);
-            Assert.IsTrue(result.Count() == 2);
+            Assert.IsTrue(result.Count() == 5);
         }
 
         [TestMethod]
@@ -37,7 +37,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
             };
             repository.Create(model);
             var result = repository.GetByProduct_ID(1);
-            Assert.IsTrue(result.Count() == 3);
+            Assert.IsTrue(result.Count() == 1);
         }
         [TestMethod]
         public void ProductImageRepositoryTests_Update()

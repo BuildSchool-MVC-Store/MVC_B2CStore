@@ -34,7 +34,7 @@ namespace OSLibrary.ADO.NET.Repositories
             SqlConnection connection = new SqlConnection(
                 "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
             );
-            var sql = "UPDATE Customers SET Acount = @Account, Name = @Name ,Password =  @Password,Email = @Email,Phone = @Phone,Address = @Address WHERE Account = @Account";
+            var sql = "UPDATE Customers SET Account = @Account, Name = @Name ,Password =  @Password,Email = @Email,Phone = @Phone,Address = @Address WHERE Account = @Account";
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@Account", model.Account);
             command.Parameters.AddWithValue("@Name", model.Name);
