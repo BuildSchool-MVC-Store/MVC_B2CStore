@@ -15,7 +15,7 @@ namespace OSLibrary.ADO.NET.Repositories.Tests
         {
             CustomerRepository repository = new CustomerRepository();
             var result = repository.GetAll();
-            Assert.IsTrue(result.Count()==1);
+            Assert.IsTrue(result.Count()==2);
         }
         [TestMethod()]
         public void CustomerRepositoryTests_GetByID()

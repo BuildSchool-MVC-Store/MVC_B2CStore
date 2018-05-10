@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OSLibrary;
 using OSLibrary.ADO.NET.Repositories;
 using System;
 using System.Collections.Generic;
@@ -17,12 +18,26 @@ namespace OSLibraryTests.ADO.NET.Repositories
             var result = repository.GetAll();
             Assert.IsTrue(result.Count() ==2);
         }
+
         [TestMethod]
         public void ShoppingCartRepositoryTests_GetByID()
         {
             ShoppingCartRepository repository = new ShoppingCartRepository();
-            var result = repository.GetByID(1);
-            Assert.IsTrue(result.Product_ID == 1);
+            var result = repository.GetByID("Osborn");
+            Assert.IsTrue(result.Count() == 1);
+        }
+
+        [TestMethod]
+        public void ShoppingCartRepositoryTests_Create()
+        {
+            ShoppingCartRepository repository = new ShoppingCartRepository();
+            var model = new Shopping_Cart()
+            {
+                Account = "",
+                Product_ID = 2,
+                Quantity = 1,
+                size = "s"
+            };
         }
 
 

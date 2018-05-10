@@ -62,14 +62,14 @@ namespace OSLibrary.ADO.NET.Repositories
             connection.Close();
         }
 
-        public Shopping_Cart GetByID(int Shopping_Cart_ID)
+        public IEnumerable<Shopping_Cart> GetByID(string Osborn)
         {
             SqlConnection connection = new SqlConnection(
                 "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
             );
             var sql = "SELECT * FROM Shopping_Cart WHERE Shopping_Cart_ID = @Shopping_Cart_ID";
             SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@Shopping_Cart_ID", Shopping_Cart_ID);
+            command.Parameters.AddWithValue("@Shopping_Cart_ID", Osborn);
 
             connection.Open();
 
@@ -77,12 +77,11 @@ namespace OSLibrary.ADO.NET.Repositories
      //       var shoppingCart = new Shopping_Cart();
 
             var properties = typeof(Shopping_Cart).GetProperties();
+            List<Shopping_Cart> shoppingCarts = new List<Shopping_Cart>();
             Shopping_Cart shoppingCart = null;
 
             while (reader.Read())
             {
-
-
 
                 //shoppingCart = new Shopping_Cart();
                 //for(var i=0;i<reader.FieldCount; i++)
@@ -115,7 +114,7 @@ namespace OSLibrary.ADO.NET.Repositories
 
 
             reader.Close();
-            return shoppingCart;
+            return shoppingCarts;
         }
 
         public IEnumerable<Shopping_Cart> GetAll()
