@@ -26,7 +26,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         }
 
         [TestMethod]
-        public void ProductImageRepositoryTests_Creat()
+        public void ProductImageRepositoryTests_Create()
         {
             ProductImageRepository repository = new ProductImageRepository();
             var model = new Product_Image
@@ -38,6 +38,21 @@ namespace OSLibraryTests.ADO.NET.Repositories
             repository.Create(model);
             var result = repository.GetByProduct_ID(1);
             Assert.IsTrue(result.Count() == 3);
+        }
+        [TestMethod]
+        public void ProductImageRepositoryTests_Update()
+        {
+            ProductImageRepository repository = new ProductImageRepository();
+            var model = new Product_Image
+            {
+                Product_Image_ID = 11,
+                Product_ID = 1,
+                Product_Image_Only = "ON",
+                Pictrue = new byte[] { 2, 2 ,3}
+            };
+            repository.Update(model);
+            var result = repository.GetByProduct_ID(1);
+            Assert.IsTrue(result.Count()==1);
         }
     }
 }
