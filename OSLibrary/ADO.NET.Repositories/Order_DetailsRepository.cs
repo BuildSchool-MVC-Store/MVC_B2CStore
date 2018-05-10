@@ -82,21 +82,6 @@ namespace OSLibrary.ADO.NET.Repositories
             Order_Details order_details = null;
             while (reader.Read())
             {
-                //order_details = new Order_Details();
-                //for(var i = 0; i<reader.FieldCount; i++)
-                //{
-                //    var fieldName = reader.GetName(i);
-                //    var property = properties.FirstOrDefault((x) => x.Name == fieldName);
-                //    if(property == null)
-                //    {
-                //        continue;
-                //    }
-                //    if (!reader.IsDBNull(i))
-                //    {
-                //        property.SetValue(order_details, reader.GetValue(i));
-                //    }
-                //}
-
                 order_details = DbReaderModelBinder<Order_Details>.Bind(reader);
             }
             reader.Close();
@@ -114,14 +99,7 @@ namespace OSLibrary.ADO.NET.Repositories
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             var Order_Details = new List<Order_Details>();
             while (reader.Read())
-            {
-                //var Order_details = new Order_Details();
-                //Order_details.Order_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Order_ID")).ToString());
-                //Order_details.Product_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
-                //Order_details.Quantity = short.Parse(reader.GetValue(reader.GetOrdinal("Quantity")).ToString());
-                //Order_details.UnitPrice = decimal.Parse(reader.GetValue(reader.GetOrdinal("UnitPrice")).ToString());
-                //Order_details.Discount = int.Parse(reader.GetValue(reader.GetOrdinal("Discount")).ToString());
-                //Order_details.size = reader.GetValue(reader.GetOrdinal("size")).ToString();
+            { 
                 var order_details = DbReaderModelBinder<Order_Details>.Bind(reader);
                 Order_Details.Add(order_details);
             }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Runtime.Serialization.Formatters.Binary;
+using OSLibrary.Utils;
 
 namespace OSLibrary.ADO.NET.Repositories
 {
@@ -111,11 +112,12 @@ namespace OSLibrary.ADO.NET.Repositories
             var ProductImages = new List<Product_Image>();
             while (reader.Read())
             {
-                var ProductImage = new Product_Image();
-                ProductImage.Product_Image_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_Image_ID")).ToString());
-                ProductImage.Product_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
-                ProductImage.Pictrue = ObjectToByteArray(reader.GetValue(reader.GetOrdinal("Pictrue")));
-                ProductImage.Product_Image_Only = reader.GetValue(reader.GetOrdinal("Product_Image_Only")).ToString();
+
+                var ProductImage =DbReaderModelBinder<Product_Image>.Bind(reader);
+                //ProductImage.Product_Image_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_Image_ID")).ToString());
+                //ProductImage.Product_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
+                //ProductImage.Pictrue = ObjectToByteArray(reader.GetValue(reader.GetOrdinal("Pictrue")));
+                //ProductImage.Product_Image_Only = reader.GetValue(reader.GetOrdinal("Product_Image_Only")).ToString();
                 ProductImages.Add(ProductImage);
             }
             reader.Close();
