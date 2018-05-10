@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OSLibrary.Utils;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -75,20 +76,17 @@ namespace OSLibrary.ADO.NET.Repositories
             Products products = null;
             while (reader.Read())
             {
-                products = new Products();
-                for (var i = 0; i < reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault((x) => x.Name == fieldName);
-                    if (property == null)
-                        continue;
-
-                    if (!reader.IsDBNull(i))
-
-                        property.SetValue(products, reader.GetValue(i));
-
-
-                }
+                var product = DbReaderModelBinder<Products>.Bind(reader);
+                //products = new Products();
+                //for (var i = 0; i < reader.FieldCount; i++)
+                //{
+                //    var fieldName = reader.GetName(i);
+                //    var property = properties.FirstOrDefault((x) => x.Name == fieldName);
+                //    if (property == null)
+                //        continue;
+                //    if (!reader.IsDBNull(i))
+                //        property.SetValue(products, reader.GetValue(i));
+                //}
 
                 //product.Product_ID =Convert.ToInt32( reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
                 //product.Product_Name = (reader.GetValue(reader.GetOrdinal("Product_Name")).ToString());
@@ -114,19 +112,20 @@ namespace OSLibrary.ADO.NET.Repositories
             List<Products> products = new List<Products>();
             while (reader.Read())
             {
-                var product = new Products();
-                var properties = typeof(Products).GetProperties();
+                var product = DbReaderModelBinder<Products>.Bind(reader);
+                //var product = new Products();
+                //var properties = typeof(Products).GetProperties();
 
-                for (var i = 0; i < reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault((x) => x.Name == fieldName);
-                    if (property == null)
-                        continue;
-                    if (!reader.IsDBNull(i))
-                        property.SetValue(product, reader.GetValue(i));
-                    
-                }
+                //for (var i = 0; i < reader.FieldCount; i++)
+                //{
+                //    var fieldName = reader.GetName(i);
+                //    var property = properties.FirstOrDefault((x) => x.Name == fieldName);
+                //    if (property == null)
+                //        continue;
+                //    if (!reader.IsDBNull(i))
+                //        property.SetValue(product, reader.GetValue(i));
+
+                //}
                 products.Add(product);
                 //    var product = new Products();
                 //    product.Product_ID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
