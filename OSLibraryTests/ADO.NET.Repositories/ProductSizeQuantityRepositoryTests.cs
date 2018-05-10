@@ -64,9 +64,10 @@ namespace OSLibraryTests.ADO.NET.Repositories
                 Product_ID = 1,
                 Product_Size = "S"
             };
+            int oldN = repository.GetAll().Count();
             repository.Delete(model);
-            var result = repository.GetByID(1, "S");
-            Assert.IsTrue(result.Product_ID == 0);
+            int newN = repository.GetAll().Count();
+            Assert.IsTrue((oldN-1) == newN);
         }
 
     }
