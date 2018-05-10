@@ -16,7 +16,15 @@ namespace OSLibraryTests.ADO.NET.Repositories
         {
             OrdersRepository repository = new OrdersRepository();
             var result = repository.GetAll();
-            Assert.IsTrue(result.Count() == 0);
+            Assert.IsTrue(result.Count() == 1);
+        }
+
+        [TestMethod]
+        public void OrdersRepositoryTests_GetByID()
+        {
+            OrdersRepository repository = new OrdersRepository();
+            var result = repository.GetByID(2);
+            Assert.IsTrue(result.Account == "Osborn");
         }
     }
 }
