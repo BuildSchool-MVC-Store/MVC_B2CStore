@@ -20,7 +20,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         {
             ProductsRepository repository = new ProductsRepository();
             var result = repository.GetByProduct_ID(1);
-            Assert.IsTrue(result.Product_Name=="衣服");
+            Assert.IsTrue(result.Product_Name=="黑色內褲");
         }
     }
 }
