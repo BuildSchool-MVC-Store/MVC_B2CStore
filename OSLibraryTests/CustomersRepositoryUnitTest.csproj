@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="ADO.NET.Repositories\CustomerRepositoryTests.cs" />
     <Compile Include="ADO.NET.Repositories\OrdersRepositoryTests.cs" />
+    <Compile Include="ADO.NET.Repositories\ProductSizeQuantityRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
