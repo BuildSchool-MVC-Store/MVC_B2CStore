@@ -19,11 +19,11 @@ namespace OSLibrary.ADO.NET.Repositories
             var sql = "INSERT INTO Customers VALUES (@Account, @Name, @Password, @Email, @Phone, @Address)";
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@Account", model.Account);
-            command.Parameters.AddWithValue("@Name", model.Account);
-            command.Parameters.AddWithValue("@Password", model.Account);
-            command.Parameters.AddWithValue("@Email", model.Account);
-            command.Parameters.AddWithValue("@Phone", model.Account);
-            command.Parameters.AddWithValue("@Address", model.Account);
+            command.Parameters.AddWithValue("@Name", model.Name);
+            command.Parameters.AddWithValue("@Password", model.Password);
+            command.Parameters.AddWithValue("@Email", model.Email);
+            command.Parameters.AddWithValue("@Phone", model.Phone);
+            command.Parameters.AddWithValue("@Address", model.Address);
 
             connection.Open();
             command.ExecuteNonQuery();
