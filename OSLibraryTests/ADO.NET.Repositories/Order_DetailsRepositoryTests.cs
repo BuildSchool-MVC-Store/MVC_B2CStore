@@ -13,7 +13,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
     public class Order_DetailsRepositoryTests
     {
         [TestMethod]
-        public void Order_DetailsRepositoryTests_GetAllTest()
+        public void Order_DetailsRepositoryTests_GetAll()
         {
             Order_DetailsRepository repository = new Order_DetailsRepository();
             var result = repository.GetAll();
@@ -21,7 +21,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         }
 
         [TestMethod]
-        public void Order_DetailsRepositoryTests_GetByIDTest()
+        public void Order_DetailsRepositoryTests_GetByID()
         {
             Order_DetailsRepository repository = new Order_DetailsRepository();
             var result = repository.GetByID(2);
@@ -29,7 +29,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         }
 
         [TestMethod]
-        public void Order_DetailsRepositoryTests_CreateTest()
+        public void Order_DetailsRepositoryTests_Create()
         {
             Order_DetailsRepository repository = new Order_DetailsRepository();
             var model = new Order_Details
@@ -48,7 +48,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
 
 
         [TestMethod]
-        public void Order_DetailsRepositoryTests_UpdateTest()
+        public void Order_DetailsRepositoryTests_Update()
         {
             Order_DetailsRepository repository = new Order_DetailsRepository();
             var model = new Order_Details
@@ -67,7 +67,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         }
 
         [TestMethod]
-        public void Order_DetailsRepositoryTests_DeleteTest()
+        public void Order_DetailsRepositoryTests_Delete()
         {
             Order_DetailsRepository repository = new Order_DetailsRepository();
             var model = new Order_Details
