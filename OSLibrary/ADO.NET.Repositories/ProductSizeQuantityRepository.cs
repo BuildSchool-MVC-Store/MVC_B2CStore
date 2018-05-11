@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OSLibrary.Utils;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -59,7 +60,7 @@ namespace OSLibrary.ADO.NET.Repositories
         }
 
 
-        public Product_Size_Quantity GetByID(int Product_ID, string Product_Size)
+        public Product_Size_Quantity GetByProduct_IDandProduct_Size(int Product_ID, string Product_Size)
         {
             SqlConnection connection = new SqlConnection(
                 "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
@@ -69,33 +70,14 @@ namespace OSLibrary.ADO.NET.Repositories
             command.Parameters.AddWithValue("@Product_ID", Product_ID);
             command.Parameters.AddWithValue("@Product_Size", Product_Size);
 
-
-
-
             connection.Open();
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
 
             var properties = typeof(Product_Size_Quantity).GetProperties();
-            Product_Size_Quantity productSizeQuantity = null;
+            Product_Size_Quantity productSizeQuantity = new Product_Size_Quantity();
             while (reader.Read())
             {
-                productSizeQuantity = new Product_Size_Quantity();
-                for (var i=0; i<reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault(p => p.Name == fieldName);
-
-                    if (property == null)
-                    {
-                        continue;
-                    }
-
-                    if (!reader.IsDBNull(i))
-                    {
-                        property.SetValue(productSizeQuantity, reader.GetValue(i));
-                    }
-                }
-
+                productSizeQuantity = DbReaderModelBinder<Product_Size_Quantity>.Bind(reader);
             }
             reader.Close();
             return productSizeQuantity;
@@ -113,43 +95,12 @@ namespace OSLibrary.ADO.NET.Repositories
             var productSizeQuantitys = new List<Product_Size_Quantity>();
             while (reader.Read())
             {
-                var productSizeQuantity = new Product_Size_Quantity();
-
-                productSizeQuantity.Product_ID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
-                productSizeQuantity.Quantity = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Quantity")).ToString());
-                productSizeQuantity.Product_Size = reader.GetValue(reader.GetOrdinal("Product_Size")).ToString();
+                var productSizeQuantity = DbReaderModelBinder<Product_Size_Quantity>.Bind(reader);
 
                 productSizeQuantitys.Add(productSizeQuantity);
             }
             reader.Close();
             return productSizeQuantitys;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
