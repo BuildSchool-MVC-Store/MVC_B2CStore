@@ -24,7 +24,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         public void Order_DetailsRepositoryTests_GetByOrderDetailsID()
         {
             Order_DetailsRepository repository = new Order_DetailsRepository();
-            var result = repository.GetByID(2);
+            var result = repository.GetByOrder_Details_ID(2);
             Assert.IsTrue(result.Order_Details_ID == 2);
         }
 
@@ -42,7 +42,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
                 size = "M"
             };
             repository.Create(model);
-            var result = repository.GetByID(13);
+            var result = repository.GetByOrder_Details_ID(13);
             Assert.IsTrue(result != null);
         }
 
@@ -62,7 +62,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
                 size = "X"
             };
             repository.Update(model);
-            var result = repository.GetByID(13);
+            var result = repository.GetByOrder_Details_ID(13);
             Assert.IsTrue(result.Quantity == 2);
         }
 
@@ -75,7 +75,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
                 Order_Details_ID = 14
             };
             repository.Delete(model);
-            var result = repository.GetByID(14);
+            var result = repository.GetByOrder_Details_ID(14);
             Assert.IsTrue(result == null);
         }
     }
