@@ -72,10 +72,10 @@ namespace OSLibraryTests.ADO.NET.Repositories
             Order_DetailsRepository repository = new Order_DetailsRepository();
             var model = new Order_Details
             {
-                Order_Details_ID = 7
+                Order_Details_ID = 14
             };
             repository.Delete(model);
-            var result = repository.GetByID(7);
+            var result = repository.GetByID(14);
             Assert.IsTrue(result == null);
         }
     }
