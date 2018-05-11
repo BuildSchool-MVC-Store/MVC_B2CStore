@@ -58,7 +58,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         }
 
         [TestMethod]
-        public void ProductsRepositoryTests_DELETE()
+        public void ProductsRepositoryTests_Delete()
         {
             ProductsRepository repository = new ProductsRepository();
             var model = new Products
