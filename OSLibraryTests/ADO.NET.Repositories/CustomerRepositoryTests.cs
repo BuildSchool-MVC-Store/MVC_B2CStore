@@ -22,7 +22,7 @@ namespace OSLibrary.ADO.NET.Repositories.Tests
         public void CustomerRepositoryTests_GetByAccount()
         {
             CustomerRepository repository = new CustomerRepository();
-            var result = repository.GetByID("Osborn");
+            var result = repository.GetByAccount("Osborn");
             Assert.IsTrue(result.Name == "陳兆煇");
         }
 
@@ -40,7 +40,7 @@ namespace OSLibrary.ADO.NET.Repositories.Tests
                 Address = "台北"
             };
             repository.Create(customers);
-            var result = repository.GetByID("Dann");
+            var result = repository.GetByAccount("Dann");
             Assert.IsTrue(result != null);
         }
 
@@ -58,7 +58,7 @@ namespace OSLibrary.ADO.NET.Repositories.Tests
                 Address = "台北"
             };
             repository.Update(customers);
-            var result = repository.GetByID("Dann");
+            var result = repository.GetByAccount("Dann");
             Assert.IsTrue(result.Password == "123456789124");
         }
 
@@ -71,7 +71,7 @@ namespace OSLibrary.ADO.NET.Repositories.Tests
                 Account = "Dann"
             };
             repository.Delete(customers);
-            var result = repository.GetByID("Dann");
+            var result = repository.GetByAccount("Dann");
             Assert.IsTrue(result.Account == null);
         }
     }
