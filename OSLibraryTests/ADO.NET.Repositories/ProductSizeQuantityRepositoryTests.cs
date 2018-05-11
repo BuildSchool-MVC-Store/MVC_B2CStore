@@ -21,7 +21,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         public void ProductSizeQuantityRepositoryTests_GetByProduct_ID_Product_Size()
         {
             ProductSizeQuantityRepository repository = new ProductSizeQuantityRepository();
-            var result = repository.GetByID(1, "M");
+            var result = repository.GetByProduct_ID_Product_Size(1, "M");
             Assert.IsTrue(result.Quantity == 8);
         }
 
@@ -36,7 +36,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
                 Product_Size = "S"
             };
             repository.Create(model);
-            var result = repository.GetByID(1, "S");
+            var result = repository.GetByProduct_ID_Product_Size(1, "S");
             Assert.IsTrue(result != null);
         }
 
@@ -51,7 +51,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
                 Product_Size = "S"
             };
             repository.Update(model);
-            var result = repository.GetByID(1, "S");
+            var result = repository.GetByProduct_ID_Product_Size(1, "S");
             Assert.IsTrue(result.Quantity == 100);
         }
 
