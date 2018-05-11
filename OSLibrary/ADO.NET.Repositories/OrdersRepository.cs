@@ -130,5 +130,26 @@ namespace OSLibrary.ADO.NET.Repositories
             reader.Close();
             return Orders;
         }
+        public IEnumerable<Orders> GetByAccount(string Account)
+        {
+            SqlConnection connection = new SqlConnection(
+                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
+            );
+            var sql = "SELECT * FROM Orders WHERE Account == @Account";
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@Account", Account);
+            connection.Open();
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+
+            List<Orders> Orders = new List<Orders>();
+            while (reader.Read())
+            {
+                var Order = DbReaderModelBinder<Orders>.Bind(reader);
+                Orders.Add(Order);
+            }
+            reader.Close();
+            return Orders;
+        }
+
     }
 }
