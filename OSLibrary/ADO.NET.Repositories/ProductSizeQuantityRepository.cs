@@ -60,11 +60,7 @@ namespace OSLibrary.ADO.NET.Repositories
         }
 
 
-<<<<<<< HEAD
         public Product_Size_Quantity GetByProduct_IDandProduct_Size(int Product_ID, string Product_Size)
-=======
-        public Product_Size_Quantity GetByProduct_ID_Product_Size(int Product_ID, string Product_Size)
->>>>>>> c57c29144cc1ad9fd447b94791a07a35d6dd70c5
         {
             SqlConnection connection = new SqlConnection(
                 "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
