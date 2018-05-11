@@ -38,9 +38,10 @@ namespace OSLibrary.ADO.NET.Repositories
             SqlConnection connection = new SqlConnection(
                 "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
                 );
-            var sql = "UPDATE Order_Detials SET Order_ID = @Order_ID, Product_ID = @Product_ID, Quantity = @Quantity, UnitPrice = @UnitPrice, Discount = @Discount, size = @size WHERE Order_Details_ID = @Order_Details_ID";
+            var sql = "UPDATE Order_Details SET Order_ID = @Order_ID, Product_ID = @Product_ID, Quantity = @Quantity, UnitPrice = @UnitPrice, Discount = @Discount, size = @size WHERE Order_Details_ID = @Order_Details_ID";
             SqlCommand command = new SqlCommand(sql, connection);
             {
+                command.Parameters.AddWithValue("@Order_Details_ID", model.Order_Details_ID);
                 command.Parameters.AddWithValue("@Order_ID", model.Order_ID);
                 command.Parameters.AddWithValue("@Product_ID", model.Product_ID);
                 command.Parameters.AddWithValue("@Quantity", model.Quantity);
@@ -59,7 +60,7 @@ namespace OSLibrary.ADO.NET.Repositories
             SqlConnection connection = new SqlConnection(
                 "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
                 );
-            var sql = "DELETE FORM Order_Details WHERE Order_Details_ID = @Order_Details_ID";
+            var sql = "DELETE FROM Order_Details WHERE Order_Details_ID = @Order_Details_ID";
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@Order_Details_ID", model.Order_Details_ID);
 
