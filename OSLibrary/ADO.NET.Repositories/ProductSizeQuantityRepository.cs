@@ -60,7 +60,7 @@ namespace OSLibrary.ADO.NET.Repositories
         }
 
 
-        public Product_Size_Quantity GetByID(int Product_ID, string Product_Size)
+        public Product_Size_Quantity GetByProduct_IDandProduct_Size(int Product_ID, string Product_Size)
         {
             SqlConnection connection = new SqlConnection(
                 "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
@@ -102,32 +102,5 @@ namespace OSLibrary.ADO.NET.Repositories
             reader.Close();
             return productSizeQuantitys;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
