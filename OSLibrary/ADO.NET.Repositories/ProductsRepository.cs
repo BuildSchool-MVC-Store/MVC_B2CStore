@@ -138,7 +138,24 @@ namespace OSLibrary.ADO.NET.Repositories
             }
             reader.Close();
             return products;
-
+        }
+        public IEnumerable<Products> GetByProduct_Types_Name(string Product_Types_Name)
+        {
+            SqlConnection connection = new SqlConnection(
+               "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
+                );
+            var sql = "SELECT * FROM Products WHERE Product_Types_Name = @Product_Types_Name";
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            List<Products> products = new List<Products>();
+            while (reader.Read())
+            {
+                var product = DbReaderModelBinder<Products>.Bind(reader);
+                products.Add(product);
+            }
+            reader.Close();
+            return products;
         }
     }
 }

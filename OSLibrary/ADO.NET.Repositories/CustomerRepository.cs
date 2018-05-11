@@ -60,7 +60,7 @@ namespace OSLibrary.ADO.NET.Repositories
             command.ExecuteNonQuery();
             connection.Close();
         }
-        public Customers GetByID(string Account)
+        public Customers GetByAccount(string Account)
         {
             SqlConnection connection = new SqlConnection(
                 "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"

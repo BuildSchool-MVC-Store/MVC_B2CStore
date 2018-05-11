@@ -14,7 +14,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         {
             ProductImageRepository repository = new ProductImageRepository();
             var result = repository.GetAll();
-            Assert.IsTrue(result.Count() == 7);
+            Assert.IsTrue(result.Count() == 6);
         }
 
         [TestMethod]
@@ -22,7 +22,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         {
             ProductImageRepository repository = new ProductImageRepository();
             var result = repository.GetByProduct_ID(1);
-            Assert.IsTrue(result.Count() == 5);
+            Assert.IsTrue(result.Count() == 4);
         }
 
         [TestMethod]
@@ -37,22 +37,36 @@ namespace OSLibraryTests.ADO.NET.Repositories
             };
             repository.Create(model);
             var result = repository.GetByProduct_ID(1);
-            Assert.IsTrue(result.Count() == 1);
+            Assert.IsTrue(result.Count() == 5);
         }
+
         [TestMethod]
         public void ProductImageRepositoryTests_Update()
         {
             ProductImageRepository repository = new ProductImageRepository();
             var model = new Product_Image
             {
-                Product_Image_ID = 11,
+                Product_Image_ID = 17,
                 Product_ID = 1,
                 Product_Image_Only = "ON",
                 Pictrue = new byte[] { 2, 2 ,3}
             };
             repository.Update(model);
             var result = repository.GetByProduct_ID(1);
-            Assert.IsTrue(result.Count()==1);
+            Assert.IsTrue(result.Count() == 5);
+        }
+
+        [TestMethod]
+        public void ProductImageRepositoryTests_Delete()
+        {
+            ProductImageRepository repository = new ProductImageRepository();
+            var model = new Product_Image
+            {
+                Product_Image_ID = 17
+            };
+            repository.Delete(model);
+            var result = repository.GetByProduct_ID(1);
+            Assert.IsTrue(result.Count() == 4);
         }
     }
 }

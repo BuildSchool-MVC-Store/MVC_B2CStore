@@ -20,7 +20,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         }
 
         [TestMethod]
-        public void ShoppingCartRepositoryTests_GetByID()
+        public void ShoppingCartRepositoryTests_GetByAccount()
         {
             ShoppingCartRepository repository = new ShoppingCartRepository();
             var result = repository.GetByAccount("Osborn");

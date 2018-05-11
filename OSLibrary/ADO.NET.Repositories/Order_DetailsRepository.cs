@@ -69,7 +69,7 @@ namespace OSLibrary.ADO.NET.Repositories
             connection.Close();
         }
 
-        public Order_Details GetByID(int Order_Details_ID)
+        public Order_Details GetByOrder_Details_ID(int Order_Details_ID)
         {
             SqlConnection connection = new SqlConnection(
                 "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
@@ -123,6 +123,25 @@ namespace OSLibrary.ADO.NET.Repositories
                 //Order_details.UnitPrice = decimal.Parse(reader.GetValue(reader.GetOrdinal("UnitPrice")).ToString());
                 //Order_details.Discount = int.Parse(reader.GetValue(reader.GetOrdinal("Discount")).ToString());
                 //Order_details.size = reader.GetValue(reader.GetOrdinal("size")).ToString();
+                var order_details = DbReaderModelBinder<Order_Details>.Bind(reader);
+                Order_Details.Add(order_details);
+            }
+            reader.Close();
+            return Order_Details;
+        }
+        public IEnumerable<Order_Details> GetByOrderID(int OrderID)
+        {
+            SqlConnection connection = new SqlConnection(
+                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
+                );
+            var sql = "SELECT * FROM Order_Details WHERE Order = @OrderID";
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@OrderID", OrderID);
+            connection.Open();
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var Order_Details = new List<Order_Details>();
+            while (reader.Read())
+            {
                 var order_details = DbReaderModelBinder<Order_Details>.Bind(reader);
                 Order_Details.Add(order_details);
             }
