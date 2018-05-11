@@ -69,7 +69,7 @@ namespace OSLibrary.ADO.NET.Repositories
             connection.Close();
         }
 
-        public Order_Details GetByID(int Order_Details_ID)
+        public Order_Details GetByOrder_Details_ID(int Order_Details_ID)
         {
             SqlConnection connection = new SqlConnection(
                 "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
