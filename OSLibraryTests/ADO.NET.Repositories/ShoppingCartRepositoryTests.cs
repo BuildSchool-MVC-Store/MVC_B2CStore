@@ -33,13 +33,58 @@ namespace OSLibraryTests.ADO.NET.Repositories
             ShoppingCartRepository repository = new ShoppingCartRepository();
             var model = new Shopping_Cart()
             {
-                Account = "",
-                Product_ID = 2,
+                Account = "Bill",
+                Product_ID = 3,
                 Quantity = 1,
                 size = "s"
             };
+            repository.Create(model);
+            var result = repository.GetAll();
+            var test = result.Where(x => x.Account == "Bill");
+            foreach (var item in test)
+            {
+                Assert.IsTrue(item.Account == "Bill");
+            }
         }
 
+        [TestMethod]
+        public void ShoppingCartRepositoryTests_Update()
+        {
+            ShoppingCartRepository repository = new ShoppingCartRepository();
+            var model = new Shopping_Cart()
+            {
+                Shopping_Cart_ID = 3,
+                Account = "Bill",
+                Product_ID = 3,
+                Quantity = 3,
+                UnitPrice = 150,
+                Discount = 0,
+                size = "s"
+            };
+            repository.Update(model);
+            var result = repository.GetAll();
+            var test = result.Where(x => x.Quantity == 3);
+            foreach (var item in test)
+            {
+                Assert.IsTrue(item.Quantity == 3);
+            }
+        }
 
+        [TestMethod]
+        public void ShoppingCartRepositoryTests_Delete()
+        {
+            ShoppingCartRepository repository = new ShoppingCartRepository();
+            var model = new Shopping_Cart()
+            {
+                Shopping_Cart_ID = 3
+            };
+            repository.Delete(model);
+            var result = repository.GetAll();
+            var test = result.Where(x => x.Shopping_Cart_ID == 3);
+            foreach (var item in test)
+            {
+                Assert.IsTrue(item.Shopping_Cart_ID == 3);
+            }
+        }
     }
 }
