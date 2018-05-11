@@ -84,28 +84,6 @@ namespace OSLibrary.ADO.NET.Repositories
             while(reader.Read())
             {
                 Order = DbReaderModelBinder<Orders>.Bind(reader);
-
-                //Order = new Orders();
-                //for(var i = 0; i < reader.FieldCount; i++)
-                //{
-                //    var fieldName = reader.GetName(i);
-                //    var property = properties.FirstOrDefault((x) => x.Name == fieldName);
-
-                //    if (property == null)
-                //        continue;
-
-                //    if (!reader.IsDBNull(i))
-                //        property.SetValue(Order, reader.GetValue(i));
-                //}
-
-                //Order.Order_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Order_ID")).ToString());
-                //Order.Order_Date = DateTime.Parse(reader.GetValue(reader.GetOrdinal("Order_Date")).ToString());
-                //Order.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
-                //Order.Pay = reader.GetValue(reader.GetOrdinal("Pay")).ToString();
-                //Order.Transport = reader.GetValue(reader.GetOrdinal("Transport")).ToString();
-                //Order.Order_Check = reader.GetValue(reader.GetOrdinal("Order_Check")).ToString();
-                //Order.Total = decimal.Parse(reader.GetValue(reader.GetOrdinal("Total")).ToString());
-                //Order.TranMoney = decimal.Parse(reader.GetValue(reader.GetOrdinal("TranMoney")).ToString());
             }
             reader.Close();
             return Order;
@@ -127,28 +105,27 @@ namespace OSLibrary.ADO.NET.Repositories
             {
                 var Order = DbReaderModelBinder<Orders>.Bind(reader);
                 Orders.Add(Order);
+            }
+            reader.Close();
+            return Orders;
+        }
+        public IEnumerable<Orders> GetByOrder_Date(DateTime from , DateTime to)
+        {
+            SqlConnection connection = new SqlConnection(
+                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
+            );
+            var sql = "SELECT * FROM Orders WHERE Order_Date >= @from AND Order_Date<=to";
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@from", from);
+            command.Parameters.AddWithValue("@to", to);
+            connection.Open();
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
 
-                //var Order = new Orders();
-                //var properties = typeof(Orders).GetProperties();
-                //for (var i = 0; i < reader.FieldCount; i++)
-                //{
-                //    var fieldname = reader.GetName(i);
-                //    var property = properties.FirstOrDefault(x => x.Name == fieldname);
-                //    if (property == null)
-                //        continue;
-                //    if (!reader.IsDBNull(i))
-                //        property.SetValue(Order, reader.GetValue(i));
-                //}
-                //Orders.Add(Order);
-
-                //Order.Order_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Order_ID")).ToString());
-                //Order.Order_Date = DateTime.Parse(reader.GetValue(reader.GetOrdinal("Order_Date")).ToString());
-                //Order.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
-                //Order.Pay = reader.GetValue(reader.GetOrdinal("Pay")).ToString();
-                //Order.Transport = reader.GetValue(reader.GetOrdinal("Transport")).ToString();
-                //Order.Order_Check = reader.GetValue(reader.GetOrdinal("Order_Check")).ToString();
-                //Order.Total = decimal.Parse(reader.GetValue(reader.GetOrdinal("Total")).ToString());
-                //Order.TranMoney = decimal.Parse(reader.GetValue(reader.GetOrdinal("TranMoney")).ToString());
+            List<Orders> Orders = new List<Orders>();
+            while (reader.Read())
+            {
+                var Order = DbReaderModelBinder<Orders>.Bind(reader);
+                Orders.Add(Order);
             }
             reader.Close();
             return Orders;
