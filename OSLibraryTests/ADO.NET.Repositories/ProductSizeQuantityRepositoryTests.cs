@@ -18,7 +18,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         }
 
         [TestMethod]
-        public void ProductSizeQuantityRepositoryTests_GetByID()
+        public void ProductSizeQuantityRepositoryTests_GetByProduct_ID_Product_Size()
         {
             ProductSizeQuantityRepository repository = new ProductSizeQuantityRepository();
             var result = repository.GetByID(1, "M");
