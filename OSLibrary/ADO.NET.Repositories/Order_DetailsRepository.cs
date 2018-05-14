@@ -1,4 +1,5 @@
-﻿using OSLibrary.Utils;
+﻿using Dapper;
+using OSLibrary.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,141 +12,64 @@ namespace OSLibrary.ADO.NET.Repositories
 {
     public class Order_DetailsRepository
     {
+        private string strConnection = "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;";
         public void Create(Order_Details model)
         {
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
-                );
-            var sql = "INSERT INTO Order_Details VALUES (@Order_ID, @Product_ID, @Quantity, @UnitPrice, @Discount, @size)";
-            SqlCommand command = new SqlCommand(sql, connection);
+            using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                command.Parameters.AddWithValue("@Order_ID", model.Order_ID);
-                command.Parameters.AddWithValue("@Product_ID", model.Product_ID);
-                command.Parameters.AddWithValue("@Quantity", model.Quantity);
-                command.Parameters.AddWithValue("@UnitPrice", model.UnitPrice);
-                command.Parameters.AddWithValue("@Discount", model.Discount);
-                command.Parameters.AddWithValue("@size", model.size);
-
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
+                var sql = "INSERT INTO Order_Details VALUES (@Order_ID, @Product_ID, @Quantity, @UnitPrice, @Discount, @size)";
+                var exec = connection.Execute(sql, model);
             }
-
         }
 
         public void Update(Order_Details model)
         {
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
-                );
-            var sql = "UPDATE Order_Details SET Order_ID = @Order_ID, Product_ID = @Product_ID, Quantity = @Quantity, UnitPrice = @UnitPrice, Discount = @Discount, size = @size WHERE Order_Details_ID = @Order_Details_ID";
-            SqlCommand command = new SqlCommand(sql, connection);
+            using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                command.Parameters.AddWithValue("@Order_Details_ID", model.Order_Details_ID);
-                command.Parameters.AddWithValue("@Order_ID", model.Order_ID);
-                command.Parameters.AddWithValue("@Product_ID", model.Product_ID);
-                command.Parameters.AddWithValue("@Quantity", model.Quantity);
-                command.Parameters.AddWithValue("@UnitPrice", model.UnitPrice);
-                command.Parameters.AddWithValue("@Discount", model.Discount);
-                command.Parameters.AddWithValue("@size", model.size);
-
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
+                var sql = "UPDATE Order_Details SET Order_ID = @Order_ID, Product_ID = @Product_ID, Quantity = @Quantity, UnitPrice = @UnitPrice, Discount = @Discount, size = @size WHERE Order_Details_ID = @Order_Details_ID";
+                var exec = connection.Execute(sql, model);
             }
         }
 
         public void Delete(Order_Details model)
         {
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
-                );
-            var sql = "DELETE FROM Order_Details WHERE Order_Details_ID = @Order_Details_ID";
-            SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@Order_Details_ID", model.Order_Details_ID);
-
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            using (SqlConnection connection = new SqlConnection(strConnection))
+            {
+                var sql = "DELETE FROM Order_Details WHERE Order_Details_ID = @Order_Details_ID";
+                var exec = connection.Execute(sql, model);
+            }
         }
 
         public Order_Details GetByOrder_Details_ID(int Order_Details_ID)
         {
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
-                );
-            var sql = "SELECT * FROM Order_Details WHERE Order_Details_ID = @Order_Details_ID";
-            SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@Order_Details_ID", Order_Details_ID);
-            connection.Open();
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var properties = typeof(Order_Details).GetProperties();
             Order_Details order_details = null;
-            while (reader.Read())
+            using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                //order_details = new Order_Details();
-                //for(var i = 0; i<reader.FieldCount; i++)
-                //{
-                //    var fieldName = reader.GetName(i);
-                //    var property = properties.FirstOrDefault((x) => x.Name == fieldName);
-                //    if(property == null)
-                //    {
-                //        continue;
-                //    }
-                //    if (!reader.IsDBNull(i))
-                //    {
-                //        property.SetValue(order_details, reader.GetValue(i));
-                //    }
-                //}
-
-                order_details = DbReaderModelBinder<Order_Details>.Bind(reader);
+                var sql = "SELECT * FROM Order_Details WHERE Order_Details_ID = @Order_Details_ID";
+                order_details = connection.QueryFirstOrDefault<Order_Details>(sql, new { Order_Details_ID = Order_Details_ID });
             }
-            reader.Close();
             return order_details;
         }
 
         public IEnumerable<Order_Details> GetAll()
         {
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
-                );
-            var sql = "SELECT * FROM Order_Details";
-            SqlCommand command = new SqlCommand(sql, connection);
-            connection.Open();
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var Order_Details = new List<Order_Details>();
-            while (reader.Read())
+
+            IEnumerable<Order_Details> Order_Details = null;
+            using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                //var Order_details = new Order_Details();
-                //Order_details.Order_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Order_ID")).ToString());
-                //Order_details.Product_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
-                //Order_details.Quantity = short.Parse(reader.GetValue(reader.GetOrdinal("Quantity")).ToString());
-                //Order_details.UnitPrice = decimal.Parse(reader.GetValue(reader.GetOrdinal("UnitPrice")).ToString());
-                //Order_details.Discount = int.Parse(reader.GetValue(reader.GetOrdinal("Discount")).ToString());
-                //Order_details.size = reader.GetValue(reader.GetOrdinal("size")).ToString();
-                var order_details = DbReaderModelBinder<Order_Details>.Bind(reader);
-                Order_Details.Add(order_details);
+                var sql = "SELECT * FROM Order_Details";
+                Order_Details = connection.Query<Order_Details>(sql);
             }
-            reader.Close();
             return Order_Details;
         }
         public IEnumerable<Order_Details> GetByOrderID(int OrderID)
         {
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
-                );
-            var sql = "SELECT * FROM Order_Details WHERE Order = @OrderID";
-            SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@OrderID", OrderID);
-            connection.Open();
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var Order_Details = new List<Order_Details>();
-            while (reader.Read())
+            IEnumerable<Order_Details> Order_Details = null;
+            using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                var order_details = DbReaderModelBinder<Order_Details>.Bind(reader);
-                Order_Details.Add(order_details);
+                var sql = "SELECT * FROM Order_Details WHERE Order_ID = @OrderID";
+                Order_Details = connection.Query<Order_Details>(sql,new { OrderID = OrderID});
             }
-            reader.Close();
             return Order_Details;
         }
     }
