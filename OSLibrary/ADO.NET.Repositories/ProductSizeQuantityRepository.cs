@@ -36,63 +36,31 @@ namespace OSLibrary.ADO.NET.Repositories
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
                 var sql = "DELETE FROM Product_Size_Quantity WHERE Product_ID = @Product_ID and Product_Size=@Product_Size";
-                var exec = connection.Execute(sql, model);
+                var exec = connection.Execute(sql, new { model.Product_ID,model.Product_Size });
             }
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
-            );
-            var sql = "DELETE FROM Product_Size_Quantity WHERE Product_ID = @Product_ID and Product_Size=@Product_Size";
-            SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@Product_ID", model.Product_ID);
-             command.Parameters.AddWithValue("@Product_Size", model.Product_Size);
-
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
         }
 
 
         public Product_Size_Quantity GetByProduct_IDandProduct_Size(int Product_ID, string Product_Size)
         {
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
-            );
-            var sql = "SELECT * FROM Product_Size_Quantity  WHERE Product_ID = @Product_ID and Product_Size=@Product_Size";
-            SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@Product_ID", Product_ID);
-            command.Parameters.AddWithValue("@Product_Size", Product_Size);
-
-            connection.Open();
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            var properties = typeof(Product_Size_Quantity).GetProperties();
             Product_Size_Quantity productSizeQuantity = new Product_Size_Quantity();
-            while (reader.Read())
+            using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                productSizeQuantity = DbReaderModelBinder<Product_Size_Quantity>.Bind(reader);
+                var sql = "SELECT * FROM Product_Size_Quantity  WHERE Product_ID = @Product_ID and Product_Size=@Product_Size";
+                productSizeQuantity = connection.QueryFirstOrDefault<Product_Size_Quantity>(sql, new { Product_ID, Product_Size });
             }
-            reader.Close();
             return productSizeQuantity;
         }
 
         public IEnumerable<Product_Size_Quantity> GetAll()
         {
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
-            );
-            var sql = "SELECT * FROM Product_Size_Quantity";
-            SqlCommand command = new SqlCommand(sql, connection);
-            connection.Open();
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var productSizeQuantitys = new List<Product_Size_Quantity>();
-            while (reader.Read())
+            IEnumerable<Product_Size_Quantity> product_Size_Quantities = null;
+            using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                var productSizeQuantity = DbReaderModelBinder<Product_Size_Quantity>.Bind(reader);
-
-                productSizeQuantitys.Add(productSizeQuantity);
+                var sql = "SELECT * FROM Shopping_Cart WHERE Account = @Account";
+                product_Size_Quantities = connection.Query<Product_Size_Quantity>(sql);
             }
-            reader.Close();
-            return productSizeQuantitys;
+            return product_Size_Quantities;
         }
     }
 }

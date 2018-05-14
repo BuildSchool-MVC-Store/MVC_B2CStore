@@ -29,12 +29,12 @@ namespace OSLibrary.ADO.NET.Repositories
                 var exec = connection.Execute(sql);
             }
         }
-        public void Delete(Products model)
+        public void Delete(string Product_ID)
         {
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
                 var sql = ("DELETE FROM Products WHERE Product_ID=@Product_ID");
-                var exec = connection.Execute(sql);
+                var exec = connection.Execute(sql,new { Product_ID });
             }
         }
         public Products GetByProduct_ID(int Product_ID)

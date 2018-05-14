@@ -34,7 +34,7 @@ namespace OSLibrary.ADO.NET.Repositories
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
                 var sql = "DELETE FROM Employees WHERE Account = @Account";
-                var exec = connection.Execute(sql, new { Account = Account});
+                var exec = connection.Execute(sql, new { Account});
             }
         }
         public Employees GetByEmployeesAccount(string account)
