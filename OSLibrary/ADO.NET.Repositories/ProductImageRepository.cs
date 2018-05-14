@@ -9,104 +9,59 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Runtime.Serialization.Formatters.Binary;
 using OSLibrary.Utils;
+using Dapper;
 
 namespace OSLibrary.ADO.NET.Repositories
 {
     public class ProductImageRepository
     {
+        private string strConnection = "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password=123456789;";
         public void Create(Product_Image model)
         {
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password=123456789;"
-                );
-            var sql = "INSERT INTO Product_Image VALUES (@Product_ID, @Picture, @Product_Image_Only)";
-            SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("Product_ID", model.Product_ID);
-            command.Parameters.AddWithValue("Picture", model.Picture);
-            command.Parameters.AddWithValue("Product_Image_Only", model.Product_Image_Only);
-
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            using (SqlConnection connection = new SqlConnection(strConnection))
+            {
+                var sql = "INSERT INTO Product_Image VALUES (@Product_ID, @Picture, @Product_Image_Only)";
+                var exec = connection.Execute(sql, model);
+            }
         }
 
         public void Update(Product_Image model)
         {
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password=123456789;"
-                );
-            var sql = "UPDATE Product_Image SET Product_ID = @Product_ID, Picture = @Picture, Product_Image_Only = @Product_Image_Only WHERE Product_Image_ID = @Product_Image_ID";
-            SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("Product_Image_ID", model.Product_Image_ID);
-
-            command.Parameters.AddWithValue("Product_ID", model.Product_ID);
-            command.Parameters.AddWithValue("Picture", model.Picture);
-            command.Parameters.AddWithValue("Product_Image_Only", model.Product_Image_Only);
-
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            using (SqlConnection connection = new SqlConnection(strConnection))
+            {
+                var sql = "UPDATE Product_Image SET Product_ID = @Product_ID, Picture = @Picture, Product_Image_Only = @Product_Image_Only WHERE Product_Image_ID = @Product_Image_ID";
+                var exec = connection.Execute(sql, model);
+            }
         }
 
         public void Delete(Product_Image model)
         {
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password=123456789;"
-                );
-            var sql = "DELETE FROM Product_Image WHERE Product_Image_ID = @Product_Image_ID";
-            SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@Product_Image_ID", model.Product_Image_ID);
-
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            using (SqlConnection connection = new SqlConnection(strConnection))
+            {
+                var sql = "DELETE FROM Product_Image WHERE Product_Image_ID = @Product_Image_ID";
+                var exec = connection.Execute(sql, model);
+            }
         }
 
         public IEnumerable<Product_Image> GetByProduct_ID(int Product_ID)
         {
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
-            );
-            var sql = "SELECT * FROM Product_Image WHERE Product_ID = @Product_ID";
-            SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@Product_ID", Product_ID);
-
-            connection.Open();
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            List<Product_Image> productImages = new List<Product_Image>();
-            
-            while (reader.Read())
+            IEnumerable<Product_Image> product_Images = null;
+            using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                Product_Image productImage = DbReaderModelBinder<Product_Image>.Bind(reader);
-                productImages.Add(productImage);
+                var sql = "SELECT * FROM Product_Image WHERE Product_ID = @Product_ID";
+                product_Images = connection.Query<Product_Image>(sql);
             }
-            
-            reader.Close();
-            return productImages;
+            return product_Images;
         }
         public IEnumerable<Product_Image> GetAll()
         {
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
-            );
-            var sql = "SELECT * FROM Product_Image";
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            connection.Open();
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var ProductImages = new List<Product_Image>();
-            while (reader.Read())
+            IEnumerable<Product_Image> product_Images = null;
+            using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                var ProductImage = new Product_Image();
-                ProductImage.Product_Image_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_Image_ID")).ToString());
-                ProductImage.Product_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
-                ProductImage.Picture = ObjectToByteArray(reader.GetValue(reader.GetOrdinal("Picture")));
-                ProductImage.Product_Image_Only = reader.GetValue(reader.GetOrdinal("Product_Image_Only")).ToString();
-                ProductImages.Add(ProductImage);
+                var sql = "SELECT * FROM Product_Image";
+                product_Images = connection.Query<Product_Image>(sql);
             }
-            reader.Close();
-            return ProductImages;
+            return product_Images;
         }
         private byte[] ObjectToByteArray(object obj)
         {
