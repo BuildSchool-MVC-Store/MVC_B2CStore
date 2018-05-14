@@ -50,7 +50,6 @@ namespace OSLibrary.ADO.NET.Repositories
         public IEnumerable<Employees> GetAll()
         {
             IEnumerable<Employees> employees = new List<Employees>();
-
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
                 var sql = "SELECT * FROM Employees";
