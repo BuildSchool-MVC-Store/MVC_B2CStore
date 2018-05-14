@@ -21,76 +21,41 @@ namespace OSLibrary.ADO.NET.Repositories
                 var exec = connection.Execute(sql, model);
             }
         }
-
         public void Update(Employees model)
         {
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
-                );
-            var sql = "UPDATE Employees SET Account = @Account, Password = @Password, Name = @Name, Birthday = @Birthday, Email = @Email, Phone = @Phone, Address = @Address WHERE Account = @Account";
-            SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@Account", model.Account);
-            command.Parameters.AddWithValue("@Password", model.Password);
-            command.Parameters.AddWithValue("@Name", model.Name);
-            command.Parameters.AddWithValue("@Birthday", model.Birthday);
-            command.Parameters.AddWithValue("@Email", model.Email);
-            command.Parameters.AddWithValue("@Phone", model.Phone);
-            command.Parameters.AddWithValue("@Address", model.Address);
-
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            using (SqlConnection connection = new SqlConnection(strConnection))
+            {
+                var sql = "UPDATE Employees SET Account = @Account, Password = @Password, Name = @Name, Birthday = @Birthday, Email = @Email, Phone = @Phone, Address = @Address WHERE Account = @Account";
+                var exec = connection.Execute(sql, model);
+            }
         }
-
         public void Delete(Employees model)
         {
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
-                );
-            var sql = "DELETE FROM Employees WHERE Account = @Account";
-            SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@Account", model.Account);
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
-        }
-
-        public Employees GetByEmployeesAccount(string Account)
-        {
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
-                );
-            var sql = "SELECT * FROM Employees WHERE Account = @Account";
-            SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@Account", Account);
-            connection.Open();
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var properties = typeof(Employees).GetProperties();
-            Employees employees = new Employees();
-            while (reader.Read())
+            using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                employees = DbReaderModelBinder<Employees>.Bind(reader);
+                var sql = "DELETE FROM Employees WHERE Account = @Account";
+                var exec = connection.Execute(sql, model);
             }
-            reader.Close();
+        }
+        public Employees GetByEmployeesAccount(string account)
+        {
+            Employees employees = null;
+            using (SqlConnection connection = new SqlConnection(strConnection))
+            {
+                var sql = "SELECT * FROM Employees WHERE Account = @Account";
+                employees = connection.QueryFirstOrDefault<Employees>(sql, new { Account = account });
+            }
             return employees;
         }
-
         public IEnumerable<Employees> GetAll()
         {
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
-                );
-            var sql = "SELECT * FROM Employees";
-            SqlCommand command = new SqlCommand(sql, connection);
-            connection.Open();
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            List<Employees> employees = new List<Employees>();
-            while (reader.Read())
+            IEnumerable<Employees> employees = new List<Employees>();
+
+            using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                var employee = DbReaderModelBinder<Employees>.Bind(reader);
-                employees.Add(employee);
+                var sql = "SELECT * FROM Employees";
+                employees = connection.Query<Employees>(sql);
             }
-            reader.Close();
             return employees;
         }
     }
