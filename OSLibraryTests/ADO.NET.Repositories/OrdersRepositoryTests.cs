@@ -24,7 +24,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         public void OrdersRepositoryTests_GetByOrderID()
         {
             OrdersRepository repository = new OrdersRepository();
-            var result = repository.GetByID(2);
+            var result = repository.GetByOrder_ID(2);
             Assert.IsTrue(result.Account == "Osborn");
         }
 
@@ -43,7 +43,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
                 TranMoney = 0
             };
             repository.Create(model);
-            var result = repository.GetByID(6);
+            var result = repository.GetByOrder_ID(6);
             Assert.IsTrue(result != null);
         }
 
@@ -63,7 +63,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
                 TranMoney = 0
             };
             repository.Update(model);
-            var result = repository.GetByID(6);
+            var result = repository.GetByOrder_ID(6);
             Assert.IsTrue(result.Order_Check == "備貨中");
         }
 
@@ -76,7 +76,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
                 Order_ID = 5
             };
             repository.Delete(model);
-            var result = repository.GetByID(5);
+            var result = repository.GetByOrder_ID(5);
             Assert.IsTrue(result == null);
         }
     }
