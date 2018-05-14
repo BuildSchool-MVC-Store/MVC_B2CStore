@@ -33,7 +33,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
             {
                 Product_ID = 1,
                 Product_Image_Only = "OFF",
-                Pictrue = new byte[] { 1,2}
+                Picture = new byte[] { 1,2}
             };
             repository.Create(model);
             var result = repository.GetByProduct_ID(1);
@@ -49,7 +49,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
                 Product_Image_ID = 17,
                 Product_ID = 1,
                 Product_Image_Only = "ON",
-                Pictrue = new byte[] { 2, 2 ,3}
+                Picture = new byte[] { 2, 2 ,3}
             };
             repository.Update(model);
             var result = repository.GetByProduct_ID(1);
