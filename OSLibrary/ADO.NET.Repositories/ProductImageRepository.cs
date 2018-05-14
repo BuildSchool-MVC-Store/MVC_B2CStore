@@ -22,7 +22,7 @@ namespace OSLibrary.ADO.NET.Repositories
             var sql = "INSERT INTO Product_Image VALUES (@Product_ID, @Picture, @Product_Image_Only)";
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("Product_ID", model.Product_ID);
-            command.Parameters.AddWithValue("Picture", model.Pictrue);
+            command.Parameters.AddWithValue("Picture", model.Picture);
             command.Parameters.AddWithValue("Product_Image_Only", model.Product_Image_Only);
 
             connection.Open();
@@ -40,7 +40,7 @@ namespace OSLibrary.ADO.NET.Repositories
             command.Parameters.AddWithValue("Product_Image_ID", model.Product_Image_ID);
 
             command.Parameters.AddWithValue("Product_ID", model.Product_ID);
-            command.Parameters.AddWithValue("Pictrue", model.Pictrue);
+            command.Parameters.AddWithValue("Pictrue", model.Picture);
             command.Parameters.AddWithValue("Product_Image_Only", model.Product_Image_Only);
 
             connection.Open();
@@ -101,7 +101,7 @@ namespace OSLibrary.ADO.NET.Repositories
                 var ProductImage = new Product_Image();
                 ProductImage.Product_Image_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_Image_ID")).ToString());
                 ProductImage.Product_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
-                ProductImage.Pictrue = ObjectToByteArray(reader.GetValue(reader.GetOrdinal("Pictrue")));
+                ProductImage.Picture = ObjectToByteArray(reader.GetValue(reader.GetOrdinal("Pictrue")));
                 ProductImage.Product_Image_Only = reader.GetValue(reader.GetOrdinal("Product_Image_Only")).ToString();
                 ProductImages.Add(ProductImage);
             }
