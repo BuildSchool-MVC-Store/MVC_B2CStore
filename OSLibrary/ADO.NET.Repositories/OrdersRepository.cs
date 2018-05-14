@@ -49,21 +49,6 @@ namespace OSLibrary.ADO.NET.Repositories
                 Order = Connection.QueryFirst<Orders>(sql, new { Order_ID = Order_ID });
             }
             return Order;
-            //SqlCommand command = new SqlCommand(sql, connection);
-            //command.Parameters.AddWithValue("@Order_ID", Order_ID);
-
-            //connection.Open();
-            //var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            //var properties = typeof(Orders).GetProperties();
-
-            //Orders Order = null;
-            //while(reader.Read())
-            //{
-            //    Order = DbReaderModelBinder<Orders>.Bind(reader);
-            //}
-            //reader.Close();
-            //return Order;
         }
 
         public IEnumerable<Orders> GetAll()
@@ -75,20 +60,6 @@ namespace OSLibrary.ADO.NET.Repositories
                 orders = connection.Query<Orders>(sql);
             }
             return orders;
-                
-            //SqlCommand command = new SqlCommand(sql, connection);
-
-            //connection.Open();
-            //var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            //List<Orders> Orders = new List<Orders>();
-            //while (reader.Read())
-            //{
-            //    var Order = DbReaderModelBinder<Orders>.Bind(reader);
-            //    Orders.Add(Order);
-            //}
-            //reader.Close();
-            //return Orders;
         }
         public IEnumerable<Orders> GetByOrder_Date(DateTime from , DateTime to)
         {
@@ -99,21 +70,6 @@ namespace OSLibrary.ADO.NET.Repositories
                 orders = connection.Query<Orders>(sql);
             }
             return orders;
-
-            //SqlCommand command = new SqlCommand(sql, connection);
-            //command.Parameters.AddWithValue("@from", from);
-            //command.Parameters.AddWithValue("@to", to);
-            //connection.Open();
-            //var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            //List<Orders> Orders = new List<Orders>();
-            //while (reader.Read())
-            //{
-            //    var Order = DbReaderModelBinder<Orders>.Bind(reader);
-            //    Orders.Add(Order);
-            //}
-            //reader.Close();
-            //return Orders;
         }
         public IEnumerable<Orders> GetByAccount(string Account)
         {
@@ -124,20 +80,6 @@ namespace OSLibrary.ADO.NET.Repositories
                 orders = connection.Query<Orders>(sql);
             }
             return orders;
-
-            //SqlCommand command = new SqlCommand(sql, connection);
-            //command.Parameters.AddWithValue("@Account", Account);
-            //connection.Open();
-            //var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            //List<Orders> Orders = new List<Orders>();
-            //while (reader.Read())
-            //{
-            //    var Order = DbReaderModelBinder<Orders>.Bind(reader);
-            //    Orders.Add(Order);
-            //}
-            //reader.Close();
-            //return Orders;
         }
 
     }
