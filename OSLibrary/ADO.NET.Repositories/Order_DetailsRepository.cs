@@ -67,7 +67,7 @@ namespace OSLibrary.ADO.NET.Repositories
             IEnumerable<Order_Details> Order_Details = null;
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                var sql = "SELECT * FROM Order_Details WHERE Order = @OrderID";
+                var sql = "SELECT * FROM Order_Details WHERE Order_ID = @OrderID";
                 Order_Details = connection.Query<Order_Details>(sql,new { OrderID = OrderID});
             }
             return Order_Details;
