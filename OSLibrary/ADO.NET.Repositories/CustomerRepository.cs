@@ -12,58 +12,33 @@ namespace OSLibrary.ADO.NET.Repositories
 {
     public class CustomerRepository
     {
+        private string strConnection = "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;";
         public void Create(Customers model)
         {
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
-            );
-            var sql = "INSERT INTO Customers VALUES (@Account, @Name, @Password, @Email, @Phone, @Address)";
-            SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@Account", model.Account);
-            command.Parameters.AddWithValue("@Name", model.Name);
-            command.Parameters.AddWithValue("@Password", model.Password);
-            command.Parameters.AddWithValue("@Email", model.Email);
-            command.Parameters.AddWithValue("@Phone", model.Phone);
-            command.Parameters.AddWithValue("@Address", model.Address);
-
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            using (SqlConnection Connection = new SqlConnection(strConnection))
+            {
+                var sql = "INSERT INTO Customers VALUES (@Account, @Name, @Password, @Email, @Phone, @Address)";
+                var exec = Connection.Execute(sql, model);
+            }
         }
         public void Update(Customers model)
         {
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
-            );
-            var sql = "UPDATE Customers SET Account = @Account, Name = @Name ,Password =  @Password,Email = @Email,Phone = @Phone,Address = @Address WHERE Account = @Account";
-            SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@Account", model.Account);
-            command.Parameters.AddWithValue("@Name", model.Name);
-            command.Parameters.AddWithValue("@Password", model.Password);
-            command.Parameters.AddWithValue("@Email", model.Email);
-            command.Parameters.AddWithValue("@Phone", model.Phone);
-            command.Parameters.AddWithValue("@Address", model.Address);
-
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            using (SqlConnection Connection = new SqlConnection(strConnection))
+            {
+                var sql = "UPDATE Customers SET Account = @Account, Name = @Name ,Password =  @Password,Email = @Email,Phone = @Phone,Address = @Address WHERE Account = @Account";
+                var exect = Connection.Execute(sql, model);
+            }
         }
         public void Delete(Customers model)
         {
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
-            );
-            var sql = "DELETE FROM Customers WHERE Account = @Account";
-            SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@Account", model.Account);
-
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            using (SqlConnection Connection = new SqlConnection(strConnection))
+            {
+                var sql = "DELETE FROM Customers WHERE Account = @Account";
+                var exec = Connection.Execute(sql, model);
+            }
         }
         public Customers GetByAccount(string account)
         {
-            string strConnection = "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;";
             Customers customer = null;
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
