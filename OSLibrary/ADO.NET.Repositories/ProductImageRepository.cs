@@ -35,12 +35,12 @@ namespace OSLibrary.ADO.NET.Repositories
             SqlConnection connection = new SqlConnection(
                 "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password=123456789;"
                 );
-            var sql = "UPDATE Product_Image SET Product_ID = @Product_ID, Pictrue = @Pictrue, Product_Image_Only = @Product_Image_Only WHERE Product_Image_ID = @Product_Image_ID";
+            var sql = "UPDATE Product_Image SET Product_ID = @Product_ID, Picture = @Picture, Product_Image_Only = @Product_Image_Only WHERE Product_Image_ID = @Product_Image_ID";
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("Product_Image_ID", model.Product_Image_ID);
 
             command.Parameters.AddWithValue("Product_ID", model.Product_ID);
-            command.Parameters.AddWithValue("Pictrue", model.Picture);
+            command.Parameters.AddWithValue("Picture", model.Picture);
             command.Parameters.AddWithValue("Product_Image_Only", model.Product_Image_Only);
 
             connection.Open();
@@ -101,7 +101,7 @@ namespace OSLibrary.ADO.NET.Repositories
                 var ProductImage = new Product_Image();
                 ProductImage.Product_Image_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_Image_ID")).ToString());
                 ProductImage.Product_ID = int.Parse(reader.GetValue(reader.GetOrdinal("Product_ID")).ToString());
-                ProductImage.Picture = ObjectToByteArray(reader.GetValue(reader.GetOrdinal("Pictrue")));
+                ProductImage.Picture = ObjectToByteArray(reader.GetValue(reader.GetOrdinal("Picture")));
                 ProductImage.Product_Image_Only = reader.GetValue(reader.GetOrdinal("Product_Image_Only")).ToString();
                 ProductImages.Add(ProductImage);
             }

@@ -31,12 +31,12 @@ namespace OSLibrary.ADO.NET.Repositories
             }
         }
 
-        public void Delete(Order_Details model)
+        public void Delete(string Order_Details_ID)
         {
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
                 var sql = "DELETE FROM Order_Details WHERE Order_Details_ID = @Order_Details_ID";
-                var exec = connection.Execute(sql, model);
+                var exec = connection.Execute(sql, new { Order_Details_ID = Order_Details_ID });
             }
         }
 
