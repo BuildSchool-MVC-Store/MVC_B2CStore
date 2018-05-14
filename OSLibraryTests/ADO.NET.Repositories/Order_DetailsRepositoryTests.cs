@@ -29,6 +29,14 @@ namespace OSLibraryTests.ADO.NET.Repositories
         }
 
         [TestMethod]
+        public void Order_DetailsRepositoryTests_GetByOrdersID()
+        {
+            Order_DetailsRepository repository = new Order_DetailsRepository();
+            var result = repository.GetByOrderID(6);
+            Assert.IsTrue(result.Count() == 3);
+        }
+
+        [TestMethod]
         public void Order_DetailsRepositoryTests_Create()
         {
             Order_DetailsRepository repository = new Order_DetailsRepository();
