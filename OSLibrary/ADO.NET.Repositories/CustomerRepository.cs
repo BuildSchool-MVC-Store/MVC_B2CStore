@@ -1,4 +1,5 @@
-﻿using OSLibrary.Utils;
+﻿using Dapper;
+using OSLibrary.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -60,44 +61,49 @@ namespace OSLibrary.ADO.NET.Repositories
             command.ExecuteNonQuery();
             connection.Close();
         }
-        public Customers GetByAccount(string Account)
+        public Customers GetByAccount(string account)
         {
-            SqlConnection connection = new SqlConnection(
-                "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
-            );
-            var sql = "SELECT * FROM Customers WHERE Account = @Account";
-            SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@Account", Account);
-
-            connection.Open();
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var properties = typeof(Customers).GetProperties();
-            Customers customer = new Customers();
-            while (reader.Read())
+            string strConnection = "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;";
+            Customers customer = null;
+            using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                customer = DbReaderModelBinder<Customers>.Bind(reader);
-
-                //customer = new Customers();
-                //for (var i = 0; i < reader.FieldCount; i++)
-                //{
-                //    var fieldname = reader.GetName(i);
-                //    var property = properties.FirstOrDefault(x => x.Name == fieldname);
-                //    if (property == null)
-                //        continue;
-                //    if (!reader.IsDBNull(i))
-                //        property.SetValue(customer, reader.GetValue(i));
-
-                //}
-
-                //customer.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
-                //customer.Name = reader.GetValue(reader.GetOrdinal("Name")).ToString();
-                //customer.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
-                //customer.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
-                //customer.Phone = reader.GetValue(reader.GetOrdinal("Phone")).ToString();
-                //customer.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
+                var strSql = "SELECT * FROM Customers WHERE Account = @Account";
+                customer = connection.QueryFirst<Customers>(strSql,new {Account = account});
             }
-            reader.Close();
             return customer;
+
+            //SqlCommand command = new SqlCommand(sql, connection);
+            //command.Parameters.AddWithValue("@Account", Account);
+
+            //connection.Open();
+            //var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            //var properties = typeof(Customers).GetProperties();
+            //Customers customer = new Customers();
+            //while (reader.Read())
+            //{
+            //    customer = DbReaderModelBinder<Customers>.Bind(reader);
+
+            //    //customer = new Customers();
+            //    //for (var i = 0; i < reader.FieldCount; i++)
+            //    //{
+            //    //    var fieldname = reader.GetName(i);
+            //    //    var property = properties.FirstOrDefault(x => x.Name == fieldname);
+            //    //    if (property == null)
+            //    //        continue;
+            //    //    if (!reader.IsDBNull(i))
+            //    //        property.SetValue(customer, reader.GetValue(i));
+
+            //    //}
+
+            //    //customer.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
+            //    //customer.Name = reader.GetValue(reader.GetOrdinal("Name")).ToString();
+            //    //customer.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
+            //    //customer.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
+            //    //customer.Phone = reader.GetValue(reader.GetOrdinal("Phone")).ToString();
+            //    //customer.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
+            //}
+            //reader.Close();
+            //return customer;
         }
         public IEnumerable<Customers> GetAll()
         {
