@@ -20,23 +20,6 @@ namespace OSLibrary.ADO.NET.Repositories
                 var sql = "INSERT INTO Employees VALUES (@Account, @Password, @Name, @Birthday, @Email, @Phone, @Address)";
                 var exec = connection.Execute(sql, model);
             }
-                
-            //    SqlConnection connection = new SqlConnection(
-            //    "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"
-            //    );
-            
-            //SqlCommand command = new SqlCommand(sql, connection);
-            //command.Parameters.AddWithValue("@Account", model.Account);
-            //command.Parameters.AddWithValue("@Password", model.Password);
-            //command.Parameters.AddWithValue("@Name", model.Name);
-            //command.Parameters.AddWithValue("@Birthday", model.Birthday);
-            //command.Parameters.AddWithValue("@Email", model.Email);
-            //command.Parameters.AddWithValue("@Phone", model.Phone);
-            //command.Parameters.AddWithValue("@Address", model.Address);
-
-            //connection.Open();
-            //command.ExecuteNonQuery();
-            //connection.Close();
         }
 
         public void Update(Employees model)
