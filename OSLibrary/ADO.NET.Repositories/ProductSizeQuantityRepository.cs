@@ -36,7 +36,7 @@ namespace OSLibrary.ADO.NET.Repositories
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
                 var sql = "DELETE FROM Product_Size_Quantity WHERE Product_ID = @Product_ID and Product_Size=@Product_Size";
-                var exec = connection.Execute(sql, new { model.Product_ID,model.Product_Size });
+                var exec = connection.Execute(sql, new { model.Product_ID , model.Product_Size });
             }
         }
 

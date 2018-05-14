@@ -34,12 +34,12 @@ namespace OSLibrary.ADO.NET.Repositories
             }
         }
 
-        public void Delete(Product_Image model)
+        public void Delete(int Product_Image_ID)
         {
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
                 var sql = "DELETE FROM Product_Image WHERE Product_Image_ID = @Product_Image_ID";
-                var exec = connection.Execute(sql, model);
+                var exec = connection.Execute(sql, new { Product_Image_ID });
             }
         }
 

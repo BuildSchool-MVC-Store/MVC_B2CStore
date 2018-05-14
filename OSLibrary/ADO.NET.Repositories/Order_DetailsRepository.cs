@@ -36,7 +36,7 @@ namespace OSLibrary.ADO.NET.Repositories
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
                 var sql = "DELETE FROM Order_Details WHERE Order_Details_ID = @Order_Details_ID";
-                var exec = connection.Execute(sql, new { Order_Details_ID = Order_Details_ID });
+                var exec = connection.Execute(sql, new { Order_Details_ID });
             }
         }
 
