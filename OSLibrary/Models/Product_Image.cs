@@ -11,7 +11,7 @@ namespace OSLibrary
         public int Product_ID { get; set; }
 
         [Column(TypeName = "image")]
-        public byte[] Pictrue { get; set; }
+        public byte[] Picture { get; set; }
 
         [StringLength(5)]
         public string Product_Image_Only { get; set; }
