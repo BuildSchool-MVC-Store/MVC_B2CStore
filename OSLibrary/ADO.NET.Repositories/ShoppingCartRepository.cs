@@ -30,12 +30,12 @@ namespace OSLibrary.ADO.NET.Repositories
                 var exec = connection.Execute(sql, model);
             }
         }
-        public void Delete(Shopping_Cart model)
+        public void Delete(string Shopping_Cart_ID)
         {
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
                 var sql = "DELETE FROM Shopping_Cart WHERE Shopping_Cart_ID = @Shopping_Cart_ID";
-                var exec = connection.Execute(sql, model);
+                var exec = connection.Execute(sql, new { Shopping_Cart_ID });
             }
         }
 
@@ -45,7 +45,7 @@ namespace OSLibrary.ADO.NET.Repositories
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
                 var sql = "SELECT * FROM Shopping_Cart WHERE Account = @Account";
-                shoppingCarts = connection.Query<Shopping_Cart>(sql, new { Account = Account });
+                shoppingCarts = connection.Query<Shopping_Cart>(sql, new { Account });
             }
             return shoppingCarts;
         }
