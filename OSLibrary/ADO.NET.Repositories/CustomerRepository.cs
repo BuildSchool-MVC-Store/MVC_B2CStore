@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace OSLibrary.ADO.NET.Repositories
 {
-    public class CustomerRepository
+    public class CustomerRepository : IRepository<Customers>
     {
         private string strConnection = "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;";
         public void Create(Customers model)
