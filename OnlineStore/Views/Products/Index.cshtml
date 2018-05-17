@@ -1,0 +1,266 @@
+﻿@model IEnumerable<OSLibrary.Models.Products>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>女裝</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Microsoft JhengHei;
+            color: #676D3E;
+            font-size: 15px;
+            background-color: rgb(255, 254, 246);
+        }
+
+        .header {
+            background-color: white;
+        }
+
+        .title {
+            font-family: Comic Sans MS, Comic Sans, cursive;
+        }
+
+        #content {
+            margin-top: 160px;
+        }
+
+        a {
+            color: #697259;
+        }
+
+            a:hover {
+                color: rgb(135, 145, 76);
+                text-decoration: none;
+            }
+
+        #footer {
+            background-color: #697259;
+            height: 200px;
+        }
+
+        .footer-nav-link {
+            color: rgb(255, 254, 246);
+        }
+
+        .side {
+        }
+
+        .categoryname {
+            font-weight: bold;
+        }
+
+        .categorylist {
+            list-style: none;
+        }
+
+        .side > ul {
+            padding-left: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="header fixed-top">
+            <div class="row">
+                <div class="col">
+
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">會員登入</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">註冊會員</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">聯絡我們</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <h2 class="title">Alan's Shop</h2>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main-menu">
+                <div class="row">
+                    <div class="col">
+                        <ul class="nav justify-content-center">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">WOMEN</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">MEN</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">KIDS</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row" id="content">
+            <div class="col-2">
+                <div class="side">
+                    <a href="#">
+                        <p class="categoryname">TOP</p>
+                    </a>
+                    <ul>
+                        <li class="categorylist">
+                            <a href="#">
+                                <p>長袖</p>
+                            </a>
+                            <a href="#">
+                                <p>短袖</p>
+                            </a>
+                            <a href="#">
+                                <p>背心</p>
+                            </a>
+                            <a href="#">
+                                <p>襯衫</p>
+                            </a>
+                            <a href="#">
+                                <p>外套</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <a href="#">
+                        <p class="categoryname">BOTTOM</p>
+                    </a>
+                    <ul>
+                        <li class="categorylist">
+                            <a href="#">
+                                <p>長褲</p>
+                            </a>
+                            <a href="#">
+                                <p>短褲</p>
+                            </a>
+                            <a href="#">
+                                <p>裙子</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <a href="#">
+                        <p class="categoryname">DRESS</p>
+                    </a>
+                    <ul>
+                        <li class="categorylist">
+                            <a href="#">
+                                <p>長洋裝</p>
+                            </a>
+                            <a href="#">
+                                <p>短洋裝</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <a href="#">
+                        <p class="categoryname">SHOES/BAG</p>
+                    </a>
+                    <ul>
+                        <li class="categorylist">
+                            <a href="#">
+                                <p>布鞋</p>
+                            </a>
+                            <a href="#">
+                                <p>涼鞋</p>
+                            </a>
+                            <a href="#">
+                                <p>帆布包</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <a href="#">
+                        <p class="categoryname">ACCESSORIES</p>
+                    </a>
+                    <ul>
+                        <li class="categorylist">
+                            <a href="#">
+                                <p>耳環</p>
+                            </a>
+                            <a href="#">
+                                <p>手環</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-10">
+                <div class="main">
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-4 mt-3 text-center">
+                                <p>@item.Product_Name</p>
+                                <p>@item.Product_Types_Name</p>
+                                <p>@item.UnitPrice</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    </div>
+    <div class="container-fluid" id="footer">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <p class="footer-nav-link">關於我們</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <p class="footer-nav-link">購物說明</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <p class="footer-nav-link">Disabled link</p>
+                </a>
+            </li>
+        </ul>
+        <div class="footer-contact">
+            <div class="row">
+                <div class="col">
+                    Copyright &copy;
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>
