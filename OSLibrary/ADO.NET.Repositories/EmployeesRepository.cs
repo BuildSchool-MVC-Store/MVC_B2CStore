@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Dapper;
 namespace OSLibrary.ADO.NET.Repositories
 {
-    public class EmployeesRepository
+    public class EmployeesRepository : IRepository<Employees>
     {
         private string strConnection = "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;";
         public void Create(Employees model)

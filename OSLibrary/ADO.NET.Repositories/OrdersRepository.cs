@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace OSLibrary.ADO.NET.Repositories
 {
-    public class OrdersRepository
+    public class OrdersRepository : IRepository<Orders>
     {
         private string strConnection = "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password=123456789;";
         public void Create(Orders model)
@@ -26,17 +26,17 @@ namespace OSLibrary.ADO.NET.Repositories
         {
             using (SqlConnection Connection = new SqlConnection(strConnection))
             {
-                var sql = "UPDATE Orders SET Order_Date = @Order_Date, Account = @Account, Pay = @Pay, Transport = @Transport, Order_Check = @Order_Check, Total = @Total, TranMoney = @TranMoney WHERE Order_ID = @Order_ID";
+                var sql = "SET IDENTITY_INSERT Orders ON UPDATE Orders SET Order_Date = @Order_Date, Account = @Account, Pay = @Pay, Transport = @Transport, Order_Check = @Order_Check, Total = @Total, TranMoney = @TranMoney WHERE Order_ID = @Order_ID SET IDENTITY_INSERT Orders OFF";
                 var exec = Connection.Execute(sql, model);
             }
         }
 
-        public void Delete(Orders model)
+        public void Delete(int Order_ID)
         {
             using (SqlConnection Connection = new SqlConnection(strConnection))
             {
                 var sql = "DELETE FROM Orders WHERE Order_ID = @Order_ID";
-                var exec = Connection.Execute(sql, model);
+                var exec = Connection.Execute(sql, new { Order_ID });
             }
         }
 
@@ -46,7 +46,7 @@ namespace OSLibrary.ADO.NET.Repositories
             using (SqlConnection Connection = new SqlConnection(strConnection))
             {
                 var sql = "SELECT * FROM Orders WHERE Order_ID = @Order_ID";
-                Order = Connection.QueryFirst<Orders>(sql, new { Order_ID = Order_ID });
+                Order = Connection.QueryFirst<Orders>(sql, new {Order_ID });
             }
             return Order;
         }
@@ -66,8 +66,9 @@ namespace OSLibrary.ADO.NET.Repositories
             IEnumerable<Orders> orders = null;
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                var sql = "SELECT * FROM Orders WHERE Order_Date >= @from AND Order_Date <= @to";
-                orders = connection.Query<Orders>(sql);
+                var sql = "SELECT * FROM Orders WHERE Order_Date >= @from AND Order_Date<=@to";
+
+                orders = connection.Query<Orders>(sql, new { from , to});
             }
             return orders;
         }
@@ -77,7 +78,7 @@ namespace OSLibrary.ADO.NET.Repositories
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
                 var sql = "SELECT * FROM Orders WHERE Account == @Account";
-                orders = connection.Query<Orders>(sql);
+                orders = connection.Query<Orders>(sql, new { Account });
             }
             return orders;
         }

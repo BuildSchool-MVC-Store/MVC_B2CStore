@@ -13,7 +13,7 @@ using Dapper;
 
 namespace OSLibrary.ADO.NET.Repositories
 {
-    public class ProductImageRepository
+    public class ProductImageRepository : IRepository<Product_Image>
     {
         private string strConnection = "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password=123456789;";
         public void Create(Product_Image model)
@@ -34,12 +34,12 @@ namespace OSLibrary.ADO.NET.Repositories
             }
         }
 
-        public void Delete(Product_Image model)
+        public void Delete(int Product_Image_ID)
         {
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
                 var sql = "DELETE FROM Product_Image WHERE Product_Image_ID = @Product_Image_ID";
-                var exec = connection.Execute(sql, model);
+                var exec = connection.Execute(sql, new { Product_Image_ID });
             }
         }
 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace OSLibrary.ADO.NET.Repositories
 {
-    public class Order_DetailsRepository
+    public class Order_DetailsRepository : IRepository<Order_Details>
     {
         private string strConnection = "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;";
         public void Create(Order_Details model)
@@ -36,7 +36,7 @@ namespace OSLibrary.ADO.NET.Repositories
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
                 var sql = "DELETE FROM Order_Details WHERE Order_Details_ID = @Order_Details_ID";
-                var exec = connection.Execute(sql, new { Order_Details_ID = Order_Details_ID });
+                var exec = connection.Execute(sql, new { Order_Details_ID });
             }
         }
 
