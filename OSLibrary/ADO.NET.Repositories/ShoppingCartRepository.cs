@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using OSLibrary.Models;
 using OSLibrary.Utils;
 using System;
 using System.Collections.Generic;

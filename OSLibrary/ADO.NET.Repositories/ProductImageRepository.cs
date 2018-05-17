@@ -10,7 +10,7 @@ using System.Drawing;
 using System.Runtime.Serialization.Formatters.Binary;
 using OSLibrary.Utils;
 using Dapper;
-
+using OSLibrary.Models;
 namespace OSLibrary.ADO.NET.Repositories
 {
     public class ProductImageRepository : IRepository<Product_Image>

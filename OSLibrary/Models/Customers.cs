@@ -1,4 +1,4 @@
-namespace OSLibrary
+namespace OSLibrary.Models
 {
     using System;
     using System.Collections.Generic;
