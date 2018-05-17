@@ -31,7 +31,7 @@ namespace OSLibrary.ADO.NET.Repositories
                 var exec = connection.Execute(sql, model);
             }
         }
-        public void Delete(string Shopping_Cart_ID)
+        public void Delete(int Shopping_Cart_ID)
         {
             using (SqlConnection connection = new SqlConnection(strConnection))
             {

@@ -46,7 +46,7 @@ namespace OSLibrary.ADO.NET.Repositories
             using (SqlConnection Connection = new SqlConnection(strConnection))
             {
                 var sql = "SELECT * FROM Orders WHERE Order_ID = @Order_ID";
-                Order = Connection.QueryFirst<Orders>(sql, new { Order_ID = Order_ID });
+                Order = Connection.QueryFirst<Orders>(sql, new {Order_ID });
             }
             return Order;
         }
@@ -66,8 +66,9 @@ namespace OSLibrary.ADO.NET.Repositories
             IEnumerable<Orders> orders = null;
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                var sql = "SELECT * FROM Orders WHERE Order_Date >= @from AND Order_Date<=to";
-                orders = connection.Query<Orders>(sql);
+                var sql = "SELECT * FROM Orders WHERE Order_Date >= @from AND Order_Date<=@to";
+
+                orders = connection.Query<Orders>(sql, new { from , to});
             }
             return orders;
         }
@@ -77,7 +78,7 @@ namespace OSLibrary.ADO.NET.Repositories
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
                 var sql = "SELECT * FROM Orders WHERE Account == @Account";
-                orders = connection.Query<Orders>(sql);
+                orders = connection.Query<Orders>(sql, new { Account });
             }
             return orders;
         }

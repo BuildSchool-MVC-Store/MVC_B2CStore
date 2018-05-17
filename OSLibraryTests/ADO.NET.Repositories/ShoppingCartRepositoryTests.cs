@@ -78,7 +78,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
             {
                 Shopping_Cart_ID = 3
             };
-            repository.Delete(model);
+            repository.Delete(3);
             var result = repository.GetAll();
             var test = result.Where(x => x.Shopping_Cart_ID == 3);
             foreach (var item in test)

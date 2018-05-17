@@ -31,7 +31,7 @@ namespace OSLibrary.ADO.NET.Repositories
             }
         }
 
-        public void Delete(string Order_Details_ID)
+        public void Delete(int Order_Details_ID)
         {
             using (SqlConnection connection = new SqlConnection(strConnection))
             {

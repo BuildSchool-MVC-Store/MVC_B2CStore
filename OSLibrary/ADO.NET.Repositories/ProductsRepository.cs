@@ -29,7 +29,7 @@ namespace OSLibrary.ADO.NET.Repositories
                 var exec = connection.Execute(sql);
             }
         }
-        public void Delete(string Product_ID)
+        public void Delete(int Product_ID)
         {
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
