@@ -63,7 +63,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
             ProductsRepository repository = new ProductsRepository();
             var model = new Products
             { Product_ID = 5 };
-            repository.Delete(model);
+            repository.Delete(5);
             var result = repository.GetByProduct_ID(5);
             Assert.IsTrue(result == null);
         }

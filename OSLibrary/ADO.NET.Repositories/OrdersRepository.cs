@@ -26,7 +26,7 @@ namespace OSLibrary.ADO.NET.Repositories
         {
             using (SqlConnection Connection = new SqlConnection(strConnection))
             {
-                var sql = "SET IDENTITY_INSERT Orders ON UPDATE Orders SET Order_Date = @Order_Date, Account = @Account, Pay = @Pay, Transport = @Transport, Order_Check = @Order_Check, Total = @Total, TranMoney = @TranMoney WHERE Order_ID = @Order_ID SET IDENTITY_INSERT Orders OFF";
+                var sql = "UPDATE Orders SET Order_Date = @Order_Date, Account = @Account, Pay = @Pay, Transport = @Transport, Order_Check = @Order_Check, Total = @Total, TranMoney = @TranMoney WHERE Order_ID = @Order_ID";
                 var exec = Connection.Execute(sql, model);
             }
         }
@@ -66,7 +66,7 @@ namespace OSLibrary.ADO.NET.Repositories
             IEnumerable<Orders> orders = null;
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                var sql = "SELECT * FROM Orders WHERE Order_Date >= @from AND Order_Date<=to";
+                var sql = "SELECT * FROM Orders WHERE Order_Date >= @from AND Order_Date <= @to";
                 orders = connection.Query<Orders>(sql);
             }
             return orders;

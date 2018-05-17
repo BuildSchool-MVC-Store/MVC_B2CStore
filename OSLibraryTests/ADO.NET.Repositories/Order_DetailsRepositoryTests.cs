@@ -82,7 +82,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
             {
                 Order_Details_ID = 14
             };
-            repository.Delete(model);
+            repository.Delete(14);
             var result = repository.GetByOrder_Details_ID(14);
             Assert.IsTrue(result == null);
         }
