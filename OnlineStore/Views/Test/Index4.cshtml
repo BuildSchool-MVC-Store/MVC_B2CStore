@@ -1,0 +1,30 @@
+﻿@*@model IEnumerable<OnlineStore.Models.SalesMan>
+@{
+    ViewBag.Title = "Index4";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index4</h2>
+
+@{ Html.RenderAction("DisplaySalesMan"); }
+@{
+    Html.RenderPartial("DisplaySalesMan", -1);
+}
+<table class="table">
+    <thead>
+        <tr>
+            <td>JobNumber</td>
+            <td>Name</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.JobNumber</td>
+                <td>@item.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>*@
+

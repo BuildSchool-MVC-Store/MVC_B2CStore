@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using OSLibrary.Models;
 namespace OSLibrary.ADO.NET.Repositories
 {
     public class Order_DetailsRepository : IRepository<Order_Details>

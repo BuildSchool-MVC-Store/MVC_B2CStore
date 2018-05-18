@@ -1,4 +1,4 @@
-namespace OSLibrary
+namespace OSLibrary.Models
 {
     using System;
     using System.Data.Entity;
@@ -8,11 +8,12 @@ namespace OSLibrary
     public partial class OSModel : DbContext
     {
         public OSModel()
-            : base("name=OSModel")
+            : base("name=OSModel1")
         {
         }
 
         public virtual DbSet<Customers> Customers { get; set; }
+        public virtual DbSet<Employees> Employees { get; set; }
         public virtual DbSet<Order_Details> Order_Details { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<Product_Image> Product_Image { get; set; }
@@ -48,10 +49,6 @@ namespace OSLibrary
                 .HasMany(e => e.Order_Details)
                 .WithRequired(e => e.Orders)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Product_Size_Quantity>()
-                .Property(e => e.Product_Size)
-                .IsFixedLength();
 
             modelBuilder.Entity<Products>()
                 .Property(e => e.UnitPrice)

@@ -70,8 +70,8 @@
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\Product_Image.cs" />
     <Compile Include="Models\Product_Size_Quantity.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Shopping_Cart.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\DbReaderModelBinder.cs" />
   </ItemGroup>
   <ItemGroup>
