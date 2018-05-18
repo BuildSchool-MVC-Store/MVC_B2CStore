@@ -53,11 +53,11 @@ namespace OSLibraryTests.ADO.NET.Repositories
             OrdersRepository repository = new OrdersRepository();
             var model = new Orders
             {
-                Order_Date = DateTime.Parse("2018-05-10 00:00:00.000"),
+                Order_Date = DateTime.Parse("2018-05-12 00:00:00.000"),
                 Account = "Osborn",
                 Pay = "超商取貨",
                 Transport = "物流",
-                Order_Check = "備貨中",
+                Order_Check = "運送中",
                 Total = 680,
                 TranMoney = 0
             };
@@ -74,7 +74,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
             {
                 Order_ID = 5
             };
-            repository.Delete(model);
+            repository.Delete(5);
             var result = repository.GetByOrder_ID(5);
             Assert.IsTrue(result == null);
         }

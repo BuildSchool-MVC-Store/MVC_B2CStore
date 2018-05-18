@@ -70,7 +70,7 @@ namespace OSLibrary.ADO.NET.Repositories.Tests
             {
                 Account = "Dann"
             };
-            repository.Delete(customers);
+            repository.Delete("Dann");
             var result = repository.GetByAccount("Dann");
             Assert.IsTrue(result.Account == null);
         }

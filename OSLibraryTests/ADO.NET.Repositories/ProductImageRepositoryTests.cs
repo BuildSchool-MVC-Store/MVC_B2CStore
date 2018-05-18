@@ -64,7 +64,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
             {
                 Product_Image_ID = 17
             };
-            repository.Delete(model);
+            repository.Delete(17);
             var result = repository.GetByProduct_ID(1);
             Assert.IsTrue(result.Count() == 4);
         }

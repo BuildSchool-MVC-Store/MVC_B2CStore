@@ -26,7 +26,7 @@ namespace OSLibrary.ADO.NET.Repositories
         {
             using (SqlConnection Connection = new SqlConnection(strConnection))
             {
-                var sql = "SET IDENTITY_INSERT Orders ON UPDATE Orders SET Order_Date = @Order_Date, Account = @Account, Pay = @Pay, Transport = @Transport, Order_Check = @Order_Check, Total = @Total, TranMoney = @TranMoney WHERE Order_ID = @Order_ID SET IDENTITY_INSERT Orders OFF";
+                var sql = "UPDATE Orders SET Order_Date = @Order_Date, Account = @Account, Pay = @Pay, Transport = @Transport, Order_Check = @Order_Check, Total = @Total, TranMoney = @TranMoney WHERE Order_ID = @Order_ID";
                 var exec = Connection.Execute(sql, model);
             }
         }
