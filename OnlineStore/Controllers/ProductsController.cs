@@ -18,5 +18,10 @@ namespace OnlineStore.Controllers
             IEnumerable<Products> list = result.GetAll();
             return View(list);
         }
+        public ActionResult GetCategory()
+        {
+            var result = new CategoryRepository();
+            return PartialView(result.GetAll());
+        }
     }
 }

@@ -23,10 +23,10 @@ a {
     color: #697259;
 }
 
-a:hover {
-    color: rgb(135, 145, 76);
-    text-decoration: none;
-}
+    a:hover {
+        color: rgb(135, 145, 76);
+        text-decoration: none;
+    }
 
 .footer-nav-link {
     color: rgb(255, 254, 246);
@@ -34,14 +34,13 @@ a:hover {
 
 .categoryname {
     font-weight: bold;
-
 }
 
 .categorylist {
     list-style: none;
 }
 
-.side>ul {
+.side > ul {
     padding-left: 15px;
     padding-bottom: 10px;
 }
@@ -68,9 +67,10 @@ footer {
     margin-top: 40px;
 }
 
-.aboutus>ul {
-    padding-left: 0;
-}
-.aboutus>ul>li {
-    list-style: none;
-}
+    .aboutus > ul {
+        padding-left: 0;
+    }
+
+        .aboutus > ul > li {
+            list-style: none;
+        }

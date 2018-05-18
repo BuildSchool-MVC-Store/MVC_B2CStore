@@ -1,0 +1,12 @@
+﻿@model IEnumerable<OSLibrary.Models.Category>
+@{
+
+    Layout = null;
+}
+
+<ul style="list-style:none;">
+    @foreach (var item in Model)
+    {
+        <li class="categoryname">@item.CategoryName</li>
+    }
+</ul>p

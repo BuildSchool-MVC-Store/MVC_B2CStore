@@ -166,7 +166,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\main.css" />
-    <Content Include="Content\Modals.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -204,6 +203,7 @@
     <Content Include="Views\Test\Index3.cshtml" />
     <Content Include="Views\Test\Index4.cshtml" />
     <Content Include="Views\Test\DisplaySalesMan.cshtml" />
+    <Content Include="Views\Products\GetCategory.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -242,7 +242,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51939</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

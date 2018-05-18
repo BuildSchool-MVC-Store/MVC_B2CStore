@@ -34,7 +34,7 @@ namespace OSLibrary.ADO.NET.Repositories
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
                 var sql = ("DELETE FROM Products WHERE Product_ID=@Product_ID");
-                var exec = connection.Execute(sql,new { Product_ID });
+                var exec = connection.Execute(sql, new { Product_ID });
             }
         }
         public Products GetByProduct_ID(int Product_ID)

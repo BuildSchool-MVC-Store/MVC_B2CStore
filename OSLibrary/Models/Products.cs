@@ -29,7 +29,7 @@ namespace OSLibrary.Models
 
         [Required]
         [StringLength(50)]
-        public string Product_Types_Name { get; set; }
+        public string CategoryName { get; set; }
 
         [Required]
         [StringLength(10)]
@@ -39,6 +39,8 @@ namespace OSLibrary.Models
         public string Online { get; set; }
 
         public string Comments { get; set; }
+
+        public virtual Category Category { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_Details> Order_Details { get; set; }

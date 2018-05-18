@@ -1,144 +1,73 @@
-﻿ @*<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - 我的 ASP.NET 應用程式</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-</head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("應用程式名稱", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("首頁", "Index", "Home")</li>
-                    <li>@Html.ActionLink("關於", "About", "Home")</li>
-                    <li>@Html.ActionLink("連絡人", "Contact", "Home")</li>
-                </ul>
+﻿@*<!DOCTYPE html>
+    <html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - 我的 ASP.NET 應用程式</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("應用程式名稱", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("首頁", "Index", "Home")</li>
+                        <li>@Html.ActionLink("關於", "About", "Home")</li>
+                        <li>@Html.ActionLink("連絡人", "Contact", "Home")</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 應用程式</p>
-        </footer>
-    </div>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-</body>
-</html>*@
- 
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 應用程式</p>
+            </footer>
+        </div>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>*@
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - 我的 ASP.NET 應用程式</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-</head>
-<div class="modal fade" id="signinmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content modaltitle">
-            <div class="modal-header">
-                <h5 class="modal-title">
-                    登入
-                    <small id="helpId" class="form-text text-muted">Sign in</small>
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-8 mx-auto">
-                        <div class="form-group" id="account">
-                            <label>
-                                帳號&nbsp;
-                                <span class="signword">Account</span>
-                            </label>
-                            <input type="email" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-                            <label class="password">
-                                密碼&nbsp;
-                                <span class="signword">Password</span>
-                            </label>
-                            <input type="email" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a name="" id="signin" class="btn" href="#" role="button" data-dismiss="modal">登入</a>
-            </div>
-        </div>
-    </div>
-</div>
+    <title>女裝</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<div class="modal fade" id="registermodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content modaltitle">
-            <div class="modal-header">
-                <h5 class="modal-title">
-                    註冊會員
-                    <small id="helpId" class="form-text text-muted">Register</small>
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-8 mx-auto">
-                        <div class="form-group" id="account">
-                            <label>
-                                帳號&nbsp;
-                                <span class="signword">Account</span>
-                            </label>
-                            <input type="email" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-                            <label class="password">
-                                密碼&nbsp;
-                                <span class="signword">Password</span>
-                            </label>
-                            <input type="email" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a name="" id="signin" class="btn" href="#" role="button" data-dismiss="modal">註冊</a>
-                <a name="" id="" class="btn" href="#" role="button" data-dismiss="modal">取消</a>
-            </div>
-        </div>
-    </div>
-</div>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    @Styles.Render("~/Content/css")
+</head>
 
 <body>
     <div class="container-fluid">
         <div class="header fixed-top">
             <div class="row">
                 <div class="col">
+
                     <ul class="nav justify-content-end">
                         <li class="nav-item">
-                            <a class="nav-link" href="#" data-toggle="modal" data-target="#signinmodel">會員登入</a>
+                            <a class="nav-link" href="#">會員登入</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" data-toggle="modal" data-target="#registermodel">註冊會員</a>
+                            <a class="nav-link" href="#">註冊會員</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">聯絡我們</a>
@@ -176,12 +105,33 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row content">
-            @RenderBody()
+    <div class="container-fluid" style="margin-top:300px;">
+        <div class="row" id="content">
+            <div class="col">
+                @RenderBody()
+            </div>
         </div>
     </div>
+    <div class="container-fluid" id="footer">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <p class="footer-nav-link">關於我們</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <p class="footer-nav-link">購物說明</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <p class="footer-nav-link">Disabled link</p>
+                </a>
+            </li>
+        </ul>
     </div>
+
     <footer class="container-fluid">
         <div class="container">
             <div class="row">
@@ -211,8 +161,7 @@
                 <div class="col aboutus">
                     <p>客服信箱 alansshop2018@gmail.com</p>
                     <p>客服電話 03-512-3456</p>
-                    <p>週一至週五 9:00-18:00</p>
-                    </br>
+                    <p>週一至週五 9:00-18:00</p></br>
                 </div>
             </div>
             <div class="row">
@@ -233,10 +182,6 @@
             crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
 </body>
 
 </html>

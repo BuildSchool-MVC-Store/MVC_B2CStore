@@ -33,7 +33,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
                 Product_ID = 5,
                 Product_Name = "機能外套",
                 UnitPrice = 500,
-                Product_Types_Name = "外套",
+                CategoryName = "外套",
                 Gender = "女"
             };
             repository.Create(model);
@@ -50,7 +50,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
                 Product_ID = 5,
                 Product_Name = "機能外套(限量)",
                 UnitPrice = 1500,
-                Product_Types_Name = "外套",
+                CategoryName = "外套",
                 Gender = "女"
             };
             repository.Update(model);

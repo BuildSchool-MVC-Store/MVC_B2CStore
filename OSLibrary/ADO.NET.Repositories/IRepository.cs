@@ -9,7 +9,6 @@ namespace OSLibrary.ADO.NET.Repositories
     public interface IRepository<T> where T :class
     {
         void Create(T model);
-        void Update(T model);
         IEnumerable<T> GetAll();
 
     }

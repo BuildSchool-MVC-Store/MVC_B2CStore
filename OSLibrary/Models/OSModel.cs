@@ -8,10 +8,11 @@ namespace OSLibrary.Models
     public partial class OSModel : DbContext
     {
         public OSModel()
-            : base("name=OSModel1")
+            : base("name=OSModel3")
         {
         }
 
+        public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Customers> Customers { get; set; }
         public virtual DbSet<Employees> Employees { get; set; }
         public virtual DbSet<Order_Details> Order_Details { get; set; }
@@ -23,6 +24,11 @@ namespace OSLibrary.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Category>()
+                .HasMany(e => e.Products)
+                .WithRequired(e => e.Category)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Customers>()
                 .HasMany(e => e.Orders)
                 .WithRequired(e => e.Customers)
