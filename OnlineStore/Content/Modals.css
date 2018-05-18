@@ -1,0 +1,30 @@
+.modaltitle {
+    color: #697259;
+}
+
+.modal-content>col {
+    font-family: Microsoft JhengHei;
+    position: relative;
+    top: 200px;
+}
+
+.signword {
+    color: grey;
+    font-size: 15px;
+    margin-top: 200px;
+}
+
+.btn {
+    color: snow;
+    background-color: #697259;
+    margin-top: 20px;
+    width: 110px;
+}
+
+.password {
+    margin-top: 10px;
+}
+
+.btn:hover {
+    color: lightgoldenrodyellow;
+}
