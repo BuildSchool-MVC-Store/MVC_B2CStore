@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OSLibrary;
 using OSLibrary.ADO.NET.Repositories;
+using OSLibrary.Models;
 
 namespace OSLibraryTests.ADO.NET.Repositories
 {

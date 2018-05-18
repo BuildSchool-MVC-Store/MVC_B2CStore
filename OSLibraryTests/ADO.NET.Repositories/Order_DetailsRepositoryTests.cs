@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OSLibrary;
 using OSLibrary.ADO.NET.Repositories;
+using OSLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,7 +79,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         public void Order_DetailsRepositoryTests_Delete()
         {
             Order_DetailsRepository repository = new Order_DetailsRepository();
-            var model = new Order_Details
+            var model = new Order_Details()
             {
                 Order_Details_ID = 14
             };
