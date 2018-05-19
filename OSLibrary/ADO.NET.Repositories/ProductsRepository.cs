@@ -43,7 +43,7 @@ namespace OSLibrary.ADO.NET.Repositories
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
                 var sql = "SELECT * FROM Products WHERE Product_ID=@Product_ID";
-                products = connection.QueryFirstOrDefault<Products>(sql);
+                products = connection.QueryFirstOrDefault<Products>(sql,new { Product_ID });
             }
             return products;
         }

@@ -7,7 +7,7 @@ using OSLibrary.ADO.NET.Repositories;
 using OSLibrary.Models;
 namespace OnlineStore.Controllers
 {
-    [RoutePrefix("Product")]
+    [RoutePrefix("Products")]
     public class ProductsController : Controller
     {
         [Route("")]

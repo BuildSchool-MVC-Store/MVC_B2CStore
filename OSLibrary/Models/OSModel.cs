@@ -8,7 +8,7 @@ namespace OSLibrary.Models
     public partial class OSModel : DbContext
     {
         public OSModel()
-            : base("name=OSModel3")
+            : base("name=OSModel")
         {
         }
 

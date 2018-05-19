@@ -13,11 +13,11 @@ namespace OSLibrary.Models
 
         public int Product_ID { get; set; }
 
-        [Column(TypeName = "image")]
-        public byte[] Picture { get; set; }
-
         [StringLength(5)]
-        public string Product_Image_Only { get; set; }
+        public string Image_Only { get; set; }
+
+        [StringLength(50)]
+        public string Image { get; set; }
 
         public virtual Products Products { get; set; }
     }

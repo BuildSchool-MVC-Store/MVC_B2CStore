@@ -17,15 +17,15 @@ namespace OSLibrary.Models
 
         public int Product_ID { get; set; }
 
-        public short Quantity { get; set; }
+        public int Quantity { get; set; }
 
         [Column(TypeName = "money")]
         public decimal UnitPrice { get; set; }
 
-        public float Discount { get; set; }
+        public float? Discount { get; set; }
 
         [Required]
-        [StringLength(5)]
+        [StringLength(10)]
         public string size { get; set; }
 
         public virtual Customers Customers { get; set; }

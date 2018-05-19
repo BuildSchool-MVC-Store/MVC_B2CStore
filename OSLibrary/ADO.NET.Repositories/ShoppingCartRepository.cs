@@ -23,12 +23,12 @@ namespace OSLibrary.ADO.NET.Repositories
                 var exec = connection.Execute(sql, model);
             }
         }
-        public void Update(Shopping_Cart model)
+        public void Update(int Shopping_Cart_ID,int Quantity)
         {
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                var sql = "UPDATE Shopping_Cart SET Account=@Account,Product_ID=@Product_ID,Quantity=@Quantity,UnitPrice=@UnitPrice,Discount=@Discount,size=@size WHERE Shopping_Cart_ID = @Shopping_Cart_ID";
-                var exec = connection.Execute(sql, model);
+                var sql = "UPDATE Shopping_Cart SET Quantity=@Quantity WHERE Shopping_Cart_ID = @Shopping_Cart_ID";
+                var exec = connection.Execute(sql, new { Quantity, Shopping_Cart_ID });
             }
         }
         public void Delete(int Shopping_Cart_ID)
