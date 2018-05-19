@@ -4,14 +4,35 @@
 
 }
 
-
-<div id ="content"class="container-fluid">
-    <div class="row" id="content">
-        <div class="col">
-            圖片
+<div class="container-fluid">
+    <div class="row">
+        <div class="col content">
+            <img src='http://fakeimg.pl/960x965?font=bebas' alt='' class="mainimage" />
+        </div>
+        <div class="col content">
+            <img src='http://fakeimg.pl/960x965?font=bebas' alt='' class="mainimage" />
         </div>
     </div>
+    <div class="row">
+        <div class="col secondimage">
+            <img src='http://fakeimg.pl/409x309?font=bebas' alt='' />
+        </div>
+        <div class="col secondimage">
+            <img src='http://fakeimg.pl/409x309?font=bebas' alt='' />
+        </div>
+        <div class="col secondimage">
+            <img src='http://fakeimg.pl/409x309?font=bebas' alt='' />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col thirdimage">
+            <img src='http://fakeimg.pl/960x675?font=bebas' alt='' class="mainimage" />
+        </div>
+        <div class="col thirdimage">
+            <img src='http://fakeimg.pl/960x675?font=bebas' alt='' class="mainimage" />
+        </div>
+    </div>
+    <script>
+        $("#content").css("padding-top", jQuery("#menu").height())
+    </script>
 </div>
-<script>
-    $("#content").css("padding-top", jQuery("#menu").height())
-</script>

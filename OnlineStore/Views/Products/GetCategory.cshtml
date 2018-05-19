@@ -7,6 +7,8 @@
 <ul style="list-style:none;">
     @foreach (var item in Model)
     {
-        <li class="categoryname">@item.CategoryName</li>
+        <li class="categoryname">
+            <a href="#">@item.CategoryName</a>
+        </li>
     }
 </ul>

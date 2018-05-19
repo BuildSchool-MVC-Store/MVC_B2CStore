@@ -1,0 +1,32 @@
+﻿.catcontent {
+    margin-top: 200px;
+    width: 100%;
+    margin-bottom: 80px;
+}
+
+.side ul li {
+    font-weight: bold;
+    list-style: none;
+    line-height: 36px;
+}
+
+.side > ul {
+}
+
+    .side > ul > li:hover {
+        position: relative;
+        right: 3px;
+    }
+
+.main {
+    text-align: center;
+}
+
+    .main > a > p {
+        padding-top: 10px;
+        margin-bottom: 0;
+    }
+
+    .main > p {
+        margin-bottom: 40px;
+    }
