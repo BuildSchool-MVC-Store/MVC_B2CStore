@@ -18,9 +18,9 @@ namespace OSLibrary.Models
         public virtual DbSet<Order_Details> Order_Details { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<Product_Image> Product_Image { get; set; }
-        public virtual DbSet<Product_Size_Quantity> Product_Size_Quantity { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<Shopping_Cart> Shopping_Cart { get; set; }
+        public virtual DbSet<Stock> Stock { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -40,7 +40,7 @@ namespace OSLibrary.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Order_Details>()
-                .Property(e => e.UnitPrice)
+                .Property(e => e.Price)
                 .HasPrecision(19, 4);
 
             modelBuilder.Entity<Orders>()
@@ -71,7 +71,7 @@ namespace OSLibrary.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Products>()
-                .HasMany(e => e.Product_Size_Quantity)
+                .HasMany(e => e.Stock)
                 .WithRequired(e => e.Products)
                 .WillCascadeOnDelete(false);
 

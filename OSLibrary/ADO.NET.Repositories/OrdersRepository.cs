@@ -77,11 +77,18 @@ namespace OSLibrary.ADO.NET.Repositories
             IEnumerable<Orders> orders = null;
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                var sql = "SELECT * FROM Orders WHERE Account == @Account";
+                var sql = "SELECT * FROM Orders WHERE Account = @Account";
                 orders = connection.Query<Orders>(sql, new { Account });
             }
             return orders;
         }
-
+        public Orders GetLatestByAccount(string Account)
+        {
+            using (SqlConnection connection = new SqlConnection(strConnection))
+            {
+                var sql = "SELECT TOP 1 * FROM Orders WHERE Account = @Account ORDER BY Order_Date DESC";
+                return connection.QueryFirstOrDefault<Orders>(sql, new { Account });
+            }
+        }
     }
 }

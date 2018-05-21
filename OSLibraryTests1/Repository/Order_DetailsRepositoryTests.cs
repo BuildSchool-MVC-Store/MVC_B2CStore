@@ -46,7 +46,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
                 Order_ID = 6,
                 Product_ID = 2,
                 Quantity = 1,
-                UnitPrice = 150,
+                Price = 150,
                 Discount = 0,
                 size = "M"
             };
@@ -66,7 +66,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
                 Order_ID = 6,
                 Product_ID = 2,
                 Quantity = 2,
-                UnitPrice = 150,
+                Price = 150,
                 Discount = 0,
                 size = "X"
             };

@@ -6,7 +6,8 @@ namespace OSLibrary.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Product_Size_Quantity
+    [Table("Stock")]
+    public partial class Stock
     {
         [Key]
         [Column(Order = 0)]

@@ -13,7 +13,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         [TestMethod]
         public void ProductSizeQuantityRepositoryTests_GetAll()
         {
-            ProductSizeQuantityRepository repository = new ProductSizeQuantityRepository();
+            StockRepository repository = new StockRepository();
             var result = repository.GetAll();
             Assert.IsTrue(result.Count() == 6);
         }
@@ -21,7 +21,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         [TestMethod]
         public void ProductSizeQuantityRepositoryTests_GetByProduct_ID_Product_Size()
         {
-            ProductSizeQuantityRepository repository = new ProductSizeQuantityRepository();
+            StockRepository repository = new StockRepository();
             var result = repository.GetByProduct_IDandProduct_Size(1, "M");
             Assert.IsTrue(result.Quantity == 8);
         }
@@ -29,8 +29,8 @@ namespace OSLibraryTests.ADO.NET.Repositories
         [TestMethod]
         public void ProductSizeQuantityRepositoryTests_Create()
         {
-            ProductSizeQuantityRepository repository = new ProductSizeQuantityRepository();
-            var model = new Product_Size_Quantity()
+            StockRepository repository = new StockRepository();
+            var model = new Stock()
             {
                 Product_ID = 1,
                 Quantity = 20,
@@ -44,8 +44,8 @@ namespace OSLibraryTests.ADO.NET.Repositories
         [TestMethod]
         public void ProductSizeQuantityRepositoryTests_Update()
         {
-            ProductSizeQuantityRepository repository = new ProductSizeQuantityRepository();
-            var model = new Product_Size_Quantity()
+            StockRepository repository = new StockRepository();
+            var model = new Stock()
             {
                 Product_ID = 1,
                 Quantity = 100,
@@ -59,8 +59,8 @@ namespace OSLibraryTests.ADO.NET.Repositories
         [TestMethod]
         public void ProductSizeQuantityRepositoryTests_Delete()
         {
-            ProductSizeQuantityRepository repository = new ProductSizeQuantityRepository();
-            var model = new Product_Size_Quantity()
+            StockRepository repository = new StockRepository();
+            var model = new Stock()
             {
                 Product_ID = 1,
                 Product_Size = "S"

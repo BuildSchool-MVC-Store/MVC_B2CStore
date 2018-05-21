@@ -12,7 +12,7 @@ namespace OSLibrary.Sevices
     {
         public bool CreateShoppingCart(string _account, int Product_ID, int Quantity, string Product_Size)
         {
-            ProductSizeQuantityRepository sizeQuantityRepository = new ProductSizeQuantityRepository();
+            StockRepository sizeQuantityRepository = new StockRepository();
             ShoppingCartRepository shoppingCart = new ShoppingCartRepository();
             ProductsRepository products = new ProductsRepository();
             var stock = sizeQuantityRepository.GetByProduct_IDandProduct_Size(Product_ID, Product_Size);
