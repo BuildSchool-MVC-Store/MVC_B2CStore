@@ -39,7 +39,14 @@ namespace OSLibrary.ADO.NET.Repositories
                 var exec = connection.Execute(sql, new { Shopping_Cart_ID });
             }
         }
-
+        public void DeleteByAccount(string Account)
+        {
+            using (SqlConnection connection = new SqlConnection(strConnection))
+            {
+                var sql = "DELETE FROM Shopping_Cart WHERE Account = @Account";
+                var exec = connection.Execute(sql, new { Account });
+            }
+        }
         public IEnumerable<Shopping_Cart> GetByAccount(string Account)
         {
             IEnumerable<Shopping_Cart> shoppingCarts = null;

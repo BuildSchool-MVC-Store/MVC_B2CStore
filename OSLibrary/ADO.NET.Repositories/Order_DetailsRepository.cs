@@ -13,12 +13,12 @@ namespace OSLibrary.ADO.NET.Repositories
     public class Order_DetailsRepository : IRepository<Order_Details>
     {
         private string strConnection = "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;";
-        public void Create(Order_Details model)
+        public void Create(Order_Details model,IDbTransaction transaction)
         {
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                var sql = "INSERT INTO Order_Details VALUES (@Order_ID, @Product_ID, @Quantity, @UnitPrice, @Discount, @size)";
-                var exec = connection.Execute(sql, model);
+                var sql = "INSERT INTO Order_Details (Order_ID,Product_ID,Quantity,Price,size)  VALUES (@Order_ID, @Product_ID, @Quantity, @Price, @size)";
+                var exec = connection.Execute(sql, model, transaction);
             }
         }
 
@@ -26,7 +26,7 @@ namespace OSLibrary.ADO.NET.Repositories
         {
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                var sql = "UPDATE Order_Details SET Order_ID = @Order_ID, Product_ID = @Product_ID, Quantity = @Quantity, UnitPrice = @UnitPrice, Discount = @Discount, size = @size WHERE Order_Details_ID = @Order_Details_ID";
+                var sql = "UPDATE Order_Details SET Order_ID = @Order_ID, Product_ID = @Product_ID, Quantity = @Quantity, Price = @Price, Discount = @Discount, size = @size WHERE Order_Details_ID = @Order_Details_ID";
                 var exec = connection.Execute(sql, model);
             }
         }

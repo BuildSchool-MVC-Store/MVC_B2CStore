@@ -22,12 +22,12 @@ namespace OSLibrary.ADO.NET.Repositories
             }
         }
 
-        public void Update(Stock model)
+        public void Update(Stock model,IDbTransaction transaction)
         {
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
                 var sql = "UPDATE Stock SET Quantity=@Quantity WHERE Product_ID = @Product_ID and Product_Size=@Product_Size";
-                var exec = connection.Execute(sql, model);
+                var exec = connection.Execute(sql, model, transaction);
             }
         }
 

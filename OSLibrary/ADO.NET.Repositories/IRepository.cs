@@ -8,7 +8,6 @@ namespace OSLibrary.ADO.NET.Repositories
 {
     public interface IRepository<T> where T :class
     {
-        void Create(T model);
         IEnumerable<T> GetAll();
 
     }

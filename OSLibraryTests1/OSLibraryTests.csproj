@@ -67,6 +67,7 @@
     <Compile Include="Repository\ProductsRepositoryTests.cs" />
     <Compile Include="Repository\ShoppingCartRepositoryTests.cs" />
     <Compile Include="Sevices\ShoppingCartServiceTests.cs" />
+    <Compile Include="Sevices\OrdersServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

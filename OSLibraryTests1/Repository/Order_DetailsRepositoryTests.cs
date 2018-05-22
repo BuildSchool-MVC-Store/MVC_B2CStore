@@ -43,16 +43,13 @@ namespace OSLibraryTests.ADO.NET.Repositories
             Order_DetailsRepository repository = new Order_DetailsRepository();
             var model = new Order_Details
             {
-                Order_ID = 6,
+                Order_ID = 28,
                 Product_ID = 2,
                 Quantity = 1,
                 Price = 150,
-                Discount = 0,
                 size = "M"
             };
             repository.Create(model);
-            var result = repository.GetByOrder_Details_ID(13);
-            Assert.IsTrue(result != null);
         }
 
 
