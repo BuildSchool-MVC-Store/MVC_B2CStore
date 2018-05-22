@@ -5,6 +5,7 @@ using OSLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         [TestMethod]
         public void OrdersRepositoryTests_Create()
         {
+            SqlConnection connection = new SqlConnection();
             OrdersRepository repository = new OrdersRepository();
             var model = new Orders
             {
@@ -44,7 +46,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
                 Total = 680,
                 TranMoney = 0
             };
-            repository.Create(model);
+            repository.Create(model,connection.BeginTransaction());
             var result = repository.GetByOrder_ID(6);
             Assert.IsTrue(result != null);
         }

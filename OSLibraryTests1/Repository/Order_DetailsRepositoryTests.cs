@@ -4,6 +4,7 @@ using OSLibrary.ADO.NET.Repositories;
 using OSLibrary.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +41,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         [TestMethod]
         public void Order_DetailsRepositoryTests_Create()
         {
+            SqlConnection connection = new SqlConnection();
             Order_DetailsRepository repository = new Order_DetailsRepository();
             var model = new Order_Details
             {
@@ -49,7 +51,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
                 Price = 150,
                 size = "M"
             };
-            repository.Create(model);
+            repository.Create(model, connection.BeginTransaction());
         }
 
 

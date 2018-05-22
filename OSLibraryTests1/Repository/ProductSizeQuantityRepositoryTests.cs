@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OSLibrary;
@@ -45,13 +46,14 @@ namespace OSLibraryTests.ADO.NET.Repositories
         public void ProductSizeQuantityRepositoryTests_Update()
         {
             StockRepository repository = new StockRepository();
+            SqlConnection connection = new SqlConnection();
             var model = new Stock()
             {
                 Product_ID = 1,
                 Quantity = 100,
                 Product_Size = "S"
             };
-            repository.Update(model);
+            repository.Update(model,connection.BeginTransaction());
             var result = repository.GetByProduct_IDandProduct_Size(1, "S");
             Assert.IsTrue(result.Quantity == 100);
         }

@@ -19,12 +19,12 @@ namespace OSLibrary.Sevices
             Order_DetailsRepository order_Details_R = new Order_DetailsRepository();
             StockRepository stock_R = new StockRepository();
             ProductsRepository products_R = new ProductsRepository();
+
             var now_time = DateTime.Now;
 
             using (SqlConnection connection = new SqlConnection("Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"))
             {
                 connection.Open();
-
                 using (var transaction = connection.BeginTransaction())
                 {
                     try
