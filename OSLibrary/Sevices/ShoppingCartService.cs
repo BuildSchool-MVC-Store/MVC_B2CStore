@@ -41,11 +41,11 @@ namespace OSLibrary.Sevices
             return true;
         }
 
-        public bool DeleteProduct(string _account, int Product_ID, int ShoppingCartID, string Product_Size)
+        public bool DeleteProduct(string _account, int Product_ID, int ShoppingCartID)
         {
             ShoppingCartRepository shoppingcart = new ShoppingCartRepository();
             var myCart = shoppingcart.GetByAccount(_account);
-            var productitem = myCart.Where((x) => x.Product_ID == Product_ID && x.size == Product_Size);
+            var productitem = myCart.Where((x) => x.Product_ID == Product_ID);
             if(productitem != null)
             {
                 shoppingcart.Delete(ShoppingCartID);
