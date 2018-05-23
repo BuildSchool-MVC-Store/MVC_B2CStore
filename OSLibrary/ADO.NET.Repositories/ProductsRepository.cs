@@ -14,7 +14,7 @@ namespace OSLibrary.ADO.NET.Repositories
 {
     public class ProductsRepository : IRepository<Products>
     {
-        private SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["OSModel"].ConnectionString);
+        private SqlConnection connection = new SqlConnection(SqlConnect.str);
         public void Create(Products model)
         {
             var sql = ("SET IDENTITY_INSERT Products ON INSERT INTO Products (Product_ID,Product_Name,UnitPrice,Product_Types_Name,Gender) VALUES (@Product_ID,@Product_Name,@UnitPrice,@Product_Types_Name,@Gender) SET IDENTITY_INSERT Products OFF");

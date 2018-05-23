@@ -14,7 +14,7 @@ namespace OSLibrary.ADO.NET.Repositories
 {
     public class StockRepository : IRepository<Stock>
     {
-        private SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["OSModel"].ConnectionString);
+        private SqlConnection connection = new SqlConnection(SqlConnect.str);
         public void Create(Stock model)
         {
             var sql = "INSERT INTO Stock VALUES (@Product_ID,@Quantity,@Product_Size)";

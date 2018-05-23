@@ -14,7 +14,7 @@ namespace OSLibrary.ADO.NET.Repositories
 {
     public class ShoppingCartRepository : IRepository<Shopping_Cart>
     {
-        private SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["OSModel"].ConnectionString);
+        private SqlConnection connection = new SqlConnection(SqlConnect.str);
 
         public void Create(Shopping_Cart model)
         {

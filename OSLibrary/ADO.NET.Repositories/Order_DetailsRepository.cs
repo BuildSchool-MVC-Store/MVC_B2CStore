@@ -14,7 +14,7 @@ namespace OSLibrary.ADO.NET.Repositories
 {
     public class Order_DetailsRepository : IRepository<Order_Details>
     {
-        private SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["OSModel"].ConnectionString);
+        private SqlConnection connection = new SqlConnection(SqlConnect.str);
 
         public void Create(Order_Details model)
         {

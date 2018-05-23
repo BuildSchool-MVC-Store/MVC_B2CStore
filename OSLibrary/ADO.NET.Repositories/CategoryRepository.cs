@@ -12,7 +12,7 @@ namespace OSLibrary.ADO.NET.Repositories
 {
     public class CategoryRepository : IRepository<Category>
     {
-        private SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["OSModel"].ConnectionString);
+        private SqlConnection connection = new SqlConnection(SqlConnect.str);
         public void Create(Category model)
         {
             var sql = ("INSERT INTO Category VALUES (@CategoryName)");

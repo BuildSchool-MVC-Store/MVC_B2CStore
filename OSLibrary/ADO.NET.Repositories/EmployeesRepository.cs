@@ -14,7 +14,7 @@ namespace OSLibrary.ADO.NET.Repositories
 {
     public class EmployeesRepository : IRepository<Employees>
     {
-        private SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["OSModel"].ConnectionString);
+        private SqlConnection connection = new SqlConnection(SqlConnect.str);
         public void Create(Employees model)
         {
             var sql = "INSERT INTO Employees VALUES (@Account, @Password, @Name, @Birthday, @Email, @Phone, @Address)";

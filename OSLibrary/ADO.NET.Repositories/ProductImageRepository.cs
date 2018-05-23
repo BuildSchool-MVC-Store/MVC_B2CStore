@@ -17,7 +17,7 @@ namespace OSLibrary.ADO.NET.Repositories
 {
     public class ProductImageRepository : IRepository<Product_Image>
     {
-        private SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["OSModel"].ConnectionString);
+        private SqlConnection connection = new SqlConnection(SqlConnect.str);
         public void Create(Product_Image model)
         {
             var sql = "INSERT INTO Product_Image VALUES (@Product_ID, @Picture, @Product_Image_Only)";
