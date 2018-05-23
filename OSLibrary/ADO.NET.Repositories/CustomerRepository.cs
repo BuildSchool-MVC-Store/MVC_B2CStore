@@ -8,45 +8,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OSLibrary.Models;
+using System.Configuration;
+
 namespace OSLibrary.ADO.NET.Repositories
 {
     public class CustomerRepository : IRepository<Customers>
     {
-        private string strConnection = "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;";
+        private SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["OSModel"].ConnectionString);
         public void Create(Customers model)
         {
-            using (SqlConnection Connection = new SqlConnection(strConnection))
-            {
-                var sql = "INSERT INTO Customers VALUES (@Account, @Name, @Password, @Email, @Phone, @Address)";
-                var exec = Connection.Execute(sql, model);
-            }
+            var sql = "INSERT INTO Customers VALUES (@Account, @Name, @Password, @Email, @Phone, @Address)";
+            var exec = connection.Execute(sql, model);
         }
         public void Update(Customers model)
         {
-            using (SqlConnection Connection = new SqlConnection(strConnection))
-            {
-                var sql = "UPDATE Customers SET Account = @Account, Name = @Name ,Password =  @Password,Email = @Email,Phone = @Phone,Address = @Address WHERE Account = @Account";
-                var exect = Connection.Execute(sql, model);
-            }
+            var sql = "UPDATE Customers SET Account = @Account, Name = @Name ,Password =  @Password,Email = @Email,Phone = @Phone,Address = @Address WHERE Account = @Account";
+            var exect = connection.Execute(sql, model);
         }
         public void Delete(string Account)
         {
-            using (SqlConnection Connection = new SqlConnection(strConnection))
-            {
-                var sql = "DELETE FROM Customers WHERE Account = @Account";
-                var exec = Connection.Execute(sql, new { Account });
-            }
+            var sql = "DELETE FROM Customers WHERE Account = @Account";
+            var exec = connection.Execute(sql, new { Account });
         }
         public Customers GetByAccount(string account)
         {
-            Customers customer = null;
-            using (SqlConnection connection = new SqlConnection(strConnection))
-            {
-                var strSql = "SELECT * FROM Customers WHERE Account = @Account";
-                customer = connection.QueryFirst<Customers>(strSql,new {Account = account});
-            }
-            return customer;
-
+            var strSql = "SELECT * FROM Customers WHERE Account = @Account";
+            return connection.QueryFirst<Customers>(strSql, new { Account = account });
             //SqlCommand command = new SqlCommand(sql, connection);
             //command.Parameters.AddWithValue("@Account", Account);
 
@@ -82,14 +69,9 @@ namespace OSLibrary.ADO.NET.Repositories
         }
         public IEnumerable<Customers> GetAll()
         {
-            IEnumerable<Customers> customers = new List<Customers>();
-            using (SqlConnection connection = new SqlConnection(strConnection))
-            {
-                var sql = "SELECT * FROM Customers";
-                customers = connection.Query<Customers>(sql);
-            }
-            return customers;
-                
+            var sql = "SELECT * FROM Customers";
+            return connection.Query<Customers>(sql);
+
             //SqlCommand command = new SqlCommand(sql, connection);
             //connection.Open();
             //var reader = command.ExecuteReader(CommandBehavior.CloseConnection);

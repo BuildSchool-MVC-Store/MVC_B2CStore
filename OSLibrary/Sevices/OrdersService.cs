@@ -12,6 +12,11 @@ namespace OSLibrary.Sevices
 {
     public class OrdersService
     {
+        public IEnumerable<Orders> GetOrderByAccount(string Account)
+        {
+            return new OrdersRepository().GetByAccount(Account);
+        }
+
         public string CreateOrder(string Account, string Pay, string Transport, decimal TranMoney)
         {
             ShoppingCartRepository cart_R = new ShoppingCartRepository();
@@ -37,7 +42,7 @@ namespace OSLibrary.Sevices
                             Pay = Pay,
                             TranMoney = TranMoney,
                             Transport = Transport
-                        });
+                        },transaction);
 
                         string errorMessage = "";
                         var order = orders_R.GetLatestByAccount(Account);
@@ -76,7 +81,6 @@ namespace OSLibrary.Sevices
                         }
                         else
                         {
-                            
                             throw new Exception(errorMessage);
                         }
                     }

@@ -8,69 +8,51 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OSLibrary.Models;
+using System.Configuration;
+
 namespace OSLibrary.ADO.NET.Repositories
 {
     public class Order_DetailsRepository : IRepository<Order_Details>
     {
-        private string strConnection = "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;";
+        private SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["OSModel"].ConnectionString);
+
         public void Create(Order_Details model)
         {
-            using (SqlConnection connection = new SqlConnection(strConnection))
-            {
-                var sql = "INSERT INTO Order_Details (Order_ID,Product_ID,Quantity,Price,size)  VALUES (@Order_ID, @Product_ID, @Quantity, @Price, @size)";
-                var exec = connection.Execute(sql, model);
-            }
+            var sql = "INSERT INTO Order_Details (Order_ID,Product_ID,Quantity,Price,size)  VALUES (@Order_ID, @Product_ID, @Quantity, @Price, @size)";
+            var exec = connection.Execute(sql, model);
+
         }
 
         public void Update(Order_Details model)
         {
-            using (SqlConnection connection = new SqlConnection(strConnection))
-            {
-                var sql = "UPDATE Order_Details SET Order_ID = @Order_ID, Product_ID = @Product_ID, Quantity = @Quantity, Price = @Price, Discount = @Discount, size = @size WHERE Order_Details_ID = @Order_Details_ID";
-                var exec = connection.Execute(sql, model);
-            }
+
+            var sql = "UPDATE Order_Details SET Order_ID = @Order_ID, Product_ID = @Product_ID, Quantity = @Quantity, Price = @Price, Discount = @Discount, size = @size WHERE Order_Details_ID = @Order_Details_ID";
+            var exec = connection.Execute(sql, model);
+
         }
 
         public void Delete(int Order_Details_ID)
         {
-            using (SqlConnection connection = new SqlConnection(strConnection))
-            {
-                var sql = "DELETE FROM Order_Details WHERE Order_Details_ID = @Order_Details_ID";
-                var exec = connection.Execute(sql, new { Order_Details_ID });
-            }
+            var sql = "DELETE FROM Order_Details WHERE Order_Details_ID = @Order_Details_ID";
+            var exec = connection.Execute(sql, new { Order_Details_ID });
         }
 
         public Order_Details GetByOrder_Details_ID(int Order_Details_ID)
         {
-            Order_Details order_details = null;
-            using (SqlConnection connection = new SqlConnection(strConnection))
-            {
-                var sql = "SELECT * FROM Order_Details WHERE Order_Details_ID = @Order_Details_ID";
-                order_details = connection.QueryFirstOrDefault<Order_Details>(sql, new { Order_Details_ID = Order_Details_ID });
-            }
-            return order_details;
+            var sql = "SELECT * FROM Order_Details WHERE Order_Details_ID = @Order_Details_ID";
+            return connection.QueryFirstOrDefault<Order_Details>(sql, new { Order_Details_ID = Order_Details_ID });
         }
 
         public IEnumerable<Order_Details> GetAll()
         {
 
-            IEnumerable<Order_Details> Order_Details = null;
-            using (SqlConnection connection = new SqlConnection(strConnection))
-            {
-                var sql = "SELECT * FROM Order_Details";
-                Order_Details = connection.Query<Order_Details>(sql);
-            }
-            return Order_Details;
+            var sql = "SELECT * FROM Order_Details";
+            return connection.Query<Order_Details>(sql);
         }
         public IEnumerable<Order_Details> GetByOrderID(int OrderID)
         {
-            IEnumerable<Order_Details> Order_Details = null;
-            using (SqlConnection connection = new SqlConnection(strConnection))
-            {
-                var sql = "SELECT * FROM Order_Details WHERE Order_ID = @OrderID";
-                Order_Details = connection.Query<Order_Details>(sql,new { OrderID = OrderID});
-            }
-            return Order_Details;
+            var sql = "SELECT * FROM Order_Details WHERE Order_ID = @OrderID";
+            return connection.Query<Order_Details>(sql, new { OrderID = OrderID });
         }
     }
 }
