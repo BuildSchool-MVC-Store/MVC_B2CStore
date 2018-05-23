@@ -27,14 +27,14 @@ namespace OSLibrary.Sevices
 
             var now_time = DateTime.Now;
 
-            using (SqlConnection connection = new SqlConnection("Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;"))
+            using (SqlConnection connection = new SqlConnection(SqlConnect.str))
             {
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())
                 {
                     try
                     {
-                        orders_R.Create(new Orders
+                        orders_R.Create(connection , new Orders
                         {
                             Account = Account,
                             Order_Check = "NEW",
@@ -42,7 +42,7 @@ namespace OSLibrary.Sevices
                             Pay = Pay,
                             TranMoney = TranMoney,
                             Transport = Transport
-                        });
+                        },transaction);
 
                         string errorMessage = "";
                         var order = orders_R.GetLatestByAccount(Account);

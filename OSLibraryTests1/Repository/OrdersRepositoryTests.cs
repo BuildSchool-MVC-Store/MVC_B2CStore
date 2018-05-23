@@ -35,7 +35,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         [TestMethod]
         public void OrdersRepositoryTests_Create()
         {
-            SqlConnection connection = new SqlConnection();
+            SqlConnection connection = new SqlConnection(SqlConnect.str);
             OrdersRepository repository = new OrdersRepository();
             var model = new Orders
             {
@@ -48,7 +48,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
                 TranMoney = 0
             };
             var temp1 = repository.GetAll().Count();
-            repository.Create(model);
+            repository.Create(connection,model,connection.BeginTransaction());
             var temp2 = repository.GetAll().Count();
             Assert.IsTrue(temp1<temp2);
         }
