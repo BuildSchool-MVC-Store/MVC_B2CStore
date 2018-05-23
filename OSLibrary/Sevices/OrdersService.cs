@@ -26,72 +26,67 @@ namespace OSLibrary.Sevices
             ProductsRepository products_R = new ProductsRepository();
 
             var now_time = DateTime.Now;
-
-            using (SqlConnection connection = new SqlConnection(SqlConnect.str))
+            SqlConnection connection = new SqlConnection(SqlConnect.str);
+            connection.Open();
+            var transaction = connection.BeginTransaction();
+            try
             {
-                connection.Open();
-                using (var transaction = connection.BeginTransaction())
+                orders_R.Create(connection, new Orders
                 {
-                    try
+                    Account = Account,
+                    Order_Check = "NEW",
+                    Order_Date = now_time,
+                    Pay = Pay,
+                    TranMoney = TranMoney,
+                    Transport = Transport
+                }, transaction);
+
+                string errorMessage = "";
+                var order = orders_R.GetLatestByAccount(connection,Account,transaction);
+                var items = cart_R.GetByAccount(Account);
+
+                foreach (var item in items)
+                {
+                    if (stock_R.CheckInventory(item.Product_ID, item.size, item.Quantity) == false)
                     {
-                        orders_R.Create(connection , new Orders
-                        {
-                            Account = Account,
-                            Order_Check = "NEW",
-                            Order_Date = now_time,
-                            Pay = Pay,
-                            TranMoney = TranMoney,
-                            Transport = Transport
-                        },transaction);
-
-                        string errorMessage = "";
-                        var order = orders_R.GetLatestByAccount(Account);
-                        var items = cart_R.GetByAccount(Account);
-
-                        foreach (var item in items)
-                        {
-                            if (stock_R.CheckInventory(item.Product_ID, item.size, item.Quantity) == false)
-                            {
-                                errorMessage += "產品 :" + "數量" + " 庫存不足\n";
-                            }
-                            else
-                            {
-                                order_Details_R.Create(new Order_Details()
-                                {
-                                    Order_ID = order.Order_ID,
-                                    Product_ID = item.Product_ID,
-                                    Quantity = (short)item.Quantity,
-                                    size = item.size,
-                                    Price = item.Quantity * products_R.GetByProduct_ID(item.Product_ID).UnitPrice,
-                                    Discount = 1
-                                });
-                                stock_R.Update(new Stock()
-                                {
-                                    Product_ID = item.Product_ID,
-                                    Product_Size = item.size,
-                                    Quantity = stock_R.GetByProduct_IDandProduct_Size(item.Product_ID, item.size).Quantity - item.Quantity
-                                });
-                            }
-                        }
-                        if (errorMessage.Length <= 1)
-                        {
-                            cart_R.DeleteByAccount(Account);
-                            transaction.Commit();
-                            return "完成訂單";
-                        }
-                        else
-                        {
-                            throw new Exception(errorMessage);
-                        }
+                        errorMessage += "產品 :" + "數量" + " 庫存不足\n";
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        Console.WriteLine(ex.Message);
-                        //出现异常，事务Rollback
-                        transaction.Rollback();
-                        return ex.Message;
+                        order_Details_R.Create(new Order_Details()
+                        {
+                            Order_ID = order.Order_ID,
+                            Product_ID = item.Product_ID,
+                            Quantity = (short)item.Quantity,
+                            size = item.size,
+                            Price = item.Quantity * products_R.GetByProduct_ID(item.Product_ID).UnitPrice,
+                            Discount = 1
+                        });
+                        stock_R.Update(new Stock()
+                        {
+                            Product_ID = item.Product_ID,
+                            Product_Size = item.size,
+                            Quantity = stock_R.GetByProduct_IDandProduct_Size(item.Product_ID, item.size).Quantity - item.Quantity
+                        });
                     }
                 }
+                if (errorMessage.Length <= 1)
+                {
+                    cart_R.DeleteByAccount(Account);
+                    transaction.Commit();
+                    return "完成訂單";
+                }
+                else
+                {
+                    throw new Exception(errorMessage);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                //出现异常，事务Rollback
+                transaction.Rollback();
+                return ex.Message;
             }
         }
     }

@@ -23,10 +23,8 @@ namespace OSLibrary.ADO.NET.Repositories
         }
         public void Update(int Shopping_Cart_ID, int Quantity)
         {
-
             var sql = "UPDATE Shopping_Cart SET Quantity=@Quantity WHERE Shopping_Cart_ID = @Shopping_Cart_ID";
             var exec = connection.Execute(sql, new { Quantity, Shopping_Cart_ID });
-
         }
         public void Delete(int Shopping_Cart_ID)
         {
@@ -37,6 +35,11 @@ namespace OSLibrary.ADO.NET.Repositories
         {
             var sql = "DELETE FROM Shopping_Cart WHERE Account = @Account";
             var exec = connection.Execute(sql, new { Account });
+        }
+        public IEnumerable<Shopping_Cart> GetByAccount(SqlConnection connection,string Account,IDbTransaction transaction)
+        {
+            var sql = "SELECT * FROM Shopping_Cart WHERE Account = @Account";
+            return connection.Query<Shopping_Cart>(sql, new { Account }, transaction);
         }
         public IEnumerable<Shopping_Cart> GetByAccount(string Account)
         {

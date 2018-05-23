@@ -15,19 +15,11 @@ namespace OSLibrary.ADO.NET.Repositories
     public class OrdersRepository : IRepository<Orders>
     {
         private string strConnection = "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password=123456789;";
-        public void Create(SqlConnection connection,Orders model,IDbTransaction transaction)
+        public void Create(SqlConnection connection , Orders model , IDbTransaction transaction)
         {
             var sql = "INSERT INTO Orders (Order_Date, Account, Pay, Transport, Order_Check, Total, TranMoney) VALUES (@Order_Date, @Account, @Pay, @Transport, @Order_Check, @Total, @TranMoney)";
-            var exec = connection.Execute(sql, model,transaction);
+            connection.Execute(sql, model, transaction);
         }
-        //public void Create(Orders model)
-        //{
-        //    using (SqlConnection connection = new SqlConnection(strConnection))
-        //    {
-        //        var sql = "INSERT INTO Orders (Order_Date, Account, Pay, Transport, Order_Check, Total, TranMoney) VALUES (@Order_Date, @Account, @Pay, @Transport, @Order_Check, @Total, @TranMoney)";
-        //        var exec = connection.Execute(sql, model);
-        //    }
-        //}
         public void Update(Orders model)
         {
             using (SqlConnection connection = new SqlConnection(strConnection))
@@ -82,13 +74,11 @@ namespace OSLibrary.ADO.NET.Repositories
                 return connection.Query<Orders>(sql, new { Account });
             }
         }
-        public Orders GetLatestByAccount(string Account)
+        public Orders GetLatestByAccount(SqlConnection connection,string Account,IDbTransaction transaction)
         {
-            using (SqlConnection connection = new SqlConnection(strConnection))
-            {
-                var sql = "SELECT TOP 1 * FROM Orders WHERE Account = @Account ORDER BY Order_Date DESC";
-                return connection.QueryFirstOrDefault<Orders>(sql, new { Account });
-            }
+            string sql = "SELECT TOP 1 * FROM Orders WHERE Account = @Account ORDER BY Order_Date DESC";
+            var item = connection.QueryFirstOrDefault<Orders>(sql, new { Account },transaction);
+            return item;
         }
 
     }
