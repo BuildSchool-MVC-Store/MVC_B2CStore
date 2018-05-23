@@ -53,7 +53,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
                 Quantity = 100,
                 Product_Size = "S"
             };
-            repository.Update(model,connection.BeginTransaction());
+            repository.Update(model);
             var result = repository.GetByProduct_IDandProduct_Size(1, "S");
             Assert.IsTrue(result.Quantity == 100);
         }

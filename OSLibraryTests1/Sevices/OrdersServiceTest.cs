@@ -13,7 +13,7 @@ namespace OSLibraryTests1.Sevices
             OrdersService service = new OrdersService();
             var str = service.CreateOrder("Osborn","信用卡","宅配",60);
             Console.WriteLine(str);
-            Assert.IsTrue(str == "完成訂單");
+            Assert.IsFalse(str == "完成訂單");
         }
     }
 }

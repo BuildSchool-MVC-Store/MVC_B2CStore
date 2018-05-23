@@ -13,12 +13,12 @@ namespace OSLibrary.ADO.NET.Repositories
     public class Order_DetailsRepository : IRepository<Order_Details>
     {
         private string strConnection = "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;";
-        public void Create(Order_Details model,IDbTransaction transaction)
+        public void Create(Order_Details model)
         {
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
                 var sql = "INSERT INTO Order_Details (Order_ID,Product_ID,Quantity,Price,size)  VALUES (@Order_ID, @Product_ID, @Quantity, @Price, @size)";
-                var exec = connection.Execute(sql, model, transaction);
+                var exec = connection.Execute(sql, model);
             }
         }
 

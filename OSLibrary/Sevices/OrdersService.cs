@@ -37,7 +37,7 @@ namespace OSLibrary.Sevices
                             Pay = Pay,
                             TranMoney = TranMoney,
                             Transport = Transport
-                        },transaction);
+                        });
 
                         string errorMessage = "";
                         var order = orders_R.GetLatestByAccount(Account);
@@ -47,7 +47,7 @@ namespace OSLibrary.Sevices
                         {
                             if (stock_R.CheckInventory(item.Product_ID, item.size, item.Quantity) == false)
                             {
-                                errorMessage += "產品 :" + item.Products.Product_Name + " 庫存不足\n";
+                                errorMessage += "產品 :" + products_R.GetByProduct_ID(item.Product_ID).Product_Name + " 庫存不足\n";
                             }
                             else
                             {
@@ -59,13 +59,13 @@ namespace OSLibrary.Sevices
                                     size = item.size,
                                     Price = item.Quantity * products_R.GetByProduct_ID(item.Product_ID).UnitPrice,
                                     Discount = 1
-                                },transaction);
+                                });
                                 stock_R.Update(new Stock()
                                 {
                                     Product_ID = item.Product_ID,
                                     Product_Size = item.size,
                                     Quantity = stock_R.GetByProduct_IDandProduct_Size(item.Product_ID, item.size).Quantity - item.Quantity
-                                }, transaction);
+                                });
                             }
                         }
                         if (errorMessage.Length <= 1)
@@ -76,12 +76,14 @@ namespace OSLibrary.Sevices
                         }
                         else
                         {
+                            
                             throw new Exception(errorMessage);
                         }
                     }
                     catch (Exception ex)
                     {
                         //出现异常，事务Rollback
+                        Console.WriteLine(ex);
                         transaction.Rollback();
                         return ex.Message;
                     }

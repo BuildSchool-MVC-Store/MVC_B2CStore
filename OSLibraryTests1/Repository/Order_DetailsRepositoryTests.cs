@@ -51,7 +51,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
                 Price = 150,
                 size = "M"
             };
-            repository.Create(model, connection.BeginTransaction());
+            repository.Create(model);
         }
 
 
