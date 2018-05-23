@@ -42,7 +42,7 @@ namespace OSLibrary.Sevices
                             Pay = Pay,
                             TranMoney = TranMoney,
                             Transport = Transport
-                        },transaction);
+                        });
 
                         string errorMessage = "";
                         var order = orders_R.GetLatestByAccount(Account);
@@ -52,7 +52,7 @@ namespace OSLibrary.Sevices
                         {
                             if (stock_R.CheckInventory(item.Product_ID, item.size, item.Quantity) == false)
                             {
-                                errorMessage += "產品 :" + products_R.GetByProduct_ID(item.Product_ID).Product_Name + " 庫存不足\n";
+                                errorMessage += "產品 :" + "數量" + " 庫存不足\n";
                             }
                             else
                             {
@@ -86,8 +86,8 @@ namespace OSLibrary.Sevices
                     }
                     catch (Exception ex)
                     {
+                        Console.WriteLine(ex.Message);
                         //出现异常，事务Rollback
-                        Console.WriteLine(ex);
                         transaction.Rollback();
                         return ex.Message;
                     }

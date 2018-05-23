@@ -47,9 +47,10 @@ namespace OSLibraryTests.ADO.NET.Repositories
                 Total = 680,
                 TranMoney = 0
             };
-            repository.Create(model,connection.BeginTransaction());
-            var result = repository.GetByOrder_ID(6);
-            Assert.IsTrue(result != null);
+            var temp1 = repository.GetAll().Count();
+            repository.Create(model);
+            var temp2 = repository.GetAll().Count();
+            Assert.IsTrue(temp1<temp2);
         }
 
         [TestMethod]
