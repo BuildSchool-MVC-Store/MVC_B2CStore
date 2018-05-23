@@ -16,14 +16,14 @@ namespace OSLibrary.ADO.NET.Repositories
     {
         public void Create(SqlConnection connection, Order_Details model, IDbTransaction transaction)
         {
-            var sql = "INSERT INTO Order_Details (Order_ID,Product_ID,Quantity,Price,size)  VALUES (@Order_ID, @Product_ID, @Quantity, @Price, @size)";
+            var sql = "INSERT INTO Order_Details (Order_ID,Product_ID,Quantity,Price,size ,Color)  VALUES (@Order_ID, @Product_ID, @Quantity, @Price, @size,@Color)";
             connection.Execute(sql, model,transaction);
         }
         public void Create(Order_Details model)
         {
             using (SqlConnection connection = new SqlConnection(SqlConnect.str))
             {
-                var sql = "INSERT INTO Order_Details (Order_ID,Product_ID,Quantity,Price,size)  VALUES (@Order_ID, @Product_ID, @Quantity, @Price, @size)";
+                var sql = "INSERT INTO Order_Details (Order_ID,Product_ID,Quantity,Price,size,Color)  VALUES (@Order_ID, @Product_ID, @Quantity, @Price, @size,@Color)";
                 connection.Execute(sql, model);
             }
         }
@@ -31,7 +31,7 @@ namespace OSLibrary.ADO.NET.Repositories
         {
             using (SqlConnection connection = new SqlConnection(SqlConnect.str))
             {
-                var sql = "UPDATE Order_Details SET Order_ID = @Order_ID, Product_ID = @Product_ID, Quantity = @Quantity, Price = @Price, Discount = @Discount, size = @size WHERE Order_Details_ID = @Order_Details_ID";
+                var sql = "UPDATE Order_Details SET Order_ID = @Order_ID, Product_ID = @Product_ID, Quantity = @Quantity, Price = @Price, Discount = @Discount, size = @size ,Color = @Color WHERE Order_Details_ID = @Order_Details_ID";
                 connection.Execute(sql, model);
             }
         }

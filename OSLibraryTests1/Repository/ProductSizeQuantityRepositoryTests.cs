@@ -23,7 +23,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         public void ProductSizeQuantityRepositoryTests_GetByProduct_ID_Product_Size()
         {
             StockRepository repository = new StockRepository();
-            var result = repository.GetByProduct_IDandProduct_Size(1, "M");
+            var result = repository.GetByPK(1, "M","黑");
             Assert.IsTrue(result.Quantity == 8);
         }
 
@@ -35,10 +35,10 @@ namespace OSLibraryTests.ADO.NET.Repositories
             {
                 Product_ID = 1,
                 Quantity = 20,
-                Product_Size = "S"
+                Size = "S"
             };
             repository.Create(model);
-            var result = repository.GetByProduct_IDandProduct_Size(1, "S");
+            var result = repository.GetByPK(1, "S","紅");
             Assert.IsTrue(result != null);
         }
 
@@ -51,10 +51,10 @@ namespace OSLibraryTests.ADO.NET.Repositories
             {
                 Product_ID = 1,
                 Quantity = 100,
-                Product_Size = "S"
+                Size = "S"
             };
             repository.Update(model);
-            var result = repository.GetByProduct_IDandProduct_Size(1, "S");
+            var result = repository.GetByPK(1, "S","紅");
             Assert.IsTrue(result.Quantity == 100);
         }
 
@@ -65,7 +65,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
             var model = new Stock()
             {
                 Product_ID = 1,
-                Product_Size = "S"
+                Size = "S"
             };
             int oldN = repository.GetAll().Count();
             repository.Delete(model);

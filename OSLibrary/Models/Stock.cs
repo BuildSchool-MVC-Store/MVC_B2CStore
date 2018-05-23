@@ -18,8 +18,13 @@ namespace OSLibrary.Models
 
         [Key]
         [Column(Order = 1)]
-        [StringLength(10)]
-        public string Product_Size { get; set; }
+        [StringLength(50)]
+        public string Size { get; set; }
+
+        [Key]
+        [Column(Order = 2)]
+        [StringLength(50)]
+        public string Color { get; set; }
 
         public virtual Products Products { get; set; }
     }

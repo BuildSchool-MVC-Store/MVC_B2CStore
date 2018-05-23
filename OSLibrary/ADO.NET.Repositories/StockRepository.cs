@@ -17,20 +17,20 @@ namespace OSLibrary.ADO.NET.Repositories
         private SqlConnection connection = new SqlConnection(SqlConnect.str);
         public void Create(Stock model)
         {
-            var sql = "INSERT INTO Stock VALUES (@Product_ID,@Quantity,@Product_Size)";
+            var sql = "INSERT INTO Stock VALUES (@Product_ID,@Quantity,@Size,@Color)";
             var exec = connection.Execute(sql, model);
 
         }
         public void Update(SqlConnection connection, Stock model, IDbTransaction transaction)
         {
-            var sql = "UPDATE Stock SET Quantity=@Quantity WHERE Product_ID = @Product_ID and Product_Size=@Product_Size";
+            var sql = "UPDATE Stock SET Quantity=@Quantity WHERE Product_ID = @Product_ID and Size=@Size and Color = @Color";
             connection.Execute(sql, model, transaction);
         }
         public void Update(Stock model)
         {
             using (SqlConnection connection = new SqlConnection(SqlConnect.str))
             {
-                var sql = "UPDATE Stock SET Quantity=@Quantity WHERE Product_ID = @Product_ID and Product_Size=@Product_Size";
+                var sql = "UPDATE Stock SET Quantity=@Quantity WHERE Product_ID = @Product_ID and Size=@Size and Color = @Color";
                 var exec = connection.Execute(sql, model);
             }
         }
@@ -39,16 +39,16 @@ namespace OSLibrary.ADO.NET.Repositories
         {
             using (SqlConnection connection = new SqlConnection(SqlConnect.str))
             {
-                var sql = "DELETE FROM Stock WHERE Product_ID = @Product_ID and Product_Size=@Product_Size";
-                var exec = connection.Execute(sql, new { model.Product_ID, model.Product_Size });
+                var sql = "DELETE FROM Stock WHERE Product_ID = @Product_ID and Size=@Size and Color = @Color";
+                var exec = connection.Execute(sql, new { model.Product_ID, model.Size });
             }
         }
-        public Stock GetByProduct_IDandProduct_Size(int Product_ID, string Product_Size)
+        public Stock GetByPK(int Product_ID, string Size,string Color)
         {
             using (SqlConnection connection = new SqlConnection(SqlConnect.str))
             {
-                var sql = "SELECT * FROM Stock WHERE Product_ID = @Product_ID and Product_Size=@Product_Size";
-                return connection.QueryFirstOrDefault<Stock>(sql, new { Product_ID, Product_Size });
+                var sql = "SELECT * FROM Stock WHERE Product_ID = @Product_ID and Size=@Size and Color = @Color";
+                return connection.QueryFirstOrDefault<Stock>(sql, new { Product_ID, Size ,Color});
             }
         }
 
@@ -60,12 +60,12 @@ namespace OSLibrary.ADO.NET.Repositories
                 return connection.Query<Stock>(sql);
             }
         }
-        public bool CheckInventory(int Product_ID, string Product_Size, int needQuantity)
+        public bool CheckInventory(int Product_ID, string Size,string Color, int needQuantity)
         {
             using (SqlConnection connection = new SqlConnection(SqlConnect.str))
             {
-                var sql = "SELECT * FROM Stock WHERE Product_ID = @Product_ID AND Product_Size=@Product_Size";
-                var item = connection.QueryFirstOrDefault<Stock>(sql, new { Product_ID, Product_Size });
+                var sql = "SELECT * FROM Stock WHERE Product_ID = @Product_ID AND Size=@Size and Color = @Color";
+                var item = connection.QueryFirstOrDefault<Stock>(sql, new { Product_ID, Size ,Color});
                 if (item.Quantity >= needQuantity)
                 {
                     return true;

@@ -42,30 +42,32 @@ namespace OSLibrary.Sevices
                 }, transaction);
 
                 string errorMessage = "";
-                var order = orders_R.GetLatestByAccount(connection,Account);
+                var order = orders_R.GetLatestByAccount(connection,Account,transaction);
                 var items = cart_R.GetByAccount(connection,Account,transaction);
 
                 foreach (var item in items)
                 {
-                    if (stock_R.CheckInventory(item.Product_ID, item.size, item.Quantity) == false)
+                    if (stock_R.CheckInventory(item.Product_ID, item.size,item.Color,item.Quantity) == false)
                     {
                         errorMessage += "產品 :" + products_R.GetByProduct_ID(item.Product_ID).Product_Name + " 庫存不足\n";
                     }
                     else
                     {
-                        order_Details_R.Create(connection,new Order_Details()
+                        order_Details_R.Create(connection, new Order_Details()
                         {
                             Order_ID = order.Order_ID,
                             Product_ID = item.Product_ID,
                             Quantity = (short)item.Quantity,
                             size = item.size,
                             Price = item.Quantity * products_R.GetByProduct_ID(item.Product_ID).UnitPrice,
+                            Color = item.Color
                         },transaction);
-                        stock_R.Update(connection,new Stock()
+                        stock_R.Update(connection, new Stock()
                         {
                             Product_ID = item.Product_ID,
-                            Product_Size = item.size,
-                            Quantity = stock_R.GetByProduct_IDandProduct_Size(item.Product_ID, item.size).Quantity - item.Quantity
+                            Size = item.size,
+                            Quantity = stock_R.GetByPK(item.Product_ID, item.size ,item.Color).Quantity - item.Quantity,
+                            Color = item.Color
                         },transaction);
                     }
                 }

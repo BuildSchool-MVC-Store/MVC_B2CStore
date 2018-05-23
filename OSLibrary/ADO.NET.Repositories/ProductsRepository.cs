@@ -17,12 +17,12 @@ namespace OSLibrary.ADO.NET.Repositories
         private SqlConnection connection = new SqlConnection(SqlConnect.str);
         public void Create(Products model)
         {
-            var sql = ("SET IDENTITY_INSERT Products ON INSERT INTO Products (Product_ID,Product_Name,UnitPrice,Product_Types_Name,Gender) VALUES (@Product_ID,@Product_Name,@UnitPrice,@Product_Types_Name,@Gender) SET IDENTITY_INSERT Products OFF");
+            var sql = ("INSERT INTO Products (Product_Name,UnitPrice,CategoryName,Gender) VALUES (@Product_Name,@UnitPrice,@CategoryName,@Gender)");
             var exec = connection.Execute(sql);
         }
         public void Update(Products model)
         {
-            var sql = ("UPDATE Products SET Product_Name=@Product_Name,UnitPrice=@UnitPrice,Product_Types_Name=@Product_Types_Name,Gender=@Gender WHERE Product_ID=@Product_ID");
+            var sql = ("UPDATE Products SET Product_Name=@Product_Name,UnitPrice=@UnitPrice,CategoryName=@CategoryName,Gender=@Gender WHERE Product_ID=@Product_ID");
             var exec = connection.Execute(sql);
         }
         public void Delete(int Product_ID)
@@ -40,10 +40,10 @@ namespace OSLibrary.ADO.NET.Repositories
             var sql = "SELECT * FROM Products";
             return connection.Query<Products>(sql);
         }
-        public IEnumerable<Products> GetByProduct_Types_Name(string Product_Types_Name)
+        public IEnumerable<Products> GetByProduct_Types_Name(string CategoryName)
         {
 
-            var sql = "SELECT * FROM Products WHERE Product_Types_Name = @Product_Types_Name";
+            var sql = "SELECT * FROM Products WHERE CategoryName = @CategoryName";
             return connection.Query<Products>(sql);
         }
     }

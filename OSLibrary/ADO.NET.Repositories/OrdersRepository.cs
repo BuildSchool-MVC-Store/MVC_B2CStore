@@ -28,7 +28,6 @@ namespace OSLibrary.ADO.NET.Repositories
                 var exec = connection.Execute(sql, model);
             }
         }
-
         public void Delete(int Order_ID)
         {
             using (SqlConnection connection = new SqlConnection(strConnection))
@@ -36,7 +35,6 @@ namespace OSLibrary.ADO.NET.Repositories
                 var sql = "DELETE FROM Orders WHERE Order_ID = @Order_ID";
                 var exec = connection.Execute(sql, new { Order_ID });
             }
-
         }
 
         public Orders GetByOrder_ID(int Order_ID)

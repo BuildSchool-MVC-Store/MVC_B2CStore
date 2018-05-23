@@ -26,6 +26,10 @@ namespace OSLibrary.Models
         [StringLength(10)]
         public string size { get; set; }
 
+        [Required]
+        [StringLength(50)]
+        public string Color { get; set; }
+
         public virtual Orders Orders { get; set; }
 
         public virtual Products Products { get; set; }

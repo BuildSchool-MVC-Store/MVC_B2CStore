@@ -18,7 +18,7 @@ namespace OSLibrary.Sevices.Tests
             
             //Assert.IsTrue(service.CreateShoppingCart("Osborn",2,1,"M")==true);
 
-            Assert.IsFalse(service.CreateShoppingCart("Osborn", 2, 10, "M"));
+            Assert.IsFalse(service.CreateShoppingCart("Osborn", 2, 10, "M","黑"));
         }
 
         [TestMethod()]
