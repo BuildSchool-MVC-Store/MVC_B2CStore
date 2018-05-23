@@ -39,11 +39,10 @@ namespace OSLibrary.ADO.NET.Repositories
         public IEnumerable<Product_Image> GetByProduct_ID(int Product_ID)
         {
             var sql = "SELECT * FROM Product_Image WHERE Product_ID = @Product_ID";
-            return connection.Query<Product_Image>(sql);
+            return connection.Query<Product_Image>(sql,new { Product_ID});
         }
         public IEnumerable<Product_Image> GetAll()
         {
-
             var sql = "SELECT * FROM Product_Image";
             return connection.Query<Product_Image>(sql);
         }

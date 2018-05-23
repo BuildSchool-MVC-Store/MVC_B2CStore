@@ -23,7 +23,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         {
             ProductImageRepository repository = new ProductImageRepository();
             var result = repository.GetByProduct_ID(1);
-            Assert.IsTrue(result.Count() == 4);
+            Assert.IsTrue(result.Count() == 1);
         }
 
         [TestMethod]

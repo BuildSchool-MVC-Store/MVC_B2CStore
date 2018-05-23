@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using OSLibrary.ViewModel;
+using OSLibrary.Sevices;
 using OSLibrary.ADO.NET.Repositories;
-using OSLibrary.Models;
+
 namespace OnlineStore.Controllers
 {
     [RoutePrefix("Products")]
@@ -14,8 +16,8 @@ namespace OnlineStore.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            var result = new ProductsRepository();
-            IEnumerable<Products> list = result.GetAll();
+            var result = new ProductService();
+            IEnumerable<ProductModel> list = result.GetAllProducts();
             return View(list);
         }
         public ActionResult GetCategory()

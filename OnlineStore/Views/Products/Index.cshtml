@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OSLibrary.Models.Products>
+﻿@model IEnumerable<OSLibrary.ViewModel.ProductModel>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,12 +16,12 @@
                 {
                     <div class="col-3" name="@item.CategoryName">
                         <a href="#">
-                            <img src='http://fakeimg.pl/220x280?font=bebas'>
+                            <img src= @item.ImageUrl>
                         </a>
                         <a href="#">
-                            <p>@item.Product_Name</p>
+                            <p>@item.Name</p>
                         </a>
-                        <p class="price">@item.UnitPrice</p>
+                        <p class="price">@item.Price</p>
                     </div>
                 }
             </div>
