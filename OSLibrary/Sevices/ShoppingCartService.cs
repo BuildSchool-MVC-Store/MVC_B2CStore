@@ -40,5 +40,21 @@ namespace OSLibrary.Sevices
             }
             return true;
         }
+
+        public bool DeleteProduct(string _account, int Product_ID, int ShoppingCartID, string Product_Size)
+        {
+            ShoppingCartRepository shoppingcart = new ShoppingCartRepository();
+            var myCart = shoppingcart.GetByAccount(_account);
+            var productitem = myCart.Where((x) => x.Product_ID == Product_ID && x.size == Product_Size);
+            if(productitem != null)
+            {
+                shoppingcart.Delete(ShoppingCartID);
+            }
+            else
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

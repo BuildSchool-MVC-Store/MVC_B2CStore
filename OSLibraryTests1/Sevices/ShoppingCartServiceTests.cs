@@ -20,5 +20,13 @@ namespace OSLibrary.Sevices.Tests
 
             Assert.IsFalse(service.CreateShoppingCart("Osborn", 2, 10, "M"));
         }
+
+        [TestMethod()]
+        public void ShoppingCartServiceTests_DeleteProduct()
+        {
+            ShoppingCartService service = new ShoppingCartService();
+            //Assert.IsTrue(service.DeleteProduct("Bill", 2, 20, "XL"));
+            Assert.IsFalse(service.DeleteProduct("Bill", 2, 21, "XXL"));
+        }
     }
 }
