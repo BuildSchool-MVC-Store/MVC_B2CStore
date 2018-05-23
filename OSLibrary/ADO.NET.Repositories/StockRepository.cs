@@ -21,7 +21,11 @@ namespace OSLibrary.ADO.NET.Repositories
             var exec = connection.Execute(sql, model);
 
         }
-
+        public void Update(SqlConnection connection, Stock model, IDbTransaction transaction)
+        {
+            var sql = "UPDATE Stock SET Quantity=@Quantity WHERE Product_ID = @Product_ID and Product_Size=@Product_Size";
+            connection.Execute(sql, model, transaction);
+        }
         public void Update(Stock model)
         {
             using (SqlConnection connection = new SqlConnection(SqlConnect.str))

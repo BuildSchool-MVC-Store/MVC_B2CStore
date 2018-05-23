@@ -77,9 +77,12 @@ namespace OSLibrary.ADO.NET.Repositories
         public Orders GetLatestByAccount(SqlConnection connection,string Account,IDbTransaction transaction)
         {
             string sql = "SELECT TOP 1 * FROM Orders WHERE Account = @Account ORDER BY Order_Date DESC";
-            var item = connection.QueryFirstOrDefault<Orders>(sql, new { Account },transaction);
-            return item;
+            return connection.QueryFirstOrDefault<Orders>(sql, new { Account },transaction);
         }
-
+        public Orders GetLatestByAccount(SqlConnection connection, string Account)
+        {
+            string sql = "SELECT TOP 1 * FROM Orders WHERE Account = @Account ORDER BY Order_Date DESC";
+            return connection.QueryFirstOrDefault<Orders>(sql, new { Account });
+        }
     }
 }

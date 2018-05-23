@@ -14,37 +14,40 @@ namespace OSLibrary.ADO.NET.Repositories
 {
     public class Order_DetailsRepository : IRepository<Order_Details>
     {
-        private string strConnection = "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password = 123456789;";
+        public void Create(SqlConnection connection, Order_Details model, IDbTransaction transaction)
+        {
+            var sql = "INSERT INTO Order_Details (Order_ID,Product_ID,Quantity,Price,size)  VALUES (@Order_ID, @Product_ID, @Quantity, @Price, @size)";
+            connection.Execute(sql, model,transaction);
+        }
         public void Create(Order_Details model)
         {
-            using (SqlConnection connection = new SqlConnection(strConnection))
+            using (SqlConnection connection = new SqlConnection(SqlConnect.str))
             {
                 var sql = "INSERT INTO Order_Details (Order_ID,Product_ID,Quantity,Price,size)  VALUES (@Order_ID, @Product_ID, @Quantity, @Price, @size)";
-                var exec = connection.Execute(sql, model);
+                connection.Execute(sql, model);
             }
         }
-
         public void Update(Order_Details model)
         {
-            using (SqlConnection connection = new SqlConnection(strConnection))
+            using (SqlConnection connection = new SqlConnection(SqlConnect.str))
             {
                 var sql = "UPDATE Order_Details SET Order_ID = @Order_ID, Product_ID = @Product_ID, Quantity = @Quantity, Price = @Price, Discount = @Discount, size = @size WHERE Order_Details_ID = @Order_Details_ID";
-                var exec = connection.Execute(sql, model);
+                connection.Execute(sql, model);
             }
         }
 
         public void Delete(int Order_Details_ID)
         {
-            using (SqlConnection connection = new SqlConnection(strConnection))
+            using (SqlConnection connection = new SqlConnection(SqlConnect.str))
             {
                 var sql = "DELETE FROM Order_Details WHERE Order_Details_ID = @Order_Details_ID";
-                var exec = connection.Execute(sql, new { Order_Details_ID });
+                connection.Execute(sql, new { Order_Details_ID });
             }
         }
 
         public Order_Details GetByOrder_Details_ID(int Order_Details_ID)
         {
-            using (SqlConnection connection = new SqlConnection(strConnection))
+            using (SqlConnection connection = new SqlConnection(SqlConnect.str))
             {
                 var sql = "SELECT * FROM Order_Details WHERE Order_Details_ID = @Order_Details_ID";
                 return connection.QueryFirstOrDefault<Order_Details>(sql, new { Order_Details_ID = Order_Details_ID });
@@ -53,7 +56,7 @@ namespace OSLibrary.ADO.NET.Repositories
 
         public IEnumerable<Order_Details> GetAll()
         {
-            using (SqlConnection connection = new SqlConnection(strConnection))
+            using (SqlConnection connection = new SqlConnection(SqlConnect.str))
             {
                 var sql = "SELECT * FROM Order_Details";
                 return connection.Query<Order_Details>(sql);
@@ -61,10 +64,10 @@ namespace OSLibrary.ADO.NET.Repositories
         }
         public IEnumerable<Order_Details> GetByOrderID(int OrderID)
         {
-            using (SqlConnection connection = new SqlConnection(strConnection))
+            using (SqlConnection connection = new SqlConnection(SqlConnect.str))
             {
                 var sql = "SELECT * FROM Order_Details WHERE Order_ID = @OrderID";
-                return connection.Query<Order_Details>(sql, new { OrderID = OrderID });
+                return connection.Query<Order_Details>(sql, new { OrderID });
             }
         }
     }
