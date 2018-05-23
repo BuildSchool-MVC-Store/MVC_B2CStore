@@ -18,10 +18,8 @@ namespace OSLibrary.ADO.NET.Repositories
 
         public void Create(Shopping_Cart model)
         {
-
             var sql = "INSERT INTO Shopping_Cart VALUES (@Account,@Product_ID,@Quantity,@UnitPrice,@Discount,@size)";
             var exec = connection.Execute(sql, model);
-
         }
         public void Update(int Shopping_Cart_ID, int Quantity)
         {
@@ -32,26 +30,19 @@ namespace OSLibrary.ADO.NET.Repositories
         }
         public void Delete(int Shopping_Cart_ID)
         {
-
             var sql = "DELETE FROM Shopping_Cart WHERE Shopping_Cart_ID = @Shopping_Cart_ID";
             var exec = connection.Execute(sql, new { Shopping_Cart_ID });
-
         }
         public void DeleteByAccount(string Account)
         {
-
             var sql = "DELETE FROM Shopping_Cart WHERE Account = @Account";
             var exec = connection.Execute(sql, new { Account });
-
         }
         public IEnumerable<Shopping_Cart> GetByAccount(string Account)
         {
-
             var sql = "SELECT * FROM Shopping_Cart WHERE Account = @Account";
             return connection.Query<Shopping_Cart>(sql, new { Account });
-
         }
-
         public IEnumerable<Shopping_Cart> GetAll()
         {
             var sql = "SELECT * FROM Shopping_Cart";
