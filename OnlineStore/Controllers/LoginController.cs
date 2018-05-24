@@ -11,6 +11,28 @@ namespace OnlineStore.Controllers
     [RoutePrefix("login")]
     public class LoginController : Controller
     {
+        public ActionResult LoginPage()
+        {
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                ViewBag.IsAuthenticated = false;
+                return View();
+            }
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            if (ticket.UserData == "12345")
+            {
+                ViewBag.IsAuthenticated = true;
+                ViewBag.Username = "admin";
+            }
+            else
+            {
+                ViewBag.IsAuthenticated = false;
+            }
+            return PartialView();
+        }
+
         [Route("")]
         // GET: LoginController
         public ActionResult Index()
@@ -36,9 +58,9 @@ namespace OnlineStore.Controllers
         }
         [Route("")]
         [HttpPost]
-        public ActionResult Index(LoginModel loginModel)
+        public ActionResult Login(string username,string password)
         {
-            if(loginModel.Username == "admin" && loginModel.Password=="admin")
+            if(username == "admin" && password=="admin")
             {
                 FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, "admin", DateTime.Now, DateTime.Now.AddMinutes(30), false,"12345");
                 var ticketData = FormsAuthentication.Encrypt(ticket);
@@ -47,7 +69,7 @@ namespace OnlineStore.Controllers
                 cookie.Expires = ticket.Expiration;
                 Response.Cookies.Add(cookie);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
             else
             {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OSLibrary.ADO.NET.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,19 +14,10 @@ namespace OnlineStore.Controllers
 
             return View();
         }
-
-        public ActionResult About()
+        public ActionResult GetCategory()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            var result = new CategoryRepository();
+            return PartialView(result.GetAll());
         }
     }
 }

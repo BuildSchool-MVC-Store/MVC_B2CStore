@@ -11,7 +11,7 @@
                 @foreach (var item in Model)
                 {
                     <div class="col-3" name="@item.CategoryName">
-                        <a href="/"+ @item.ProductID>
+                        <a href= "/Products/@item.ProductID" >
                             <img src=@item.ImageUrl>
                         </a>
                         <a href="#">

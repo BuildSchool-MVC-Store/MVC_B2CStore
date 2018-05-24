@@ -82,5 +82,11 @@ namespace OSLibrary.ADO.NET.Repositories
             string sql = "SELECT TOP 1 * FROM Orders WHERE Account = @Account ORDER BY Order_Date DESC";
             return connection.QueryFirstOrDefault<Orders>(sql, new { Account });
         }
+
+        public void Update(int order_ID, decimal totalmoney, SqlConnection connection, SqlTransaction transaction)
+        {
+            var sql = "UPDATE Orders SET Total = @Total WHERE Order_ID = @Order_ID";
+            connection.Execute(sql, new { Total = totalmoney , order_ID }, transaction);
+        }
     }
 }

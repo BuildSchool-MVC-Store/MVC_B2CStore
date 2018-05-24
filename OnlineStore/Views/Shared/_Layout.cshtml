@@ -30,31 +30,33 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-8 mx-auto">
-                        <div class="form-group" id="account">
-                            <label>
-                                帳號&nbsp;
-                                <span class="signword">Account</span>
-                            </label>
-                            <input type="email" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-                            <label class="password">
-                                密碼&nbsp;
-                                <span class="signword">Password</span>
-                            </label>
-                            <input type="email" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+            @using (Html.BeginForm("Login", "Login"))
+            {
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-8 mx-auto">
+                            <div class="form-group" id="account">
+                                <label>
+                                    帳號&nbsp;
+                                    <span class="signword">Account</span>
+                                </label>
+                                <input type="text" class="form-control" maxlength="25" name="Username" />
+                                <label class="password">
+                                    密碼&nbsp;
+                                    <span class="signword">Password</span>
+                                </label>
+                                <input type="password" class="form-control" maxlength="25" name="Password" />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <a name="" id="signin" class="btn" href="#" role="button" data-dismiss="modal">登入</a>
-            </div>
+                <div class="modal-footer">
+                    <button type="submit">登入</button>
+                </div>
+            }
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="registermodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content modaltitle">
@@ -98,39 +100,21 @@
         <div class="header fixed-top">
             <div class="row">
                 <div class="col">
-
                 </div>
                 <div class="col text-center">
-                    <a href="#">
+                    <a href="/">
                         <h2 class="title">Alan's Shop</h2>
                     </a>
                 </div>
                 <div class="col">
-                    <ul class="nav justify-content-end topside">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-toggle="modal" data-target="#signinmodel">LOGIN</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-toggle="modal" data-target="#registermodel">REGISTER</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-user"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-shopping-basket"></i>
-                            </a>
-                        </li>
-                    </ul>
+                    @{Html.RenderAction("LoginPage", "Login");}
                 </div>
             </div>
             <div class="row main-menu">
                 <div class="col">
                     <ul class="nav justify-content-center">
                         <li class="nav-item">
-                            <a class="nav-link" href="Products">WOMEN</a>
+                            <a class="nav-link" href="/Products">WOMEN</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">MEN</a>
@@ -144,6 +128,7 @@
         </div>
     </div>
     @RenderBody()
+
     <footer class="container-fluid">
         <div class="container">
             <div class="row">

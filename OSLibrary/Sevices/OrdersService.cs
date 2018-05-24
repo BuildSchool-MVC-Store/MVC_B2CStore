@@ -44,7 +44,7 @@ namespace OSLibrary.Sevices
                 string errorMessage = "";
                 var order = orders_R.GetLatestByAccount(connection,Account,transaction);
                 var items = cart_R.GetByAccount(connection,Account,transaction);
-
+                decimal totalmoney = 0;
                 foreach (var item in items)
                 {
                     if (stock_R.CheckInventory(item.Product_ID, item.size,item.Color,item.Quantity) == false)
@@ -53,6 +53,7 @@ namespace OSLibrary.Sevices
                     }
                     else
                     {
+                        totalmoney += item.Quantity * products_R.GetByProduct_ID(item.Product_ID).UnitPrice;
                         order_Details_R.Create(connection, new Order_Details()
                         {
                             Order_ID = order.Order_ID,
@@ -74,6 +75,7 @@ namespace OSLibrary.Sevices
                 if (errorMessage.Length <= 1)
                 {
                     cart_R.DeleteByAccount(Account);
+                    orders_R.Update(order.Order_ID, totalmoney,connection,transaction);
                     transaction.Commit();
                     return "完成訂單";
                 }
