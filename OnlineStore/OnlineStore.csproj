@@ -167,8 +167,8 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Category.css" />
     <Content Include="Content\main.css" />
+    <Content Include="Content\product.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -179,6 +179,12 @@
     <Content Include="Images\Main\mothersday.png" />
     <Content Include="Images\Main\share.png" />
     <Content Include="Images\Products\1.jpg" />
+    <Content Include="Images\Products\2.jpg" />
+    <Content Include="Images\Products\MEN\G30100025-31L.jpg" />
+    <Content Include="Images\Products\WOMEN\180524_0020.jpg" />
+    <Content Include="Images\Products\WOMEN\180524_0023.jpg" />
+    <Content Include="Images\Products\WOMEN\180524_0034.jpg" />
+    <Content Include="Images\Products\WOMEN\180524_0035.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -239,7 +245,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\Products\NewFolder1\" />
+    <Folder Include="Images\Products\KIDS\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

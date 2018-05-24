@@ -1,10 +1,10 @@
-﻿.catcontent {
+.catcontent {
     width: 100%;
     margin-top: 140px;
     margin-bottom: 20px;
 }
 
-.side ul li {
+.side ul li{
     color: #676D3E;
     font-weight: bold;
     list-style: none;
@@ -16,19 +16,19 @@
     text-decoration: none;
 }
 
-    .catcontent a:hover {
-        color: rgb(135, 145, 76);
-    }
+.catcontent a:hover {
+    color:rgb(135, 145, 76);
+}
 
 .right-content p {
     text-align: center;
 }
 
-    .right-content p:first-child {
-        margin-top: 10px;
-    }
+.right-content p:first-child {
+    margin-top: 10px;
+}
 
-.side > ul > li:hover {
+.side>ul>li:hover {
     position: relative;
     right: 3px;
 }
@@ -37,21 +37,21 @@
     text-align: center;
 }
 
-    .main > a > p {
-        padding-top: 10px;
-        margin-bottom: 0;
-    }
+.main>a>p {
+    padding-top: 10px;
+    margin-bottom: 0;
+}
 
-    .main > p {
-        margin-bottom: 40px;
-    }
+.main>p {
+    margin-bottom: 40px;
+}
 
 .grid {
     display: flex;
     flex-wrap: wrap;
 }
 
-.product-item {
+.product-item{
     width: 220px;
     height: 350px;
 }
@@ -65,41 +65,54 @@
 }
 
 
-.right-content > .row > .col-8 > img {
+.right-content>.row>.col-8>img {
     margin-bottom: 15px;
 }
 
-.right-content > .row > .col-4 > p {
+.right-content>.row>.col-4>p {
     text-align: right;
     border-bottom: 1px solid rgb(153, 153, 153);
     margin-bottom: 20px;
 }
 
-.right-content > .row > .col-4 span {
-    font-size: 40px;
+.right-content>.row>.col-4 span {
+    font-size:40px;
 }
 
-.right-content > .row > .col-4 > p::before {
+.right-content>.row>.col-4>p::before {
     content: "NT$ ";
 }
 
-.right-content > .row > .col-4 > button {
-    border: 1px solid black;
-    width: 20%;
+.right-content>.row>.col-4>button {
+    border:1px solid black;
+    width:20%;
     background-color: rgb(255, 254, 250);
     margin: 0 10px 30px 0;
     outline: none;
 }
 
-    .right-content > .row > .col-4 > button:hover {
-        background-color: rgb(233, 233, 233);
-        cursor: pointer;
-    }
-
-.input-group-append button {
-    width: 100%;
+.right-content>.row>.col-4>button:hover {
+    background-color: rgb(233, 233, 233);
+    cursor: pointer;
 }
 
-.right-content > .row > .col-4 > .nav {
+.input-group-append button {
+    width:100%;
+}
+
+.right-content>.row>.col-4>.nav {
     margin-top: 20px;
+}
+
+.right-content .row .col-3 img {
+    width:220px;
+    height:280px;
+}
+
+.right-content>.row>.col-3 {
+    margin-bottom: 50px;
+}
+
+.price::before {
+    content: "NT.";
 }

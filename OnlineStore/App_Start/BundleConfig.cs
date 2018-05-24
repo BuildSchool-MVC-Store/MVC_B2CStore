@@ -27,7 +27,7 @@ namespace OnlineStore
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/site.css",
                       "~/Content/main.css",
-                      "~/Content/Category.css"
+                      "~/Content/product.css"
                       ));
         }
     }
