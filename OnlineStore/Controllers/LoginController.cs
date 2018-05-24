@@ -1,4 +1,5 @@
 ﻿using OnlineStore.Models;
+using OSLibrary.Sevices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace OnlineStore.Controllers
             if (ticket.UserData == "12345")
             {
                 ViewBag.IsAuthenticated = true;
-                ViewBag.Username = "admin";
+                ViewBag.Username = ticket.Name;
             }
             else
             {
@@ -34,35 +35,13 @@ namespace OnlineStore.Controllers
         }
 
         [Route("")]
-        // GET: LoginController
-        public ActionResult Index()
-        {
-            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-            
-            if(cookie == null)
-            {
-                ViewBag.IsAuthenticated = false;
-                return View();
-            }
-            var ticket = FormsAuthentication.Decrypt(cookie.Value);
-            if (ticket.UserData == "12345")
-            {
-                ViewBag.IsAuthenticated = true;
-                ViewBag.Username = "admin";
-            }
-            else
-            {
-                ViewBag.IsAuthenticated = false;
-            }
-            return View();
-        }
-        [Route("")]
         [HttpPost]
         public ActionResult Login(string username,string password)
         {
-            if(username == "admin" && password=="admin")
+            CustomerService customerService = new CustomerService();
+            if(customerService.CheckAccount(username, password))
             {
-                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, "admin", DateTime.Now, DateTime.Now.AddMinutes(30), false,"12345");
+                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, username , DateTime.Now, DateTime.Now.AddMinutes(30), false,"12345");
                 var ticketData = FormsAuthentication.Encrypt(ticket);
                 //生COOKIE
                 var cookie = new HttpCookie(FormsAuthentication.FormsCookieName,ticketData);
@@ -85,7 +64,7 @@ namespace OnlineStore.Controllers
             cookie.Expires = DateTime.Now;
             Response.Cookies.Add(cookie);
 
-            return RedirectToAction("index");
+            return RedirectToAction("index","Home");
         }
     }
 }
