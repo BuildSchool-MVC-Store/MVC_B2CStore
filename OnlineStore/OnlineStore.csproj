@@ -212,6 +212,7 @@
     <Content Include="Views\Products\GetCategory.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Products\ProductDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OSLibrary\OSLibrary.csproj">

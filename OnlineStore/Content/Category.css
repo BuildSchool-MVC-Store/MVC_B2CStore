@@ -1,22 +1,37 @@
 ﻿.catcontent {
-    margin-top: 200px;
     width: 100%;
-    margin-bottom: 80px;
+    margin-top: 140px;
+    margin-bottom: 20px;
 }
 
 .side ul li {
+    color: #676D3E;
     font-weight: bold;
     list-style: none;
     line-height: 36px;
 }
 
-.side > ul {
+.catcontent a {
+    color: #676D3E;
+    text-decoration: none;
 }
 
-    .side > ul > li:hover {
-        position: relative;
-        right: 3px;
+    .catcontent a:hover {
+        color: rgb(135, 145, 76);
     }
+
+.right-content p {
+    text-align: center;
+}
+
+    .right-content p:first-child {
+        margin-top: 10px;
+    }
+
+.side > ul > li:hover {
+    position: relative;
+    right: 3px;
+}
 
 .main {
     text-align: center;
@@ -30,3 +45,61 @@
     .main > p {
         margin-bottom: 40px;
     }
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-item {
+    width: 220px;
+    height: 350px;
+}
+
+.categoryname {
+    font-weight: bold;
+}
+
+.categorylist {
+    list-style: none;
+}
+
+
+.right-content > .row > .col-8 > img {
+    margin-bottom: 15px;
+}
+
+.right-content > .row > .col-4 > p {
+    text-align: right;
+    border-bottom: 1px solid rgb(153, 153, 153);
+    margin-bottom: 20px;
+}
+
+.right-content > .row > .col-4 span {
+    font-size: 40px;
+}
+
+.right-content > .row > .col-4 > p::before {
+    content: "NT$ ";
+}
+
+.right-content > .row > .col-4 > button {
+    border: 1px solid black;
+    width: 20%;
+    background-color: rgb(255, 254, 250);
+    margin: 0 10px 30px 0;
+    outline: none;
+}
+
+    .right-content > .row > .col-4 > button:hover {
+        background-color: rgb(233, 233, 233);
+        cursor: pointer;
+    }
+
+.input-group-append button {
+    width: 100%;
+}
+
+.right-content > .row > .col-4 > .nav {
+    margin-top: 20px;
+}

@@ -43,12 +43,20 @@ namespace OSLibrary.ADO.NET.Repositories
                 var exec = connection.Execute(sql, new { model.Product_ID, model.Size });
             }
         }
-        public Stock GetByPK(int Product_ID, string Size,string Color)
+        public Stock GetByPK(int Product_ID, string Size, string Color)
         {
             using (SqlConnection connection = new SqlConnection(SqlConnect.str))
             {
                 var sql = "SELECT * FROM Stock WHERE Product_ID = @Product_ID and Size=@Size and Color = @Color";
-                return connection.QueryFirstOrDefault<Stock>(sql, new { Product_ID, Size ,Color});
+                return connection.QueryFirstOrDefault<Stock>(sql, new { Product_ID, Size, Color });
+            }
+        }
+        public IEnumerable<Stock> GetByProductID(int Product_ID)
+        {
+            using (SqlConnection connection = new SqlConnection(SqlConnect.str))
+            {
+                var sql = "SELECT * FROM Stock WHERE Product_ID = @Product_ID";
+                return connection.Query<Stock>(sql, new { Product_ID });
             }
         }
 
@@ -60,12 +68,12 @@ namespace OSLibrary.ADO.NET.Repositories
                 return connection.Query<Stock>(sql);
             }
         }
-        public bool CheckInventory(int Product_ID, string Size,string Color, int needQuantity)
+        public bool CheckInventory(int Product_ID, string Size, string Color, int needQuantity)
         {
             using (SqlConnection connection = new SqlConnection(SqlConnect.str))
             {
                 var sql = "SELECT * FROM Stock WHERE Product_ID = @Product_ID AND Size=@Size and Color = @Color";
-                var item = connection.QueryFirstOrDefault<Stock>(sql, new { Product_ID, Size ,Color});
+                var item = connection.QueryFirstOrDefault<Stock>(sql, new { Product_ID, Size, Color });
                 if (item.Quantity >= needQuantity)
                 {
                     return true;

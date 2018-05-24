@@ -1,22 +1,18 @@
-﻿@model IEnumerable<OSLibrary.ViewModel.ProductModel>
+﻿@model IEnumerable<OSLibrary.ViewModels.ProductModel>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="container" style="padding-top:160px;">
-    <div class="row" id="content">
-        <div class="col-2">
-            <div class="side">
-                @{Html.RenderAction("GetCategory");}
-            </div>
-        </div>
+<div class="container catcontent">
+    <div class="row">
+        @{Html.RenderAction("GetCategory");}
         <div class="col-10">
             <div class="row">
                 @foreach (var item in Model)
                 {
                     <div class="col-3" name="@item.CategoryName">
-                        <a href="#">
-                            <img src= @item.ImageUrl>
+                        <a href="/"+ @item.ProductID>
+                            <img src=@item.ImageUrl>
                         </a>
                         <a href="#">
                             <p>@item.Name</p>

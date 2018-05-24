@@ -4,11 +4,13 @@
     Layout = null;
 }
 
-<ul style="list-style:none;">
-    @foreach (var item in Model)
-    {
-        <li class="categoryname">
-            <a href="#">@item.CategoryName</a>
-        </li>
-    }
-</ul>
+<div class="col-2 side">
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                <a href="#">@item.CategoryName</a>
+            </li>
+        }
+    </ul>
+</div>
