@@ -167,24 +167,14 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Category.css" />
     <Content Include="Content\main.css" />
-    <Content Include="Content\product.css" />
+    <Content Include="Content\Modals.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\Main\180524_0015.jpg" />
-    <Content Include="Images\Main\180524_0053.jpg" />
-    <Content Include="Images\Main\discount.png" />
-    <Content Include="Images\Main\mothersday.png" />
-    <Content Include="Images\Main\share.png" />
     <Content Include="Images\Products\1.jpg" />
-    <Content Include="Images\Products\2.jpg" />
-    <Content Include="Images\Products\MEN\G30100025-31L.jpg" />
-    <Content Include="Images\Products\WOMEN\180524_0020.jpg" />
-    <Content Include="Images\Products\WOMEN\180524_0023.jpg" />
-    <Content Include="Images\Products\WOMEN\180524_0034.jpg" />
-    <Content Include="Images\Products\WOMEN\180524_0035.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -221,7 +211,6 @@
     <Content Include="Views\Test\DisplaySalesMan.cshtml" />
     <Content Include="Views\Products\GetCategory.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
-    <Content Include="Views\Login\Log.cshtml" />
     <Content Include="Views\Products\ProductDetail.cshtml" />
     <Content Include="Views\Login\LoginPage.cshtml" />
   </ItemGroup>
@@ -245,7 +234,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\Products\KIDS\" />
+    <Folder Include="Images\Main\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
