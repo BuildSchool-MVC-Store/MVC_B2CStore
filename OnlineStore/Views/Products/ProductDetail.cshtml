@@ -4,7 +4,7 @@
     ViewBag.Title = "ProductDetail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@using System;
 <div class="container catcontent">
     <!--內容-->
     <div class="row">
@@ -24,33 +24,55 @@
                 </div>
                 <div class="col-4">
                     <!--右商品細節-->
-                    <h4>@Model.Name</h4>
-                    <p>
-                        <span>@Model.Price</span>
-                    </p>
-                    <h5>Color</h5>
-                    @foreach (var item in Model.Color)
+                    @using (Html.BeginForm("AddtoShoppingCart", "ShoppingCart"))
                     {
-                        <button type="button">@item</button>
-                    }
-                    <h5>Color</h5>
-                    @foreach (var item in Model.Size)
-                    {
-                        <button type="button">@item</button>
-                    }
-                    <h5>Quantity</h5>
-                    <div class="input-group">
-                        <select class="custom-select ">
-                            <option selected>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                        <div class="input-group-append">
-                            <button class="btn" type="button">Add to ShoppingCart</button>
+                        <input name="ID" type="hidden" value="@Model.ID" />
+                        <input name="Name" type="hidden" value="@Model.Name" />
+                        <h4> @Model.Name</h4>
+                        <p>
+                            <span>@String.Format("{0:0,0}", Model.Price)</span>
+                        </p>
+                        <div class="input-group">
+                            <div class="row">
+                                <div class="col-12 mt-1">
+                                    <h5>Color</h5>
+                                </div>
+                                <div class="col-5">
+                                    <select class="custom-select" name="color">
+                                        @foreach (var item in Model.Color)
+                                        {
+                                            <option>@item</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-12 mt-1">
+                                    <h5>Size</h5>
+                                </div>
+                                <div class="col-5">
+                                    <select class="custom-select" name="size">
+                                        @foreach (var item in Model.Size)
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-12 mt-1">
+                                    <h5>Quantity</h5>
+                                </div>
+                                <div class="col-5">
+                                    <select class="custom-select" name="quantity">
+                                        <option selected value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="btn mt-3" type="submit">Add to Cart</button>
                         </div>
-                    </div>
+
+                    }
                     <ul class="nav">
                         <li class="nav-item">
                             <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home"
@@ -82,3 +104,11 @@
     </div>
 </div>
 
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["Message"]));
+        alert(message);
+        TempData.Remove("Message");
+    </script>
+}

@@ -49,6 +49,7 @@ namespace OSLibrary.Sevices
             };
             return new ProductDetail()
             {
+                ID = products.Product_ID,
                 Name = products.Product_Name,
                 Comments = products.Comments,
                 Price = products.UnitPrice,

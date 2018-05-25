@@ -54,7 +54,7 @@ namespace OnlineStore.Controllers
             {
                 ModelState.AddModelError("LoginModel", "使用者名稱密碼不正確");
             }
-            return View();
+            return Redirect(Request.UrlReferrer.ToString());
         }
         public ActionResult Logout()
         {
@@ -63,7 +63,7 @@ namespace OnlineStore.Controllers
             cookie.Expires = DateTime.Now;
             Response.Cookies.Add(cookie);
 
-            return RedirectToAction("Index", "Home");
+            return Redirect(Request.UrlReferrer.ToString());
         }
     }
 }

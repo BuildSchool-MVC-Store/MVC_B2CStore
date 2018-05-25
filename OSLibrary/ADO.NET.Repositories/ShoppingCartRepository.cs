@@ -18,7 +18,7 @@ namespace OSLibrary.ADO.NET.Repositories
 
         public void Create(Shopping_Cart model)
         {
-            var sql = "INSERT INTO Shopping_Cart VALUES (@Account,@Product_ID,@Quantity,@UnitPrice,@Discount,@size)";
+            var sql = "INSERT INTO Shopping_Cart VALUES (@Account,@Product_ID,@Quantity,@UnitPrice,@Discount,@size,@color)";
             var exec = connection.Execute(sql, model);
         }
         public void Update(int Shopping_Cart_ID, int Quantity)

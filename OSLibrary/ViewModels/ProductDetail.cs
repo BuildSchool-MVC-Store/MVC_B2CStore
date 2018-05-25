@@ -8,6 +8,7 @@ namespace OSLibrary.ViewModels
 {
     public class ProductDetail
     {
+        public int ID { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public Dictionary<string, List<string>> ColorSize { get; set; }

@@ -34,7 +34,8 @@ namespace OSLibrary.Sevices
                     Product_ID = Product_ID,
                     size = Size,
                     UnitPrice = products.GetByProduct_ID(Product_ID).UnitPrice,
-                    Quantity = (short)Quantity
+                    Quantity = (short)Quantity,
+                    Color = Color
                 };
                 shoppingCart.Create(model);
             }
@@ -45,15 +46,6 @@ namespace OSLibrary.Sevices
         {
             ShoppingCartRepository shoppingcart = new ShoppingCartRepository();
             var myCart = shoppingcart.GetByAccount(_account);
-            //var productitem = myCart.Where((x) => x.Product_ID == Product_ID);
-            //if (productitem != null)
-            //{
-            //    shoppingcart.Delete(ShoppingCartID);
-            //}
-            //else
-            //{
-            //    return false;
-            //}
             try
             {
                 shoppingcart.Delete(ShoppingCartID);
