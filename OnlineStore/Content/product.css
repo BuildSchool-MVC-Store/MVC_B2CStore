@@ -69,21 +69,21 @@
     margin-bottom: 15px;
 }
 
-.right-content>.row>.col-4>p {
+.right-content .row .col-4>form>p {
     text-align: right;
     border-bottom: 1px solid rgb(153, 153, 153);
     margin-bottom: 20px;
 }
 
-.right-content>.row>.col-4 span {
+.right-content>.row>.col-4>form>p>span {
     font-size:40px;
 }
 
-.right-content>.row>.col-4>p::before {
-    content: "NT$ ";
+.right-content>.row>.col-4>form>p::before {
+    content: "NT.$ ";
 }
 
-.right-content>.row>.col-4>button {
+.right-content>.row>.col-4>form>button {
     border:1px solid black;
     width:20%;
     background-color: rgb(255, 254, 250);
@@ -91,7 +91,7 @@
     outline: none;
 }
 
-.right-content>.row>.col-4>button:hover {
+.right-content>.row>.col-4>form>button:hover {
     background-color: rgb(233, 233, 233);
     cursor: pointer;
 }
