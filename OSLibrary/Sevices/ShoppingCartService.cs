@@ -45,25 +45,24 @@ namespace OSLibrary.Sevices
         {
             ShoppingCartRepository shoppingcart = new ShoppingCartRepository();
             var myCart = shoppingcart.GetByAccount(_account);
-            var productitem = myCart.Where((x) => x.Product_ID == Product_ID);
-            if (productitem != null)
-            {
-                shoppingcart.Delete(ShoppingCartID);
-            }
-            else
-            {
-                return false;
-            }
-            //try
+            //var productitem = myCart.Where((x) => x.Product_ID == Product_ID);
+            //if (productitem != null)
             //{
             //    shoppingcart.Delete(ShoppingCartID);
-            //    return true;
             //}
-            //catch
+            //else
             //{
             //    return false;
             //}
-            return true;
+            try
+            {
+                shoppingcart.Delete(ShoppingCartID);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
