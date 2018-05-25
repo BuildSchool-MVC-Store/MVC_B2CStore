@@ -5,24 +5,8 @@
 }
 @if (ViewBag.IsAuthenticated)
 {
-    <ul class="nav justify-content-end topside">
-        <li class="nav-item">
-            <a href="#" class="nav-link">Hi,@ViewBag.Username</a>
-        </li>
-        <li class="nav-item">
-            <a href="@Url.Action("Logout","Login")" class="nav-link">LOGOUT</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-user"></i>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-shopping-basket"></i>
-            </a>
-        </li>
-    </ul>
+    <h2>Hi , @ViewBag.Username</h2>
+    <p><a href="@Url.Action("Logout","Login")" class="btn btn-danger btn-block">登出</a> </p>
 }
 else
 {

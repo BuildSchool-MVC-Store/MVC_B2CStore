@@ -33,7 +33,7 @@ namespace OSLibrary.ADO.NET.Repositories
         public Customers GetByAccount(string account)
         {
             var strSql = "SELECT * FROM Customers WHERE Account = @Account";
-            return connection.QueryFirstOrDefault<Customers>(strSql, new { Account = account });
+            return connection.QueryFirst<Customers>(strSql, new { Account = account });
             //SqlCommand command = new SqlCommand(sql, connection);
             //command.Parameters.AddWithValue("@Account", Account);
 
