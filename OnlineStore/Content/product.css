@@ -106,7 +106,7 @@
 
 .right-content .row .col-3 img {
     width:220px;
-    height:280px;
+    height:260px;
 }
 
 .right-content>.row>.col-3 {
@@ -114,5 +114,5 @@
 }
 
 .price::before {
-    content: "NT.";
+    content: "NT$ ";
 }
