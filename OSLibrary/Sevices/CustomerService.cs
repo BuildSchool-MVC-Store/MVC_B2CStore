@@ -1,4 +1,5 @@
 ﻿using OSLibrary.ADO.NET.Repositories;
+using OSLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,12 +53,13 @@ namespace OSLibrary.Sevices
             {
                 try
                 {
-                    customerRepository.Create(new Models.Customers
+                    Customers customers = new Customers()
                     {
                         Account = Account,
                         Password = Password,
-                        Email = Email
-                    });
+                        Email = Email,
+                    };
+                    customerRepository.Create(customers);
                     return true;
                 }
                 catch

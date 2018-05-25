@@ -9,7 +9,7 @@ using System.Web.Security;
 
 namespace OnlineStore.Controllers
 {
-    [RoutePrefix("login")]
+    [RoutePrefix("Login")]
     public class LoginController : Controller
     {
         public ActionResult LoginPage()
@@ -56,7 +56,6 @@ namespace OnlineStore.Controllers
             }
             return View();
         }
-        [Route("logout")]
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
@@ -64,7 +63,7 @@ namespace OnlineStore.Controllers
             cookie.Expires = DateTime.Now;
             Response.Cookies.Add(cookie);
 
-            return RedirectToAction("index");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
