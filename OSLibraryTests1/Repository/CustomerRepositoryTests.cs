@@ -34,11 +34,8 @@ namespace OSLibraryTests.ADO.NET.Repositories
             Customers customers = new Customers()
             {
                 Account = "Dann",
-                Name = "典哥",
                 Password = "123456",
                 Email = "dannwu@gmail.com",
-                Phone = "0800123789",
-                Address = "台北"
             };
             repository.Create(customers);
             var result = repository.GetByAccount("Dann");

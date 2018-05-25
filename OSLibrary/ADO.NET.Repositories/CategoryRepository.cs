@@ -15,7 +15,7 @@ namespace OSLibrary.ADO.NET.Repositories
         private SqlConnection connection = new SqlConnection(SqlConnect.str);
         public void Create(Category model)
         {
-            var sql = ("INSERT INTO Category VALUES (@CategoryName)");
+            var sql = ("INSERT INTO Category (CategoryName) VALUES (@CategoryName)");
             var exec = connection.Execute(sql);
         }
 

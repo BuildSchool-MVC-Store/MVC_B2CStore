@@ -17,16 +17,16 @@ namespace OnlineStore.Controllers
         }
         [Route("")]
         [HttpPost]
-        public ActionResult Register(string username,string password)
+        public ActionResult Register(string username,string email,string password)
         {
             CustomerService customerService = new CustomerService();
-            if(customerService.CheckAccount(username,password))
+            if(customerService.CreateAccount(username, email, password))
             {
                 return RedirectToAction("Index","Home"); 
             }
             else
             {
-                return JavaScript("alert('帳號或密碼錯誤');");
+                return JavaScript("alert('帳號已存在');");
             }
         }
     }

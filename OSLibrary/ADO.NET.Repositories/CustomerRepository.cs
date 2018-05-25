@@ -17,8 +17,8 @@ namespace OSLibrary.ADO.NET.Repositories
         private SqlConnection connection = new SqlConnection(SqlConnect.str);
         public void Create(Customers model)
         {
-            var sql = "INSERT INTO Customers VALUES (@Account, @Name, @Password, @Email, @Phone, @Address)";
-            var exec = connection.Execute(sql, model);
+            var sql = "INSERT INTO Customers (Account, Password, Email) VALUES (@Account, @Password, @Email)";
+            connection.Execute(sql, model);
         }
         public void Update(Customers model)
         {
@@ -33,7 +33,7 @@ namespace OSLibrary.ADO.NET.Repositories
         public Customers GetByAccount(string account)
         {
             var strSql = "SELECT * FROM Customers WHERE Account = @Account";
-            return connection.QueryFirst<Customers>(strSql, new { Account = account });
+            return connection.QueryFirstOrDefault<Customers>(strSql, new { Account = account });
             //SqlCommand command = new SqlCommand(sql, connection);
             //command.Parameters.AddWithValue("@Account", Account);
 

@@ -35,29 +35,6 @@ namespace OnlineStore.Controllers
         }
 
         [Route("")]
-        // GET: LoginController
-        public ActionResult Index()
-        {
-            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-
-            if (cookie == null)
-            {
-                ViewBag.IsAuthenticated = false;
-                return View();
-            }
-            var ticket = FormsAuthentication.Decrypt(cookie.Value);
-            if (ticket.UserData == "12345")
-            {
-                ViewBag.IsAuthenticated = true;
-                ViewBag.Username = "admin";
-            }
-            else
-            {
-                ViewBag.IsAuthenticated = false;
-            }
-            return View();
-        }
-        [Route("")]
         [HttpPost]
         public ActionResult Login(string username,string password)
         {
