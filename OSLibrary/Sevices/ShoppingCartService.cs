@@ -10,19 +10,19 @@ namespace OSLibrary.Sevices
 {
     public class ShoppingCartService
     {
-        public bool CreateShoppingCart(string _account, int Product_ID, int Quantity, string Size,string Color)
+        public bool CreateShoppingCart(string _account, int Product_ID, int Quantity, string Size, string Color)
         {
             StockRepository sizeQuantityRepository = new StockRepository();
             ShoppingCartRepository shoppingCart = new ShoppingCartRepository();
             ProductsRepository products = new ProductsRepository();
-            var stock = sizeQuantityRepository.GetByPK(Product_ID, Size,Color);
-            if(stock.Quantity<Quantity)
+            var stock = sizeQuantityRepository.GetByPK(Product_ID, Size, Color);
+            if (stock.Quantity < Quantity)
             {
                 return false;
             }
             var myCart = shoppingCart.GetByAccount(_account);
             var items = myCart.FirstOrDefault(x => (x.Product_ID == Product_ID) && (x.size == Size));
-            if(items != null)
+            if (items != null)
             {
                 shoppingCart.Update(items.Shopping_Cart_ID, items.Quantity + Quantity);
             }
@@ -46,7 +46,7 @@ namespace OSLibrary.Sevices
             ShoppingCartRepository shoppingcart = new ShoppingCartRepository();
             var myCart = shoppingcart.GetByAccount(_account);
             var productitem = myCart.Where((x) => x.Product_ID == Product_ID);
-            if(productitem != null)
+            if (productitem != null)
             {
                 shoppingcart.Delete(ShoppingCartID);
             }
@@ -54,6 +54,15 @@ namespace OSLibrary.Sevices
             {
                 return false;
             }
+            //try
+            //{
+            //    shoppingcart.Delete(ShoppingCartID);
+            //    return true;
+            //}
+            //catch
+            //{
+            //    return false;
+            //}
             return true;
         }
     }

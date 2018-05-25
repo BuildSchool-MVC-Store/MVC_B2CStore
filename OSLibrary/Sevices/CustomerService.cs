@@ -33,5 +33,21 @@ namespace OSLibrary.Sevices
             CustomerRepository repository = new CustomerRepository();
             return repository.GetByAccount(Account).Name;
         }
+        public bool CreateAccount(string Account,string Password)
+        {
+            CustomerRepository customerRepository = new CustomerRepository();
+            try
+            {
+                customerRepository.Create(new Models.Customers {
+                    Account = Account,
+                    Password = Password
+                });
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

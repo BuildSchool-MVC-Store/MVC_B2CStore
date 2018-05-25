@@ -20,7 +20,14 @@ namespace OnlineStore.Controllers
         public ActionResult Register(string username,string password)
         {
             CustomerService customerService = new CustomerService();
-            return View();
+            if(customerService.CheckAccount(username,password))
+            {
+                return RedirectToAction("Index","Home"); 
+            }
+            else
+            {
+                return JavaScript("alert('帳號或密碼錯誤');");
+            }
         }
     }
 }
