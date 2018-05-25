@@ -12,6 +12,10 @@ namespace OnlineStore.Controllers
     public class ShoppingCartController : Controller
     {
         [Route("")]
+        public ActionResult ShoppingCart()
+        {
+            return View();
+        }
         // GET: ShoppingCart
         public ActionResult AddtoShoppingCart(int ID,string Name ,string color,string size,int quantity)
         {

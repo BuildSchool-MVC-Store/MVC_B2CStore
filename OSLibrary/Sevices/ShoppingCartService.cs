@@ -1,5 +1,6 @@
 ﻿using OSLibrary.ADO.NET.Repositories;
 using OSLibrary.Models;
+using OSLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,23 @@ namespace OSLibrary.Sevices
 {
     public class ShoppingCartService
     {
+        public ShoppingCartDetail GetAccountCart(string Account)
+        {
+            var model = new ShoppingCartDetail();
+            ShoppingCartRepository shoppingCartRepository = new ShoppingCartRepository();
+            model.Account = Account;
+            foreach (var item in shoppingCartRepository.GetByAccount(Account))
+            {
+                model.ProductID.Add(item.Product_ID);
+                model.UnitPrice.Add(item.UnitPrice);
+                model.Quantity.Add(item.Quantity);
+                model.RowPrice.Add(item.UnitPrice * item.Quantity);
+                model.Size.Add(item.size);
+                model.ShoppingCartID.Add(item.Shopping_Cart_ID);
+            }
+            model.Total = model.RowPrice.Sum();
+            return model;
+        }
         public bool CreateShoppingCart(string _account, int Product_ID, int Quantity, string Size, string Color)
         {
             StockRepository sizeQuantityRepository = new StockRepository();
