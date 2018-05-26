@@ -48,7 +48,7 @@ namespace OnlineStore.Controllers
                 cookie.Expires = ticket.Expiration;
                 Response.Cookies.Add(cookie);
 
-                return RedirectToAction("Index","Home");
+                return Redirect(Request.UrlReferrer.ToString());
             }
             else
             {

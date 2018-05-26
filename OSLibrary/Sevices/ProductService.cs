@@ -44,7 +44,7 @@ namespace OSLibrary.Sevices
             Dictionary<string, List<string>> ColorSize = new Dictionary<string, List<string>>();
             foreach (var color in stock.Select(x => x.Color).Distinct())
             {
-                var _size = stock.Where(x => x.Color == color).Select(x => x.Size).ToList();
+                var _size = stock.Where(x => x.Color == color).Select(x => x.Size).Reverse().ToList();
                 ColorSize.Add(color, _size);
             };
             return new ProductDetail()

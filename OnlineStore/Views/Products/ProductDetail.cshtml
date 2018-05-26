@@ -28,35 +28,30 @@
                     {
                         <input name="ID" type="hidden" value="@Model.ID" />
                         <input name="Name" type="hidden" value="@Model.Name" />
+                        <input name="color" type="hidden" value="" />
+                        <input name="size" type="hidden" value="" />
                         <h4> @Model.Name</h4>
                         <p>
                             <span>@String.Format("{0:0,0}", Model.Price)</span>
                         </p>
                         <div class="input-group">
                             <div class="row">
-                                <div class="col-12 mt-1">
-                                    <h5>Color</h5>
+                                <div class="col-12 mt-2 mb-2 product_color">
+                                    <h5 class="mb-4">Color</h5>
+                                    @foreach (var item in Model.Color)
+                                    {
+                                        <a href="javascript:">@item</a>
+                                    }
                                 </div>
-                                <div class="col-5">
-                                    <select class="custom-select" name="color">
-                                        @foreach (var item in Model.Color)
-                                        {
-                                            <option>@item</option>
-                                        }
-                                    </select>
+
+                                <div class="col-12 mt-2 mb-2 product_size">
+                                    <h5 class="mb-4">Size</h5>
+                                    @foreach (var item in Model.ColorSize[Model.Color[0]])
+                                    {
+                                        <a href="javascript:">@item</a>
+                                    }
                                 </div>
-                                <div class="col-12 mt-1">
-                                    <h5>Size</h5>
-                                </div>
-                                <div class="col-5">
-                                    <select class="custom-select" name="size">
-                                        @foreach (var item in Model.Size)
-                                        {
-                                            <option value="@item">@item</option>
-                                        }
-                                    </select>
-                                </div>
-                                <div class="col-12 mt-1">
+                                <div class="col-12 mt-2 mb-2">
                                     <h5>Quantity</h5>
                                 </div>
                                 <div class="col-5">
@@ -104,3 +99,47 @@
     </div>
 </div>
 
+<script>
+    var value = @Html.Raw(Json.Encode(Model.ColorSize));
+
+    //$.each(value, function (key,val) {
+    //    console.log(key);
+    //    console.log(val);
+    //});
+
+    //for (let i in value) {
+    //    console.log(i);
+    //    for (let j of value[i]) {
+    //        console.log(j);
+    //    }
+    //}
+
+    //for (let i of value["黑"]) {
+    //    console.log(i);
+    //}
+
+    $('.product_color>a').click(function () {
+        $('.product_color>a').removeClass('choose');
+        let $color = $('input[name="color"]').val();
+        if ($color != $(this).html()) {
+            $('input[name="size"]').val("");
+            $(this).addClass('choose');
+            $('input[name="color"]').val($(this).html());
+            $('.product_size').find("a").remove();
+            let $color = $('input[name="color"]').val();
+            for (let i of value[$color.toString()]) {
+                console.log(i);
+                $('.product_size').append($('<a>').attr('href', "javascript:").html(i).click(function () {
+                    $('.product_size>a').removeClass('choose');
+                    $(this).addClass('choose');
+                    $('input[name="size"]').val($(this).html());
+                }));
+            }
+        }
+    });
+    $('.product_size>a').click(function () {
+        $('.product_size>a').removeClass('choose');
+        $(this).addClass('choose');
+        $('input[name="size"]').val($(this).html());
+    });
+</script>

@@ -36,7 +36,11 @@ namespace OnlineStore.Controllers
         public ActionResult AddtoShoppingCart(int ID,string Name ,string color,string size,int quantity)
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-
+            if(color == "" || size =="")
+            {
+                TempData["Message"] = "請選擇顏色與尺寸";
+                return Redirect(Request.UrlReferrer.ToString());
+            }
             if (cookie == null)
             {
                 TempData["Message"]= "請登入會員";
