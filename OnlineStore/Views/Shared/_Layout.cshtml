@@ -222,6 +222,14 @@
             </div>
         </div>
     </div>
+    @if (TempData["Message"] != null)
+    {
+        <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["Message"]));
+        alert(message);
+        TempData.Remove("Message");
+        </script>
+    }
 </body>
 
 </html>
