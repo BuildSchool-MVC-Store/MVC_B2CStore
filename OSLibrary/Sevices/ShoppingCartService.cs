@@ -11,30 +11,21 @@ namespace OSLibrary.Sevices
 {
     public class ShoppingCartService
     {
-        public IEnumerable<ShoppingCartDetail> GetAccountCart(string Account)
+        public ShoppingCartDetail GetAccountCart(string Account)
         {
-            var model = new List<ShoppingCartDetail>();
+            var model = new ShoppingCartDetail();
             ShoppingCartRepository shoppingCartRepository = new ShoppingCartRepository();
-            ProductsRepository productsRepository = new ProductsRepository();
-            ProductImageRepository productImageRepository = new ProductImageRepository();
-
+            model.Account = Account;
             foreach (var item in shoppingCartRepository.GetByAccount(Account))
             {
-                var cart = new ShoppingCartDetail
-                {
-                    Account = Account,
-                    Color = item.Color,
-                    ProductID = item.Product_ID,
-                    Name = productsRepository.GetByProduct_ID(item.Product_ID).Product_Name,
-                    ShoppingCartID = item.Shopping_Cart_ID,
-                    Quantity = item.Quantity,
-                    RowPrice = item.UnitPrice * item.Quantity,
-                    UnitPrice = item.UnitPrice,
-                    Size = item.size,
-                    imgurl = productImageRepository.GetByProduct_ID(item.Product_ID).FirstOrDefault(x=>x.Image_Only=="YES").Image
-                };
-                model.Add(cart);
+                model.ProductID.Add(item.Product_ID);
+                model.UnitPrice.Add(item.UnitPrice);
+                model.Quantity.Add(item.Quantity);
+                model.RowPrice.Add(item.UnitPrice * item.Quantity);
+                model.Size.Add(item.size);
+                model.ShoppingCartID.Add(item.Shopping_Cart_ID);
             }
+            model.Total = model.RowPrice.Sum();
             return model;
         }
         public bool CreateShoppingCart(string _account, int Product_ID, int Quantity, string Size, string Color)
@@ -42,7 +33,6 @@ namespace OSLibrary.Sevices
             StockRepository sizeQuantityRepository = new StockRepository();
             ShoppingCartRepository shoppingCart = new ShoppingCartRepository();
             ProductsRepository products = new ProductsRepository();
-            
             var stock = sizeQuantityRepository.GetByPK(Product_ID, Size, Color);
             if (stock.Quantity < Quantity)
             {
@@ -63,8 +53,7 @@ namespace OSLibrary.Sevices
                     size = Size,
                     UnitPrice = products.GetByProduct_ID(Product_ID).UnitPrice,
                     Quantity = (short)Quantity,
-                    Color = Color,
-                    
+                    Color = Color
                 };
                 shoppingCart.Create(model);
             }

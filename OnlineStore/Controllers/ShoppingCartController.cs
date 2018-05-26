@@ -14,23 +14,7 @@ namespace OnlineStore.Controllers
         [Route("")]
         public ActionResult ShoppingCart()
         {
-            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-            if(cookie == null)
-            {
-                TempData["Message"] = "請先登入會員";
-                return RedirectToAction("Index", "Home");
-            }
-            var ticket = FormsAuthentication.Decrypt(cookie.Value);
-            if(ticket.UserData == "12345")
-            {
-                ShoppingCartService shoppingCartService = new ShoppingCartService();
-                var shoppingcart = shoppingCartService.GetAccountCart(ticket.Name);
-                ViewBag.totalmoney = shoppingcart.Sum(x => x.RowPrice);
-
-                return View(shoppingcart);
-            }
-            TempData["Message"] = "錯誤";
-            return RedirectToAction("Index", "Home");
+            return View();
         }
         // GET: ShoppingCart
         public ActionResult AddtoShoppingCart(int ID,string Name ,string color,string size,int quantity)
