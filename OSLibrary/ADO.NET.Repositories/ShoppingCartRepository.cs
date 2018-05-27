@@ -19,22 +19,27 @@ namespace OSLibrary.ADO.NET.Repositories
         public void Create(Shopping_Cart model)
         {
             var sql = "INSERT INTO Shopping_Cart VALUES (@Account,@Product_ID,@Quantity,@UnitPrice,@Discount,@size,@color)";
-            var exec = connection.Execute(sql, model);
+            connection.Execute(sql, model);
         }
         public void Update(int Shopping_Cart_ID, int Quantity)
         {
             var sql = "UPDATE Shopping_Cart SET Quantity=@Quantity WHERE Shopping_Cart_ID = @Shopping_Cart_ID";
-            var exec = connection.Execute(sql, new { Quantity, Shopping_Cart_ID });
+            connection.Execute(sql, new { Quantity, Shopping_Cart_ID });
+        }
+        public void Update(int Shopping_Cart_ID,string Color, int Quantity)
+        {
+            var sql = "UPDATE Shopping_Cart SET Quantity=@Quantity Color=@Color WHERE Shopping_Cart_ID = @Shopping_Cart_ID";
+            connection.Execute(sql, new { Quantity, Shopping_Cart_ID , Color });
         }
         public void Delete(int Shopping_Cart_ID)
         {
             var sql = "DELETE FROM Shopping_Cart WHERE Shopping_Cart_ID = @Shopping_Cart_ID";
-            var exec = connection.Execute(sql, new { Shopping_Cart_ID });
+            connection.Execute(sql, new { Shopping_Cart_ID });
         }
         public void DeleteByAccount(string Account)
         {
             var sql = "DELETE FROM Shopping_Cart WHERE Account = @Account";
-            var exec = connection.Execute(sql, new { Account });
+           connection.Execute(sql, new { Account });
         }
         public IEnumerable<Shopping_Cart> GetByAccount(SqlConnection connection,string Account,IDbTransaction transaction)
         {

@@ -152,6 +152,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
@@ -249,6 +250,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\Products\KIDS\" />
+    <Folder Include="Views\Orders\" />
     <Folder Include="Views\Register\" />
   </ItemGroup>
   <PropertyGroup>

@@ -70,14 +70,25 @@ namespace OSLibrary.Sevices
             }
             return true;
         }
-
-        public bool DeleteProduct(string _account, int Product_ID, int ShoppingCartID)
+        public bool Delete_ProductOfCart(int ShoppingCartID)
         {
             ShoppingCartRepository shoppingcart = new ShoppingCartRepository();
-            var myCart = shoppingcart.GetByAccount(_account);
             try
             {
                 shoppingcart.Delete(ShoppingCartID);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool ChangeProductofCart(int shoppingCartID,int quantity)
+        {
+            ShoppingCartRepository shoppingCartRepository = new ShoppingCartRepository();
+            try
+            {
+                shoppingCartRepository.Update(shoppingCartID, quantity);
                 return true;
             }
             catch

@@ -181,7 +181,7 @@ footer {
 }
 
     .navbox > .col {
-        line-height: 150px;
+        line-height: 170px;
     }
 
         .navbox > .col > p {
@@ -189,8 +189,8 @@ footer {
         }
 
     .navbox .col:nth-child(2) {
-        line-height: 35px;
-        padding-top: 20px;
+        line-height: 25px;
+        padding-top: 35px;
     }
 
 .navbox_content {

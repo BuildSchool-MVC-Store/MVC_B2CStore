@@ -12,6 +12,7 @@ namespace OnlineStore.Controllers
     public class ShoppingCartController : Controller
     {
         [Route("")]
+
         public ActionResult ShoppingCart()
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
@@ -32,6 +33,7 @@ namespace OnlineStore.Controllers
             TempData["Message"] = "錯誤";
             return RedirectToAction("Index", "Home");
         }
+        [HttpPost]
         // GET: ShoppingCart
         public ActionResult AddtoShoppingCart(int ID,string Name ,string color,string size,int quantity)
         {
@@ -54,7 +56,6 @@ namespace OnlineStore.Controllers
                 if(shoppingCartService.CreateShoppingCart(account, ID, quantity, size, color))
                 {
                     TempData["Message"] = "加入" + Name + "到購物車";
-
                 }
                 else
                 {
@@ -62,6 +63,38 @@ namespace OnlineStore.Controllers
                 }
             }
             return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        [HttpPost]
+        public ActionResult DeleteShoppingCart(int shoppingCartID)
+        {
+            ShoppingCartService shoppingCartService = new ShoppingCartService();
+            if(shoppingCartService.Delete_ProductOfCart(shoppingCartID))
+            {
+                TempData["Message"] = "刪除成功";
+            }
+            else
+            {
+                TempData["Message"] = " 刪除失敗";
+            }
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        [HttpPost]
+        [Route("UpdateShoppingCart")]
+        public ActionResult UpdateShoppingCart(int shoppingCartID,int Qunatity)
+        {
+            ShoppingCartService shoppingCartService = new ShoppingCartService();
+            var message = "";
+            if (shoppingCartService.ChangeProductofCart(shoppingCartID,Qunatity))
+            {
+                message = "更換數量";
+            }
+            else
+            {
+                message = "無法更新，請聯絡客服";
+            }
+            return Json(message, JsonRequestBehavior.DenyGet);
         }
     }
 }

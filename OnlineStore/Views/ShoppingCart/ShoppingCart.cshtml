@@ -61,36 +61,45 @@
                         <span>@item.Color</span>
                     </p>
                 </div>
-                <div class="col" style="line-height: 170px">
-                    <select name="quantity">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
+                <div class="col">
+                    <select name="quantity" id="@item.ShoppingCartID">
+                        @for (int i = 1; i < 7; i++)
+                        {
+                            if (i == item.Quantity)
+                            {
+                                <option value="@i" selected>@i</option>
+                            }
+                            else
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        }
                     </select>
                 </div>
-                <div class="col" style="line-height: 170px">
+                <div class="col">
                     <p>
                         NT$
-                        <span>@item.UnitPrice</span>
+                        <span id='@(item.ShoppingCartID + "u")'>@String.Format("{0:0,0}", item.UnitPrice)</span>
                     </p>
                 </div>
-                <div class="col" style="line-height: 170px">
+                <div class="col">
                     <p>
                         NT$
-                        <span>@item.RowPrice</span>
+                        <span id='@(item.ShoppingCartID + "p")'>@String.Format("{0:0,0}", item.RowPrice)</span>
                     </p>
                 </div>
-                <div class="col" style="line-height: 170px">
-                    <a href="#">
-                        <i class="far fa-trash-alt"></i>
-                    </a>
+                <div class="col">
+                    @using (Html.BeginForm("DeleteShoppingCart", "ShoppingCart"))
+                    {
+                        <input type="hidden" name="shoppingCartID" value="@item.ShoppingCartID" />
+                        <button type="submit" style="margin:0 auto;border:0px; background-color:rgb(255, 254, 250)">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    }
                 </div>
             </div>
         }
-            
+
     </div>
     <div class="row mt-3 text-right">
         <div class="col-10">
@@ -100,16 +109,13 @@
         </div>
         <div class="col">
             <p>
-                NT$
-                <span>@ViewBag.totalmoney</span>
+                <span class="price">@String.Format("{0:0,0}", ViewBag.totalmoney)</span>
             </p>
             <p>
-                NT$
-                <span>60</span>
+                <span class="price">60</span>
             </p>
             <p>
-                NT$
-                <span>@(ViewBag.totalmoney+60) </span>
+                <span class="price">@String.Format("{0:0,0}", (ViewBag.totalmoney + 60)) </span>
             </p>
         </div>
     </div>
@@ -119,7 +125,6 @@
         </div>
         <div class="col">
             <select id="inputState">
-                <option selected>Choose...</option>
                 <option>宅配</option>
                 <option>超商取貨</option>
             </select>
@@ -129,7 +134,6 @@
         </div>
         <div class="col">
             <select id="inputState">
-                <option selected>Choose...</option>
                 <option>貨到付款</option>
                 <option>超商取貨付款</option>
             </select>
@@ -143,7 +147,35 @@
 
         </div>
         <div class="col">
-            <a href="#" class="btn">確定訂購</a>
+            <button href="#" class="btn">確定訂購</button>
         </div>
     </div>
 </div>
+
+<script>
+    $('select[name="quantity"]').change(function () {
+        let requestData = {
+            shoppingCartID: $(this).attr('id'),
+            Qunatity: $(this).val()
+        };
+        let id = $(this).attr('id')
+        $.ajax({
+            url: '/ShoppingCart/UpdateShoppingCart',
+            type: 'POST',
+            data: JSON.stringify(requestData),
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            error: function (result) {
+                alert(result);
+            },
+            success: function (result) {
+                let unitprice = $('#' + id + 'u').html();
+                let quantity = $('select[name="quantity"]').val();
+                $('#' + id + 'p').html(unitprice * quantity);
+                location.reload();
+            },
+            async: true,
+            processData: false
+        });
+    });
+</script>
