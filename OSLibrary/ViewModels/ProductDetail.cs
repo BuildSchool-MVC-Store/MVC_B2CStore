@@ -13,7 +13,6 @@ namespace OSLibrary.ViewModels
         public decimal Price { get; set; }
         public Dictionary<string, List<string>> ColorSize { get; set; }
         public List<string> Image { get; set; }
-
         public string Comments { get; set; }
         public List<string> Color { get; set; }
         public List<string> Size { get; set; }

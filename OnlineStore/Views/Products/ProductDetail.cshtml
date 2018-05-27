@@ -101,23 +101,6 @@
 
 <script>
     var value = @Html.Raw(Json.Encode(Model.ColorSize));
-
-    //$.each(value, function (key,val) {
-    //    console.log(key);
-    //    console.log(val);
-    //});
-
-    //for (let i in value) {
-    //    console.log(i);
-    //    for (let j of value[i]) {
-    //        console.log(j);
-    //    }
-    //}
-
-    //for (let i of value["黑"]) {
-    //    console.log(i);
-    //}
-
     $('.product_color>a').click(function () {
         $('.product_color>a').removeClass('choose');
         let $color = $('input[name="color"]').val();

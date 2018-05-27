@@ -1,5 +1,6 @@
 ﻿using OSLibrary.ADO.NET.Repositories;
 using OSLibrary.Models;
+using OSLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,7 +17,6 @@ namespace OSLibrary.Sevices
         {
             return new OrdersRepository().GetByAccount(Account);
         }
-
         public string CreateOrder(string Account, string Pay, string Transport, decimal TranMoney)
         {
             ShoppingCartRepository cart_R = new ShoppingCartRepository();
@@ -91,6 +91,25 @@ namespace OSLibrary.Sevices
                 transaction.Rollback();
                 return ex.Message;
             }
+        }
+        public OrderAndDetail GetNewOrders(string Account)
+        {
+            OrdersRepository ordersRepository = new OrdersRepository();
+            Order_DetailsRepository order_DetailsRepository = new Order_DetailsRepository();
+            ProductsRepository productsRepository = new ProductsRepository();
+            var order = ordersRepository.GetLatestByAccount(Account);
+            var result = new OrderAndDetail
+            {
+                Account = order.Account,
+                OrderID = order.Order_ID,
+                Order_Check = order.Order_Check,
+                Order_Date = order.Order_Date,
+                Pay = order.Pay,
+                Transport = order.Transport,
+                TotalMoney = (decimal)order.Total+(decimal)order.TranMoney
+            };
+            result.product = ordersRepository.GetAccountNewOrder(Account).ToList();
+            return result;
         }
     }
 }

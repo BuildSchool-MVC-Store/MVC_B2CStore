@@ -42,9 +42,13 @@ namespace OSLibrary.ADO.NET.Repositories
         }
         public IEnumerable<Products> GetByProduct_Types_Name(string CategoryName)
         {
-
             var sql = "SELECT * FROM Products WHERE CategoryName = @CategoryName";
             return connection.Query<Products>(sql);
+        }
+        public string GetByProduct_Name(int Product_ID)
+        {
+            var sql = "SELECT * FROM Products WHERE Product_ID = @Product_ID";
+            return connection.QueryFirstOrDefault<Products>(sql).Product_Name;
         }
     }
 }

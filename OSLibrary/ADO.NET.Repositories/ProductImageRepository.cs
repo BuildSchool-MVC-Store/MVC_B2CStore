@@ -23,19 +23,16 @@ namespace OSLibrary.ADO.NET.Repositories
             var sql = "INSERT INTO Product_Image VALUES (@Product_ID, @Picture, @Product_Image_Only)";
             var exec = connection.Execute(sql, model);
         }
-
         public void Update(Product_Image model)
         {
             var sql = "UPDATE Product_Image SET Product_ID = @Product_ID, Picture = @Picture, Product_Image_Only = @Product_Image_Only WHERE Product_Image_ID = @Product_Image_ID";
             var exec = connection.Execute(sql, model);
         }
-
         public void Delete(int Product_Image_ID)
         {
             var sql = "DELETE FROM Product_Image WHERE Product_Image_ID = @Product_Image_ID";
             var exec = connection.Execute(sql, new { Product_Image_ID });
         }
-
         public IEnumerable<Product_Image> GetByProduct_ID(int Product_ID)
         {
             var sql = "SELECT * FROM Product_Image WHERE Product_ID = @Product_ID";

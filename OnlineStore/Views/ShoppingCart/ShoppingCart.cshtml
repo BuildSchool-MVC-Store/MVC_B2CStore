@@ -124,7 +124,7 @@
             <p>運送方式 / Shipping</p>
         </div>
         <div class="col">
-            <select id="inputState">
+            <select id="transport">
                 <option>宅配</option>
                 <option>超商取貨</option>
             </select>
@@ -133,9 +133,10 @@
             <p>付款方式 / Payment</p>
         </div>
         <div class="col">
-            <select id="inputState">
+            <select id="pay">
                 <option>貨到付款</option>
-                <option>超商取貨付款</option>
+                <option>信用卡</option>
+                <option>超商取貨</option>
             </select>
         </div>
     </div>
@@ -147,7 +148,12 @@
 
         </div>
         <div class="col">
-            <button href="#" class="btn">確定訂購</button>
+            @using (Html.BeginForm("CreateOrder", "Orders"))
+            {
+                <input type="hidden" name="Pay" value="宅配" />
+                <input type="hidden" name="Transport" value="超商取貨" />
+                <button type="submit" class="btn">確定訂購</button>
+            }
         </div>
     </div>
 </div>
@@ -177,5 +183,11 @@
             async: true,
             processData: false
         });
+    });
+    $('#pay').change(function () {
+        $('input[name="Pay"]').val($(this).val());
+    });
+    $('#transport').change(function () {
+        $('input[name="Transport"]').val($(this).val());
     });
 </script>

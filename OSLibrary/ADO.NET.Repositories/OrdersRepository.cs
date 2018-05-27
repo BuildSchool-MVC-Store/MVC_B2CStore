@@ -9,13 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using OSLibrary.Models;
 using System.Configuration;
+using OSLibrary.ViewModels;
 
 namespace OSLibrary.ADO.NET.Repositories
 {
     public class OrdersRepository : IRepository<Orders>
     {
         private string strConnection = "Server=140.126.146.49,7988;Database=2018Build;User Id=Build;Password=123456789;";
-        public void Create(SqlConnection connection , Orders model , IDbTransaction transaction)
+        public void Create(SqlConnection connection, Orders model, IDbTransaction transaction)
         {
             var sql = "INSERT INTO Orders (Order_Date, Account, Pay, Transport, Order_Check, Total, TranMoney) VALUES (@Order_Date, @Account, @Pay, @Transport, @Order_Check, @Total, @TranMoney)";
             connection.Execute(sql, model, transaction);
@@ -36,7 +37,6 @@ namespace OSLibrary.ADO.NET.Repositories
                 var exec = connection.Execute(sql, new { Order_ID });
             }
         }
-
         public Orders GetByOrder_ID(int Order_ID)
         {
             using (SqlConnection connection = new SqlConnection(strConnection))
@@ -54,7 +54,6 @@ namespace OSLibrary.ADO.NET.Repositories
                 var sql = "SELECT * FROM Orders";
                 return connection.Query<Orders>(sql);
             }
-
         }
         public IEnumerable<Orders> GetByOrder_Date(DateTime from, DateTime to)
         {
@@ -72,21 +71,34 @@ namespace OSLibrary.ADO.NET.Repositories
                 return connection.Query<Orders>(sql, new { Account });
             }
         }
-        public Orders GetLatestByAccount(SqlConnection connection,string Account,IDbTransaction transaction)
+        public Orders GetLatestByAccount(SqlConnection connection, string Account, IDbTransaction transaction)
         {
             string sql = "SELECT TOP 1 * FROM Orders WHERE Account = @Account ORDER BY Order_Date DESC";
-            return connection.QueryFirstOrDefault<Orders>(sql, new { Account },transaction);
+            return connection.QueryFirstOrDefault<Orders>(sql, new { Account }, transaction);
         }
-        public Orders GetLatestByAccount(SqlConnection connection, string Account)
+        public Orders GetLatestByAccount(string Account)
         {
-            string sql = "SELECT TOP 1 * FROM Orders WHERE Account = @Account ORDER BY Order_Date DESC";
-            return connection.QueryFirstOrDefault<Orders>(sql, new { Account });
+            using (SqlConnection connection = new SqlConnection(strConnection))
+            {
+                string sql = "SELECT TOP 1 * FROM Orders WHERE Account = @Account ORDER BY Order_Date DESC";
+                return connection.QueryFirstOrDefault<Orders>(sql, new { Account });
+            }
         }
-
         public void Update(int order_ID, decimal totalmoney, SqlConnection connection, SqlTransaction transaction)
         {
             var sql = "UPDATE Orders SET Total = @Total WHERE Order_ID = @Order_ID";
-            connection.Execute(sql, new { Total = totalmoney , order_ID }, transaction);
+            connection.Execute(sql, new { Total = totalmoney, order_ID }, transaction);
+        }
+        public IEnumerable<Detail> GetAccountNewOrder(string Account)
+        {
+            using (SqlConnection connection = new SqlConnection(strConnection))
+            {
+                var sql = "SELECT p.Product_ID , p.Product_Name ,od.size,od.Color, od.Quantity ,p.UnitPrice  FROM Order_Details as od" +
+                      "INNER JOIN Products as p on od.Product_ID = p.Product_ID" +
+                      "WHERE Order_ID = (SELECT TOP 1 Order_ID FROM Orders" +
+                      "WHERE Account = @Account order by Order_Date DESC)";
+                return connection.Query<Detail>(sql, new { Account });
+            }
         }
     }
 }
