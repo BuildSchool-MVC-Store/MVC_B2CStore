@@ -228,6 +228,7 @@
     <Content Include="Views\Products\ProductDetail.cshtml" />
     <Content Include="Views\Login\LoginPage.cshtml" />
     <Content Include="Views\ShoppingCart\ShoppingCart.cshtml" />
+    <Content Include="Views\Orders\CompleteOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OSLibrary\OSLibrary.csproj">
@@ -250,7 +251,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\Products\KIDS\" />
-    <Folder Include="Views\Orders\" />
     <Folder Include="Views\Register\" />
   </ItemGroup>
   <PropertyGroup>

@@ -87,7 +87,6 @@ namespace OSLibrary.Sevices
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                //出现异常，事务Rollback
                 transaction.Rollback();
                 return ex.Message;
             }

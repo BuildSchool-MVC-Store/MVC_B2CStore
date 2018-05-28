@@ -93,10 +93,7 @@ namespace OSLibrary.ADO.NET.Repositories
         {
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                var sql = "SELECT p.Product_ID , p.Product_Name ,od.size,od.Color, od.Quantity ,p.UnitPrice  FROM Order_Details as od" +
-                      "INNER JOIN Products as p on od.Product_ID = p.Product_ID" +
-                      "WHERE Order_ID = (SELECT TOP 1 Order_ID FROM Orders" +
-                      "WHERE Account = @Account order by Order_Date DESC)";
+                var sql = "SELECT p.Product_ID , p.Product_Name ,od.size,od.Color, od.Quantity ,p.UnitPrice,od.Price FROM Order_Details as od INNER JOIN Products as p on od.Product_ID = p.Product_ID WHERE Order_ID = (SELECT TOP 1 Order_ID FROM Orders WHERE Account = @Account order by Order_Date DESC) ";
                 return connection.Query<Detail>(sql, new { Account });
             }
         }

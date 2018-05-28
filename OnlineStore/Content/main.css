@@ -208,6 +208,16 @@ footer {
     padding-top:10px;
     max-width:70%;
 }
+.ordernav {
+    text-align: center;
+    border-bottom: 1px solid #DEE2E6;
+}
+
+.ordernav_content {
+    text-align: center;
+    border-bottom: 1px solid #DEE2E6;
+    line-height: 60px;
+}
 
 /*orderdetail.css --- shoppingcart.css*/
 
@@ -266,7 +276,46 @@ label {
     right: -22px;
     content: '';
 }
+.step3 {
+    color: #697259;
+    background-color: #d6d6d6;
+    width: 250px;
+    height: 45px;
+    margin-top: 20px;
+    padding: 10px 10px;
+    font-size: 17px;
+    position: relative;
+    align-items: baseline;
+    text-align: center;
+    line-height: 25px;
+    float: right;
+}
 
+.step4 {
+    color: #ffffff;
+    width: 250px;
+    height: 45px;
+    margin-top: 20px;
+    padding: 10px 10px;
+    font-size: 17px;
+    position: relative;
+    align-items: baseline;
+    background-color: #697259;
+    text-align: center;
+    line-height: 25px;
+}
+
+.step3:before {
+    width: 0;
+    height: 0;
+    border-top: 22px solid transparent;
+    border-left: 22px solid #d6d6d6;
+    border-bottom: 22px solid transparent;
+    position: absolute;
+    top: 0;
+    right: -22px;
+    content: '';
+}
 .col > a > i {
     color: #697259;
 }
