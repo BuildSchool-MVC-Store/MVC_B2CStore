@@ -90,7 +90,7 @@
                     @using (Html.BeginForm("DeleteShoppingCart", "ShoppingCart"))
                     {
                         <input type="hidden" name="shoppingCartID" value="@item.ShoppingCartID" />
-                        <button type="submit" style="margin:0 auto;border:0px; background-color:rgb(255, 254, 250)">
+                        <button type="submit" style="margin:0 auto;border:0px; background-color:rgb(255, 254, 250);cursor:pointer;">
                             <i class="far fa-trash-alt"></i>
                         </button>
                     }
