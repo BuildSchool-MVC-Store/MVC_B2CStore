@@ -88,5 +88,14 @@ namespace OSLibrary.ADO.NET.Repositories
             var sql = "UPDATE Orders SET Total = @Total WHERE Order_ID = @Order_ID";
             connection.Execute(sql, new { Total = totalmoney , order_ID }, transaction);
         }
+
+        public Orders GetOrderTotal(string Account)
+        {
+            using (SqlConnection connection = new SqlConnection(strConnection))
+            {
+                var sql = "SELECT o.Order_ID, o.Order_Date, SUM(od.Price * od.Quantity) + o.TranMoney AS Total, o.Transport FROM Orders o INNER JOIN Order_Details od ON o.Order_ID = od.Order_ID WHERE Account = @Account GROUP BY o.Order_ID, o.Order_Date, o.TranMoney, o.Transport";
+                return connection.QueryFirstOrDefault<Orders>(sql, new { Account });
+            }
+        }
     }
 }

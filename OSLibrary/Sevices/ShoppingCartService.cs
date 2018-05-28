@@ -15,7 +15,6 @@ namespace OSLibrary.Sevices
         {
             var model = new ShoppingCartDetail();
             ShoppingCartRepository shoppingCartRepository = new ShoppingCartRepository();
-            model.Account = Account;
             foreach (var item in shoppingCartRepository.GetByAccount(Account))
             {
                 model.ProductID.Add(item.Product_ID);

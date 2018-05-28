@@ -113,5 +113,12 @@ namespace OSLibraryTests.ADO.NET.Repositories
 
             Assert.IsTrue(ans.Order_ID == 29);
         }
+        [TestMethod]
+        public void OrdersRepositoryTests_GetOrderTotal()
+        {
+            OrdersRepository repository = new OrdersRepository();
+            var result = repository.GetOrderTotal("Osborn");
+            Assert.IsTrue(result.Order_ID == 71);
+        }
     }
 }
