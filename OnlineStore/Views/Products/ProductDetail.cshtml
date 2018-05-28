@@ -31,27 +31,27 @@
                         <input name="color" type="hidden" value="" />
                         <input name="size" type="hidden" value="" />
                         <h4> @Model.Name</h4>
-                        <p>
+                        <p class="price">
                             <span>@String.Format("{0:0,0}", Model.Price)</span>
                         </p>
                         <div class="input-group">
                             <div class="row">
-                                <div class="col-12 mt-2 mb-2 product_color">
-                                    <h5 class="mb-4">Color</h5>
+                                <div class="col-12 mt-2 mb-3 product_color">
+                                    <h5 class="mb-3">Color</h5>
                                     @foreach (var item in Model.Color)
                                     {
                                         <a href="javascript:">@item</a>
                                     }
                                 </div>
 
-                                <div class="col-12 mt-2 mb-2 product_size">
-                                    <h5 class="mb-4">Size</h5>
+                                <div class="col-12 mt-2 mb-3 product_size">
+                                    <h5 class="mb-3">Size</h5>
                                     @foreach (var item in Model.ColorSize[Model.Color[0]])
                                     {
                                         <a href="javascript:">@item</a>
                                     }
                                 </div>
-                                <div class="col-12 mt-2 mb-2">
+                                <div class="col-12 mt-2">
                                     <h5>Quantity</h5>
                                 </div>
                                 <div class="col-5">
@@ -64,7 +64,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <button class="btn mt-3" type="submit">Add to Cart</button>
+                            <button class="btn mt-4" type="submit">Add to Cart</button>
                         </div>
 
                     }

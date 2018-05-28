@@ -79,9 +79,6 @@
     font-size: 40px;
 }
 
-.right-content > .row > .col-4 > form > p::before {
-    content: "NT.$ ";
-}
 .choose {
     background-color: #697259 !important;
     color: rgb(255, 254, 250) !important;
