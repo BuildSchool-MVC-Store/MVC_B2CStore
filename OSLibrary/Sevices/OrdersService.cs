@@ -96,7 +96,6 @@ namespace OSLibrary.Sevices
         {
             OrdersRepository ordersRepository = new OrdersRepository();
             Order_DetailsRepository order_DetailsRepository = new Order_DetailsRepository();
-            ProductsRepository productsRepository = new ProductsRepository();
             var order = ordersRepository.GetLatestByAccount(Account);
             var result = new OrderAndDetail
             {
