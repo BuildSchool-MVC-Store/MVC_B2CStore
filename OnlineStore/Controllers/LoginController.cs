@@ -14,24 +14,18 @@ namespace OnlineStore.Controllers
     {
         public ActionResult LoginPage()
         {
-            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-
-            if (cookie == null)
-            {
-                ViewBag.IsAuthenticated = false;
-                return View();
-            }
-            var ticket = FormsAuthentication.Decrypt(cookie.Value);
-            if (ticket.UserData == "12345")
+            var result = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
+            if (result.checkUser)
             {
                 ViewBag.IsAuthenticated = true;
-                ViewBag.Username = ticket.Name;
+                ViewBag.Username = result.Username;
+                return PartialView();
             }
             else
             {
                 ViewBag.IsAuthenticated = false;
+                return View();
             }
-            return PartialView();
         }
 
         [Route("")]
@@ -43,7 +37,6 @@ namespace OnlineStore.Controllers
             {
                 FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,username, DateTime.Now, DateTime.Now.AddMinutes(30), false,"12345");
                 var ticketData = FormsAuthentication.Encrypt(ticket);
-                //生COOKIE
                 var cookie = new HttpCookie(FormsAuthentication.FormsCookieName,ticketData);
                 cookie.Expires = ticket.Expiration;
                 Response.Cookies.Add(cookie);
@@ -52,7 +45,7 @@ namespace OnlineStore.Controllers
             }
             else
             {
-                ModelState.AddModelError("LoginModel", "使用者名稱密碼不正確");
+                TempData["Message"] = "帳號或密碼不正確";
             }
             return Redirect(Request.UrlReferrer.ToString());
         }

@@ -15,18 +15,14 @@ namespace OnlineStore.Controllers
             var result = new CookieModel();
             if (cookie == null)
             {
-                result.check = false;
+                result.checkCookie = false;
                 return result;
             }
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
             if (ticket.UserData == "12345")
             {
-                result.IsAuthenticated = true;
+                result.checkUser = true;
                 result.Username = ticket.Name;
-            }
-            else
-            {
-                result.IsAuthenticated = false;
             }
             return result;
         }

@@ -7,8 +7,14 @@ namespace OnlineStore.Models
 {
     public class CookieModel
     {
-        public bool check { get; set; }
-        public bool IsAuthenticated { get; set; }
+        public CookieModel ()
+        {
+            checkCookie = true;
+            checkUser = false;
+            Username = "";
+        }
+        public bool checkCookie { get; set; }
+        public bool checkUser { get; set; }
         public string Username { get; set; }
     }
 }

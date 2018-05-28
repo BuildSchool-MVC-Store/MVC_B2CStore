@@ -34,7 +34,7 @@ namespace OSLibrary.Sevices
                 orders_R.Create(connection, new Orders
                 {
                     Account = Account,
-                    Order_Check = "NEW",
+                    Order_Check = "訂單成立",
                     Order_Date = now_time,
                     Pay = Pay,
                     TranMoney = TranMoney,

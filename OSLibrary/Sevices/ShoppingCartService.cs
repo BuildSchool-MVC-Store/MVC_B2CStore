@@ -99,7 +99,6 @@ namespace OSLibrary.Sevices
         public bool DeleteProduct(string _account, int Product_ID, int ShoppingCartID)
         {
             ShoppingCartRepository shoppingcart = new ShoppingCartRepository();
-            var myCart = shoppingcart.GetByAccount(_account);
             try
             {
                 shoppingcart.Delete(ShoppingCartID);

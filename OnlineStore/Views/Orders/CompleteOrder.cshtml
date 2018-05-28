@@ -39,7 +39,7 @@
             <p>@Model.OrderID </p>
         </div>
         <div class="col">
-            <p>orderdate</p>
+            <p>@Model.Order_Date.ToShortDateString()</p>
         </div>
         <div class="col">
             <p>
@@ -104,7 +104,7 @@
     </div>
     <div class="row mt-5 mb-5">
         <div class="col text-center">
-            <a href="#" class="btn">首頁</a>
+            <a href="/Home" class="btn">首頁</a>
         </div>
     </div>
 </div>
