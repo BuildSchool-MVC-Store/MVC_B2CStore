@@ -93,7 +93,7 @@ namespace OSLibrary.ADO.NET.Repositories
         {
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
-                var sql = "SELECT o.Order_ID, o.Order_Date, SUM(od.Price * od.Quantity) + o.TranMoney AS Total, o.Transport FROM Orders o INNER JOIN Order_Details od ON o.Order_ID = od.Order_ID WHERE Account = @Account GROUP BY o.Order_ID, o.Order_Date, o.TranMoney, o.Transport";
+                var sql = "SELECT o.Order_ID, o.Order_Date, SUM(od.Price * od.Quantity) + o.TranMoney AS Total, o.Transport, o.TranMoney FROM Orders o INNER JOIN Order_Details od ON o.Order_ID = od.Order_ID WHERE Account = @Account GROUP BY o.Order_ID, o.Order_Date, o.TranMoney, o.Transport";
                 return connection.QueryFirstOrDefault<Orders>(sql, new { Account });
             }
         }

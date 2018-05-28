@@ -118,7 +118,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
         {
             OrdersRepository repository = new OrdersRepository();
             var result = repository.GetOrderTotal("Osborn");
-            Assert.IsTrue(result.Order_ID == 71);
+            Assert.IsTrue(result.Total == 160);
         }
     }
 }
