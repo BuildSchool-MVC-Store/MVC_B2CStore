@@ -1,4 +1,5 @@
 ﻿using OSLibrary.ADO.NET.Repositories;
+using OSLibrary.Containers;
 using OSLibrary.Models;
 using OSLibrary.ViewModels;
 using System;
@@ -72,10 +73,9 @@ namespace OSLibrary.Sevices
         }
         public bool Delete_ProductOfCart(int ShoppingCartID)
         {
-            ShoppingCartRepository shoppingcart = new ShoppingCartRepository();
             try
             {
-                shoppingcart.Delete(ShoppingCartID);
+                RepositoryContainer.GetInstance<ShoppingCartRepository>().Delete(ShoppingCartID);
                 return true;
             }
             catch
@@ -89,19 +89,6 @@ namespace OSLibrary.Sevices
             try
             {
                 shoppingCartRepository.Update(shoppingCartID, quantity);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-        public bool DeleteProduct(string _account, int Product_ID, int ShoppingCartID)
-        {
-            ShoppingCartRepository shoppingcart = new ShoppingCartRepository();
-            try
-            {
-                shoppingcart.Delete(ShoppingCartID);
                 return true;
             }
             catch

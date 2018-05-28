@@ -1,4 +1,5 @@
 ﻿using OSLibrary.ADO.NET.Repositories;
+using OSLibrary.Containers;
 using OSLibrary.Models;
 using OSLibrary.ViewModels;
 using System;
@@ -19,11 +20,11 @@ namespace OSLibrary.Sevices
         }
         public string CreateOrder(string Account, string Pay, string Transport, decimal TranMoney)
         {
-            ShoppingCartRepository cart_R = new ShoppingCartRepository();
-            OrdersRepository orders_R = new OrdersRepository();
-            Order_DetailsRepository order_Details_R = new Order_DetailsRepository();
-            StockRepository stock_R = new StockRepository();
-            ProductsRepository products_R = new ProductsRepository();
+            var cart_R = RepositoryContainer.GetInstance<ShoppingCartRepository>();
+            var orders_R = new OrdersRepository();
+            var order_Details_R = new Order_DetailsRepository();
+            var stock_R = new StockRepository();
+            var products_R = new ProductsRepository();
 
             var now_time = DateTime.Now;
             SqlConnection connection = new SqlConnection(SqlConnect.str);
