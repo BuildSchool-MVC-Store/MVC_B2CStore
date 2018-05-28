@@ -17,6 +17,10 @@ body {
     text-align: center;
 }
 
+button:hover {
+    cursor:pointer;
+}
+
 .content {
     width: 50%;
     padding: 0;

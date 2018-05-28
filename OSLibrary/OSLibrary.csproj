@@ -64,6 +64,8 @@
     <Compile Include="ADO.NET.Repositories\StockRepository.cs" />
     <Compile Include="ADO.NET.Repositories\ProductsRepository.cs" />
     <Compile Include="ADO.NET.Repositories\ShoppingCartRepository.cs" />
+    <Compile Include="Containers\RContainer.cs" />
+    <Compile Include="Containers\RepositoryContainer.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Customers.cs" />
     <Compile Include="Models\Employees.cs" />
