@@ -24,7 +24,7 @@ namespace OSLibrary.Containers
 
         public static T GetInstance<T>()
         {
-            return _container.GetInstance<T>(); 
+            return Container.GetInstance<T>(); 
         }
 
         private static void CreateContainer()

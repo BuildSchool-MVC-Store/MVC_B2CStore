@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
           crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Jaldi' rel='stylesheet'>
-
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/bundles/jquery")
 </head>
@@ -63,6 +65,7 @@
             </div>
         </div>
     </div>
+
     @RenderBody()
 
     <footer class="container-fluid">
@@ -128,8 +131,7 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
+    
     <script>
         $.extend($.easing, {
             easeOutExpo: function (x, t, b, c, d) {

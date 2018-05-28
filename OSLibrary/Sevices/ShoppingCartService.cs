@@ -73,9 +73,10 @@ namespace OSLibrary.Sevices
         }
         public bool Delete_ProductOfCart(int ShoppingCartID)
         {
+            var cart = RepositoryContainer.Container.GetInstance<ShoppingCartRepository>();
             try
             {
-                RepositoryContainer.GetInstance<ShoppingCartRepository>().Delete(ShoppingCartID);
+                cart.Delete(ShoppingCartID);
                 return true;
             }
             catch
