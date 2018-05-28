@@ -22,6 +22,11 @@ namespace OSLibrary.Containers
             }
         }
 
+        public static T GetInstance<T>()
+        {
+            return _container.GetInstance<T>(); 
+        }
+
         private static void CreateContainer()
         {
             _container = new RContainer();
