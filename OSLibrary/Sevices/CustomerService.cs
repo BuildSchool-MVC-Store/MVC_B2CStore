@@ -1,4 +1,5 @@
 ﻿using OSLibrary.ADO.NET.Repositories;
+using OSLibrary.Containers;
 using OSLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,7 @@ namespace OSLibrary.Sevices
     {
         public bool SearchAccount(string account)
         {
-            CustomerRepository customerRepository = new CustomerRepository();
-            if(customerRepository.GetByAccount(account) == null)
+            if (RepositoryContainer.GetInstance<CustomerRepository>().GetByAccount(account) == null)
             {
                 return true;
             }
