@@ -20,10 +20,11 @@ namespace OSLibrary.ViewModels
     public class Detail
     {
         public int Product_ID { get; set; }
-        public string ProductName { get; set; }
-        public int Qunatity { get; set; }
+        public string Product_Name { get; set; }
+        public int Quantity { get; set; }
         public string Color { get; set; }
         public string Size { get; set; }
+        public decimal UnitPrice { get; set; }
         public decimal Price { get; set; }
     }
 }

@@ -137,5 +137,5 @@
 }
 
 .price::before {
-    content: "NT$ ";
+    content: "NT$.";
 }
