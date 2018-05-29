@@ -26,16 +26,16 @@
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <div class="row">
                         <div class="col-6">
-                            <p>Name *</p>
+                            <p>Name</p>
                             <input type="text" class="form-control" name="" id="" value="@Model.CustomerName" aria-describedby="helpId" placeholder="">
                         </div>
                         <div class="col-6">
-                            <p>Phone *</p>
+                            <p>Phone</p>
                             <input type="tel" class="form-control" name="" id="" value="@Model.Phone" aria-describedby="helpId" placeholder="">
                         </div>
                         <div class="col-6">
-                            <p>Email *</p>
-                            <input type="email" class="form-control" name="" id=""value="@Model.Email"  aria-describedby="helpId" placeholder="">
+                            <p>Email</p>
+                            <input type="email" class="form-control" name="" id="" value="@Model.Email" aria-describedby="helpId" placeholder="">
                         </div>
                         <div class="col-6">
                             <p>Address</p>
@@ -45,17 +45,21 @@
                             <p>Password</p>
                             <input type="password" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
                         </div>
+                        <div class="col-6">
+                            <p>Confirm Password</p>
+                            <input type="password" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                        </div>
                     </div>
-                    <div class="row text-center">
+                    <div class="row text-right">
                         <div class="col">
-                            <button type="button" class="btn">儲存</button>
                             <button type="button" class="btn">取消</button>
+                            <button type="button" class="btn">儲存</button>
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="order" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="tab-pane fade text-center" id="order" role="tabpanel" aria-labelledby="profile-tab">
                     <div class="row" style="border-bottom: 1px solid #DEE2E6">
-                        <div class="col">
+                        <div class="col-2">
                             <p>No.</p>
                         </div>
                         <div class="col">
@@ -71,7 +75,7 @@
                     @foreach (var item in Model.Order)
                     {
                         <div class="row">
-                            <div class="col">
+                            <div class="col-2">
                                 <p>@item.Order_ID</p>
                             </div>
                             <div class="col">
