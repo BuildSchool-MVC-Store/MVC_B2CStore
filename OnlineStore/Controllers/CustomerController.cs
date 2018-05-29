@@ -13,7 +13,6 @@ namespace OnlineStore.Controllers
     {
         [Route("")]
         // GET: Customer
-        
         public ActionResult Index()
         {
             var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
@@ -42,7 +41,7 @@ namespace OnlineStore.Controllers
         [HttpPost]
         public ActionResult UpdateCustomer()
         {
-
+            return View();
         }
     }
 }
