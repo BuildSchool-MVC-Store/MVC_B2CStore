@@ -39,7 +39,7 @@ namespace OSLibrary.Sevices
                     Order_Date = now_time,
                     Pay = Pay,
                     TranMoney = TranMoney,
-                    Transport = Transport
+                    Transport = Transport,
                 }, transaction);
 
                 string errorMessage = "";
@@ -76,7 +76,7 @@ namespace OSLibrary.Sevices
                 if (errorMessage.Length <= 1)
                 {
                     cart_R.DeleteByAccount(Account);
-                    orders_R.Update(order.Order_ID, totalmoney,connection,transaction);
+                    orders_R.Update(order.Order_ID, totalmoney+TranMoney,connection,transaction);
                     transaction.Commit();
                     return "完成訂單";
                 }
