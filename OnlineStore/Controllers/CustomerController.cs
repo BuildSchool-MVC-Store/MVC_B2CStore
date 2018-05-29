@@ -42,7 +42,7 @@ namespace OnlineStore.Controllers
         [HttpPost]
         public ActionResult UpdateCustomer()
         {
-
+            return View();
         }
     }
 }
