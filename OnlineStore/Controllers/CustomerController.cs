@@ -13,6 +13,7 @@ namespace OnlineStore.Controllers
     {
         [Route("")]
         // GET: Customer
+        
         public ActionResult Index()
         {
             var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
@@ -37,6 +38,11 @@ namespace OnlineStore.Controllers
                 TempData["Message"] = "請先登入會員";
                 return RedirectToAction("Index", "Home");
             }
+        }
+        [HttpPost]
+        public ActionResult UpdateCustomer()
+        {
+
         }
     }
 }
