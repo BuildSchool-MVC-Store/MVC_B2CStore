@@ -83,6 +83,7 @@
     <Compile Include="Sevices\ProductService.cs" />
     <Compile Include="Sevices\ShoppingCartService.cs" />
     <Compile Include="Utils\DbReaderModelBinder.cs" />
+    <Compile Include="ViewModels\CustomerDetail.cs" />
     <Compile Include="ViewModels\OrderAndDetail.cs" />
     <Compile Include="ViewModels\ProductDetail.cs" />
     <Compile Include="ViewModels\ProductModel.cs" />

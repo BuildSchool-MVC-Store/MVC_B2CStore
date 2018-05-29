@@ -1,0 +1,103 @@
+﻿@model OSLibrary.ViewModels.CustomerDetail
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    p{
+        padding:0;
+        margin:0;
+    }
+</style>
+<div class="container customer" style="margin-top: 160px;margin-bottom:150px; width:600px">
+    <!--內容-->
+    <div class="row">
+        <div class="col">
+            <h5>
+                Hi,
+                <span>Account</span>
+            </h5>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">個人資訊</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#order" role="tab" aria-controls="profile" aria-selected="false">訂單</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row">
+                        <div class="col-6">
+                            <p>Name *</p>
+                            <input type="text" class="form-control" name="" id="" value="@Model.CustomerName" aria-describedby="helpId" placeholder="">
+                        </div>
+                        <div class="col-6">
+                            <p>Phone *</p>
+                            <input type="tel" class="form-control" name="" id="" value="@Model.Phone" aria-describedby="helpId" placeholder="">
+                        </div>
+                        <div class="col-6">
+                            <p>Email *</p>
+                            <input type="email" class="form-control" name="" id=""value="@Model.Email"  aria-describedby="helpId" placeholder="">
+                        </div>
+                        <div class="col-6">
+                            <p>Address</p>
+                            <input type="text" class="form-control" name="" id="" value="@Model.Address" aria-describedby="helpId" placeholder="">
+                        </div>
+                        <div class="col-6">
+                            <p>Password</p>
+                            <input type="password" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col">
+                            <button type="button" class="btn">儲存</button>
+                            <button type="button" class="btn">取消</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="order" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="row" style="border-bottom: 1px solid #DEE2E6">
+                        <div class="col">
+                            <p>No.</p>
+                        </div>
+                        <div class="col">
+                            <p>OrderDate</p>
+                        </div>
+                        <div class="col">
+                            <p>Total</p>
+                        </div>
+                        <div class="col">
+                            <p>State</p>
+                        </div>
+                    </div>
+                    @foreach (var item in Model.Order)
+                    {
+                        <div class="row">
+                            <div class="col">
+                                <p>@item.Order_ID</p>
+                            </div>
+                            <div class="col">
+                                <p>@item.Order_Date.ToShortDateString()</p>
+                            </div>
+                            <div class="col">
+                                <p class="price">@String.Format("{0:0,0}",item.Total)</p>
+                            </div>
+                            <div class="col">
+                                <p>@item.Order_Check</p>
+                            </div>
+                        </div>
+                    }
+                    <div class="row text-center">
+                        <div class="col">
+                            <button type="button" class="btn">
+                                <a href="#">首頁</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

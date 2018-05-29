@@ -1,6 +1,7 @@
 ﻿using OSLibrary.ADO.NET.Repositories;
 using OSLibrary.Containers;
 using OSLibrary.Models;
+using OSLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,6 +69,20 @@ namespace OSLibrary.Sevices
                 }
             }
             return false;
+        }
+        public CustomerDetail GetCustomerDetail(string Account)
+        {
+            var C_repository = RepositoryContainer.GetInstance<CustomerRepository>();
+            var O_repostiory = RepositoryContainer.GetInstance<OrdersRepository>();
+            var result = C_repository.GetByAccount(Account);
+            var customer = new CustomerDetail {
+                CustomerName = result.Name,
+                Address = result.Address,
+                Phone = result.Phone,
+                Email = result.Email,
+            };
+            customer.Order =O_repostiory.GetByAccountOfPresonOrder(Account).ToList();
+            return customer;
         }
     }
 }
