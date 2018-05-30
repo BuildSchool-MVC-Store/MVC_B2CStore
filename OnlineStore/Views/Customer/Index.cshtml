@@ -89,7 +89,48 @@
                                 <p>@item.Order_Check</p>
                             </div>
                             <div class="col">
-                                <i class="fas fa-search"></i>
+                                <a href="javascript:display('#order_@item.Order_ID')" id="test">
+                                    <i class="fas fa-search"></i>
+                                </a>
+                            </div>
+                            <div class="col-12" id="order_@item.Order_ID" style="display:none ;border: 1px solid gray">
+                                <div class="row ordernav">
+                                    <div class="col">
+                                        <p>商品編號</p>
+                                    </div>
+                                    <div class="col">
+                                        <p>商品名稱</p>
+                                    </div>
+                                    <div class="col">
+                                        <p>尺寸</p>
+                                    </div>
+                                    <div class="col">
+                                        <p>訂購數量</p>
+                                    </div>
+                                    <div class="col">
+                                        <p>小計</p>
+                                    </div>
+                                </div>
+                                @foreach (var detail in Model.Order)
+                                {
+                                    <div class="row ordernav_content">
+                                        <div class="col">
+                                            <p></p>
+                                        </div>
+                                        <div class="col">
+                                            <p>ProductName</p>
+                                        </div>
+                                        <div class="col">
+                                            <p>Size</p>
+                                        </div>
+                                        <div class="col">
+                                            <p>Quantity</p>
+                                        </div>
+                                        <div class="col">
+                                            <p>150</p>
+                                        </div>
+                                    </div>
+                                }
                             </div>
                         </div>
                     }
@@ -105,3 +146,13 @@
         </div>
     </div>
 </div>
+<script>
+    function display(id) {
+        console.log("?");
+        if ($(id).css('display') == 'none') {
+            $(id).css('display', 'block');
+        } else {
+            $(id).css('display', 'none');
+        }
+    };
+</script>
