@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OSLibrary.Models;
 using System.Configuration;
+using OSLibrary.ViewModels;
 
 namespace OSLibrary.ADO.NET.Repositories
 {
@@ -68,6 +69,14 @@ namespace OSLibrary.ADO.NET.Repositories
             {
                 var sql = "SELECT * FROM Order_Details WHERE Order_ID = @OrderID";
                 return connection.Query<Order_Details>(sql, new { OrderID });
+            }
+        }
+        public IEnumerable<Person_OrderDetail> GetByOrder_IDOfView(int Order_ID)
+        {
+            using (SqlConnection connection = new SqlConnection(SqlConnect.str))
+            {
+                var sql = "SELECT od.Product_ID, p.Product_Name Quantity,size,Color,Price FROM Order_Details as od INNER JOIN Products as p on p.Product_ID = od.Product_ID WHERE Order_ID = @Order_ID";
+                return connection.Query<Person_OrderDetail>(sql, new { Order_ID });
             }
         }
     }

@@ -74,6 +74,7 @@ namespace OSLibrary.Sevices
         {
             var C_repository = RepositoryContainer.GetInstance<CustomerRepository>();
             var O_repostiory = RepositoryContainer.GetInstance<OrdersRepository>();
+            var OD_repostiory = RepositoryContainer.GetInstance<Order_DetailsRepository>();
             var result = C_repository.GetByAccount(Account);
             var customer = new CustomerDetail {
                 CustomerName = result.Name,
@@ -81,7 +82,11 @@ namespace OSLibrary.Sevices
                 Phone = result.Phone,
                 Email = result.Email,
             };
-            customer.Order =O_repostiory.GetByAccountOfPresonOrder(Account).ToList();
+            customer.Order = O_repostiory.GetByAccountOfPresonOrder(Account).ToList();
+            foreach (var item in customer.Order)
+            {
+                item.details = OD_repostiory.GetByOrder_IDOfView(item.Order_ID).ToList();
+            }
             return customer;
         }
         public bool UpdateCustomerDetail(string Account,string Name,string Email, string Phone, string Address)
