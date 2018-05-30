@@ -10,7 +10,7 @@
         margin: 0;
     }
 </style>
-<div class="container customer" style="margin-top: 160px;margin-bottom:150px;width: 600px">
+<div class="container customer" style="margin-top: 160px;margin-bottom:150px;width: 1000px">
     <!--內容-->
     <div class="row">
         <div class="col">
@@ -71,7 +71,9 @@
                         <div class="col">
                             <p>Status</p>
                         </div>
-                        <div class="col"></div>
+                        <div class="col">
+                            <p>Search</p>
+                        </div>
                     </div>
                     @foreach (var item in Model.Order)
                     {
@@ -93,7 +95,7 @@
                                     <i class="fas fa-search"></i>
                                 </a>
                             </div>
-                            <div class="col-12" id="order_@item.Order_ID" style="display:none ;border: 1px solid gray">
+                            <div class="col-12" id="order_@item.Order_ID" style="display:none ;border: 1px solid #DEE2E6">
                                 <div class="row ordernav">
                                     <div class="col">
                                         <p>商品編號</p>
