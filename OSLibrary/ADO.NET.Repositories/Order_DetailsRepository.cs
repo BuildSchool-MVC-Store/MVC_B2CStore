@@ -36,7 +36,6 @@ namespace OSLibrary.ADO.NET.Repositories
                 connection.Execute(sql, model);
             }
         }
-
         public void Delete(int Order_Details_ID)
         {
             using (SqlConnection connection = new SqlConnection(SqlConnect.str))
@@ -54,7 +53,6 @@ namespace OSLibrary.ADO.NET.Repositories
                 return connection.QueryFirstOrDefault<Order_Details>(sql, new { Order_Details_ID = Order_Details_ID });
             }
         }
-
         public IEnumerable<Order_Details> GetAll()
         {
             using (SqlConnection connection = new SqlConnection(SqlConnect.str))
