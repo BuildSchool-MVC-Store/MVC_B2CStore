@@ -105,29 +105,35 @@
                                         <p>尺寸</p>
                                     </div>
                                     <div class="col">
+                                        <p>顏色</p>
+                                    </div>
+                                    <div class="col">
                                         <p>訂購數量</p>
                                     </div>
                                     <div class="col">
                                         <p>小計</p>
                                     </div>
                                 </div>
-                                @foreach (var detail in Model.Order)
+                                @foreach (var detail in item.details)
                                 {
                                     <div class="row ordernav_content">
                                         <div class="col">
-                                            <p></p>
+                                            <p>@detail.Product_ID </p>
                                         </div>
                                         <div class="col">
-                                            <p>ProductName</p>
+                                            <p>@detail.Product_Name</p>
                                         </div>
                                         <div class="col">
-                                            <p>Size</p>
+                                            <p>@detail.size</p>
                                         </div>
                                         <div class="col">
-                                            <p>Quantity</p>
+                                            <p>@detail.Color</p>
                                         </div>
                                         <div class="col">
-                                            <p>150</p>
+                                            <p>@detail.Quantity</p>
+                                        </div>
+                                        <div class="col">
+                                            <p>@detail.Price</p>
                                         </div>
                                     </div>
                                 }

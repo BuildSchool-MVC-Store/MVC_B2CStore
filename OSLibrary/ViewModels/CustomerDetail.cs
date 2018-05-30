@@ -26,8 +26,9 @@ namespace OSLibrary.ViewModels
     public class Person_OrderDetail
     {
         public int Product_ID { get; set; }
-        public string ProductName { get; set; }
+        public string Product_Name { get; set; }
         public string size { get; set; }
+        public string Color { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
     }
