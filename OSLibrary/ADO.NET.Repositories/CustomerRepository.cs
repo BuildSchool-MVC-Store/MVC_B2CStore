@@ -22,13 +22,18 @@ namespace OSLibrary.ADO.NET.Repositories
         }
         public void Update(Customers model)
         {
-            var sql = "UPDATE Customers SET Account = @Account, Name = @Name ,Password =  @Password,Email = @Email,Phone = @Phone,Address = @Address WHERE Account = @Account";
-            var exect = connection.Execute(sql, model);
+            var sql = "UPDATE Customers SET Name = @Name ,Email = @Email,Phone = @Phone,Address = @Address WHERE Account = @Account";
+            connection.Execute(sql, model);
+        }
+        public void UpdatePassword(string Account,string Password)
+        {
+            var sql = "UPDATE Customers SET Password = @Password WHERE Account = @Account";
+            connection.Execute(sql, new { Account,Password});
         }
         public void Delete(string Account)
         {
             var sql = "DELETE FROM Customers WHERE Account = @Account";
-            var exec = connection.Execute(sql, new { Account });
+            connection.Execute(sql, new { Account });
         }
         public Customers GetByAccount(string account)
         {

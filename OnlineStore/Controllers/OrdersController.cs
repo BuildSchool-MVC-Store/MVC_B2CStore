@@ -16,48 +16,29 @@ namespace OnlineStore.Controllers
         public ActionResult CreateOrder(string Pay , string Transport)
         {
             var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
-            if (cookie.checkUser)
+            switch (cookie.Status)
             {
-                OrdersService ordersService = new OrdersService();
-                try
-                {
-                    ordersService.CreateOrder(cookie.Username, Pay, Transport, 60);
+                case cookieStatus.Match:
+                    OrdersService ordersService = new OrdersService();
                     return RedirectToAction("completeOrder");
-                }
-                catch
-                {
-                    TempData["Message"] = "錯誤，稍後重試";
+                default:
+                    TempData["Message"] = "請先登入會員";
                     return RedirectToAction("Index", "Home");
-                }
-            }
-            else
-            {
-                TempData["Message"] = "請先登入會員";
-                return RedirectToAction("Index", "Home");
             }
         }
         [Route("completeOrder")]
         public ActionResult CompleteOrder()
         {
             var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
-            if (cookie.checkUser)
+            switch (cookie.Status)
             {
-                OrdersService ordersService = new OrdersService();
-                try
-                {
+                case cookieStatus.Match:
+                    OrdersService ordersService = new OrdersService();
                     var result = ordersService.GetNewOrders(cookie.Username);
                     return View(result);
-                }
-                catch
-                {
-                    TempData["Message"] = "錯誤，稍後重試";
+                default:
+                    TempData["Message"] = "請先登入會員";
                     return RedirectToAction("Index", "Home");
-                }
-            }
-            else
-            {
-                TempData["Message"] = "請先登入會員";
-                return RedirectToAction("Index", "Home");
             }
         }
     }

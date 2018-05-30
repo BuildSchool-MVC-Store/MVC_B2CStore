@@ -84,5 +84,37 @@ namespace OSLibrary.Sevices
             customer.Order =O_repostiory.GetByAccountOfPresonOrder(Account).ToList();
             return customer;
         }
+        public bool UpdateCustomerDetail(string Account,string Name,string Email, string Phone, string Address)
+        {
+            try
+            {
+                var C_repository = RepositoryContainer.GetInstance<CustomerRepository>();
+                C_repository.Update(new Customers {
+                    Account = Account,
+                    Address = Address,
+                    Email = Email,
+                    Name = Name,
+                    Phone = Phone
+                });
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool UpdateCustomerDetail(string Account,string Password, string Name, string Email, string Phone, string Address)
+        {
+            try
+            {
+                var C_repository = RepositoryContainer.GetInstance<CustomerRepository>();
+                C_repository.UpdatePassword(Account,Password);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

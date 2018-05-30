@@ -14,17 +14,16 @@ namespace OnlineStore.Controllers
     {
         public ActionResult LoginPage()
         {
-            var result = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
-            if (result.checkUser)
+            var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
+            switch (cookie.Status)
             {
-                ViewBag.IsAuthenticated = true;
-                ViewBag.Username = result.Username;
-                return PartialView();
-            }
-            else
-            {
-                ViewBag.IsAuthenticated = false;
-                return View();
+                case cookieStatus.Match:
+                    ViewBag.IsAuthenticated = true;
+                    ViewBag.Username = cookie.Username;
+                    return PartialView();
+                default:
+                    ViewBag.IsAuthenticated = false;
+                    return View();
             }
         }
 

@@ -16,31 +16,33 @@ namespace OnlineStore.Controllers
         public ActionResult ShoppingCart()
         {
             var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
-            if (cookie.checkUser)
+            switch (cookie.Status)
             {
-                OrdersService ordersService = new OrdersService();
-                try
-                {
-                    ShoppingCartService shoppingCartService = new ShoppingCartService();
-                    var shoppingcart = shoppingCartService.GetAccountCart(cookie.Username);
-                    if(shoppingcart.Count() == 0 )
+                case cookieStatus.noCookie:
+                    TempData["Message"] = "請先登入會員";
+                    return RedirectToAction("Index", "Home");
+                case cookieStatus.Match:
+                    try
                     {
-                        TempData["Message"] = "購物車是空的，返回上一頁";
+                        OrdersService ordersService = new OrdersService();
+                        ShoppingCartService shoppingCartService = new ShoppingCartService();
+                        var shoppingcart = shoppingCartService.GetAccountCart(cookie.Username);
+                        if (shoppingcart.Count() == 0)
+                        {
+                            TempData["Message"] = "購物車是空的，返回上一頁";
+                            return RedirectToAction("Index", "Home");
+                        }
+                        ViewBag.totalmoney = shoppingcart.Sum(x => x.RowPrice);
+                        return View(shoppingcart);
+                    }
+                    catch
+                    {
+                        TempData["Message"] = "錯誤，稍後重試";
                         return RedirectToAction("Index", "Home");
                     }
-                    ViewBag.totalmoney = shoppingcart.Sum(x => x.RowPrice);
-                    return View(shoppingcart);
-                }
-                catch
-                {
+                default:
                     TempData["Message"] = "錯誤，稍後重試";
                     return RedirectToAction("Index", "Home");
-                }
-            }
-            else
-            {
-                TempData["Message"] = "請先登入會員";
-                return RedirectToAction("Index", "Home");
             }
         }
         [HttpPost]
