@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
-    p{
-        padding:0;
-        margin:0;
+    p {
+        padding: 0;
+        margin: 0;
     }
 </style>
 <div class="container customer" style="margin-top: 160px;margin-bottom:150px;width: 600px">
@@ -24,41 +24,6 @@
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-<<<<<<< HEAD
-                    @using (Html.BeginForm("UpdateCustomer", "Customer"))
-                    {
-                        <div class="row">
-                            <div class="col-6">
-                                <p>Name</p>
-                                <input type="text" class="form-control" name="CustomerName" id="" value="@Model.CustomerName" aria-describedby="helpId" placeholder="">
-                            </div>
-                            <div class="col-6">
-                                <p>Phone</p>
-                                <input type="tel" class="form-control" name="Phone" id="" value="@Model.Phone" aria-describedby="helpId" placeholder="">
-                            </div>
-                            <div class="col-6">
-                                <p>Email</p>
-                                <input type="email" class="form-control" name="Email" id="" value="@Model.Email" aria-describedby="helpId" placeholder="">
-                            </div>
-                            <div class="col-6">
-                                <p>Address</p>
-                                <input type="text" class="form-control" name="Address" id="" value="@Model.Address" aria-describedby="helpId" placeholder="">
-                            </div>
-                            <div class="col-6">
-                                <p>New Password</p>
-                                <input type="password" class="form-control" name="NewPassword" id="" aria-describedby="helpId" placeholder="不輸入即為舊密碼">
-                            </div>
-                            <div class="col-6">
-                                <p>Confirm New Password</p>
-                                <input type="password" class="form-control" name="ConfirmNewPassword" id="" aria-describedby="helpId" placeholder="">
-                            </div>
-                        </div>
-                        <div class="row text-right">
-                            <div class="col">
-                                <button id="reload" class="btn">取消</button>
-                                <button type="submit" class="btn">儲存</button>
-                            </div>
-=======
                     <div class="row">
                         <div class="col-6">
                             <p>Name</p>
@@ -89,13 +54,12 @@
                         <div class="col">
                             <button type="button" class="btn">Save</button>
                             <button type="button" class="btn">Cancel</button>
->>>>>>> 98f557e3c3889166f0f81dbe6046570bed37804f
                         </div>
-                    }
                     </div>
-                <div class="tab-pane fade text-center" id="order" role="tabpanel" aria-labelledby="profile-tab">
+                </div>
+                <div class="tab-pane fade" id="order" role="tabpanel" aria-labelledby="profile-tab">
                     <div class="row" style="border-bottom: 1px solid #DEE2E6">
-                        <div class="col-2">
+                        <div class="col">
                             <p>No.</p>
                         </div>
                         <div class="col">
@@ -110,20 +74,15 @@
                     </div>
                     @foreach (var item in Model.Order)
                     {
-<<<<<<< HEAD
-                        <div class="row">
-                            <div class="col-2">
-=======
                         <div class="row" style="border-bottom: 1px solid #DEE2E6;line-height:40px;">
                             <div class="col">
->>>>>>> 98f557e3c3889166f0f81dbe6046570bed37804f
                                 <p>@item.Order_ID</p>
                             </div>
                             <div class="col">
                                 <p>@item.Order_Date.ToShortDateString()</p>
                             </div>
                             <div class="col">
-                                <p class="price">@String.Format("{0:0,0}",item.Total)</p>
+                                <p class="price">@String.Format("{0:0,0}", item.Total)</p>
                             </div>
                             <div class="col">
                                 <p>@item.Order_Check</p>
@@ -142,8 +101,3 @@
         </div>
     </div>
 </div>
-<script>
-    $('#reload').click(function () {
-        location.reload();
-    });
-</script>
