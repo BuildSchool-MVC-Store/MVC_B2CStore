@@ -20,6 +20,7 @@ namespace OnlineStore.Controllers
             {
                 case cookieStatus.Match:
                     OrdersService ordersService = new OrdersService();
+                    TempData["Message"] = ordersService.CreateOrder(cookie.Username, Pay, Transport, 60);
                     return RedirectToAction("completeOrder");
                 default:
                     TempData["Message"] = "請先登入會員";
