@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<OSLibrary.ViewModels.EmployeeModel>
 @{
     ViewBag.Title = "SelectEmployee";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -42,57 +42,27 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                    <tr>
-                        <td>A 員工</td>
-                        <td>A 員工 帳號</td>
-                        <td>A 員工 電話</td>
-                        <td>2011/04/25</td>
-                        <td class="text-center">
-                            <a href="@Url.Action("UpdateEmployee","BackStageEmployee")">
-                                <i class="fas fa-pencil-alt" style=" color:#000"></i>
-                            </a>
-                        </td>
-                        <td class="text-center">
-                            <a href="#">
-                                <i class="fas fa-trash-alt" style=" color:#000"></i>
-                            </a>
-                        </td>
 
-                    </tr>
-                    <tr>
-                        <td>B 員工</td>
-                        <td>B 員工 帳號</td>
-                        <td>B 員工 電話</td>
-                        <td>2011/07/25</td>
-                        <td class="text-center">
-                            <a href="@Url.Action("UpdateEmployee","BackStageEmployee")">
-                                <i class="fas fa-pencil-alt" style=" color:#000"></i>
-                            </a>
-                        </td>
-                        <td class="text-center">
-                            <a href="#">
-                                <i class="fas fa-trash-alt" style=" color:#000"></i>
-                            </a>
-                        </td>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Account</td>
+                            <td>@item.Phone</td>
+                            <td>@item.Birthday.ToShortDateString().ToString()</td>
+                            <td class="text-center">
+                                <a href="@Url.Action("UpdateEmployee","BackStageEmployee")">
+                                    <i class="fas fa-pencil-alt" style=" color:#000"></i>
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <a href="#">
+                                    <i class="fas fa-trash-alt" style=" color:#000"></i>
+                                </a>
+                            </td>
 
-                    </tr>
-                    <tr>
-                        <td>C 員工</td>
-                        <td>C 員工 帳號</td>
-                        <td>C 員工 電話</td>
-                        <td>2011/07/25</td>
-                        <td class="text-center">
-                            <a href="@Url.Action("UpdateEmployee","BackStageEmployee")">
-                                <i class="fas fa-pencil-alt" style=" color:#000"></i>
-                            </a>
-                        </td>
-                        <td class="text-center">
-                            <a href="#">
-                                <i class="fas fa-trash-alt" style=" color:#000"></i>
-                            </a>
-                        </td>
-
-                    </tr>
+                        </tr>
+                    }
 
                 </tbody>
 
