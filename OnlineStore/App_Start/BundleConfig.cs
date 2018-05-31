@@ -28,6 +28,9 @@ namespace OnlineStore
                       "~/Content/main.css",
                       "~/Content/product.css"
                       ));
+            bundles.Add(new StyleBundle("~/BackStage/css").Include(
+                "~/Content/sb-main.css"
+                ));
         }
     }
 }

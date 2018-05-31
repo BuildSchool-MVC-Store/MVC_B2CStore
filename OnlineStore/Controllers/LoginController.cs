@@ -35,11 +35,7 @@ namespace OnlineStore.Controllers
             if (customerService.CheckAccount(username,password))
             {
                 FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,username, DateTime.Now, DateTime.Now.AddMinutes(30), false,"12345");
-                var ticketData = FormsAuthentication.Encrypt(ticket);
-                var cookie = new HttpCookie(FormsAuthentication.FormsCookieName,ticketData);
-                cookie.Expires = ticket.Expiration;
-                Response.Cookies.Add(cookie);
-
+                SetTicket(ticket);
                 return Redirect(Request.UrlReferrer.ToString());
             }
             else
@@ -56,6 +52,35 @@ namespace OnlineStore.Controllers
             Response.Cookies.Add(cookie);
 
             return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        [Route("admin")]
+        public ActionResult AdminLoginPage()
+        {
+            return View();
+        }    
+        [HttpPost]
+        public ActionResult AdminLogin(string account , string password)
+        {
+            EmployeeService employeeService = new EmployeeService();
+            if (employeeService.GetEmployee(account, password))
+            {
+                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, account, DateTime.Now, DateTime.Now.AddMinutes(30), false, "員工");
+                SetTicket(ticket);
+                return RedirectToAction("AdminLoginPage");
+            }
+            else
+            {
+                TempData["Message"] = "帳號或密碼不正確";
+                return Redirect(Request.UrlReferrer.ToString());
+            }
+        }
+        private void SetTicket(FormsAuthenticationTicket ticket)
+        {
+            var ticketData = FormsAuthentication.Encrypt(ticket);
+            var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, ticketData);
+            cookie.Expires = ticket.Expiration;
+            Response.Cookies.Add(cookie);
         }
     }
 }
