@@ -1,0 +1,51 @@
+﻿@model IEnumerable<OSLibrary.Models.Employees>
+
+@{
+    ViewBag.Title = "GetEmployees";
+    Layout = "~/Views/Shared/_LayoutBackStagePage.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="Backstage.html">主頁</a>
+    </li>
+    <li class="breadcrumb-item active">員工</li>
+</ol>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> 員工資料
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>帳號</th>
+                        <th>電話</th>
+                        <th>生日</th>
+                        <th>修改</th>
+                        <th>刪除</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Account</td>
+                            <td>@item.Name</td>
+                            <td>@item.Phone</td>
+                            <td>@item.Birthday</td>
+                            <td><a href="Backstage_Employee_Update.html"><i class="fas fa-pencil-alt" style="color:#000"></i></a></td>
+                            <td><a href="#"><i class="fas fa-trash-alt" style=" color:#000"></i></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-2 ml-3">
+            <a href="Backstage_Employee_Create.html"><i class="fas fa-user-plus" style="font-size:1.5em; color:darkseagreen"></i></a>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>

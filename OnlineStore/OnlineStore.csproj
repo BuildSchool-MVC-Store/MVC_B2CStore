@@ -150,6 +150,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BackStageController.cs" />
     <Compile Include="Controllers\CookieCheck.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -172,10 +173,9 @@
     <Content Include="App_Data\BizDb_log.ldf">
       <DependentUpon>BizDb.mdf</DependentUpon>
     </Content>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\main.css" />
     <Content Include="Content\product.css" />
+    <Content Include="Content\sb-main.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -234,6 +234,14 @@
     <Content Include="Views\ShoppingCart\ShoppingCart.cshtml" />
     <Content Include="Views\Orders\CompleteOrder.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Login\AdminLoginPage.cshtml" />
+    <Content Include="Views\Shared\_LayoutBackStagePage.cshtml" />
+    <Content Include="Views\BackStage\Index.cshtml" />
+    <Content Include="Views\BackStage\GetProducts.cshtml" />
+    <Content Include="Views\BackStage\GetOrders.cshtml" />
+    <Content Include="Views\BackStage\GetEmployees.cshtml" />
+    <Content Include="Views\BackStage\GetCustomers.cshtml" />
+    <Content Include="Views\BackStage\GetStocks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OSLibrary\OSLibrary.csproj">

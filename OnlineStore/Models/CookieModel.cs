@@ -15,5 +15,6 @@ namespace OnlineStore.Models
         }
         public string Username { get; set; }
         public cookieStatus Status { get; set; }
+        public Character Authority { get; set; }
     }
 }

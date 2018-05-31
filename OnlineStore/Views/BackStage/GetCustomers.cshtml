@@ -1,0 +1,51 @@
+﻿@model IEnumerable<OSLibrary.Models.Customers>
+
+@{
+    ViewBag.Title = "GetCustomers";
+    Layout = "~/Views/Shared/_LayoutBackStagePage.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="#">主頁</a>
+    </li>
+    <li class="breadcrumb-item active">客戶</li>
+</ol>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> 客戶資料
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>帳號</th>
+                        <th>姓名</th>
+                        <th>電話</th>
+                        <th>信箱</th>
+                        <th>地址</th>
+                        <th>所有訂單</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Account</td>
+                            <td>@item.Name</td>
+                            <td>@item.Phone</td>
+                            <td>@item.Email</td>
+                            <td>@item.Address</td>
+                            <td>
+                                <a href="#" style="color:black"><i class="fas fa-search"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+
