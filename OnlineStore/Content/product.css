@@ -88,7 +88,7 @@
     color: rgb(255, 254, 250) !important;
 }
 .product_size > a {
-    border: 1px solid black;
+    border: 1px solid #bebebe;
     background-color: rgb(255, 254, 250);
     margin: 0 10px 30px 0;
     outline: none;
