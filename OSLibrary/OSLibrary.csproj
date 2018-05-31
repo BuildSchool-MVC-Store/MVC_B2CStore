@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper, Version=1.50.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dapper.1.50.4\lib\net451\Dapper.dll</HintPath>
+    <Reference Include="Dapper, Version=1.50.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.5\lib\net451\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -78,11 +78,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sevices\CustomerService.cs" />
     <Compile Include="Sevices\OrdersService.cs" />
+    <Compile Include="Sevices\Order_DetailsService.cs" />
     <Compile Include="Sevices\ProductService.cs" />
     <Compile Include="Sevices\ShoppingCartService.cs" />
     <Compile Include="Utils\DbReaderModelBinder.cs" />
     <Compile Include="ViewModels\BackStageProductModel.cs" />
     <Compile Include="ViewModels\CustomerModel.cs" />
+    <Compile Include="ViewModels\Order_Details.cs" />
     <Compile Include="ViewModels\ProductDetail.cs" />
     <Compile Include="ViewModels\ProductModel.cs" />
     <Compile Include="ViewModels\ShoppingCartDetail.cs" />
