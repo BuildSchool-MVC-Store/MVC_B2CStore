@@ -1,5 +1,6 @@
 ﻿using OSLibrary.ADO.NET.Repositories;
 using OSLibrary.Models;
+using OSLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,6 +69,25 @@ namespace OSLibrary.Sevices
                 }
             }
             return false;
+        }
+        public IEnumerable<CustomerModel> BackStageGetAllCustomers()
+        {
+            CustomerRepository customerRepository = new CustomerRepository();
+            var customers = new List<CustomerModel>();
+            foreach (var item in customerRepository.GetAll())
+            {
+                var customer = new CustomerModel
+                {
+                    Name = item.Name,
+                    Account = item.Account,
+                    Phone = item.Phone,
+                    Email = item.Email,
+                    Address = item.Address
+                    //total(從orders去取sum)
+                };
+                customers.Add(customer);
+            }
+            return customers;
         }
     }
 }

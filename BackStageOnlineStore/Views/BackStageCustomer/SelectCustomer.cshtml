@@ -1,0 +1,66 @@
+﻿@model IEnumerable<OSLibrary.ViewModels.CustomerModel>
+@{
+    ViewBag.Title = "SelectCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("Index","Home")">主頁</a>
+    </li>
+    <li class="breadcrumb-item active">客戶</li>
+</ol>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> 客戶資料
+
+    </div>
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>帳號</th>
+                        <th>電話</th>
+                        <th>信箱</th>
+                        <th>地址</th>
+                        <th style="width:20px">總計</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>姓名</th>
+                        <th>帳號</th>
+                        <th>電話</th>
+                        <th>生日</th>
+                        <th>地址</th>
+                        <th>總計</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Account</td>
+                            <td>@item.Phone</td>
+                            <td>@item.Email</td>
+                            <td>@item.Address</td>
+                            <td>A 客戶 總計</td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+
+</div>
+
