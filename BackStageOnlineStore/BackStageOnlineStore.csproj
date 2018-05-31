@@ -163,6 +163,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BackStageCustomerController.cs" />
     <Compile Include="Controllers\BackStageEmployeeController.cs" />
+    <Compile Include="Controllers\BackStageOrderController.cs" />
     <Compile Include="Controllers\BackStageProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -323,6 +324,11 @@
     <Content Include="Views\BackStageProduct\SelectProduct.cshtml" />
     <Content Include="Views\BackStageProduct\CreateProduct.cshtml" />
     <Content Include="Views\BackStageProduct\UpdateProduct.cshtml" />
+    <Content Include="Views\BackStageOrder\SelectOrder.cshtml" />
+    <Content Include="Views\BackStageOrder\CreateOrder.cshtml" />
+    <Content Include="Views\BackStageOrder\SelectOrderDetails.cshtml" />
+    <Content Include="Views\BackStageOrder\CreateOrderDetails.cshtml" />
+    <Content Include="Views\BackStageOrder\UpdateOrderDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,185 @@
+﻿
+@{
+    ViewBag.Title = "CreateOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item ">
+        <a href="@Url.Action("SelectOrder","BackStageOrder")">查詢訂單</a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("CreateOrder","BackStageOrder")">新增訂單</a>
+    </li>
+</ol>
+<!-- Example DataTables Card-->
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> 新增訂單
+    </div>
+    <div class="row mt-2">
+        <div class="col">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="">會員帳號</span>
+                </div>
+                <input type="text" class="form-control">
+                <button type="button" class="btn btn-secondary">新增商品</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+
+                <thead>
+                    <tr>
+                        <th>商品編號</th>
+                        <th>圖片</th>
+                        <th>商品名稱</th>
+                        <th>尺寸</th>
+                        <th>數量</th>
+                        <th>顏色</th>
+                        <th>價格</th>
+                        <th>刪除</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>XXXXXXXX</td>
+                        <td>
+                            <img src="http://fakeimg.pl/50x50?font=bebas" alt="">
+                        </td>
+                        <td>短褲</td>
+                        <td>
+                            <div class="col">
+                                <select>
+                                    <option value="">-</option>
+                                    <option value="">S</option>
+                                    <option value="">M</option>
+                                    <option value="">L</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col">
+                                <select>
+                                    <option value="">-</option>
+                                    <option value="">黑</option>
+                                    <option value="">白</option>
+                                    <option value="">藍</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col">
+                                <select>
+                                    <option value="">-</option>
+                                    <option value="">1</option>
+                                    <option value="">2</option>
+                                    <option value="">3</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>$500</td>
+
+                        <td class="text-center">
+                            <i class="fas fa-trash-alt"></i>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>XXXXXXXX</td>
+                        <td>
+                            <img src="http://fakeimg.pl/50x50?font=bebas" alt="">
+                        </td>
+                        <td>上衣</td>
+                        <td>
+                            <div class="col">
+                                <select>
+                                    <option value="">-</option>
+                                    <option value="">S</option>
+                                    <option value="">M</option>
+                                    <option value="">L</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col">
+                                <select>
+                                    <option value="">-</option>
+                                    <option value="">黑</option>
+                                    <option value="">白</option>
+                                    <option value="">藍</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col">
+                                <select>
+                                    <option value="">-</option>
+                                    <option value="">1</option>
+                                    <option value="">2</option>
+                                    <option value="">3</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>$800</td>
+
+                        <td class="text-center">
+                            <i class="fas fa-trash-alt"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-1"></div>
+        <div class="col mt-2">
+            <b>商品總價:</b>
+            <b>1300</b>
+        </div>
+        <div class="col mt-2">
+            <b>付款方式:</b>
+            <select>
+                <option value="">-</option>
+                <option value="">貨到付款</option>
+                <option value="">超商取貨付款</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-1"></div>
+        <div class="col mt-2">
+            <b>物流費:</b>
+            <b>60</b>
+        </div>
+        <div class="col mt-2">
+            <b>運送方式:</b>
+            <select>
+                <option value="">-</option>
+                <option value="">宅配</option>
+                <option value="">超商取貨</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-1"></div>
+        <div class="col  mt-2">
+            <b>總價:</b>
+            <b>1360</b>
+        </div>
+        <div class="col mt-2 text-right">
+            <button type="button" class="btn btn-secondary">新增訂單</button>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+
