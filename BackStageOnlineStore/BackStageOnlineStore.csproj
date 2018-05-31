@@ -163,6 +163,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BackStageCustomerController.cs" />
     <Compile Include="Controllers\BackStageEmployeeController.cs" />
+    <Compile Include="Controllers\BackStageProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -317,6 +318,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\BackStageCustomer\SelectCustomer.cshtml" />
     <Content Include="Views\BackStageEmployee\SelectEmployee.cshtml" />
+    <Content Include="Views\BackStageEmployee\CreateEmployee.cshtml" />
+    <Content Include="Views\BackStageEmployee\UpdateEmployee.cshtml" />
+    <Content Include="Views\BackStageProduct\SelectProduct.cshtml" />
+    <Content Include="Views\BackStageProduct\CreateProduct.cshtml" />
+    <Content Include="Views\BackStageProduct\UpdateProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

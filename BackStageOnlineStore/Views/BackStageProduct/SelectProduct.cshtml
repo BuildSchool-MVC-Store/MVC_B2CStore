@@ -1,0 +1,83 @@
+﻿@model IEnumerable<OSLibrary.ViewModels.BackStageProductModel>
+@{
+    ViewBag.Title = "SelectProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("Index","Home")">主頁</a>
+    </li>
+    <li class="breadcrumb-item active">商品</li>
+</ol>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> 商品資料
+
+    </div>
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                <thead>
+                    <tr>
+                        <th>編號</th>
+                        <th>名稱</th>
+                        <th>價格</th>
+                        <th>性別</th>
+                        <th>顯示</th>
+                        <th style=" width:35px">進貨</th>
+                        <th style=" width:35px">修改</th>
+                        <th style=" width:35px">刪除</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>編號</th>
+                        <th>名稱</th>
+                        <th>價格</th>
+                        <th>性別</th>
+                        <th>顯示</th>
+                        <th style=" width:35px">進貨</th>
+                        <th style=" width:35px">修改</th>
+                        <th style=" width:35px">刪除</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.ProductID</td>
+                            <td>@item.Name</td>
+                            <td>@String.Format("{0:0,0}", item.Price)</td>
+                            <td>@item.Gender</td>
+                            <td>@item.Online</td>
+                            <td class="text-center">
+                                <a href="#"><i class="fas fa-clipboard-check" style=" color:#000"></i></a>
+                            </td>
+                            <td class="text-center">
+                                <a href="@Url.Action("UpdateProduct","BackStageProduct")"><i class="fas fa-pencil-alt" style=" color:#000"></i></a>
+                            </td>
+                            <td class="text-center">
+                                <a href="#"><i class="fas fa-trash-alt" style=" color:#000"></i></a>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+        <div class="mt-2" style=" padding-left: 15px;">
+            <a href="@Url.Action("CreateProduct","BackStageProduct")">
+                <i class="fas fa-plus" style="font-size:1.5em; color:darkseagreen"></i>
+            </a>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+
+</div>
+

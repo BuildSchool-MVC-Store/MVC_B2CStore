@@ -59,5 +59,24 @@ namespace OSLibrary.Sevices
                 Size = stock.Select(x=>x.Size).Distinct().ToList()
             };
         }
+        public IEnumerable<BackStageProductModel> BackStageGetAllProducts()
+        {
+            ProductsRepository productsRepository = new ProductsRepository();
+            var products = new List<BackStageProductModel>();
+            foreach (var item in productsRepository.GetAll())
+            {
+                var product = new BackStageProductModel
+                {
+                    Name = item.Product_Name,
+                    CategoryName = item.CategoryName,
+                    Gender = item.Gender,
+                    Price = item.UnitPrice,
+                    ProductID = item.Product_ID,
+                    Online = item.Online
+                };
+                products.Add(product);
+            }
+            return products;
+        }
     }
 }
