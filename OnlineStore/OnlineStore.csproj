@@ -236,6 +236,11 @@
     <Content Include="Views\Login\AdminLoginPage.cshtml" />
     <Content Include="Views\Shared\_LayoutBackStagePage.cshtml" />
     <Content Include="Views\BackStage\Index.cshtml" />
+    <Content Include="Views\BackStage\GetProducts.cshtml" />
+    <Content Include="Views\BackStage\GetOrders.cshtml" />
+    <Content Include="Views\BackStage\GetEmployees.cshtml" />
+    <Content Include="Views\BackStage\GetCustomers.cshtml" />
+    <Content Include="Views\BackStage\GetStocks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OSLibrary\OSLibrary.csproj">

@@ -52,7 +52,7 @@ namespace OSLibrary.ADO.NET.Repositories
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
 
-                var sql = "SELECT * FROM Orders";
+                var sql = "SELECT * FROM Orders ORDER BY Order_Date DESC";
                 return connection.Query<Orders>(sql);
             }
         }

@@ -78,7 +78,7 @@ namespace OSLibrary.Sevices
                     cart_R.DeleteByAccount(Account);
                     orders_R.Update(order.Order_ID, totalmoney+TranMoney,connection,transaction);
                     transaction.Commit();
-                    return "完成訂單";
+                    return "新訂單";
                 }
                 else
                 {
@@ -109,6 +109,10 @@ namespace OSLibrary.Sevices
             };
             result.product = ordersRepository.GetAccountNewOrder(Account).ToList();
             return result;
+        }
+        public IEnumerable<Orders> GetOrders()
+        {
+            return RepositoryContainer.GetInstance<OrdersRepository>().GetAll();
         }
     }
 }

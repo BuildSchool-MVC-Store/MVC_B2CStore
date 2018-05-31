@@ -1,5 +1,6 @@
 ﻿using OSLibrary.ADO.NET.Repositories;
 using OSLibrary.Containers;
+using OSLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,10 @@ namespace OSLibrary.Sevices
             {
                 return false;
             }
+        }
+        public IEnumerable<Employees> GetAll()
+        {
+            return RepositoryContainer.GetInstance<EmployeesRepository>().GetAll();
         }
     }
 }

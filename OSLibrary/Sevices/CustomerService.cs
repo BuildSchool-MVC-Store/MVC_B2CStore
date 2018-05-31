@@ -121,5 +121,9 @@ namespace OSLibrary.Sevices
                 return false;
             }
         }
+        public IEnumerable<Customers> GetAll()
+        {
+            return RepositoryContainer.GetInstance<CustomerRepository>().GetAll();
+        }
     }
 }

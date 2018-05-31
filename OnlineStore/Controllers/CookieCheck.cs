@@ -21,6 +21,13 @@ namespace OnlineStore.Controllers
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
             if (ticket.UserData == "12345")
             {
+                result.Authority = Character.Customer;
+                result.Status = cookieStatus.Match;
+                result.Username = ticket.Name;
+            }
+            else if (ticket.UserData == "員工")
+            {
+                result.Authority = Character.Employee;
                 result.Status = cookieStatus.Match;
                 result.Username = ticket.Name;
             }
@@ -32,5 +39,10 @@ namespace OnlineStore.Controllers
         noCookie,
         noMatch,
         Match
+    }
+    public enum Character
+    {
+        Employee,
+        Customer
     }
 }

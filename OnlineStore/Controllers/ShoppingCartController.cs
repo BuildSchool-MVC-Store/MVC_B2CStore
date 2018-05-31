@@ -16,63 +16,67 @@ namespace OnlineStore.Controllers
         public ActionResult ShoppingCart()
         {
             var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
-            switch (cookie.Status)
+            if (cookie.Status == cookieStatus.Match && cookie.Authority == Character.Customer)
             {
-                case cookieStatus.noCookie:
-                    TempData["Message"] = "請先登入會員";
-                    return RedirectToAction("Index", "Home");
-                case cookieStatus.Match:
-                    try
+                try
+                {
+                    OrdersService ordersService = new OrdersService();
+                    ShoppingCartService shoppingCartService = new ShoppingCartService();
+                    var shoppingcart = shoppingCartService.GetAccountCart(cookie.Username);
+                    if (shoppingcart.Count() == 0)
                     {
-                        OrdersService ordersService = new OrdersService();
-                        ShoppingCartService shoppingCartService = new ShoppingCartService();
-                        var shoppingcart = shoppingCartService.GetAccountCart(cookie.Username);
-                        if (shoppingcart.Count() == 0)
-                        {
-                            TempData["Message"] = "購物車是空的，返回上一頁";
-                            return RedirectToAction("Index", "Home");
-                        }
-                        ViewBag.totalmoney = shoppingcart.Sum(x => x.RowPrice);
-                        return View(shoppingcart);
-                    }
-                    catch
-                    {
-                        TempData["Message"] = "錯誤，稍後重試";
+                        TempData["Message"] = "購物車是空的，返回上一頁";
                         return RedirectToAction("Index", "Home");
                     }
-                default:
+                    ViewBag.totalmoney = shoppingcart.Sum(x => x.RowPrice);
+                    return View(shoppingcart);
+                }
+                catch
+                {
                     TempData["Message"] = "錯誤，稍後重試";
                     return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                TempData["Message"] = "請先登入會員";
+                return RedirectToAction("Index", "Home");
             }
         }
         [HttpPost]
         // GET: ShoppingCart
         public ActionResult AddtoShoppingCart(int ID,string Name ,string color,string size,int quantity)
         {
-            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-            if(color == "" || size =="")
+            var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
+            if (color == "" || size == "")
             {
                 TempData["Message"] = "請選擇顏色與尺寸";
                 return Redirect(Request.UrlReferrer.ToString());
             }
-            if (cookie == null)
+            if (cookie.Status == cookieStatus.Match && cookie.Authority == Character.Customer)
             {
-                TempData["Message"]= "請登入會員";
-                return Redirect(Request.UrlReferrer.ToString());
+                try
+                {
+                    ShoppingCartService shoppingCartService = new ShoppingCartService();
+                    if (shoppingCartService.CreateShoppingCart(cookie.Username, ID, quantity, size, color))
+                    {
+                        TempData["Message"] = "加入" + Name + "到購物車";
+                    }
+                    else
+                    {
+                        TempData["Message"] = Name + " 庫存不足";
+                    }
+                }
+                catch
+                {
+                    TempData["Message"] = "錯誤，稍後重試";
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            var ticket = FormsAuthentication.Decrypt(cookie.Value);
-            if (ticket.UserData == "12345")
+            else
             {
-                var account = ticket.Name;
-                ShoppingCartService shoppingCartService = new ShoppingCartService();
-                if(shoppingCartService.CreateShoppingCart(account, ID, quantity, size, color))
-                {
-                    TempData["Message"] = "加入" + Name + "到購物車";
-                }
-                else
-                {
-                    TempData["Message"] = Name+ " 庫存不足";
-                }
+                TempData["Message"] = "請先登入會員";
+                return RedirectToAction("Index", "Home");
             }
             return Redirect(Request.UrlReferrer.ToString());
         }

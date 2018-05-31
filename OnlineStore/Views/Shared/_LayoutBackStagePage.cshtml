@@ -23,13 +23,13 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="@Url.Action("Index","BackStage")">
                         <i class="fas fa-tachometer-alt"></i>
                         <span class="nav-link-text">主頁</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="@Url.Action("GetEmployees","BackStage")" data-parent="#exampleAccordion">
                         <i class="fa fa-fw fa-table"></i>
                         <span class="nav-link-text">員工管理</span>
                     </a>
@@ -40,7 +40,7 @@
                     </ul>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents2" data-parent="#exampleAccordion">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="@Url.Action("GetProducts","BackStage")" data-parent="#exampleAccordion">
                         <i class="fa fa-fw fa-table"></i>
                         <span class="nav-link-text">商品管理</span>
                     </a>
@@ -51,7 +51,7 @@
                     </ul>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents1" data-parent="#exampleAccordion">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="@Url.Action("GetOrders","BackStage")" data-parent="#exampleAccordion">
                         <i class="fa fa-fw fa-table"></i>
                         <span class="nav-link-text">訂單管理</span>
                     </a>
@@ -65,7 +65,7 @@
                     </ul>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponentsˋ" data-parent="#exampleAccordion">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="@Url.Action("GetStocks","BackStage")" data-parent="#exampleAccordion">
                         <i class="fa fa-fw fa-table"></i>
                         <span class="nav-link-text">庫存管理</span>
                     </a>
@@ -76,30 +76,13 @@
                     </ul>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponentsˇ" data-parent="#exampleAccordion">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="@Url.Action("GetCustomers","BackStage")" data-parent="#exampleAccordion">
                         <i class="fa fa-fw fa-table"></i>
                         <span class="nav-link-text">客戶管理</span>
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseComponentsˇ">
                         <li>
                             <a href="Backstage_Customers_Select.html">客戶資料</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
-                        <i class="fa fa-fw fa-file"></i>
-                        <span class="nav-link-text">Example Pages</span>
-                    </a>
-                    <ul class="sidenav-second-level collapse" id="collapseExamplePages">
-                        <li>
-                            <a href="login.html">Login Page</a>
-                        </li>
-                        <li>
-                            <a href="register.html">Registration Page</a>
-                        </li>
-                        <li>
-                            <a href="forgot-password.html">Forgot Password Page</a>
                         </li>
                     </ul>
                 </li>

@@ -15,15 +15,16 @@ namespace OnlineStore.Controllers
         public ActionResult LoginPage()
         {
             var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
-            switch (cookie.Status)
+            if(cookie.Status == cookieStatus.Match && cookie.Authority == Character.Customer)
             {
-                case cookieStatus.Match:
-                    ViewBag.IsAuthenticated = true;
-                    ViewBag.Username = cookie.Username;
-                    return PartialView();
-                default:
-                    ViewBag.IsAuthenticated = false;
-                    return View();
+                ViewBag.IsAuthenticated = true;
+                ViewBag.Username = cookie.Username;
+                return PartialView();
+            }
+            else
+            {
+                ViewBag.IsAuthenticated = false;
+                return View();
             }
         }
 
@@ -67,7 +68,7 @@ namespace OnlineStore.Controllers
             {
                 FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, account, DateTime.Now, DateTime.Now.AddMinutes(30), false, "員工");
                 SetTicket(ticket);
-                return RedirectToAction("AdminLoginPage");
+                return RedirectToAction("Index","BackStage");
             }
             else
             {

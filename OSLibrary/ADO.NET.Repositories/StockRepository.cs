@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OSLibrary.Models;
 using System.Configuration;
+using OSLibrary.ViewModels;
 
 namespace OSLibrary.ADO.NET.Repositories
 {
@@ -64,6 +65,11 @@ namespace OSLibrary.ADO.NET.Repositories
             {
                 return false;
             }
+        }
+        public IEnumerable<StockDetail>GetAllOfBackStage()
+        {
+            var sql = "SELECT p.Product_ID , p.Product_Name , s.Color ,s.Size , s.Quantity FROM Stock as s INNER JOIN Products as p on s.Product_ID = p.Product_ID";
+            return connection.Query<StockDetail>(sql);
         }
     }
 }

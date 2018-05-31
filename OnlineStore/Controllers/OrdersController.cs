@@ -31,15 +31,24 @@ namespace OnlineStore.Controllers
         public ActionResult CompleteOrder()
         {
             var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
-            switch (cookie.Status)
+            if (cookie.Status == cookieStatus.Match && cookie.Authority == Character.Customer)
             {
-                case cookieStatus.Match:
+                try
+                {
                     OrdersService ordersService = new OrdersService();
                     var result = ordersService.GetNewOrders(cookie.Username);
                     return View(result);
-                default:
-                    TempData["Message"] = "請先登入會員";
+                }
+                catch
+                {
+                    TempData["Message"] = "錯誤，稍後重試";
                     return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                TempData["Message"] = "請先登入會員";
+                return RedirectToAction("Index", "Home");
             }
         }
     }

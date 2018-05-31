@@ -1,5 +1,7 @@
 ﻿
 using OSLibrary.ADO.NET.Repositories;
+using OSLibrary.Containers;
+using OSLibrary.Models;
 using OSLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -58,6 +60,10 @@ namespace OSLibrary.Sevices
                 Color = stock.Select(x => x.Color).Distinct().ToList(),
                 Size = stock.Select(x=>x.Size).Distinct().ToList()
             };
+        }
+        public IEnumerable<Products> GetProductOfBackstage()
+        {
+            return RepositoryContainer.GetInstance<ProductsRepository>().GetAll();
         }
     }
 }
