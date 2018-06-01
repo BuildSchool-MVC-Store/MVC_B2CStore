@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OSLibrary.Sevices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,8 @@ namespace BackStageOnlineStore.Controllers
         // GET: BackStageOrder
         public ActionResult SelectOrder()
         {
-            return View();
+            OrdersService ordersService = new OrdersService();
+            return View(ordersService.BackStageGetAllOrders());
         }
 
         public ActionResult CreateOrder()
