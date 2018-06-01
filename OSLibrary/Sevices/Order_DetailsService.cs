@@ -19,14 +19,17 @@ namespace OSLibrary.Sevices
         public IEnumerable<OrderDetailsModel> BackStageGetAllOrderDetails()
         {
             Order_DetailsRepository detailsRepository = new Order_DetailsRepository();
+            var productsrepository = new ProductsRepository();
             var details = new List<OrderDetailsModel>();
-            foreach(var item in detailsRepository.GetAll())
+            
+            foreach (var item in detailsRepository.GetAll())
             {
                 var detail = new OrderDetailsModel
                 {
                     Order_Details_ID = item.Order_Details_ID,
                     Order_ID = item.Order_ID,
                     Product_ID = item.Product_ID,
+                    ProductName = productsrepository.GetByProduct_ID(item.Product_ID).Product_Name,
                     Price = item.Price,
                     Quantity = item.Quantity,
                     size = item.size,

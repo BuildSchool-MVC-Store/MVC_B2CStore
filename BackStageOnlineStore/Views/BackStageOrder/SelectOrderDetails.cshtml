@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<OSLibrary.ViewModels.OrderDetailsModel>
 @{
     ViewBag.Title = "SelectOrderDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -19,7 +19,7 @@
 
         <div class="table-responsive">
 
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTable" cellspacing="0">
 
                 <thead>
                     <tr>
@@ -37,31 +37,34 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            </div>
-                        </td>
-                        <td>XXXXXXXX</td>
-                        <td>006</td>
-                        <td>66</td>
-                        <td>6</td>
-                        <td>$ 666</td>
-                        <td>$ 66</td>
-                        <td>S</td>
-                        <td>6666666</td>
-                        <td class="text-center">
-                            <a href="@Url.Action("UpdateOrderDetails","BackStageOrder")">
-                                <i class="fas fa-pencil-alt" style="color:#000"></i>
-                            </a>
-                        </td>
-                        <td class="text-center">
-                            <a href="#">
-                                <i class="fas fa-trash-alt" style="color:#000"></i>
-                            </a>
-                        </td>
-                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                </div>
+                            </td>
+                            <td>@item.Order_ID</td>
+                            <td>@item.Product_ID</td>
+                            <td>@item.ProductName</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.Price</td>
+                            <td>@item.Discount</td>
+                            <td>@item.size</td>
+                            <td>@item.Color</td>
+                            <td class="text-center">
+                                <a href="@Url.Action("UpdateOrderDetails","BackStageOrder")">
+                                    <i class="fas fa-pencil-alt" style="color:#000"></i>
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <a href="#">
+                                    <i class="fas fa-trash-alt" style="color:#000"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
 
             </table>
