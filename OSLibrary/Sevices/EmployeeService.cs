@@ -10,10 +10,10 @@ namespace OSLibrary.Sevices
 {
     public class EmployeeService
     {
-        public EmployeeModel BackStageGetEmployeeByAccount(string account)
+        public EmployeeModel BackStageGetEmployeeByAccount(string Account)
         {
             EmployeesRepository repository = new EmployeesRepository();
-            var model = repository.GetByEmployeesAccount(account);
+            var model = repository.GetByEmployeesAccount(Account);
             return new EmployeeModel()
             {
                 Name = model.Name,

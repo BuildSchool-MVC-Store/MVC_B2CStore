@@ -93,26 +93,11 @@ namespace OSLibrary.Sevices
                 return ex.Message;
             }
         }
-        public IEnumerable<BackStageOrdersModel> BackStageGetAllOrders()
+        public IEnumerable<Orders> BackStageGetAllOrders()
         {
-            OrdersRepository OrdersRepository = new OrdersRepository();
-            var Orders = new List<BackStageOrdersModel>();
-            foreach (var item in OrdersRepository.GetAll())
-            {
-                var Order = new BackStageOrdersModel
-                {
-                    Order_ID = item.Order_ID,
-                    Account=item.Account,
-                    Order_Date=item.Order_Date,
-                    Order_Check=item.Order_Check,
-                    Shipment_Date=item.Order_Date, //出貨日期?
-                    Total=item.Total,
-                    pay=item.Pay,
-                    Transport=item.Transport
-                };
-                Orders.Add(Order);
-            }
-            return Orders;
+            OrdersRepository Orders_R = new OrdersRepository();
+          
+            return Orders_R.GetAll();
         }
     }
 }
