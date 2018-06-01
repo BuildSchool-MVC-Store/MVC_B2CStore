@@ -28,5 +28,9 @@ namespace OSLibrary.Sevices
         {
             return RepositoryContainer.GetInstance<EmployeesRepository>().GetAll();
         }
+        public Employees GetEmployeeDetail(string Account)
+        {
+            return RepositoryContainer.GetInstance<EmployeesRepository>().GetByEmployeesAccount(Account);
+        }
     }
 }

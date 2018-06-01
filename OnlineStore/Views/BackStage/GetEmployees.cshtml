@@ -36,7 +36,7 @@
                             <td>@item.Name</td>
                             <td>@item.Phone</td>
                             <td>@item.Birthday</td>
-                            <td><a href="Backstage_Employee_Update.html"><i class="fas fa-pencil-alt" style="color:#000"></i></a></td>
+                            <td><a href="@Url.Action("GetEmployee", "BackStage",new {item.Account})"><i class="fas fa-pencil-alt" style="color:#000"></i></a></td>
                             <td><a href="#"><i class="fas fa-trash-alt" style=" color:#000"></i></a></td>
                         </tr>
                     }

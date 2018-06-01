@@ -242,6 +242,7 @@
     <Content Include="Views\BackStage\GetEmployees.cshtml" />
     <Content Include="Views\BackStage\GetCustomers.cshtml" />
     <Content Include="Views\BackStage\GetStocks.cshtml" />
+    <Content Include="Views\BackStage\GetEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OSLibrary\OSLibrary.csproj">
