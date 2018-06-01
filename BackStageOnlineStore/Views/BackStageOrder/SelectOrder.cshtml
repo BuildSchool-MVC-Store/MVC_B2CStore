@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<OSLibrary.Models.Orders>
 @{
     ViewBag.Title = "SelectOrder";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -76,83 +76,47 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>XXXXXXXX</td>
-                        <td>AAAA</td>
-                        <td>
-                            2018/05/24
-                        </td>
-                        <td>
-                            <select>
-                                <option value="">備貨中</option>
-                                <option value="">已出貨</option>
-                                <option value="">已取貨</option>
-                            </select>
-                        </td>
-                        <td>
-                            2018/05/25
-                        </td>
-                        <td>
-                            $999
-                        </td>
-                        <td>
-                            <select>
-                                <option value="">貨到付款</option>
-                                <option value="">超商取貨付款</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select>
-                                <option value="">宅配</option>
-                                <option value="">超商取貨</option>
-                            </select>
-                        </td>
-                        <td class="text-center">
-                            <i class="fas fa-pencil-alt"></i>
-                        </td>
-                        <td class="text-center">
-                            <i class="fas fa-trash-alt"></i>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>OOOOOOO</td>
-                        <td>BBBB</td>
-                        <td>
-                            2018/05/23
-                        </td>
-                        <td>
-                            <select>
-                                <option value="">備貨中</option>
-                                <option value="">已出貨</option>
-                                <option value="">已取貨</option>
-                            </select>
-                        </td>
-                        <td>
-                            2018/05/25
-                        </td>
-                        <td>
-                            $5,000
-                        </td>
-                        <td>
-                            <select>
-                                <option value="">貨到付款</option>
-                                <option value="">超商取貨付款</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select>
-                                <option value="">宅配</option>
-                                <option value="">超商取貨</option>
-                            </select>
-                        </td>
-                        <td class="text-center">
-                            <i class="fas fa-pencil-alt"></i>
-                        </td>
-                        <td class="text-center">
-                            <i class="fas fa-trash-alt"></i>
-                        </td>
-                    </tr>
+                    @foreach (var item in Model)
+    {
+                <tr>
+                    <td>@item.Order_ID</td>
+                    <td>@item.Account</td>
+                    <td>
+                        @item.Order_Date
+                    </td>
+                    <td>
+                        <select>
+                            <option value="">備貨中</option>
+                            <option value="">已出貨</option>
+                            <option value="">已取貨</option>
+                        </select>
+                    </td>
+                    <td>
+                        2018/05/25
+                    </td>
+                    <td>
+                        @item.Total
+                    </td>
+                    <td>
+                        <select>
+                            <option value="">貨到付款</option>
+                            <option value="">超商取貨付款</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select>
+                            <option value="">宅配</option>
+                            <option value="">超商取貨</option>
+                        </select>
+                    </td>
+                    <td class="text-center">
+                        <i class="fas fa-pencil-alt"></i>
+                    </td>
+                    <td class="text-center">
+                        <i class="fas fa-trash-alt"></i>
+                    </td>
+                </tr>
+}
                 </tbody>
             </table>
         </div>
