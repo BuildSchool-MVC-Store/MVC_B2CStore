@@ -8,6 +8,7 @@ using System.Web.Security;
 
 namespace OnlineStore.Controllers
 {
+    [RoutePrefix("BackStage")]
     public class BackStageController : Controller
     {
         // GET: BackStage
@@ -16,7 +17,7 @@ namespace OnlineStore.Controllers
             var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
             if (cookie.Status == cookieStatus.Match && cookie.Authority == Character.Employee)
             {
-               return View();
+                return View();
             }
             else
             {
@@ -57,7 +58,7 @@ namespace OnlineStore.Controllers
             var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
             if (cookie.Status == cookieStatus.Match && cookie.Authority == Character.Employee)
             {
-                OrdersService ordersService  = new OrdersService();
+                OrdersService ordersService = new OrdersService();
                 return View(ordersService.GetOrders());
             }
             else
@@ -79,6 +80,12 @@ namespace OnlineStore.Controllers
                 TempData["Message"] = "請先登入會員";
                 return RedirectToAction("AdminLoginPage", "Login");
             }
+        }
+        [Route("GetEmployee")]
+        public ActionResult GetEmployee(string Account)
+        {
+            EmployeeService employeeService = new EmployeeService();
+            return View(employeeService.GetEmployeeDetail(Account));
         }
         public ActionResult GetStocks()
         {

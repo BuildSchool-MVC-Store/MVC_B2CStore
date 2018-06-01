@@ -1,0 +1,85 @@
+﻿@model OSLibrary.Models.Employees
+
+@{
+    ViewBag.Title = "GetEmployee";
+    Layout = "~/Views/Shared/_LayoutBackStagePage.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="Backstage.html">主頁</a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="Backstage_Employee_Select_Delete.html">員工</a>
+    </li>
+    <li class="breadcrumb-item active">修改員工資料</li>
+</ol>
+<div class="row mb-4">
+    <div class="col">
+        <h4>修改員工資料</h4>
+    </div>
+</div>
+<div class="row mb-4">
+    <div class="col-1 text-right">
+        <b>姓名</b>
+    </div>
+    <div class="col-3">
+        <input type="text"value="@Model.Name" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+    </div>
+</div>
+<div class="row mb-4">
+    <div class="col-1 text-right">
+        <b>帳號</b>
+    </div>
+    <div class="col-3">
+        <input type="text" value="@Model.Account"class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+    </div>
+</div>
+<div class="row mb-4">
+    <div class="col-1 text-right">
+        <b>密碼</b>
+    </div>
+    <div class="col-3">
+        <input type="password" value="@Model.Password"class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+    </div>
+</div>
+<div class="row mb-4">
+    <div class="col-1 text-right">
+        <b>生日</b>
+    </div>
+    <div class="col-3">
+        <input type="date" value="@Model.Birthday"class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+    </div>
+</div>
+<div class="row mb-4">
+    <div class="col-1 text-right">
+        <b>電話</b>
+    </div>
+    <div class="col-3">
+        <input type="text" value="@Model.Phone"class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+    </div>
+</div>
+<div class="row mb-4">
+    <div class="col-1 text-right">
+        <b>信箱</b>
+    </div>
+    <div class="col-3">
+        <input type="email" value="@Model.Email"class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+    </div>
+</div>
+<div class="row mb-5">
+    <div class="col-1 text-right">
+        <b>地址</b>
+    </div>
+    <div class="col-3">
+        <input type="text" value="@Model.Address" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+    </div>
+</div>
+<div class="row mb-4">
+    <div class="col-2">
+        <a class="btn btn-secondary btn-block" href="#" role="button">取消</a>
+    </div>
+    <div class="col-2">
+        <a class="btn btn-success btn-block" href="#" role="button">儲存</a>
+    </div>
+</div>
