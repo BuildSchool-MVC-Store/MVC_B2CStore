@@ -1,4 +1,4 @@
-﻿
+﻿@model OSLibrary.ViewModels.ProductModel
 @{
     ViewBag.Title = "UpdateProduct";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -20,89 +20,94 @@
             <div class="row">
                 <div class="col-6">
                     <div class="container mt-5 text-left">
-                        <div class="row  ">
+                        @using (Html.BeginForm())
+                        {
+                            <div class="row  ">
 
-                            <div class="col-4 mt-2 ">
-                                <b>商品名稱</b>
-                            </div>
-                            <div class="col">
-                                <input class="form-control" aria-describedby="basic-addon1" type="text">
-                            </div>
-
-                        </div>
-                        <div class="row mt-3  ">
-
-                            <div class="col-4  mt-2">
-                                <b>價格</b>
-                            </div>
-                            <div class="col">
-                                <input class="form-control" aria-describedby="basic-addon2" type="text">
-                            </div>
-
-                        </div>
-                        <div class="row mt-3  ">
-
-                            <div class="col-4  mt-2">
-                                <b>性別</b>
-                            </div>
-                            <div class="col">
-                                <select class="form-control">
-                                    <option value="WOMEN">WOMEN</option>
-                                    <option value="MEN">MEN</option>
-                                    <option value="KIDS">KIDS</option>
-                                </select>
+                                <div class="col-4 mt-2 ">
+                                    <b>商品名稱</b>
+                                </div>
+                                <div class="col">
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Name, null, new { @class = "text-danger" })
+                                </div>
 
                             </div>
+                            <div class="row mt-3  ">
 
-                        </div>
-                        <div class="row mt-3  ">
+                                <div class="col-4  mt-2">
+                                    <b>價格</b>
+                                </div>
+                                <div class="col">
+                                    @Html.TextBoxFor(model => model.Price,new {@class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Price,null,new {@class="text-danger" })
+                                </div>
 
-                            <div class="col-4  mt-2">
-                                <b>種類</b>
                             </div>
-                            <div class="col">
-                                <select class="form-control">
-                                    <option value="TOP">TOP</option>
-                                    <option value="BOTTOM">BOTTOM</option>
-                                    <option value="JUMPSUIT">JUMPSUIT</option>
-                                    <option value="UNDERWEAR">UNDERWEAR</option>
-                                </select>
+                            <div class="row mt-3  ">
+
+                                <div class="col-4  mt-2">
+                                    <b>性別</b>
+                                </div>
+                                <div class="col">
+                                    <select class="form-control">
+                                        <option value="WOMEN">WOMEN</option>
+                                        <option value="MEN">MEN</option>
+                                        <option value="KIDS">KIDS</option>
+                                    </select>
+
+                                </div>
+
+                            </div>
+                            <div class="row mt-3  ">
+
+                                <div class="col-4  mt-2">
+                                    <b>種類</b>
+                                </div>
+                                <div class="col">
+                                    <select class="form-control">
+                                        <option value="TOP">TOP</option>
+                                        <option value="BOTTOM">BOTTOM</option>
+                                        <option value="JUMPSUIT">JUMPSUIT</option>
+                                        <option value="UNDERWEAR">UNDERWEAR</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="row mt-3  ">
+
+                                <div class="col-4  mt-2">
+                                    <b>顯示</b>
+                                </div>
+                                <div class="col">
+                                    <select class="form-control">
+                                        <option value="上架中">上架中</option>
+                                        <option value="已下架">已下架</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="row mt-3  ">
+
+                                <div class="col-4  mt-2">
+                                    <b>備註 ( 資訊 )</b>
+                                </div>
+                                <div class="col">
+                                    <textarea class="form-control" name="message" style=" height:150px;"></textarea>
+                                </div>
+
                             </div>
 
-                        </div>
-                        <div class="row mt-3  ">
-
-                            <div class="col-4  mt-2">
-                                <b>顯示</b>
+                            <div class="row mt-4  ">
+                                <div class="col text-center">
+                                    <a class="btn btn-secondary btn-block" href="@Url.Action("SelectProduct","BackStageProduct")">取消</a>
+                                </div>
+                                <div class="col text-center bmr">
+                                    <button class="btn btn-success btn-block" type="submit">儲存</button>
+                                    @*<a class="btn btn-success btn-block" href="#">儲存</a>*@
+                                </div>
                             </div>
-                            <div class="col">
-                                <select class="form-control">
-                                    <option value="上架中">上架中</option>
-                                    <option value="已下架">已下架</option>
-                                </select>
-                            </div>
-
-                        </div>
-                        <div class="row mt-3  ">
-
-                            <div class="col-4  mt-2">
-                                <b>備註 ( 資訊 )</b>
-                            </div>
-                            <div class="col">
-                                <textarea class="form-control" name="message" style=" height:150px;"></textarea>
-                            </div>
-
-                        </div>
-
-                        <div class="row mt-4  ">
-                            <div class="col text-center">
-                                <a class="btn btn-secondary btn-block" href="@Url.Action("SelectProduct","BackStageProduct")">取消</a>
-                            </div>
-                            <div class="col text-center bmr">
-                                <a class="btn btn-success btn-block" href="#">儲存</a>
-                            </div>
-                        </div>
-
+                        }
                     </div>
                 </div>
             </div>
