@@ -20,6 +20,10 @@
         color: rgb(135, 145, 76);
     }
 
+.catcontent img {
+    box-shadow: 0px 1px 1px 0px #cccccc;
+}
+
 .right-content p {
     text-align: center;
 }
