@@ -1,5 +1,6 @@
 ﻿using OSLibrary.ADO.NET.Repositories;
 using OSLibrary.Models;
+using OSLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,13 +16,13 @@ namespace OSLibrary.Sevices
             return new Order_DetailsRepository().GetByOrderID(OrderID);
         }
 
-        public IEnumerable<Order_Details> BackStageGetAllOrderDetails()
+        public IEnumerable<OrderDetailsModel> BackStageGetAllOrderDetails()
         {
             Order_DetailsRepository detailsRepository = new Order_DetailsRepository();
-            var details = new List<Order_Details>();
+            var details = new List<OrderDetailsModel>();
             foreach(var item in detailsRepository.GetAll())
             {
-                var detail = new Order_Details
+                var detail = new OrderDetailsModel
                 {
                     Order_Details_ID = item.Order_Details_ID,
                     Order_ID = item.Order_ID,
