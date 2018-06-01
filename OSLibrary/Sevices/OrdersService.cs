@@ -1,5 +1,6 @@
 ﻿using OSLibrary.ADO.NET.Repositories;
 using OSLibrary.Models;
+using OSLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -42,12 +43,12 @@ namespace OSLibrary.Sevices
                 }, transaction);
 
                 string errorMessage = "";
-                var order = orders_R.GetLatestByAccount(connection,Account,transaction);
-                var items = cart_R.GetByAccount(connection,Account,transaction);
+                var order = orders_R.GetLatestByAccount(connection, Account, transaction);
+                var items = cart_R.GetByAccount(connection, Account, transaction);
                 decimal totalmoney = 0;
                 foreach (var item in items)
                 {
-                    if (stock_R.CheckInventory(item.Product_ID, item.size,item.Color,item.Quantity) == false)
+                    if (stock_R.CheckInventory(item.Product_ID, item.size, item.Color, item.Quantity) == false)
                     {
                         errorMessage += "產品 :" + products_R.GetByProduct_ID(item.Product_ID).Product_Name + " 庫存不足\n";
                     }
@@ -62,20 +63,20 @@ namespace OSLibrary.Sevices
                             size = item.size,
                             Price = item.Quantity * products_R.GetByProduct_ID(item.Product_ID).UnitPrice,
                             Color = item.Color
-                        },transaction);
+                        }, transaction);
                         stock_R.Update(connection, new Stock()
                         {
                             Product_ID = item.Product_ID,
                             Size = item.size,
-                            Quantity = stock_R.GetByPK(item.Product_ID, item.size ,item.Color).Quantity - item.Quantity,
+                            Quantity = stock_R.GetByPK(item.Product_ID, item.size, item.Color).Quantity - item.Quantity,
                             Color = item.Color
-                        },transaction);
+                        }, transaction);
                     }
                 }
                 if (errorMessage.Length <= 1)
                 {
                     cart_R.DeleteByAccount(Account);
-                    orders_R.Update(order.Order_ID, totalmoney,connection,transaction);
+                    orders_R.Update(order.Order_ID, totalmoney, connection, transaction);
                     transaction.Commit();
                     return "完成訂單";
                 }
@@ -91,6 +92,27 @@ namespace OSLibrary.Sevices
                 transaction.Rollback();
                 return ex.Message;
             }
+        }
+        public IEnumerable<BackStageOrdersModel> BackStageGetAllOrders()
+        {
+            OrdersRepository OrdersRepository = new OrdersRepository();
+            var Orders = new List<BackStageOrdersModel>();
+            foreach (var item in OrdersRepository.GetAll())
+            {
+                var Order = new BackStageOrdersModel
+                {
+                    Order_ID = item.Order_ID,
+                    Account=item.Account,
+                    Order_Date=item.Order_Date,
+                    Order_Check=item.Order_Check,
+                    Shipment_Date=item.Order_Date, //出貨日期?
+                    Total=item.Total,
+                    pay=item.Pay,
+                    Transport=item.Transport
+                };
+                Orders.Add(Order);
+            }
+            return Orders;
         }
     }
 }
