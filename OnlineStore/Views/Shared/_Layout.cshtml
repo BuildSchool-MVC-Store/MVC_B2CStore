@@ -232,6 +232,8 @@
             </div>
         </div>
     </div>
+    @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("scripts", required: false)
     @if (TempData["Message"] != null)
     {
         <script type="text/javascript">
