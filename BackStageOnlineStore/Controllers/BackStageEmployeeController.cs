@@ -8,8 +8,10 @@ using System.Web.Mvc;
 
 namespace BackStageOnlineStore.Controllers
 {
+    [RoutePrefix("Employees")]
     public class BackStageEmployeeController : Controller
     {
+        [Route("Index")]
         // GET: BackStageEmployee
         public ActionResult SelectEmployee()
         {
@@ -23,11 +25,11 @@ namespace BackStageOnlineStore.Controllers
             return View();
         }
 
-        public ActionResult UpdateEmployee(string account)
+        [Route("UpdateEmployee/{Account}")]
+        public ActionResult UpdateEmployee(string Account)
         {
             var result = new EmployeeService();
-            var list = result.BackStageGetEmployeeByAccount(account);
-            return View(list);
+            return View(result.BackStageGetEmployeeByAccount(Account));
         }
     }
 }

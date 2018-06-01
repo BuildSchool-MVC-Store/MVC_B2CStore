@@ -51,7 +51,7 @@
                             <td>@item.Phone</td>
                             <td>@item.Birthday.ToShortDateString().ToString()</td>
                             <td class="text-center">
-                                <a href="@Url.Action("UpdateEmployee","BackStageEmployee")">
+                                <a href="/Employees/UpdateEmployee/@item.Account">
                                     <i class="fas fa-pencil-alt" style=" color:#000"></i>
                                 </a>
                             </td>
