@@ -84,12 +84,12 @@
 }
 
 .choose {
-    background-color: #E0E0E0 !important;
-    color: #697259 !important;
+    background-color: #697259 !important;
+    color: #FFF !important;
 }
 .choose2 {
-    background-color: #E0E0E0 !important;
-    color: #697259 !important;
+    background-color: #697259 !important;
+    color: #FFF !important;
 }
 .product_size > a {
     font-family: monospace;
@@ -102,8 +102,8 @@
 }
 
     .product_size > a:hover {
-        background-color: #E0E0E0;
-        color: #697259;
+        background-color: #697259;
+        color: #FFF;
         cursor: pointer;
     }
 
@@ -117,8 +117,8 @@
 }
 
     .product_color > a:hover {
-        background-color: #E0E0E0;
-        color: #697259;
+        background-color: #697259;
+        color: #FFF;
         cursor: pointer;
     }
 
