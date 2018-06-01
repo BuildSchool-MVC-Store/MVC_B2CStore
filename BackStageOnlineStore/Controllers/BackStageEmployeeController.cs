@@ -20,6 +20,7 @@ namespace BackStageOnlineStore.Controllers
             return View(list);
         }
 
+        [Route("CreateEmployee")]
         public ActionResult CreateEmployee()
         {
             return View();

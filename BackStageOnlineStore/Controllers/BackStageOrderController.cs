@@ -25,7 +25,9 @@ namespace BackStageOnlineStore.Controllers
 
         public ActionResult SelectOrderDetails()
         {
-            return View();
+            var result = new Order_DetailsService();
+            var list = result.BackStageGetAllOrderDetails();
+            return View(list);
         }
 
         public ActionResult CreateOrderDetails()

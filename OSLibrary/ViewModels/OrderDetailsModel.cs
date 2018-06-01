@@ -11,6 +11,7 @@ namespace OSLibrary.ViewModels
         public int Order_Details_ID { get; set; }
         public int Order_ID { get; set; }
         public int Product_ID { get; set; }
+        public string ProductName { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
         public float? Discount { get; set; }
