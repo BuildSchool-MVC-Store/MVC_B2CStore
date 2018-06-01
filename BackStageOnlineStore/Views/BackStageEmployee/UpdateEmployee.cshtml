@@ -26,7 +26,7 @@
                                 <b>姓名</b>
                             </div>
                             <div class="col">
-                                <input class="form-control" aria-describedby="basic-addon1" type="text" value="@Model.Name">
+                                <input class="form-control" aria-describedby="basic-addon1" type="text" value="@Model.Name" readonly>
                             </div>
                         </div>
                         <div class="row mt-3  ">
@@ -34,7 +34,7 @@
                                 <b>帳號</b>
                             </div>
                             <div class="col">
-                                <input class="form-control" aria-describedby="basic-addon2" type="text" value="@Model.Account">
+                                <input class="form-control" aria-describedby="basic-addon2" type="text" value="@Model.Account"  readonly>
                             </div>
                         </div>
                         <div class="row mt-3  ">
@@ -50,7 +50,7 @@
                                 <b>生日</b>
                             </div>
                             <div class="col">
-                                <input class="form-control" aria-describedby="basic-addon4" type="date" value="@Model.Birthday">
+                                <input class="form-control" aria-describedby="basic-addon4" type="date" value="@Model.Birthday.ToShortDateString().ToString()">
                             </div>
                         </div>
                         <div class="row mt-3  ">
