@@ -165,6 +165,7 @@
     <Compile Include="Controllers\BackStageEmployeeController.cs" />
     <Compile Include="Controllers\BackStageOrderController.cs" />
     <Compile Include="Controllers\BackStageProductController.cs" />
+    <Compile Include="Controllers\BackStageStockController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -329,6 +330,8 @@
     <Content Include="Views\BackStageOrder\SelectOrderDetails.cshtml" />
     <Content Include="Views\BackStageOrder\CreateOrderDetails.cshtml" />
     <Content Include="Views\BackStageOrder\UpdateOrderDetails.cshtml" />
+    <Content Include="Views\BackStageStock\SelectStock.cshtml" />
+    <Content Include="Views\BackStageStock\UpdateStock.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

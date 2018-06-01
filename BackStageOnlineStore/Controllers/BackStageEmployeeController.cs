@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OSLibrary.Models;
+using OSLibrary.Sevices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +13,9 @@ namespace BackStageOnlineStore.Controllers
         // GET: BackStageEmployee
         public ActionResult SelectEmployee()
         {
-            return View();
+            var result = new EmployeeService();
+            var list = result.BackStageGetEmployeeByAll();
+            return View(list);
         }
 
         public ActionResult CreateEmployee()
@@ -19,9 +23,11 @@ namespace BackStageOnlineStore.Controllers
             return View();
         }
 
-        public ActionResult UpdateEmployee()
+        public ActionResult UpdateEmployee(string account)
         {
-            return View();
+            var result = new EmployeeService();
+            var list = result.BackStageGetEmployeeByAccount(account);
+            return View(list);
         }
     }
 }

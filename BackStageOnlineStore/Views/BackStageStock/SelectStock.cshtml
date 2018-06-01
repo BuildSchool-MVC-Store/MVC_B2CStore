@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "SelectStock";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("Index","Home")">主頁</a>
+    </li>
+    <li class="breadcrumb-item active">庫存</li>
+</ol>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> 庫存資料
+
+    </div>
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                <thead>
+                    <tr>
+                        <th>編號</th>
+                        <th>名稱</th>
+                        <th>尺寸</th>
+                        <th>庫存</th>
+                        <th>修改</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td>D 商品 編號</td>
+                        <td>D 商品 名稱</td>
+                        <td>D 商品 尺寸</td>
+                        <td>D 商品 數量</td>
+                        <td>
+                            <a href="#">
+                                <i class="far fa-edit"></i>
+                            </a>
+                        </td>
+
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>A 商品 編號</td>
+                        <td>A 商品 名稱</td>
+                        <td>A 商品 尺寸</td>
+                        <td>A 商品 數量</td>
+                        <td>
+                            <a href="@Url.Action("UpdateStock","BackStageStock")">
+                                <i class="far fa-edit"></i>
+                            </a>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>B 商品 編號</td>
+                        <td>B 商品 名稱</td>
+                        <td>B 商品 尺寸</td>
+                        <td>B 商品 數量</td>
+                        <td>
+                            <a href="#">
+                                <i class="far fa-edit"></i>
+                            </a>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>C 商品 編號</td>
+                        <td>C 商品 名稱</td>
+                        <td>C 商品 尺寸</td>
+                        <td>C 商品 數量</td>
+                        <td>
+                            <a href="#">
+                                <i class="far fa-edit"></i>
+                            </a>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+
+</div>
+
