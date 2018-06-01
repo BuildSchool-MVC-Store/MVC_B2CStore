@@ -32,5 +32,23 @@ namespace BackStageOnlineStore.Controllers
             var result = new EmployeeService();
             return View(result.BackStageGetEmployeeByAccount(Account));
         }
+
+        [HttpPost]
+        public ActionResult UpdateEmployeeChange(string Name, string Account, string Password, DateTime Birthday,
+            string Email, string Phone, string Address)
+        {
+            
+            EmployeeService employeeService = new EmployeeService();
+            var message = "";
+            if (employeeService.ChangeEmployee(Name, Account, Password, Birthday, Email, Phone, Address))
+            {
+                message = "更換成功";
+            }
+            else
+            {
+                message = "無法更新，請聯絡客服";
+            }
+            return Json(message, JsonRequestBehavior.DenyGet);
+        }
     }
 }
