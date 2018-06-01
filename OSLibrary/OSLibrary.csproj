@@ -84,7 +84,7 @@
     <Compile Include="Utils\DbReaderModelBinder.cs" />
     <Compile Include="ViewModels\BackStageProductModel.cs" />
     <Compile Include="ViewModels\CustomerModel.cs" />
-    <Compile Include="ViewModels\Order_Details.cs" />
+    <Compile Include="ViewModels\Order_DetailsModel.cs" />
     <Compile Include="ViewModels\ProductDetail.cs" />
     <Compile Include="ViewModels\ProductModel.cs" />
     <Compile Include="ViewModels\ShoppingCartDetail.cs" />
