@@ -12,6 +12,8 @@ namespace OSLibrary.ViewModels
     {
         public string Account { get; set; }
         
+        [DisplayName("密碼")]
+        [Required(ErrorMessage = "請輸入密碼")]
         public string Password { get; set; }
         
         public string Name { get; set; }
