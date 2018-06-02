@@ -16,6 +16,7 @@ namespace OSLibrary.ViewModels
         
         [DisplayName("密碼")]
         [Required(ErrorMessage = "請輸入密碼")]
+        [StringLength(10)]
         public string Password { get; set; }
 
         [DisplayName("姓名")]

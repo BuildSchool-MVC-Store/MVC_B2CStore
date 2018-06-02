@@ -49,11 +49,35 @@ namespace OSLibrary.Sevices
             return Employees;
         }
 
+        public bool CreateEmployee(string Name, string Account, string Password, DateTime Birthday,
+            string Email, string Phone, string Address)
+        {
+            var Employee = new Employees()
+            {
+                Name = Name,
+                Account = Account,
+                Password = Password,
+                Birthday = Birthday,
+                Email = Email,
+                Phone = Phone,
+                Address = Address
+
+            };
+            EmployeesRepository employeesRepository = new EmployeesRepository();
+            try
+            {
+                employeesRepository.Create(Employee);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         public bool ChangeEmployee(string Name, string Account, string Password, DateTime Birthday,
             string Email, string Phone, string Address)
         {
-
             var Employee = new Employees()
             {
                 Name = Name,
@@ -65,7 +89,6 @@ namespace OSLibrary.Sevices
                 Address = Address
                 
             };
-
             EmployeesRepository employeesRepository = new EmployeesRepository();
             try
             {
@@ -77,7 +100,5 @@ namespace OSLibrary.Sevices
                 return false;
             }
         }
-
-
     }
 }
