@@ -165,6 +165,7 @@
     </Compile>
     <Compile Include="Models\CookieModel.cs" />
     <Compile Include="Models\CustomerChangeModel.cs" />
+    <Compile Include="Models\EmployeeViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
