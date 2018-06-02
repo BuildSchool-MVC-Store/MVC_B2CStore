@@ -26,7 +26,7 @@
 
                         <div class="row">
                             <div class="col-4 mt-2 ">
-                                <b>姓名</b>
+                                <b>@Html.DisplayNameFor(model=>model.Name)</b>
                             </div>
                             <div class="col">
                                 <input class="form-control" aria-describedby="basic-addon1" type="text" value="@Model.Name" name="Name" readonly>
@@ -34,7 +34,7 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-4 mt-2">
-                                <b>帳號</b>
+                                <b>@Html.DisplayNameFor(model => model.Account)</b>
                             </div>
                             <div class="col">
                                 <input class="form-control" aria-describedby="basic-addon2" type="text" value="@Model.Account" name="Account" readonly>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-4 mt-2">
-                                <b>生日</b>
+                                <b>@Html.DisplayNameFor(model => model.Birthday)</b>
                             </div>
                             <div class="col">
                                 <input class="form-control" aria-describedby="basic-addon4" type="text" value="@Model.Birthday.ToShortDateString().ToString()" name="Birthday">
@@ -59,7 +59,7 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-4 mt-2">
-                                <b>信箱</b>
+                                <b>@Html.DisplayNameFor(model => model.Email)</b>
                             </div>
                             <div class="col">
                                 <input class="form-control" aria-describedby="basic-addon5" type="text" value="@Model.Email" name="Email">
@@ -67,7 +67,7 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-4 mt-2">
-                                <b>電話</b>
+                                <b>@Html.DisplayNameFor(model => model.Phone)</b>
                             </div>
                             <div class="col">
                                 <input class="form-control" aria-describedby="basic-addon6" type="text" value="@Model.Phone" name="Phone">
@@ -75,7 +75,7 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-4 mt-2">
-                                <b>地址</b>
+                                <b>@Html.DisplayNameFor(model => model.Address)</b>
                             </div>
                             <div class="col">
                                 <input class="form-control" aria-describedby="basic-addon7" type="text" value="@Model.Address" name="Address">
