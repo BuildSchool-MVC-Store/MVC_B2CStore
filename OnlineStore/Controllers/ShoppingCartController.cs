@@ -47,17 +47,23 @@ namespace OnlineStore.Controllers
         // GET: ShoppingCart
         public ActionResult AddtoShoppingCart(int ID,string Name ,string color,string size,int quantity)
         {
+            //cookie 丟進去 CookieCheck 類別裡面的 static function 做處理
             var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
+            //如果沒有選擇顏色或尺寸就回傳錯誤訊息 請他選擇尺寸與顏色
             if (color == "" || size == "")
             {
                 TempData["Message"] = "請選擇顏色與尺寸";
                 return Redirect(Request.UrlReferrer.ToString());
             }
+            //如果cookie 符合 登錄的資料 還有他的角色是顧客 他就可以使用加入購物車的動作
             if (cookie.Status == cookieStatus.Match && cookie.Authority == Character.Customer)
             {
                 try
                 {
+                    //宣告一個 ShoppingCartService 的執行個體
                     ShoppingCartService shoppingCartService = new ShoppingCartService();
+                    //ShoppingCartService 裡面的 CreateShoppingCart 會回傳 布林 如果是 true 就是加入成功 反之亦然
+                    //右鍵 CreateShoppingCart 然後去移置定義
                     if (shoppingCartService.CreateShoppingCart(cookie.Username, ID, quantity, size, color))
                     {
                         TempData["Message"] = "加入" + Name + "到購物車";

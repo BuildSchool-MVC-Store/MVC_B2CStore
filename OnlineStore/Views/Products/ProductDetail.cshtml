@@ -24,6 +24,10 @@
                 </div>
                 <div class="col-4">
                     <!--右商品細節-->
+                    @*去ShoppingCart的Controller 去找 AddtoShoppingCart的 function 
+                    如果按下 有 type=submit button時 跑 AddtoShoppingCart的 function
+                    AddtoShopingCart 的參數 都是由 name = "ID" ,"Name","color","size"
+                    Color 跟 size 都是由jQuery去放值的 他如果換選擇時 會更新 input 的value*@
                     @using (Html.BeginForm("AddtoShoppingCart", "ShoppingCart"))
                     {
                         <input name="ID" type="hidden" value="@Model.ID" />
