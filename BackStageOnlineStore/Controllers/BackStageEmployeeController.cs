@@ -21,26 +21,27 @@ namespace BackStageOnlineStore.Controllers
         }
 
         [Route("CreateEmployee")]
-        public ActionResult CreateEmployee()
+        public ActionResult CreateEmployee(string Account)
         {
-            return View();
+            var result = new EmployeeService();
+            return View(result.BackStageGetEmployeeByAccount(Account));
         }
 
         [HttpPost]
-        public ActionResult CreateEmployee(string Name, string Account, string Password, DateTime Birthday,
+        public ActionResult CreateSingle(string Name, string Account, string Password, DateTime Birthday,
             string Email, string Phone, string Address)
         {
             EmployeeService employeeService = new EmployeeService();
             var message = "";
             if (employeeService.CreateEmployee(Name, Account, Password, Birthday, Email, Phone, Address))
             {
-                message = "新增成功";
+                TempData[message] = "新增成功";
             }
             else
             {
-                message = "無法新增，請聯絡客服";
+                TempData[message] = "無法新增，請聯絡客服";
             }
-            return Json(message, JsonRequestBehavior.DenyGet);
+            return RedirectToRoute("SelectEmployee");
         }
 
         [Route("UpdateEmployee/{Account}")]
@@ -55,16 +56,15 @@ namespace BackStageOnlineStore.Controllers
             string Email, string Phone, string Address)
         {
             EmployeeService employeeService = new EmployeeService();
-            var message = "";
             if (employeeService.ChangeEmployee(Name, Account, Password, Birthday, Email, Phone, Address))
             {
-                message = "更換成功";
+                TempData["message"] = "更換成功";
             }
             else
             {
-                message = "無法更新，請聯絡客服";
+                TempData["message"] = "無法更新，請聯絡客服";
             }
-            return Json(message, JsonRequestBehavior.DenyGet);
+            return RedirectToAction("SelectEmployee");
         }
     }
 }

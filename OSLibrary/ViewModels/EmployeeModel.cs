@@ -11,7 +11,7 @@ namespace OSLibrary.ViewModels
     public class EmployeeModel
     {
         [DisplayName("帳號")]
-        [Required]
+        [Required(ErrorMessage = "請輸入帳號")]
         public string Account { get; set; }
         
         [DisplayName("密碼")]
@@ -20,23 +20,24 @@ namespace OSLibrary.ViewModels
         public string Password { get; set; }
 
         [DisplayName("姓名")]
-        [Required]
+        [Required(ErrorMessage = "請輸入名稱")]
+        [StringLength(10)]
         public string Name { get; set; }
 
         [DisplayName("生日")]
-        [Required]
+        [Required(ErrorMessage = "請輸入生日(格式:yyyy/mm/dd)")]
         public DateTime Birthday { get; set; }
 
         [DisplayName("手機")]
-        [Required]
+        [Required(ErrorMessage = "請輸入電話號碼")]
         public string Phone { get; set; }
 
         [DisplayName("信箱")]
-        [Required]
+        [Required(ErrorMessage = "請輸入信箱")]
         public string Email { get; set; }
 
         [DisplayName("地址")]
-        [Required]
+        [Required(ErrorMessage = "請輸入地址")]
         public string Address { get; set; }
     }
 }
