@@ -23,8 +23,7 @@ namespace BackStageOnlineStore.Controllers
         [Route("CreateEmployee")]
         public ActionResult CreateEmployee(string Account)
         {
-            var result = new EmployeeService();
-            return View(result.BackStageGetEmployeeByAccount(Account));
+            return View();
         }
 
         [HttpPost]
@@ -41,7 +40,7 @@ namespace BackStageOnlineStore.Controllers
             {
                 TempData[message] = "無法新增，請聯絡客服";
             }
-            return RedirectToRoute("SelectEmployee");
+            return RedirectToAction("SelectEmployee");
         }
 
         [Route("UpdateEmployee/{Account}")]
