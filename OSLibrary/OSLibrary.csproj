@@ -90,6 +90,7 @@
     <Compile Include="ViewModels\ProductDetail.cs" />
     <Compile Include="ViewModels\ProductModel.cs" />
     <Compile Include="ViewModels\ShoppingCartDetail.cs" />
+    <Compile Include="ViewModels\Stock.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
