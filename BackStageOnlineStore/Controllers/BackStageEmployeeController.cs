@@ -65,5 +65,12 @@ namespace BackStageOnlineStore.Controllers
             }
             return RedirectToAction("SelectEmployee");
         }
+
+        [HttpPost]
+        public ActionResult DeleteEmployee(string Account)
+        {
+            var service = new EmployeeService();
+            return View(service.DeleteEmployee(Account));
+        }
     }
 }

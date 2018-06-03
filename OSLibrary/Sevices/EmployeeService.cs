@@ -100,5 +100,19 @@ namespace OSLibrary.Sevices
                 return false;
             }
         }
+
+        public bool DeleteEmployee(string Account)
+        {
+            var Employee = new EmployeesRepository();
+            try
+            {
+                Employee.Delete(Account);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
