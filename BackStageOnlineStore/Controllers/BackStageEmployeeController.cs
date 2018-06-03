@@ -70,7 +70,15 @@ namespace BackStageOnlineStore.Controllers
         public ActionResult DeleteEmployee(string Account)
         {
             var service = new EmployeeService();
-            return View(service.DeleteEmployee(Account));
+            if(service.DeleteEmployee(Account))
+            {
+                TempData["message"] = "刪除成功";
+            }
+            else
+            {
+                TempData["message"] = "無法刪除，請聯絡克服";
+            }
+            return RedirectToAction("SelectEmployee");
         }
     }
 }

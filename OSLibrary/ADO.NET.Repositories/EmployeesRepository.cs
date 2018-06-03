@@ -27,11 +27,11 @@ namespace OSLibrary.ADO.NET.Repositories
             var exec = connection.Execute(sql, model);
 
         }
-        public void Delete(string Account)
+        public void Delete(string account)
         {
 
             var sql = "DELETE FROM Employees WHERE Account = @Account";
-            var exec = connection.Execute(sql, new { Account });
+            var exec = connection.Execute(sql, new { Account = account });
 
         }
         public Employees GetByEmployeesAccount(string account)
