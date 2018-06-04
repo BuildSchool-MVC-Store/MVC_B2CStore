@@ -51,8 +51,14 @@
                                     <td>@item.Name</td>
                                     <td>@item.Phone</td>
                                     <td>@item.Birthday</td>
-                                    <td><a href="@Url.Action("GetEmployee", "BackStage",new {item.Account})"><i class="far fa-edit"></i></a></td>
-                                    <td><a href="#"><i class="fas fa-trash-alt" style=" color:#000"></i></a></td>
+                                    <td>
+                                        <a class="btn btn-warning btn-sm" href="@Url.Action("GetEmployee", "BackStage",new {item.Account})" role="button">
+                                            <i class="far fa-edit"></i>
+                                        </a>
+                                    </td>
+                                    <td><a class="btn btn-danger btn-sm" id="del" href="#" role="button">
+    <i class="far fa-trash-alt"></i>
+</a></td>
                                 </tr>
                             }
                         </tbody>
