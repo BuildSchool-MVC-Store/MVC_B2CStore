@@ -24,7 +24,7 @@ namespace OnlineStore.Controllers
                     return RedirectToAction("completeOrder");
                 default:
                     TempData["Message"] = "請先登入會員";
-                    return RedirectToAction("Index", "Home");
+                    return Redirect(Request.UrlReferrer.ToString());
             }
         }
         [Route("completeOrder")]
@@ -42,13 +42,13 @@ namespace OnlineStore.Controllers
                 catch
                 {
                     TempData["Message"] = "錯誤，稍後重試";
-                    return RedirectToAction("Index", "Home");
+                    return Redirect(Request.UrlReferrer.ToString());
                 }
             }
             else
             {
                 TempData["Message"] = "請先登入會員";
-                return RedirectToAction("Index", "Home");
+                return Redirect(Request.UrlReferrer.ToString());
             }
         }
     }
