@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<OSLibrary.ViewModels.StockModel>
 @{
     ViewBag.Title = "SelectStock";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,14 +13,10 @@
 <div class="card mb-3">
     <div class="card-header">
         <i class="fa fa-table"></i> 庫存資料
-
     </div>
     <div class="card-body">
-
         <div class="table-responsive">
-
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
                 <thead>
                     <tr>
                         <th>編號</th>
@@ -40,47 +36,22 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                    <tr>
-                        <td>A 商品 編號</td>
-                        <td>A 商品 名稱</td>
-                        <td>A 商品 尺寸</td>
-                        <td>A 商品 數量</td>
-                        <td>
-                            <a href="@Url.Action("UpdateStock","BackStageStock")">
-                                <i class="far fa-edit"></i>
-                            </a>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td>B 商品 編號</td>
-                        <td>B 商品 名稱</td>
-                        <td>B 商品 尺寸</td>
-                        <td>B 商品 數量</td>
-                        <td>
-                            <a href="#">
-                                <i class="far fa-edit"></i>
-                            </a>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td>C 商品 編號</td>
-                        <td>C 商品 名稱</td>
-                        <td>C 商品 尺寸</td>
-                        <td>C 商品 數量</td>
-                        <td>
-                            <a href="#">
-                                <i class="far fa-edit"></i>
-                            </a>
-                        </td>
-
-                    </tr>
-
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Product_ID</td>
+                            <td>@item.ProductName</td>
+                            <td>@item.Size</td>
+                            <td>@item.Quantity</td>
+                            <td>
+                                <a href="@Url.Action("UpdateStock","BackStageStock")">
+                                    <i class="far fa-edit"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
-
             </table>
-
         </div>
     </div>
     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>

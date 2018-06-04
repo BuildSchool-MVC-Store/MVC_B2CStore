@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OSLibrary.ViewModels
 {
-    public class Stock
+    public class StockModel
     {
         public int Product_ID { get; set; }
 
@@ -14,6 +14,6 @@ namespace OSLibrary.ViewModels
 
         public string Size { get; set; }
 
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
     }
 }

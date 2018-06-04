@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OSLibrary.Sevices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,8 @@ namespace BackStageOnlineStore.Controllers
         // GET: BackStageStock
         public ActionResult SelectStock()
         {
-            return View();
+            var service = new StockService();
+            return View(service.GetAllByStock());
         }
 
         public ActionResult UpdateStock()
