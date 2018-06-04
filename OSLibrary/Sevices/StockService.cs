@@ -11,6 +11,20 @@ namespace OSLibrary.Sevices
 {
     public class StockService
     {
+        public StockModel GetProductIDByStock(int Product_ID)
+        {
+            var stockrepository = new StockRepository();
+            var productrepository = new ProductsRepository();
+            var model = stockrepository.GetByProductID(Product_ID);
+            return new StockModel()
+            {
+                Product_ID = model.Product_ID,
+                ProductName = productrepository.GetByProduct_ID(Product_ID).Product_Name,
+                Size = model.Size,
+                Color = model.Color,
+                Quantity = model.Quantity
+            };
+        }
         public IEnumerable<StockModel> GetAllByStock()
         {
             StockRepository stockrepository = new StockRepository();
@@ -23,11 +37,33 @@ namespace OSLibrary.Sevices
                     Product_ID = item.Product_ID,
                     ProductName = productrepository.GetByProduct_ID(item.Product_ID).Product_Name,
                     Size = item.Size,
+                    Color = item.Color,
                     Quantity = item.Quantity
                 };
                 stocks.Add(stock);
             }
             return stocks;
+        }
+
+        public bool UpdateStock(int Product_ID, string Size, int? Quantity, string Color)
+        {
+            var stock = new Stock()
+            {
+                Product_ID = Product_ID,
+                Size = Size,
+                Color = Color,
+                Quantity = Quantity
+            };
+            var repository = new StockRepository();
+            try
+            {
+                repository.Update(stock);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

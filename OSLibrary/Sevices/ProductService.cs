@@ -32,33 +32,33 @@ namespace OSLibrary.Sevices
             }
             return products;
         }
-        public ProductDetail GetProductDetail(int ProdcutID)
-        {
-            ProductImageRepository imageRepository = new ProductImageRepository();
-            ProductsRepository productsRepository = new ProductsRepository();
-            StockRepository stockRepository = new StockRepository();
-            var products = productsRepository.GetByProduct_ID(ProdcutID);
-            var allImage = imageRepository.GetByProduct_ID(ProdcutID);
-            var Image = allImage.Select(x=> "/Images/Products/" + x.Image).ToList();
-            var stock = stockRepository.GetByProductID(ProdcutID);
-            Dictionary<string, List<string>> ColorSize = new Dictionary<string, List<string>>();
-            foreach (var color in stock.Select(x => x.Color).Distinct())
-            {
-                var _size = stock.Where(x => x.Color == color).Select(x => x.Size).ToList();
-                ColorSize.Add(color, _size);
-            };
-            return new ProductDetail()
-            {
-                ID = products.Product_ID,
-                Name = products.Product_Name,
-                Comments = products.Comments,
-                Price = products.UnitPrice,
-                Image = Image,
-                ColorSize = ColorSize,
-                Color = stock.Select(x => x.Color).Distinct().ToList(),
-                Size = stock.Select(x=>x.Size).Distinct().ToList()
-            };
-        }
+        //public ProductDetail GetProductDetail(int ProdcutID)
+        //{
+        //    ProductImageRepository imageRepository = new ProductImageRepository();
+        //    ProductsRepository productsRepository = new ProductsRepository();
+        //    StockRepository stockRepository = new StockRepository();
+        //    var products = productsRepository.GetByProduct_ID(ProdcutID);
+        //    var allImage = imageRepository.GetByProduct_ID(ProdcutID);
+        //    var Image = allImage.Select(x=> "/Images/Products/" + x.Image).ToList();
+        //    var stock = stockRepository.GetByProductID(ProdcutID);
+        //    Dictionary<string, List<string>> ColorSize = new Dictionary<string, List<string>>();
+        //    foreach (var color in stock.Select(x => x.Color).Distinct())
+        //    {
+        //        var _size = stock.Where(x => x.Color == color).Select(x => x.Size).ToList();
+        //        ColorSize.Add(color, _size);
+        //    };
+        //    return new ProductDetail()
+        //    {
+        //        ID = products.Product_ID,
+        //        Name = products.Product_Name,
+        //        Comments = products.Comments,
+        //        Price = products.UnitPrice,
+        //        Image = Image,
+        //        ColorSize = ColorSize,
+        //        Color = stock.Select(x => x.Color).Distinct().ToList(),
+        //        Size = stock.Select(x=>x.Size).Distinct().ToList()
+        //    };
+        //}
         public IEnumerable<BackStageProductModel> BackStageGetAllProducts()
         {
             ProductsRepository productsRepository = new ProductsRepository();
