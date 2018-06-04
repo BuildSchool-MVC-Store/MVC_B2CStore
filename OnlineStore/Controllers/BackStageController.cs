@@ -67,6 +67,22 @@ namespace OnlineStore.Controllers
                 return RedirectToAction("AdminLoginPage", "Login");
             }
         }
+        [HttpPost]
+        public ActionResult GetOrdersStatus(string status)
+        {
+            var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
+            if (cookie.Status == cookieStatus.Match && cookie.Authority == Character.Employee)
+            {
+                OrdersService ordersService = new OrdersService();
+                return View(ordersService.GetOrders());
+            }
+            else
+            {
+                TempData["Message"] = "請先登入會員";
+                return RedirectToAction("AdminLoginPage", "Login");
+            }
+        }
+
         public ActionResult GetEmployees()
         {
             var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
