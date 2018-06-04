@@ -9,6 +9,7 @@ namespace OSLibrary.ViewModels
 {
     public class ProductModel
     {
+        [DisplayName("商品編號")]
         public int ProductID { get; set; }
 
         [DisplayName("商品名稱")]
@@ -19,9 +20,17 @@ namespace OSLibrary.ViewModels
         [Required(ErrorMessage = "請輸入金額")]
         public decimal Price { get; set; }
 
+        [DisplayName("種類")]
         public string CategoryName { get; set; }
 
+        [DisplayName("性別")]
         public string Gender { get; set; }
+
+        [DisplayName("顯示")]
+        public string Online { get; set; }
+
+        [DisplayName("備註")]
+        public string Comments { get; set; }
 
         public string ImageUrl { get; set; }
     }

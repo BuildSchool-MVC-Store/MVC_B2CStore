@@ -41,10 +41,11 @@ namespace OSLibrary.ADO.NET.Repositories
             var sql = "SELECT * FROM Stock WHERE Product_ID = @Product_ID and Size=@Size and Color = @Color";
             return connection.QueryFirstOrDefault<Stock>(sql, new { Product_ID, Size, Color });
         }
-        public Stock GetByProductID(int Product_ID)
+
+        public Stock GetByProductID(int Product_ID, string Size, string Color)
         {
-            var sql = "SELECT * FROM Stock WHERE Product_ID = @Product_ID";
-            return connection.QueryFirstOrDefault<Stock>(sql, new { Product_ID });
+            var sql = "SELECT * FROM Stock WHERE Product_ID = @Product_ID AND Size = @Size AND Color = @Color";
+            return connection.QueryFirstOrDefault<Stock>(sql, new { Product_ID, Size, Color });
         }
 
         public IEnumerable<Stock> GetAll()
@@ -52,6 +53,7 @@ namespace OSLibrary.ADO.NET.Repositories
             var sql = "SELECT * FROM Stock";
             return connection.Query<Stock>(sql);
         }
+        
         public bool CheckInventory(int Product_ID, string Size, string Color, int needQuantity)
         {
             var sql = "SELECT * FROM Stock WHERE Product_ID = @Product_ID AND Size=@Size and Color = @Color";

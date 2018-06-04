@@ -23,15 +23,26 @@ namespace BackStageOnlineStore.Controllers
             return View();
         }
 
-        public ActionResult UpdateProduct()
+        [Route("UpdateProduct/{Product_ID}")]
+        public ActionResult UpdateProduct(int Product_ID)
         {
-            return View();
+            var service = new ProductService();
+            return View(service.GetProductByProductID(Product_ID));
         }
-        [HttpPost]
-        public ActionResult UpdateProduct(ProductModel model)
-        {
 
-            return View();
+        [HttpPost]
+        public ActionResult Update(int Product_ID, string ProductName, int Price, string CategoryName, string Gender, string Online, string Comments)
+        {
+            var service = new ProductService();
+            if(service.UpdateProducts(Product_ID, ProductName, Price, CategoryName, Gender, Online, Comments))
+            {
+                TempData["message"] = "更新成功";
+            }
+            else
+            {
+                TempData["message"] = "更新失敗，請聯絡客服";
+            }
+            return RedirectToAction("SelectProduct");
         }
     }
 }

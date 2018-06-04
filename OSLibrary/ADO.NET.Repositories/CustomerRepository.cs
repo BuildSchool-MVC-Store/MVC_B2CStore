@@ -105,5 +105,27 @@ namespace OSLibrary.ADO.NET.Repositories
             //reader.Close();
             //return customers;
         }
+
+        public decimal GetByAccountTotal(string Account)
+        {
+            using (SqlConnection connection = new SqlConnection(SqlConnect.str))
+            {
+                string sql = "SELECT SUM(od.Price*od.Quantity) AS Total FROM Customers AS c INNER JOIN Orders AS o ON c.Account = o.Account INNER JOIN Order_Details AS od ON o.Order_ID = od.Order_ID WHERE c.Account = @Account GROUP BY c.Account";
+                IDataReader reader = connection.ExecuteReader(sql, new { Account });
+                while (reader.Read())
+                {
+                    if (reader["Total"] == null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return decimal.Parse(reader["Total"].ToString());
+                    }
+                }
+                return 0;
+            }
+
+        }
     }
 }
