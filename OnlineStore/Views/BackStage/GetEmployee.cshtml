@@ -4,82 +4,91 @@
     ViewBag.Title = "GetEmployee";
     Layout = "~/Views/Shared/_LayoutBackStagePage.cshtml";
 }
+<div class="container-fluid">
 
-<ol class="breadcrumb">
-    <li class="breadcrumb-item">
-        <a href="Backstage.html">主頁</a>
-    </li>
-    <li class="breadcrumb-item">
-        <a href="Backstage_Employee_Select_Delete.html">員工</a>
-    </li>
-    <li class="breadcrumb-item active">修改員工資料</li>
-</ol>
-<div class="row mb-4">
-    <div class="col">
-        <h4>修改員工資料</h4>
+
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="breadcrumb-holder">
+                <h1 class="main-title float-left">Update Employee</h1>
+                <ol class="breadcrumb float-right">
+                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item">Employees</li>
+                    <li class="breadcrumb-item active">Update Employee</li>
+                </ol>
+                <div class="clearfix"></div>
+            </div>
+        </div>
     </div>
-</div>
-<div class="row mb-4">
-    <div class="col-1 text-right">
-        <b>姓名</b>
+    <!-- end row -->
+
+
+
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h3>
+                        <i class="fas fa-user-edit"></i> Update Employee
+                    </h3>
+                </div>
+
+                <div class="card-body">
+
+                    <form action="#" data-parsley-validate novalidate>
+                        <div class="form-group">
+                            <label>Employee Account</label>
+                            <input type="text" name="" value="@Model.Account" data-parsley-trigger="change" required placeholder="Enter Employee Account" class="form-control" id="">
+                        </div>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="email" name="" value="@Model.Email" data-parsley-trigger="change" required placeholder="Enter Name" class="form-control" id="">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input id="" type="password"value="@Model.Password" placeholder="Enter Password" required class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input data-parsley-equalto="#pass1" type="password" required placeholder="Enter Password Again" class="form-control" id="">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <div>
+                                <input data-parsley-type="url" value="@Model.Phone" type="text" class="form-control" required placeholder="Enter Phone Number" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Birthday</label>
+                            <div>
+                                <input data-parsley-type="number"value="@Model.Birthday" type="text" class="form-control" required placeholder="Enter Birthday" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <div>
+                                <input data-parsley-type="number" value="@Model.Address" type="text" class="form-control" required placeholder="Enter Birthday" />
+                            </div>
+                        </div>
+
+                        <div class="form-group text-right m-b-0">
+                            <button class="btn btn-primary" type="submit">
+                                Submit
+                            </button>
+                            <button type="reset" class="btn btn-secondary m-l-5">
+                                Cancel
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+            <!-- end card-->
+        </div>
+
     </div>
-    <div class="col-3">
-        <input type="text"value="@Model.Name" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-    </div>
-</div>
-<div class="row mb-4">
-    <div class="col-1 text-right">
-        <b>帳號</b>
-    </div>
-    <div class="col-3">
-        <input type="text" value="@Model.Account"class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-    </div>
-</div>
-<div class="row mb-4">
-    <div class="col-1 text-right">
-        <b>密碼</b>
-    </div>
-    <div class="col-3">
-        <input type="password" value="@Model.Password"class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-    </div>
-</div>
-<div class="row mb-4">
-    <div class="col-1 text-right">
-        <b>生日</b>
-    </div>
-    <div class="col-3">
-        <input type="date" value="@Model.Birthday"class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-    </div>
-</div>
-<div class="row mb-4">
-    <div class="col-1 text-right">
-        <b>電話</b>
-    </div>
-    <div class="col-3">
-        <input type="text" value="@Model.Phone"class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-    </div>
-</div>
-<div class="row mb-4">
-    <div class="col-1 text-right">
-        <b>信箱</b>
-    </div>
-    <div class="col-3">
-        <input type="email" value="@Model.Email"class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-    </div>
-</div>
-<div class="row mb-5">
-    <div class="col-1 text-right">
-        <b>地址</b>
-    </div>
-    <div class="col-3">
-        <input type="text" value="@Model.Address" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-    </div>
-</div>
-<div class="row mb-4">
-    <div class="col-2">
-        <a class="btn btn-secondary btn-block" href="#" role="button">取消</a>
-    </div>
-    <div class="col-2">
-        <a class="btn btn-success btn-block" href="#" role="button">儲存</a>
-    </div>
+
+
 </div>
