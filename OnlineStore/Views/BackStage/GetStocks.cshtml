@@ -37,15 +37,51 @@
                             <td>@item.Size</td>
                             <td>@item.Quantity</td>
                             <td>
-                                <a href="Backstage_Stock_Update.html">
-                                    <i class="far fa-edit" style="color:black"></i>
+                                <a class="btn btn-warning btn-sm" href="updateStocks.html" role="button">
+                                    <i class="far fa-edit"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-warning btn-sm" href="#" role="button">
+                                    <i class="far fa-edit"></i>
                                 </a>
                             </td>
                         </tr>
-                    } 
+                    }
                 </tbody>
             </table>
         </div>
     </div>
     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 </div>
+
+<div class="modal fade" id="addQuantity" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">JUJUBE</h5>
+
+            </div>
+            <div class="modal-body">
+                <p class="text-left">商品已加入購物車</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" style="width:20%" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+            $(document).ready(function () {
+                let message = @Html.Raw(Json.Encode(TempData["Message"]));
+                $('#addQuantity p').html(message);
+                $('#addQuantity').modal();
+
+            });
+
+        TempData.Remove("Message");
+    </script>
+}
