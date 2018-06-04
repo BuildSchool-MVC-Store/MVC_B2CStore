@@ -253,56 +253,53 @@
                                 <li>
                                     <a href="#">Create</a>
                                 </li>
-                                <li>
-                                    <a href="#">Update</a>
-                                </li>
                             </ul>
                         </li>
 
                         <li class="submenu">
-                            <a href="@Url.Action("GetProducts","BackStage")">
+                            <a href="#">
                                 <i class="fas fa-box"></i>
                                 <span> Products </span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a href="createProducts.html">Create</a>
+                                    <a href="@Url.Action("GetProducts","BackStage")">Search</a>
                                 </li>
                                 <li>
-                                    <a href="updateProducts.html">Update</a>
+                                    <a href="createProducts.html">Create</a>
                                 </li>
                             </ul>
                         </li>
 
                         <li class="submenu">
-                            <a href="@Url.Action("GetStocks","BackStage")">
+                            <a href="#">
                                 <i class="fas fa-boxes"></i>
                                 <span> Stocks </span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a href="createStocks.html">Create</a>
+                                    <a href="@Url.Action("GetStocks","BackStage")">Search</a>
                                 </li>
                                 <li>
-                                    <a href="updateStocks.html">Update</a>
+                                    <a href="createStocks.html">Create</a>
                                 </li>
                             </ul>
                         </li>
 
                         <li class="submenu">
-                            <a href="@Url.Action("GetOrders","BackStage")">
+                            <a href="#">
                                 <i class="far fa-file"></i>
                                 <span> Orders </span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a href="createOrders.html">Create</a>
+                                    <a href="@Url.Action("GetOrders","BackStage")">Search</a>
                                 </li>
                                 <li>
-                                    <a href="updateOrders.html">Update</a>
+                                    <a href="createOrders.html">Create</a>
                                 </li>
                             </ul>
                         </li>
@@ -315,19 +312,25 @@
                             </a>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a href="createOrderDetails.html">Create</a>
+                                    <a href="#">Search</a>
                                 </li>
                                 <li>
-                                    <a href="updateOrderDetails.html">Update</a>
+                                    <a href="createOrderDetails.html">Create</a>
                                 </li>
                             </ul>
                         </li>
 
                         <li class="submenu">
-                            <a href="selectCustomers.html">
+                            <a href="#">
                                 <i class="fas fa-users"></i>
                                 <span> Customers </span>
+                                <span class="menu-arrow"></span>
                             </a>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="@Url.Action("GetCustomers","BackStage")">Search</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
 
