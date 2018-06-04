@@ -26,7 +26,7 @@ namespace OnlineStore.Controllers
                     if (shoppingcart.Count() == 0)
                     {
                         TempData["Message"] = "購物車是空的，返回上一頁";
-                        return RedirectToAction("Index", "Home");
+                        return Redirect(Request.UrlReferrer.ToString());
                     }
                     ViewBag.totalmoney = shoppingcart.Sum(x => x.RowPrice);
                     return View(shoppingcart);
@@ -34,13 +34,13 @@ namespace OnlineStore.Controllers
                 catch
                 {
                     TempData["Message"] = "錯誤，稍後重試";
-                    return RedirectToAction("Index", "Home");
+                    return Redirect(Request.UrlReferrer.ToString());
                 }
             }
             else
             {
                 TempData["Message"] = "請先登入會員";
-                return RedirectToAction("Index", "Home");
+                return Redirect(Request.UrlReferrer.ToString());
             }
         }
         [HttpPost]
@@ -76,7 +76,7 @@ namespace OnlineStore.Controllers
                 catch
                 {
                     TempData["Message"] = "錯誤，稍後重試";
-                    return RedirectToAction("Index", "Home");
+                    return Redirect(Request.UrlReferrer.ToString());
                 }
             }
             else
