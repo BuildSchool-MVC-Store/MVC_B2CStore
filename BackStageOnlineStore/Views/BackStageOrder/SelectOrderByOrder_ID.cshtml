@@ -1,0 +1,45 @@
+﻿@model OSLibrary.Models.Orders
+
+@{
+    ViewBag.Title = "SelectOrderByOrder_ID";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<p>@Model.Order_ID</p>
+<p>@Model.Account</p>
+<p>
+    @Model.Order_Date
+</p>
+<p>
+    <select>
+        <option value="">@Model.Order_Check</option>
+        <option value="">備貨中</option>
+        <option value="">已出貨</option>
+        <option value="">已取貨</option>
+    </select>
+</p>
+<p>
+    2018/05/25
+</p>
+<p>
+    @Model.Total
+</p>
+<p>
+    <select>
+        <option value="">@Model.Pay</option>
+        <option value="">貨到付款</option>
+        <option value="">超商取貨付款</option>
+    </select>
+</p>
+<p>
+    <select>
+        <option value="">@Model.Transport</option>
+        <option value="">宅配</option>
+        <option value="">超商取貨</option>
+    </select>
+</p>
+<p class="text-center">
+    <i class="fas fa-pencil-alt"></i>
+</p>
+<p class="text-center">
+    <i class="fas fa-trash-alt"></i>
+</p>

@@ -93,19 +93,33 @@ namespace OSLibrary.Sevices
                 return ex.Message;
             }
         }
+
+
+
         public IEnumerable<Orders> BackStageGetAllOrders()
         {
             OrdersRepository Orders_R = new OrdersRepository();
-          
             return Orders_R.GetAll();
+           
         }
 
         public IEnumerable<Orders> BackStageGetAccountOrders(string Account)
         {
-            OrdersRepository Orders_R = new OrdersRepository();
+            //OrdersRepository Orders_R = new OrdersRepository();
 
-            return Orders_R.GetByAccount(Account);
+            //return Orders_R.GetByAccount(Account);
+            return new OrdersRepository().GetByAccount(Account);
         }
+
+
+        public Orders BackStageGetOrderByOrder_ID(int Order_ID)
+        {
+            OrdersRepository Orders_R = new OrdersRepository();
+            return Orders_R.GetByOrder_ID(Order_ID);
+        }
+
+
+
 
     }
 }
