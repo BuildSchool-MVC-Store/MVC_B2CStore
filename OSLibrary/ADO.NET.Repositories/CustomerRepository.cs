@@ -17,12 +17,12 @@ namespace OSLibrary.ADO.NET.Repositories
         private SqlConnection connection = new SqlConnection(SqlConnect.str);
         public void Create(Customers model)
         {
-            var sql = "INSERT INTO Customers (Account, Password, Email) VALUES (@Account, @Password, @Email)";
+            var sql = "INSERT INTO Customers (Account, Password, Email, Birthday) VALUES (@Account, @Password, @Email, @Birthday)";
             connection.Execute(sql, model);
         }
         public void Update(Customers model)
         {
-            var sql = "UPDATE Customers SET Name = @Name ,Email = @Email,Phone = @Phone,Address = @Address WHERE Account = @Account";
+            var sql = "UPDATE Customers SET Name = @Name ,Email = @Email ,Phone = @Phone ,Address = @Address, Birthday = @Birthday WHERE Account = @Account";
             connection.Execute(sql, model);
         }
         public void UpdatePassword(string Account,string Password)

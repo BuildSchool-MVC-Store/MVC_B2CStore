@@ -13,6 +13,7 @@ namespace OSLibrary.ViewModels
         public string Email { get; set; }
         public string Address { get; set; }
         public string PassWord { get; set; }
+        public DateTime Birthday { get; set; }
         public List<PersonOrder> Order { get; set; }
     }
     public class PersonOrder

@@ -81,6 +81,7 @@ namespace OSLibrary.Sevices
                 Address = result.Address,
                 Phone = result.Phone,
                 Email = result.Email,
+                Birthday = result.Birthday
             };
             customer.Order = O_repostiory.GetByAccountOfPresonOrder(Account).ToList();
             foreach (var item in customer.Order)

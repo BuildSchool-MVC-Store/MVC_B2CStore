@@ -35,6 +35,9 @@ namespace OSLibrary.Models
         [StringLength(50)]
         public string Address { get; set; }
 
+        [Column(TypeName = "date")]
+        public DateTime Birthday { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orders> Orders { get; set; }
 
