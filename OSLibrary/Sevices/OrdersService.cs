@@ -99,5 +99,13 @@ namespace OSLibrary.Sevices
           
             return Orders_R.GetAll();
         }
+
+        public IEnumerable<Orders> BackStageGetAccountOrders(string Account)
+        {
+            OrdersRepository Orders_R = new OrdersRepository();
+
+            return Orders_R.GetByAccount(Account);
+        }
+
     }
 }

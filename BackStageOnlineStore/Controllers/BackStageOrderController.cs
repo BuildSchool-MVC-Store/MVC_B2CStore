@@ -12,7 +12,13 @@ namespace BackStageOnlineStore.Controllers
         // GET: BackStageOrder
         public ActionResult SelectOrder()
         {
-            return View();
+            OrdersService ordersService = new OrdersService();
+            return View(ordersService.BackStageGetAllOrders());
+        }
+        public ActionResult SelectOrderByAccount(string Account)
+        {
+            OrdersService ordersService = new OrdersService();
+            return View(ordersService.BackStageGetAccountOrders(Account));
         }
 
         public ActionResult CreateOrder()

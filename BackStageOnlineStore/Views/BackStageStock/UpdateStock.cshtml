@@ -1,4 +1,4 @@
-﻿
+﻿@model OSLibrary.ViewModels.StockModel
 @{
     ViewBag.Title = "UpdateStock";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -14,37 +14,30 @@
     <div class="col-12">
         <h4 class="mt-2">商品庫存修改</h4>
         <div class="container-fluid">
-
-        </div>
-        <div class="container-fluid">
             <div class="row">
                 <div class="col-6">
+                    @using (Html.BeginForm("UpdateStock", "BackStageStock"))
+                    {
                     <div class="container mt-5 text-left">
-
                         <div class="row">
-
                             <div class="col-4 mt-2 ">
-                                <b>商品編號</b>
+                                <b>@Html.DisplayNameFor(model=>model.Product_ID)</b>
                             </div>
                             <div class="col">
-                                <input class="form-control" aria-describedby="basic-addon1" type="text" readonly>
+                                <input class="form-control" aria-describedby="basic-addon1" type="text" readonly value="@Model.Product_ID">
                             </div>
-
                         </div>
                         <div class="row mt-3  ">
-
                             <div class="col-4 mt-2 ">
-                                <b>商品名稱</b>
+                                <b>@Html.DisplayNameFor(model=>model.ProductName)</b>
                             </div>
                             <div class="col">
-                                <input class="form-control" aria-describedby="basic-addon1" type="text" readonly>
+                                <input class="form-control" aria-describedby="basic-addon1" type="text" readonly value="@Model.ProductName">
                             </div>
-
                         </div>
-
                         <div class="row mt-3">
                             <div class="col-4 mt-2">
-                                <b>尺寸</b>
+                                <b>@Html.DisplayNameFor(model=>model.Size)</b>
                             </div>
                             <div class="col">
                                 <select class="form-control">
@@ -56,36 +49,34 @@
                                 </select>
                             </div>
                         </div>
-
                         <div class="row mt-3 ">
                             <div class="col-4 mt-2">
-                                <b>顏色</b>
+                                <b>@Html.DisplayNameFor(model=>model.Color)</b>
                             </div>
                             <div class="col">
-                                <input class="form-control" aria-describedby="basic-addon2" type="text">
+                                <input class="form-control" aria-describedby="basic-addon2" type="text" readonly value="@Model.Color">
                             </div>
                         </div>
                         <div class="row mt-3 ">
                             <div class="col-4 mt-2">
-                                <b>數量</b>
+                                <b>@Html.DisplayNameFor(model=>model.Quantity)</b>
                             </div>
                             <div class="col">
-                                <input class="form-control" aria-describedby="basic-addon2" type="text">
+                                <input class="form-control" aria-describedby="basic-addon2" type="text" value="@Model.Quantity">
                             </div>
                         </div>
                         <div class="row mt-4">
                             <div class="col text-center">
-                                <a class="btn btn-secondary btn-block" href="@Url.Action("SelectStock","BackStageStock")">取消</a>
+                                <a class="btn btn-secondary btn-block" href="@Url.Action("SelectStock", "BackStageStock")">取消</a>
                             </div>
                             <div class="col text-center bmr">
                                 <a class="btn btn-success btn-block" href="#">儲存</a>
                             </div>
                         </div>
-
                     </div>
+                    }
                 </div>
             </div>
         </div>
-
     </div>
 </div>

@@ -41,10 +41,10 @@ namespace OSLibrary.ADO.NET.Repositories
             var sql = "SELECT * FROM Stock WHERE Product_ID = @Product_ID and Size=@Size and Color = @Color";
             return connection.QueryFirstOrDefault<Stock>(sql, new { Product_ID, Size, Color });
         }
-        public IEnumerable<Stock> GetByProductID(int Product_ID)
+        public Stock GetByProductID(int Product_ID)
         {
             var sql = "SELECT * FROM Stock WHERE Product_ID = @Product_ID";
-            return connection.Query<Stock>(sql, new { Product_ID });
+            return connection.QueryFirstOrDefault<Stock>(sql, new { Product_ID });
         }
 
         public IEnumerable<Stock> GetAll()

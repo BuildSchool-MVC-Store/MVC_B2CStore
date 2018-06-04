@@ -16,9 +16,10 @@
 
     </div>
     <div class="card-body">
-
+        
         <div class="table-responsive">
-
+            @using (Html.BeginForm("DeleteEmployee", "BackStageEmployee"))
+            {
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
                 <thead>
@@ -42,7 +43,6 @@
                     </tr>
                 </tfoot>
                 <tbody>
-
                     @foreach (var item in Model)
                     {
                         <tr>
@@ -56,18 +56,16 @@
                                 </a>
                             </td>
                             <td class="text-center">
-                                <a href="#">
-                                    <i class="fas fa-trash-alt" style=" color:#000"></i>
-                                </a>
+                                <button type="submit" onclick="return confirm('確定要刪除?')">
+                                    <i class="fas fa-trash-alt" style="color:#000"></i>
+                                </button>
+                                <input type="hidden" name="Account" value="@item.Account" />
                             </td>
-
                         </tr>
                     }
-
                 </tbody>
-
             </table>
-
+            }
         </div>
         <div class="mt-2" style=" padding-left: 15px;">
             <a href="@Url.Action("CreateEmployee","BackStageEmployee")">
@@ -75,6 +73,7 @@
             </a>
         </div>
     </div>
+    
     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 
 </div>

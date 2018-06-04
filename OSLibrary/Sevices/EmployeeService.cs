@@ -1,4 +1,5 @@
 ﻿using OSLibrary.ADO.NET.Repositories;
+using OSLibrary.Models;
 using OSLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,72 @@ namespace OSLibrary.Sevices
                 Employees.Add(Employee);
             }
             return Employees;
+        }
+
+        public bool CreateEmployee(string Name, string Account, string Password, DateTime Birthday,
+            string Email, string Phone, string Address)
+        {
+            var Employee = new Employees()
+            {
+                Name = Name,
+                Account = Account,
+                Password = Password,
+                Birthday = Birthday,
+                Email = Email,
+                Phone = Phone,
+                Address = Address
+
+            };
+            EmployeesRepository employeesRepository = new EmployeesRepository();
+            try
+            {
+                employeesRepository.Create(Employee);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool ChangeEmployee(string Name, string Account, string Password, DateTime Birthday,
+            string Email, string Phone, string Address)
+        {
+            var Employee = new Employees()
+            {
+                Name = Name,
+                Account = Account,
+                Password = Password,
+                Birthday = Birthday,
+                Email = Email,
+                Phone = Phone,
+                Address = Address
+                
+            };
+            EmployeesRepository employeesRepository = new EmployeesRepository();
+            try
+            {
+                employeesRepository.Update(Employee);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteEmployee(string Account)
+        {
+            var Employee = new EmployeesRepository();
+            try
+            {
+                Employee.Delete(Account);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

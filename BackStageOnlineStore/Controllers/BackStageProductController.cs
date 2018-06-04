@@ -1,4 +1,5 @@
 ﻿using OSLibrary.Sevices;
+using OSLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,12 @@ namespace BackStageOnlineStore.Controllers
 
         public ActionResult UpdateProduct()
         {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult UpdateProduct(ProductModel model)
+        {
+
             return View();
         }
     }
