@@ -174,10 +174,23 @@
     <Content Include="App_Data\BizDb_log.ldf">
       <DependentUpon>BizDb.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\backstageCSS\bootstrap-checkbox.css" />
+    <Content Include="Content\backstageCSS\bootstrap-grid.css" />
+    <Content Include="Content\backstageCSS\bootstrap-grid.min.css" />
+    <Content Include="Content\backstageCSS\bootstrap-reboot.css" />
+    <Content Include="Content\backstageCSS\bootstrap-reboot.min.css" />
+    <Content Include="Content\backstageCSS\bootstrap.css" />
+    <Content Include="Content\backstageCSS\bootstrap.min.css" />
+    <Content Include="Content\backstageCSS\coming-soon.css" />
+    <Content Include="Content\backstageCSS\font-awesome.min.css" />
+    <Content Include="Content\backstageCSS\login.css" />
+    <Content Include="Content\backstageCSS\pricing-tables.css" />
+    <Content Include="Content\backstageCSS\style.css" />
     <Content Include="Content\main.css" />
     <Content Include="Content\product.css" />
     <Content Include="Content\sb-main.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -194,23 +207,21 @@
     <Content Include="Images\Products\WOMEN\180524_0023.jpg" />
     <Content Include="Images\Products\WOMEN\180524_0034.jpg" />
     <Content Include="Images\Products\WOMEN\180524_0035.jpg" />
-    <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\main.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\detect.js" />
+    <Content Include="Scripts\fastclick.js" />
+    <Content Include="Scripts\jquery.blockUI.js" />
+    <Content Include="Scripts\jquery.counterup.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.nicescroll.js" />
+    <Content Include="Scripts\jquery.waypoints.min.js" />
+    <Content Include="Scripts\modernizr.min.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\pikeadmin.js" />
+    <Content Include="Scripts\popper.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -261,8 +272,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\Products\KIDS\" />

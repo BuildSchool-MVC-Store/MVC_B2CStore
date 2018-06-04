@@ -5,47 +5,62 @@
     Layout = "~/Views/Shared/_LayoutBackStagePage.cshtml";
 }
 
-<ol class="breadcrumb">
-    <li class="breadcrumb-item">
-        <a href="Backstage.html">主頁</a>
-    </li>
-    <li class="breadcrumb-item active">員工</li>
-</ol>
-<div class="card mb-3">
-    <div class="card-header">
-        <i class="fa fa-table"></i> 員工資料
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>姓名</th>
-                        <th>帳號</th>
-                        <th>電話</th>
-                        <th>生日</th>
-                        <th>修改</th>
-                        <th>刪除</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@item.Account</td>
-                            <td>@item.Name</td>
-                            <td>@item.Phone</td>
-                            <td>@item.Birthday</td>
-                            <td><a href="@Url.Action("GetEmployee", "BackStage",new {item.Account})"><i class="fas fa-pencil-alt" style="color:#000"></i></a></td>
-                            <td><a href="#"><i class="fas fa-trash-alt" style=" color:#000"></i></a></td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-        <div class="mt-2 ml-3">
-            <a href="Backstage_Employee_Create.html"><i class="fas fa-user-plus" style="font-size:1.5em; color:darkseagreen"></i></a>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="breadcrumb-holder">
+                <h1 class="main-title float-left">Employee details</h1>
+                <ol class="breadcrumb float-right">
+                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item">Employees</li>
+                    <li class="breadcrumb-item active">Employee details</li>
+                </ol>
+                <div class="clearfix"></div>
+            </div>
         </div>
     </div>
-    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+    <!-- end row -->
+    <div class="row">
+
+        <div class="col">
+            <div class="card mb-3 mt-3">
+                <div class="card-header">
+                    <h3>
+                        <i class="fas fa-users-cog"></i> Employee details
+                    </h3>
+                </div>
+
+                <div class="card-body">
+
+                    <table id="example1" class="table table-bordered table-responsive-xl table-hover display">
+                        <thead>
+                            <tr>
+                                <th>Account</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Birthday</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Account</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Phone</td>
+                                    <td>@item.Birthday</td>
+                                    <td><a href="@Url.Action("GetEmployee", "BackStage",new {item.Account})"><i class="far fa-edit"></i></a></td>
+                                    <td><a href="#"><i class="fas fa-trash-alt" style=" color:#000"></i></a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- end card-->
+        </div>
+    </div>
 </div>
+
