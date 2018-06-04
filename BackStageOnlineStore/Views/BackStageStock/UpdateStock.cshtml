@@ -16,7 +16,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-6">
-                    @using (Html.BeginForm("UpdateStock", "BackStageStock"))
+                    @using (Html.BeginForm("Update", "BackStageStock"))
                     {
                     <div class="container mt-5 text-left">
                         <div class="row">
@@ -24,7 +24,7 @@
                                 <b>@Html.DisplayNameFor(model=>model.Product_ID)</b>
                             </div>
                             <div class="col">
-                                <input class="form-control" aria-describedby="basic-addon1" type="text" readonly value="@Model.Product_ID">
+                                <input name="Product_ID" class="form-control" aria-describedby="basic-addon1" type="text" readonly value="@Model.Product_ID">
                             </div>
                         </div>
                         <div class="row mt-3  ">
@@ -32,7 +32,7 @@
                                 <b>@Html.DisplayNameFor(model=>model.ProductName)</b>
                             </div>
                             <div class="col">
-                                <input class="form-control" aria-describedby="basic-addon1" type="text" readonly value="@Model.ProductName">
+                                <input name="ProductName" class="form-control" aria-describedby="basic-addon1" type="text" readonly value="@Model.ProductName" />
                             </div>
                         </div>
                         <div class="row mt-3">
@@ -40,13 +40,7 @@
                                 <b>@Html.DisplayNameFor(model=>model.Size)</b>
                             </div>
                             <div class="col">
-                                <select class="form-control">
-                                    <option value="XS">XS</option>
-                                    <option value="S">S</option>
-                                    <option value="M">M</option>
-                                    <option value="X">X</option>
-                                    <option value="XL">XL</option>
-                                </select>
+                                <input name="Size" class="form-control" aria-describedby="basic-addon2" type="text" readonly value="@Model.Size" />
                             </div>
                         </div>
                         <div class="row mt-3 ">
@@ -54,7 +48,7 @@
                                 <b>@Html.DisplayNameFor(model=>model.Color)</b>
                             </div>
                             <div class="col">
-                                <input class="form-control" aria-describedby="basic-addon2" type="text" readonly value="@Model.Color">
+                                <input name="Color" class="form-control" aria-describedby="basic-addon3" type="text" readonly value="@Model.Color" />
                             </div>
                         </div>
                         <div class="row mt-3 ">
@@ -62,7 +56,8 @@
                                 <b>@Html.DisplayNameFor(model=>model.Quantity)</b>
                             </div>
                             <div class="col">
-                                <input class="form-control" aria-describedby="basic-addon2" type="text" value="@Model.Quantity">
+                                @Html.TextBoxFor(model=>model.Quantity, new { @class = "form-control", @type = "text", @name = "Quantity"})
+                                @Html.ValidationMessageFor(model=>model.Quantity, null, new { @class = "text-danger"})
                             </div>
                         </div>
                         <div class="row mt-4">
@@ -70,7 +65,7 @@
                                 <a class="btn btn-secondary btn-block" href="@Url.Action("SelectStock", "BackStageStock")">取消</a>
                             </div>
                             <div class="col text-center bmr">
-                                <a class="btn btn-success btn-block" href="#">儲存</a>
+                                <button class="btn btn-success btn-block" type="submit">儲存</button>
                             </div>
                         </div>
                     </div>

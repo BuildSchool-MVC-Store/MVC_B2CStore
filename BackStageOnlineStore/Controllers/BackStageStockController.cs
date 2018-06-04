@@ -18,18 +18,18 @@ namespace BackStageOnlineStore.Controllers
             return View(service.GetAllByStock());
         }
 
-        [Route("UpdateStock/{Product_ID}")]
-        public ActionResult UpdateStock(int Product_ID)
+        [Route("UpdateStock/{Product_ID}/{Size}/{Color}")]
+        public ActionResult UpdateStock(int Product_ID, string Size, string Color)
         {
             var service = new StockService();
-            return View(service.GetProductIDByStock(Product_ID));
+            return View(service.GetProductIDByStock(Product_ID, Size, Color));
         }
 
         [HttpPost]
-        public ActionResult UpdateStock(int Product_ID, string Color, string Size, int Quantity)
+        public ActionResult Update(int Product_ID, string Color, string Size, int? Quantity)
         {
             var service = new StockService();
-            if(service.UpdateStock(Product_ID, Size, Quantity, Color))
+            if(service.UpdateStock(Product_ID, Color, Size, Quantity))
             {
                 TempData["message"] = "修改成功";
             }

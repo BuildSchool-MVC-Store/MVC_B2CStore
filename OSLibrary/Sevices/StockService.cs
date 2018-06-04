@@ -11,11 +11,11 @@ namespace OSLibrary.Sevices
 {
     public class StockService
     {
-        public StockModel GetProductIDByStock(int Product_ID)
+        public StockModel GetProductIDByStock(int Product_ID, string Size, string Color)
         {
             var stockrepository = new StockRepository();
             var productrepository = new ProductsRepository();
-            var model = stockrepository.GetByProductID(Product_ID);
+            var model = stockrepository.GetByProductID(Product_ID, Size, Color);
             return new StockModel()
             {
                 Product_ID = model.Product_ID,
@@ -45,13 +45,13 @@ namespace OSLibrary.Sevices
             return stocks;
         }
 
-        public bool UpdateStock(int Product_ID, string Size, int? Quantity, string Color)
+        public bool UpdateStock(int Product_ID, string Color, string Size, int? Quantity)
         {
             var stock = new Stock()
             {
                 Product_ID = Product_ID,
-                Size = Size,
                 Color = Color,
+                Size = Size,
                 Quantity = Quantity
             };
             var repository = new StockRepository();
