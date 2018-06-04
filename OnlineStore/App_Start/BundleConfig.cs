@@ -34,7 +34,6 @@ namespace OnlineStore
                       "~/Scripts/main.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/site.css",
                       "~/Content/main.css",
                       "~/Content/product.css"
                       ));
