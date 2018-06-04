@@ -1,142 +1,378 @@
-﻿<!DOCTYPE html>
+﻿@*<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>後台主頁</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+              crossorigin="anonymous">
+        <!-- Custom styles for this template-->
+        @Styles.Render("~/BackStage/css")
+    </head>
+
+    <body class="fixed-nav sticky-footer bg-dark" id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+            <a class="navbar-brand" href="Backstage.html">JUJUBE</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+                        <a class="nav-link" href="@Url.Action("Index","BackStage")">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span class="nav-link-text">主頁</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="@Url.Action("GetEmployees","BackStage")" data-parent="#exampleAccordion">
+                            <i class="fas fa-wrench"></i>
+                            <span class="nav-link-text">員工管理</span>
+                        </a>
+
+                    </li>
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="@Url.Action("GetProducts","BackStage")" data-parent="#exampleAccordion">
+                            <i class="fas fa-wrench"></i>
+                            <span class="nav-link-text">商品管理</span>
+                        </a>
+                        <ul class="sidenav-second-level collapse" id="collapseComponents2">
+                            <li>
+                                <a href="Backstage_Product_Select_Delete.html">商品資料</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="@Url.Action("GetOrders","BackStage")" data-parent="#exampleAccordion">
+                            <i class="fas fa-wrench"></i>
+                            <span class="nav-link-text">訂單管理</span>
+                        </a>
+                        <ul class="sidenav-second-level collapse" id="collapseComponents1">
+                            <li>
+                                <a href="Backstage_Orders_Search.html">訂單資料</a>
+                            </li>
+                            <li>
+                                <a href="Backstage_OrderDetails_Select.html">訂單明細資料</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="@Url.Action("GetStocks","BackStage")" data-parent="#exampleAccordion">
+                            <i class="fas fa-wrench"></i>
+                            <span class="nav-link-text">庫存管理</span>
+                        </a>
+                        <ul class="sidenav-second-level collapse" id="collapseComponentsˋ">
+                            <li>
+                                <a href="Backstage_Stock_Select.html">庫存資料</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="@Url.Action("GetCustomers","BackStage")" data-parent="#exampleAccordion">
+                            <i class="fas fa-wrench"></i>
+                            <span class="nav-link-text">客戶管理</span>
+                        </a>
+                        <ul class="sidenav-second-level collapse" id="collapseComponentsˇ">
+                            <li>
+                                <a href="Backstage_Customers_Select.html">客戶資料</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="navbar-nav sidenav-toggler">
+                    <li class="nav-item">
+                        <a class="nav-link text-center" id="sidenavToggler">
+                            <i class="fa fa-fw fa-angle-left"></i>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                            <i class="fa fa-fw fa-sign-out"></i>登出
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="content-wrapper">
+            <div class="container-fluid">
+                <!-- Breadcrumbs-->
+                @RenderBody()
+            </div>
+            <!-- /.container-fluid-->
+            <!-- /.content-wrapper-->
+            <footer class="sticky-footer">
+                <div class="container">
+                    <div class="text-center">
+                        <small>Copyright © JUJUBE 2018</small>
+                    </div>
+                </div>
+            </footer>
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fa fa-angle-up"></i>
+            </a>
+            <!-- Logout Modal-->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-primary" href="login.html">登出</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Bootstrap core JavaScript-->
+        </div>
+    </body>
+
+    </html>*@
+
+
+
+[<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>後台主頁</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
-          crossorigin="anonymous">
-    <!-- Custom styles for this template-->
-    @Styles.Render("~/BackStage/css")
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Backstage &dash; JUJUBE</title>
+    <meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
+    <meta name="author" content="Pike Web Development - https://www.pikephp.com">
+
+    <!-- Bootstrap CSS -->
+    @Styles.Render("~/Backstage/css")>
+    <!-- Font Awesome CSS -->
+    <link href="~/Content/backstageCSS/font-awesome.min.css" rel="stylesheet" />
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <!-- BEGIN CSS for this page -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
+    <!-- END CSS for this page -->
 </head>
-
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-        <a class="navbar-brand" href="Backstage.html">JUJUBE</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                    <a class="nav-link" href="@Url.Action("Index","BackStage")">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <span class="nav-link-text">主頁</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="@Url.Action("GetEmployees","BackStage")" data-parent="#exampleAccordion">
-                        <i class="fas fa-wrench"></i>
-                        <span class="nav-link-text">員工管理</span>
-                    </a>
-                    
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="@Url.Action("GetProducts","BackStage")" data-parent="#exampleAccordion">
-                        <i class="fas fa-wrench"></i>
-                        <span class="nav-link-text">商品管理</span>
-                    </a>
-                    <ul class="sidenav-second-level collapse" id="collapseComponents2">
-                        <li>
-                            <a href="Backstage_Product_Select_Delete.html">商品資料</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="@Url.Action("GetOrders","BackStage")" data-parent="#exampleAccordion">
-                        <i class="fas fa-wrench"></i>
-                        <span class="nav-link-text">訂單管理</span>
-                    </a>
-                    <ul class="sidenav-second-level collapse" id="collapseComponents1">
-                        <li>
-                            <a href="Backstage_Orders_Search.html">訂單資料</a>
-                        </li>
-                        <li>
-                            <a href="Backstage_OrderDetails_Select.html">訂單明細資料</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="@Url.Action("GetStocks","BackStage")" data-parent="#exampleAccordion">
-                        <i class="fas fa-wrench"></i>
-                        <span class="nav-link-text">庫存管理</span>
-                    </a>
-                    <ul class="sidenav-second-level collapse" id="collapseComponentsˋ">
-                        <li>
-                            <a href="Backstage_Stock_Select.html">庫存資料</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="@Url.Action("GetCustomers","BackStage")" data-parent="#exampleAccordion">
-                        <i class="fas fa-wrench"></i>
-                        <span class="nav-link-text">客戶管理</span>
-                    </a>
-                    <ul class="sidenav-second-level collapse" id="collapseComponentsˇ">
-                        <li>
-                            <a href="Backstage_Customers_Select.html">客戶資料</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="navbar-nav sidenav-toggler">
-                <li class="nav-item">
-                    <a class="nav-link text-center" id="sidenavToggler">
-                        <i class="fa fa-fw fa-angle-left"></i>
-                    </a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-                        <i class="fa fa-fw fa-sign-out"></i>登出
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="content-wrapper">
-        <div class="container-fluid">
-            <!-- Breadcrumbs-->
-            @RenderBody()
-        </div>
-        <!-- /.container-fluid-->
-        <!-- /.content-wrapper-->
-        <footer class="sticky-footer">
-            <div class="container">
-                <div class="text-center">
-                    <small>Copyright © JUJUBE 2018</small>
-                </div>
+<body class="adminbody">
+    <div id="main">
+        <!-- top bar navigation -->
+        <div class="headerbar">
+            <!-- LOGO -->
+            <div class="headerbar-left">
+                <a href="index.html" class="logo">
+                    <span>JUJUBE</span>
+                </a>
             </div>
-        </footer>
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fa fa-angle-up"></i>
-        </a>
-        <!-- Logout Modal-->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
+            <nav class="navbar-custom">
+                <ul class="list-inline float-right mb-0">
+                    <li class="list-inline-item dropdown notif">
+                        <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <img src="assets/images/avatars/admin.png" alt="Profile image" class="avatar-rounded">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                            <!-- item-->
+                            <div class="dropdown-item noti-title">
+                                <h5 class="text-overflow">
+                                    <small>Hello, admin</small>
+                                </h5>
+                            </div>
+                            <!-- item-->
+                            <a href="updateEmployees.html" class="dropdown-item notify-item">
+                                <i class="fas fa-user"></i>
+                                <span>Profile</span>
+                            </a>
+                            <!-- item-->
+                            <a href="#" class="dropdown-item notify-item">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Logout</span>
+                            </a>
+
+                            <!-- item-->
+                            <a target="_blank" href="../index.html" class="dropdown-item notify-item">
+                                <i class="fas fa-home"></i>
+                                <span>JUJUBE</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="list-inline menu-left mb-0">
+                    <li class="float-left">
+                        <button class="button-menu-mobile open-left">
+                            <i class="fa fa-fw fa-bars"></i>
                         </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">登出</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Bootstrap core JavaScript-->
-    </div>
-</body>
+                    </li>
+                </ul>
 
+            </nav>
+
+        </div>
+        <!-- End Navigation -->
+        <!-- Left Sidebar -->
+        <div class="left main-sidebar">
+            <div class="sidebar-inner leftscroll">
+                <div id="sidebar-menu">
+                    <ul>
+                        <li class="submenu">
+                            <a class="active" href="index.html">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span> Dashboard </span>
+                            </a>
+                        </li>
+
+                        <li class="submenu">
+                            <a href="charts.html">
+                                <i class="fa fa-fw fa-area-chart"></i>
+                                <span> Charts </span>
+                            </a>
+                        </li>
+
+                        <li class="submenu">
+                            <a href="#">
+                                <i class="fas fa-users-cog"></i>
+                                <span> Employees </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="@Url.Action("GetEmployees","BackStage")">Search</a>
+                                </li>
+                                <li>
+                                    <a href="#">Create</a>
+                                </li>
+                                <li>
+                                    <a href="#">Update</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="submenu">
+                            <a href="@Url.Action("GetProducts","BackStage")">
+                                <i class="fas fa-box"></i>
+                                <span> Products </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="createProducts.html">Create</a>
+                                </li>
+                                <li>
+                                    <a href="updateProducts.html">Update</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="submenu">
+                            <a href="@Url.Action("GetStocks","BackStage")">
+                                <i class="fas fa-boxes"></i>
+                                <span> Stocks </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="createStocks.html">Create</a>
+                                </li>
+                                <li>
+                                    <a href="updateStocks.html">Update</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="submenu">
+                            <a href="@Url.Action("GetOrders","BackStage")">
+                                <i class="far fa-file"></i>
+                                <span> Orders </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="createOrders.html">Create</a>
+                                </li>
+                                <li>
+                                    <a href="updateOrders.html">Update</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="submenu">
+                            <a href="#">
+                                <i class="far fa-file-alt"></i>
+                                <span> Order Details </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="createOrderDetails.html">Create</a>
+                                </li>
+                                <li>
+                                    <a href="updateOrderDetails.html">Update</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="submenu">
+                            <a href="selectCustomers.html">
+                                <i class="fas fa-users"></i>
+                                <span> Customers </span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="clearfix"></div>
+
+                </div>
+
+                <div class="clearfix"></div>
+
+            </div>
+
+        </div>
+        <!-- End Sidebar -->
+
+        <div class="content-page">
+
+            <!-- Start content -->
+            <div class="content">
+                @RenderBody()
+
+                <!-- END container-fluid -->
+
+            </div>
+            <!-- END content -->
+
+        </div>
+        <!-- END content-page -->
+
+        <footer class="footer">
+            <p class="text-center mt-1 mb-1">
+                Copyright &copy; JUJUBE 2018
+            </p>
+        </footer>
+
+    </div>
+    <!-- END main -->
+    <!-- END Java Script for this page -->
+    <script src="~/Scripts/jquery.min.js"></script>
+
+    <!-- App js -->
+    <script src="~/Scripts/pikeadmin.js"></script>
+    <!-- BEGIN Java Script for this page -->
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>*@
+</body>
+<!-- END Java Script for this page -->
 </html>
