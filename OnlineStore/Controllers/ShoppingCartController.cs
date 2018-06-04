@@ -82,7 +82,7 @@ namespace OnlineStore.Controllers
             else
             {
                 TempData["Message"] = "請先登入會員";
-                return RedirectToAction("Index", "Home");
+                return Redirect(Request.UrlReferrer.ToString());
             }
             return Redirect(Request.UrlReferrer.ToString());
         }
