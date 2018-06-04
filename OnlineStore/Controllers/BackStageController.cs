@@ -74,7 +74,7 @@ namespace OnlineStore.Controllers
             if (cookie.Status == cookieStatus.Match && cookie.Authority == Character.Employee)
             {
                 OrdersService ordersService = new OrdersService();
-                return View(ordersService.GetOrders());
+                return View(ordersService.GetStatus(status));
             }
             else
             {

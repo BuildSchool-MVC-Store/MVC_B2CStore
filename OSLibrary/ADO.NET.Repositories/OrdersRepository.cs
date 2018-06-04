@@ -106,5 +106,13 @@ namespace OSLibrary.ADO.NET.Repositories
                 return connection.Query<Detail>(sql, new { Account });
             }
         }
+        public IEnumerable<Orders> GetByStatus(string Order_Check)
+        {
+            using (SqlConnection connection = new SqlConnection(strConnection))
+            {
+                var sql = "SELECT * FROM Orders WHERE Order_Check = @Order_Check";
+                return connection.Query<Orders>(sql, new { Order_Check });
+            }
+        }
     }
 }
