@@ -52,18 +52,23 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>@item.Product_ID</td>
-                                    <td>@item.Product_Name</td>
-                                    <td>@item.Color</td>
-                                    <td>@item.Size</td>
-                                    <td>@item.Quantity</td>
-                                    <td>
-                                        <a class="btn btn-warning btn-sm" href="updateStocks.html" role="button">
-                                            <i class="far fa-edit"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>@item.Product_ID</td>
+                                <td>@item.Product_Name</td>
+                                <td>@item.Color</td>
+                                <td>@item.Size</td>
+                                <td>@item.Quantity</td>
+                                <td>
+                                    <a class="btn btn-warning btn-sm" href="updateStocks.html" role="button">
+                                        <i class="far fa-edit"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-success btn-sm" href="#" role="button">
+                                        <i class="fas fa-boxes"></i>
+                                    </a>
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
