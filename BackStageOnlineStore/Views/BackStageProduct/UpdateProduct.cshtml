@@ -24,7 +24,7 @@
                         {
                             <div class="row">
                                 <div class="col-4 mt-2 ">
-                                    <b>商品名稱</b>
+                                    <b>@Html.DisplayFor(model=>model.Name)</b>
                                 </div>
                                 <div class="col">
                                     @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
