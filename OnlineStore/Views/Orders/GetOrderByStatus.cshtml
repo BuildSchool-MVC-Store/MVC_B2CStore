@@ -1,0 +1,42 @@
+﻿@model IEnumerable<OSLibrary.Models.Orders>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.Order_ID</td>
+        <td>@item.Account</td>
+        <td>
+            @item.Order_Date
+        </td>
+        <td>
+            @item.Order_Check
+        </td>
+        <td>
+            -
+        </td>
+        <td class="text-right">
+            @String.Format("{0:0,0}", @item.Total)
+
+        </td>
+        <td>
+            @item.Pay
+        </td>
+        <td>
+            @item.Transport
+        </td>
+        <td>
+            <a class="btn btn-warning btn-sm" href="updateOrders.html" role="button">
+                <i class="far fa-edit"></i>
+            </a>
+        </td>
+        <td>
+            <a class="btn btn-danger btn-sm" id="del" href="#" role="button">
+                <i class="far fa-trash-alt"></i>
+            </a>
+        </td>
+        <td>
+            <a class="btn btn-sm" href="#" style="background-color:rgb(122, 209, 173)" role="button" id="skip">
+                <i class="fas fa-arrow-right" style="color:white"></i>
+            </a>
+        </td>
+    </tr>
+}

@@ -58,8 +58,7 @@ namespace OnlineStore.Controllers
             var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
             if (cookie.Status == cookieStatus.Match && cookie.Authority == Character.Employee)
             {
-                OrdersService ordersService = new OrdersService();
-                return View(ordersService.GetOrders());
+                return View();
             }
             else
             {
@@ -74,7 +73,7 @@ namespace OnlineStore.Controllers
             if (cookie.Status == cookieStatus.Match && cookie.Authority == Character.Employee)
             {
                 OrdersService ordersService = new OrdersService();
-                return View(ordersService.GetStatus(status));
+                return View(ordersService.GetOrders(status));
             }
             else
             {

@@ -49,7 +49,6 @@ namespace OnlineStore
                      //"~/Content/backstageCSS/bootstrap.css",
                      "~/Content/backstageCSS/bootstrap.min.css",
                      //"~/Content/backstageCSS/coming-soon.css",
-                     "~/Content/backstageCSS/login.css",
                      //"~/Content/backstageCSS/pricing-tables.css",
                      "~/Content/backstageCSS/style.css",
                      "~/Content/font-awesome.min.css"

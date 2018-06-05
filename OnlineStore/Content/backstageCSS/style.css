@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700,300");
 
 html {
@@ -285,7 +285,9 @@ a {
     content: initial; }
 
 .navbar-custom .menu-left {
-    overflow: hidden; }
+    overflow: hidden; 
+
+}
 
 .logo {
   color: #e3ebf3 !important;

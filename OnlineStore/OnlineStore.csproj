@@ -278,6 +278,7 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <None Include="packages.config" />
+    <Content Include="Views\Orders\GetOrderByStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\Products\KIDS\" />

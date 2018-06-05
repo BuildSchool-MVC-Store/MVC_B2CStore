@@ -51,5 +51,12 @@ namespace OnlineStore.Controllers
                 return Redirect(Request.UrlReferrer.ToString());
             }
         }
+
+        [Route("{status}")]
+        public ActionResult GetOrderByStatus(string status)
+        {
+            OrdersService ordersService = new OrdersService();
+            return PartialView(ordersService.GetOrders(status).OrderByDescending(x=>x.Order_Date) );
+        }
     }
 }
