@@ -255,10 +255,9 @@
     {
         <script type="text/javascript">
             $(document).ready(function () {
-                let message = @Html.Raw(Json.Encode(TempData["Message"]));
+                let message = "@TempData["Message"]";
                 $('#addtocartModal p').html(message);
                 $('#addtocartModal').modal();
-
             });
 
         TempData.Remove("Message");
