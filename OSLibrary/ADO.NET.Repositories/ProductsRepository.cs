@@ -18,12 +18,12 @@ namespace OSLibrary.ADO.NET.Repositories
         public void Create(Products model)
         {
             var sql = ("INSERT INTO Products (Product_Name,UnitPrice,CategoryName,Gender) VALUES (@Product_Name,@UnitPrice,@CategoryName,@Gender)");
-            var exec = connection.Execute(sql);
+            var exec = connection.Execute(sql, model);
         }
         public void Update(Products model)
         {
             var sql = ("UPDATE Products SET Product_Name=@Product_Name,UnitPrice=@UnitPrice,CategoryName=@CategoryName,Gender=@Gender WHERE Product_ID=@Product_ID");
-            var exec = connection.Execute(sql);
+            var exec = connection.Execute(sql, model);
         }
         public void Delete(int Product_ID)
         {

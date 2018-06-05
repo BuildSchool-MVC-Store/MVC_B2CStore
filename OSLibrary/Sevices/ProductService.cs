@@ -96,9 +96,10 @@ namespace OSLibrary.Sevices
             };
         }
 
-        public bool UpdateProducts(int Product_ID, string ProductName, int Price, string CategoryName, string Gender, string Online, string Comments)
+        public bool UpdateProducts(int Product_ID, string ProductName, decimal Price, string CategoryName, string Gender, string Online, string Comments)
         {
             var productsrepository = new ProductsRepository();
+
             var Products = new Products()
             {
                 Product_ID = Product_ID,
