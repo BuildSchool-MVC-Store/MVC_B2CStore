@@ -1,152 +1,151 @@
-﻿@*@model OSLibrary.Models.Orders*@
-@model IEnumerable<OSLibrary.Models.Orders>
-@{
-    ViewBag.Title = "SelectOrderByAccount";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@model IEnumerable<OSLibrary.Models.Orders>
+    @{
+        ViewBag.Title = "SelectOrderByAccount";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 
-<h2>SelectOrderByAccount</h2>
-<ol class="breadcrumb">
-    <li class="breadcrumb-item ">
-        <a href="@Url.Action("SelectOrder","BackStageOrder")">查詢訂單</a>
-    </li>
-    <li class="breadcrumb-item">
-        <a href="@Url.Action("CreateOrder","BackStageOrder")">新增訂單</a>
-    </li>
-</ol>
-<!-- Example DataTables Card-->
+    <h2>SelectOrderByAccount</h2>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item ">
+            <a href="@Url.Action(" SelectOrder","BackStageOrder")">查詢訂單</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="@Url.Action(" CreateOrder","BackStageOrder")">新增訂單</a>
+        </li>
+    </ol>
+    <!-- Example DataTables Card-->
 
-<div class="card mb-3">
-    <div class="card-header">
-        <i class="fa fa-table"></i> 查詢訂單
-    </div>
-    <div class="row mt-1">
-        <div class="col">
-            <div class="input-group-append">
-                @using (Html.BeginForm("SelectOrder", "BackStageOrder"))
-    {
-            <input type="text" class="input_text" name="Order_ID" id="input_text">
-            <button type="submit"> 全部訂單</button>
-}
-                @using (Html.BeginForm("SelectOrderByOrder_ID", "BackStageOrder"))
-    {
-            <input type="text" class="input_text" name="Order_ID" id="input_text">
-            <button type="submit"> 訂單編號 </button>
-}
-                @using (Html.BeginForm("SelectOrderByAccount", "BackStageOrder"))
-    {
-            <input type="text" class="input_text" name="Order_ID" id="input_text">
-            <button type="submit"> 會員帳號</button>
-}
-                <button class="btn btn-outline-secondary fa fa-search" type="button">全部訂單</button>
-                <button class="btn btn-outline-secondary fa fa-search" type="button">訂單編號</button>
-                <button class="btn btn-outline-secondary fa fa-search" type="button">會員帳號</button>
-            </div>
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> 查詢訂單
         </div>
-        <div class="col">
-            <b> 訂單狀態:</b>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                <label class="form-check-label" for="inlineCheckbox1">未出貨</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                <label class="form-check-label" for="inlineCheckbox2">已出貨</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                <label class="form-check-label" for="inlineCheckbox3">已取貨</label>
-            </div>
-
-        </div>
-    </div>
-    <div class="row mt-1">
-        <div class="col">
-            <div class="input-group ">
-                <select class="custom-select">
-                    <option selected>訂單日期</option>
-                    <option value="1">出貨日期</option>
-                </select>
-                <input type="date" class="form-control" id="StartDate ">
+        <div class="row mt-1">
+            <div class="col">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary fa fa-angle-right" type="button" disabled></button>
-                </div>
-                <input type="date" class="form-control" id="EndDate ">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary fa fa-search" type="button"></button>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-
-
-        </div>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>訂單編號</th>
-                        <th>會員帳號</th>
-                        <th>訂單日期</th>
-                        <th>訂單狀態</th>
-                        <th>出貨日期</th>
-                        <th>總價</th>
-                        <th>付款方式</th>
-                        <th>運送方式</th>
-                        <th>修改</th>
-                        <th>刪除</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
+                    @using (Html.BeginForm("SelectOrder", "BackStageOrder"))
                     {
-                        <tr>
-                            <td>@item.Order_ID</td>
-                            <td>@item.Account</td>
-                            <td>
-                                @item.Order_Date
-                            </td>
-                            <td>
-                                <select>
-                                    <option value="">@item.Order_Check</option>
-                                    <option value="">備貨中</option>
-                                    <option value="">已出貨</option>
-                                    <option value="">已取貨</option>
-                                </select>
-                            </td>
-                            <td>
-                                2018/05/25
-                            </td>
-                            <td>
-                                @item.Total
-                            </td>
-                            <td>
-                                <select>
-                                    <option value="">@item.Pay</option>
-                                    <option value="">貨到付款</option>
-                                    <option value="">超商取貨付款</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select>
-                                    <option value="">@item.Transport</option>
-                                    <option value="">宅配</option>
-                                    <option value="">超商取貨</option>
-                                </select>
-                            </td>
-                            <td class="text-center">
-                                <i class="fas fa-pencil-alt"></i>
-                            </td>
-                            <td class="text-center">
-                                <i class="fas fa-trash-alt"></i>
-                            </td>
-                        </tr>
+                        <input type="text" class="input_text" name="Order_ID" id="input_text">
+                        <button type="submit"> 全部訂單</button>
                     }
-                </tbody>
-            </table>
+                    @using (Html.BeginForm("SelectOrderByOrder_ID", "BackStageOrder"))
+                    {
+                        <input type="text" class="input_text" name="Order_ID" id="input_text">
+                        <button type="submit"> 訂單編號 </button>
+                    }
+                    @using (Html.BeginForm("SelectOrderByAccount", "BackStageOrder"))
+                    {
+                        <input type="text" class="input_text" name="Order_ID" id="input_text">
+                        <button type="submit"> 會員帳號</button>
+                    }
+                    <button class="btn btn-outline-secondary fa fa-search" type="button">全部訂單</button>
+                    <button class="btn btn-outline-secondary fa fa-search" type="button">訂單編號</button>
+                    <button class="btn btn-outline-secondary fa fa-search" type="button">會員帳號</button>
+                </div>
+            </div>
+            <div class="col">
+                <b> 訂單狀態:</b>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1">未出貨</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    <label class="form-check-label" for="inlineCheckbox2">已出貨</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <label class="form-check-label" for="inlineCheckbox3">已取貨</label>
+                </div>
+
+            </div>
         </div>
+        <div class="row mt-1">
+            <div class="col">
+                <div class="input-group ">
+                    <select class="custom-select">
+                        <option selected>訂單日期</option>
+                        <option value="1">出貨日期</option>
+                    </select>
+                    <input type="date" class="form-control" id="StartDate ">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary fa fa-angle-right" type="button" disabled></button>
+                    </div>
+                    <input type="date" class="form-control" id="EndDate ">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary fa fa-search" type="button"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+
+
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>訂單編號</th>
+                            <th>會員帳號</th>
+                            <th>訂單日期</th>
+                            <th>訂單狀態</th>
+                            <th>出貨日期</th>
+                            <th>總價</th>
+                            <th>付款方式</th>
+                            <th>運送方式</th>
+                            <th>修改</th>
+                            <th>刪除</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Order_ID</td>
+                                <td>@item.Account</td>
+                                <td>
+                                    @item.Order_Date
+                                </td>
+                                <td>
+                                    <select>
+                                        <option value="">@item.Order_Check</option>
+                                        <option value="">備貨中</option>
+                                        <option value="">已出貨</option>
+                                        <option value="">已取貨</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    2018/05/25
+                                </td>
+                                <td>
+                                    @item.Total
+                                </td>
+                                <td>
+                                    <select>
+                                        <option value="">@item.Pay</option>
+                                        <option value="">貨到付款</option>
+                                        <option value="">超商取貨付款</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select>
+                                        <option value="">@item.Transport</option>
+                                        <option value="">宅配</option>
+                                        <option value="">超商取貨</option>
+                                    </select>
+                                </td>
+                                <td class="text-center">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </td>
+                                <td class="text-center">
+                                    <i class="fas fa-trash-alt"></i>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
     </div>
-    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-</div>

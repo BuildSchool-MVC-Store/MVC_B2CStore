@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<OSLibrary.Models.Orders>
+
 @{
     ViewBag.Title = "SelectOrder";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 
 <ol class="breadcrumb">
     <li class="breadcrumb-item ">
@@ -20,22 +22,49 @@
     </div>
     <div class="row mt-1">
         <div class="col">
-            <div class="input-group ">
-                <select class="custom-select" id="inputGroupSelect">
-                    <option selected>全部訂單</option>
-                    <option value="1">訂單編號</option>
-                    <option value="2">會員帳號</option>
-                    <option value="3">訂單狀態(備貨中)</option>
-                    <option value="4">訂單狀態(未出貨)</option>
-                    <option value="5">訂單狀態(已出貨)</option>
-                </select>
-                <div class="input-group-append">
-                    <input type="text" class="input_search">
-                    <button class="btn btn-outline-secondary fa fa-search" type="button"></button>
-                </div>
+            <div class="input-group-append">
+                @using (Html.BeginForm("SelectOrder", "BackStageOrder"))
+                {
+                    <input type="text" class="input_text" name="Order_ID">
+                    <button class="btn btn-outline-secondary fa fa-search" type="submit"> 全部訂單</button>
+                }
+                @using (Html.BeginForm("SelectOrderByOrder_ID", "BackStageOrder"))
+                {
+                    <input type="text" class="input_text" name="Order_ID" id="input_text">
+                    <button class="btn btn-outline-secondary fa fa-search" type="submit"> 訂單編號 </button>
+                }
+
             </div>
+            <div class="input-group-append">
+
+                @using (Html.BeginForm("SelectOrderByAccount", "BackStageOrder"))
+                {
+                    <input type="text" class="input_text" name="Account">
+                    <button class="btn btn-outline-secondary fa fa-search" type="submit"> 會員帳號</button>
+                }
+
+                <button class="btn btn-outline-secondary fa fa-search" type="button">全部訂單</button>
+                <button class="btn btn-outline-secondary fa fa-search" type="button">訂單編號</button>
+                <button class="btn btn-outline-secondary fa fa-search" type="button">會員帳號</button>
+            </div>
+
         </div>
         <div class="col">
+            <b> 訂單狀態:</b>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                <label class="form-check-label" for="inlineCheckbox1">未出貨</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                <label class="form-check-label" for="inlineCheckbox2">已出貨</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                <label class="form-check-label" for="inlineCheckbox3">已取貨</label>
+            </div>
+
+
         </div>
     </div>
     <div class="row mt-1">
@@ -56,6 +85,8 @@
             </div>
         </div>
         <div class="col">
+
+
         </div>
     </div>
     <div class="card-body">
@@ -77,54 +108,92 @@
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
-    {
-                <tr>
-                    <td>@item.Order_ID</td>
-                    <td>@item.Account</td>
-                    <td>
-                        @item.Order_Date
-                    </td>
-                    <td>
-                        <select>
-                            <option value="">備貨中</option>
-                            <option value="">已出貨</option>
-                            <option value="">已取貨</option>
-                        </select>
-                    </td>
-                    <td>
-                        2018/05/25
-                    </td>
-                    <td>
-                        @item.Total
-                    </td>
-                    <td>
-                        <select>
-                            <option value="">貨到付款</option>
-                            <option value="">超商取貨付款</option>
-                        </select>
-                    </td>
-                    <td>
-                        <select>
-                            <option value="">宅配</option>
-                            <option value="">超商取貨</option>
-                        </select>
-                    </td>
-                    <td class="text-center">
-                        <a href="#" style="color:#000">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
-                    </td>
-                    <td class="text-center">
-                        <a href="#" style="color:#000">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
-                    </td>
-                </tr>
-}
+                    {
+                        <tr>
+                            <td>@item.Order_ID</td>
+                            <td>@item.Account</td>
+                            <td>
+                                @item.Order_Date
+                            </td>
+                            <td>
+                                <select>
+                                    <option value="">@item.Order_Check</option>
+                                    <option value="">備貨中</option>
+                                    <option value="">已出貨</option>
+                                    <option value="">已取貨</option>
+                                </select>
+                            </td>
+                            <td>
+                                2018/05/25
+                            </td>
+                            <td>
+                                @item.Total
+                            </td>
+                            <td>
+                                <select>
+                                    <option value="">@item.Pay</option>
+                                    <option value="">貨到付款</option>
+                                    <option value="">超商取貨付款</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select>
+                                    <option value="">@item.Transport</option>
+                                    <option value="">宅配</option>
+                                    <option value="">超商取貨</option>
+                                </select>
+                            </td>
+                            <td class="text-center">
+                                <i class="fas fa-pencil-alt"></i>
+                            </td>
+                            <td class="text-center">
+                                <i class="fas fa-trash-alt"></i>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
     </div>
     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script>
+    //查詢訂單
+
+
+   $("#search_input").on("click", function () {
+        // console.log($("#inputGroupSelect").val()); //查詢的項目
+        // console.log($("#input_text").val()); //輸入查詢的內容
+
+       var Options = $("#Options").val();
+        //var input_text = $("#input_text").val();
+       switch (Options)
+          {
+              case '0':
+                  console.log("查詢 全部訂單");
+                  break;
+           case '1':
+                  var N= @Model.Where((x) => x.Order_ID == 71).Count();
+                  console.log("查詢 訂單編號");
+               console.log($("#input_text").val());
+               console.log(N);
+                  break;
+              case '2':
+                  console.log("查詢 會員帳號");
+                  break;
+              default:
+                  console.log("查詢 訂單?");
+          }
+
+
+
+    })
+
+</script>
 
