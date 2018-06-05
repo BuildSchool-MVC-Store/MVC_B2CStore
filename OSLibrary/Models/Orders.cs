@@ -18,6 +18,7 @@ namespace OSLibrary.Models
         public int Order_ID { get; set; }
 
         public DateTime Order_Date { get; set; }
+        public DateTime Shipping_Date { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -30,8 +31,7 @@ namespace OSLibrary.Models
         [StringLength(10)]
         public string Transport { get; set; }
 
-        [StringLength(10)]
-        public string Order_Check { get; set; }
+        public int Order_Check { get; set; }
 
         [Column(TypeName = "money")]
         public decimal? Total { get; set; }

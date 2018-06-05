@@ -106,12 +106,20 @@ namespace OSLibrary.ADO.NET.Repositories
                 return connection.Query<Detail>(sql, new { Account });
             }
         }
-        public IEnumerable<Orders> GetByStatus(string Order_Check)
+        public IEnumerable<Orders> GetByStatus(int Order_Check)
         {
             using (SqlConnection connection = new SqlConnection(strConnection))
             {
                 var sql = "SELECT * FROM Orders WHERE Order_Check = @Order_Check";
                 return connection.Query<Orders>(sql, new { Order_Check });
+            }
+        }
+        public void UpdateStatus(int Order_ID,int Status)
+        {
+            using (SqlConnection connection = new SqlConnection(strConnection))
+            {
+                var sql = "UPDATE Orders SET Order_Check = @Order_Check WHERE Order_ID = @Order_ID";
+                var exec = connection.Execute(sql, new { Order_ID , Order_Check = Status });
             }
         }
     }

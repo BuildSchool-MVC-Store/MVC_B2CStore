@@ -35,7 +35,7 @@ namespace OSLibrary.Sevices
                 orders_R.Create(connection, new Orders
                 {
                     Account = Account,
-                    Order_Check = "New",
+                    Order_Check = 0,
                     Order_Date = now_time,
                     Pay = Pay,
                     TranMoney = TranMoney,
@@ -102,7 +102,7 @@ namespace OSLibrary.Sevices
             {
                 Account = order.Account,
                 OrderID = order.Order_ID,
-                Order_Check = order.Order_Check,
+                Order_Check = ((OrderStatus)order.Order_Check).ToString(),
                 Order_Date = order.Order_Date,
                 Pay = order.Pay,
                 Transport = order.Transport,
@@ -115,9 +115,9 @@ namespace OSLibrary.Sevices
         {
             return RepositoryContainer.GetInstance<OrdersRepository>().GetAll();
         }
-        public IEnumerable<Orders> GetOrders(string status)
+        public IEnumerable<Orders> GetOrders(int status)
         {
-            if(status == "all")
+            if(status == -1)
             {
                 return RepositoryContainer.GetInstance<OrdersRepository>().GetAll();
 
@@ -126,6 +126,26 @@ namespace OSLibrary.Sevices
             {
                 return RepositoryContainer.GetInstance<OrdersRepository>().GetByStatus(status);
             }
+        }
+        public bool UpdateOrdersStatus(int Order_ID,int Status)
+        {
+            try
+            {
+                RepositoryContainer.GetInstance<OrdersRepository>().UpdateStatus(Order_ID, Status);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        private enum OrderStatus
+        {
+            New = 0,
+            Processing = 1,
+            Shipping = 2,
+            Complete = 3,
+            mothball = 4,
         }
     }
 }

@@ -53,10 +53,25 @@ namespace OnlineStore.Controllers
         }
 
         [Route("{status}")]
-        public ActionResult GetOrderByStatus(string status)
+        public ActionResult GetOrderByStatus(int status)
         {
             OrdersService ordersService = new OrdersService();
             return PartialView(ordersService.GetOrders(status).OrderByDescending(x=>x.Order_Date) );
+        }
+
+        [HttpPost]
+        [Route("UpdateOrderStatus")]
+        public ActionResult UpdateOrderStatus(int OrderID,int Status)
+        {
+            OrdersService ordersService = new OrdersService();
+            if(ordersService.UpdateOrdersStatus(OrderID,Status+1))
+            {
+                return Json("OK", JsonRequestBehavior.DenyGet); ;
+            }
+            else
+            {
+                return Json("NO", JsonRequestBehavior.DenyGet); ;
+            }
         }
     }
 }

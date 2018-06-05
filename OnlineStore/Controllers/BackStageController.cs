@@ -67,7 +67,7 @@ namespace OnlineStore.Controllers
             }
         }
         [HttpPost]
-        public ActionResult GetOrdersStatus(string status)
+        public ActionResult GetOrdersStatus(int status)
         {
             var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
             if (cookie.Status == cookieStatus.Match && cookie.Authority == Character.Employee)

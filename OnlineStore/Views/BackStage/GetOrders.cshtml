@@ -31,19 +31,19 @@
                 <div class="card-body">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#" name="all">所有訂單</a>
+                            <a class="nav-link active" href="#" name="-1">所有訂單</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" name="New">New</a>
+                            <a class="nav-link" href="#" name="0">New</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" name="Processing">Processing</a>
+                            <a class="nav-link" href="#" name="1">Processing</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" name="Shipping">Shipping</a>
+                            <a class="nav-link" href="#" name="2">Shipping</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" name="Complete">Complete</a>
+                            <a class="nav-link" href="#" name="3">Complete</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
@@ -65,8 +65,7 @@
                                         <th>Skip</th>
                                     </tr>
                                 </thead>
-                                <tbody id="content">
-                                </tbody>
+                                <tbody id="content"></tbody>
                             </table>
                         </div>
                     </div>
@@ -76,14 +75,57 @@
         </div>
     </div>
 </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $(function () {
-        $('#content').load("/Orders/all")
+        $('#content').load("/Orders/-1")
         $('#pills-tab a').click(function () {
             $('#content').load("/Orders/" + $(this).attr("name"));
             $('#pills-tab a').removeClass("active");
             $(this).addClass("active");
         });
     });
+    function test(id, status) {
+        console.log(id, status)
+        console.log(document.querySelector('a.nav-link.active').name);
+        swal({
+            title: "Are you sure?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    let requestData = {
+                        OrderID: id,
+                        status: status
+                    };
+                    $.ajax({
+                        url: "/Orders/UpdateOrderStatus",
+                        type: 'POST',
+                        data: JSON.stringify(requestData),
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8',
+                        error: function (result) {
+                            swal("error", "Transform false", "error")
+                        },
+                        success: function (result) {
+                            if (result == "OK") {
+                                swal("Transform Order is " + result + "!", {
+                                    icon: "success",
+                                });
+                                $('#content').load("/Orders/" + status)
+                            }
+                            else {
+                                swal("error", "Transform false", "error")
+                            }
+                        },
+                        async: true,
+                        processData: false
+                    });
+                }
+            });
+        
+    };
 </script>
 
