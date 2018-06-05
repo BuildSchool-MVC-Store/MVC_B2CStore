@@ -13,7 +13,6 @@ namespace OSLibrary.ViewModels
         public int ProductID { get; set; }
 
         [DisplayName("商品名稱")]
-        [Required(ErrorMessage = "請輸入名稱")]
         public string Name { get; set; }
 
         [DisplayName("價格")]

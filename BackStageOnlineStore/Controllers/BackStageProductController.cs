@@ -8,8 +8,10 @@ using System.Web.Mvc;
 
 namespace BackStageOnlineStore.Controllers
 {
+    [RoutePrefix("Product")]
     public class BackStageProductController : Controller
     {
+        [Route("")]
         // GET: BackStageProduct
         public ActionResult SelectProduct()
         {
@@ -18,6 +20,7 @@ namespace BackStageOnlineStore.Controllers
             return View(list);
         }
 
+        [Route("AddProduct")]
         public ActionResult CreateProduct()
         {
             return View();
@@ -31,7 +34,7 @@ namespace BackStageOnlineStore.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update(int Product_ID, string ProductName, int Price, string CategoryName, string Gender, string Online, string Comments)
+        public ActionResult Update(int Product_ID, string ProductName, decimal Price, string CategoryName, string Gender, string Online, string Comments)
         {
             var service = new ProductService();
             if(service.UpdateProducts(Product_ID, ProductName, Price, CategoryName, Gender, Online, Comments))
