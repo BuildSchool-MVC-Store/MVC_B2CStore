@@ -27,7 +27,15 @@ namespace BackStageOnlineStore.Controllers
             var Validatestr = service.LoginCheck(loginemployee.Account, loginemployee.Password);
             if(String.IsNullOrEmpty(Validatestr))
             {
-                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, loginemployee.Account, DateTime.Now, DateTime.Now.AddMinutes(30), false, null, FormsAuthentication.FormsCookiePath);
+                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, loginemployee.Account, DateTime.Now, DateTime.Now.AddMinutes(30), false, "12345", FormsAuthentication.FormsCookiePath);
+                var enTicket = FormsAuthentication.Encrypt(ticket);
+                Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, enTicket));
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError("", Validatestr);
+                return View(loginemployee);
             }
         }
     }

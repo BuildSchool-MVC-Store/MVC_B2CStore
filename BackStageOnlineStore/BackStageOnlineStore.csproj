@@ -341,11 +341,11 @@
     <Content Include="Views\BackStageStock\UpdateStock.cshtml" />
     <Content Include="Views\BackStageOrder\SelectOrderByOrder_ID.cshtml" />
     <Content Include="Views\BackStageOrder\SelectOrderByAccount.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
