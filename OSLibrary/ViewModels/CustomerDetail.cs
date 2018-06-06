@@ -31,6 +31,7 @@ namespace OSLibrary.ViewModels
         public string size { get; set; }
         public string Color { get; set; }
         public int Quantity { get; set; }
+        public decimal UnitPrice { get; set; }
         public decimal Price { get; set; }
     }
 }

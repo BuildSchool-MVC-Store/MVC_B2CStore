@@ -139,6 +139,10 @@ namespace OSLibrary.Sevices
                 return false;
             }
         }
+        public IEnumerable<Person_OrderDetail> GetDetails(int Order_ID)
+        {
+            return RepositoryContainer.GetInstance<Order_DetailsRepository>().GetByOrder_IDOfView(Order_ID);
+        }
         private enum OrderStatus
         {
             New = 0,

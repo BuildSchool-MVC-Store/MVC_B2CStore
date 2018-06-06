@@ -1,0 +1,84 @@
+﻿@model IEnumerable<OSLibrary.ViewModels.Person_OrderDetail>
+
+@{
+    ViewBag.Title = "GetOrderDetail";
+    Layout = "~/Views/Shared/_LayoutBackStagePage.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="breadcrumb-holder">
+                <h1 class="main-title float-left">Order Details</h1>
+                <ol class="breadcrumb float-right">
+                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item">Order Details</li>
+                    <li class="breadcrumb-item active">Order Details</li>
+                </ol>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+    <div class="row">
+
+        <div class="col">
+            <div class="card mb-3 mt-3">
+                <div class="card-header">
+                    <span class="pull-right">
+                        <a href="createOrderDetails.html" class="btn btn-primary btn-sm mr-3">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </a>
+                    </span>
+                    <h3>
+                        <i class="far fa-file-alt"></i> Order Details
+                    </h3>
+                </div>
+
+                <div class="card-body">
+
+                    <table id="example1" class="table table-bordered table-responsive-xl table-hover display">
+                        <thead>
+                            <tr>
+                                <th>Product No.</th>
+                                <th>Product Name</th>
+                                <th>Color</th>
+                                <th>Size</th>
+                                <th>Quantity</th>
+                                <th>UnitPrice</th>
+                                <th>Price</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Product_ID</td>
+                                    <td>@item.Product_Name</td>
+                                    <td>@item.Color</td>
+                                    <td>@item.size</td>
+                                    <td>@item.Quantity</td>
+                                    <td> @String.Format("{0:0,0}", @item.UnitPrice)</td>
+                                    <td> @String.Format("{0:0,0}", @item.Price)</td>
+                                    <td>
+                                        <a class="btn btn-warning btn-sm" href="updateOrderDetails.html" role="button">
+                                            <i class="far fa-edit"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-danger btn-sm" id="del" href="#" role="button">
+                                            <i class="far fa-trash-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- end card-->
+        </div>
+    </div>
+</div>

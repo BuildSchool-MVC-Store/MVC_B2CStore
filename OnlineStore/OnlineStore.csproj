@@ -279,6 +279,7 @@
     <Content Include="fonts\FontAwesome.otf" />
     <None Include="packages.config" />
     <Content Include="Views\Orders\GetOrderByStatus.cshtml" />
+    <Content Include="Views\Orders\GetOrderDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\Products\KIDS\" />

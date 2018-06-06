@@ -60,6 +60,7 @@
                                         <th>Total</th>
                                         <th>Delivery Method</th>
                                         <th>Payment Method</th>
+                                        <th>Detail</th>
                                         <th>Update</th>
                                         <th>Delete</th>
                                         <th>Skip</th>
@@ -85,7 +86,7 @@
             $(this).addClass("active");
         });
     });
-    function test(id, status) {
+    function ChangeStatus(id, status) {
         console.log(id, status)
         console.log(document.querySelector('a.nav-link.active').name);
         swal({
@@ -114,7 +115,7 @@
                                 swal("Transform Order is " + result + "!", {
                                     icon: "success",
                                 });
-                                $('#content').load("/Orders/" + status)
+                                $('#content').load("/Orders/" + (status+1))
                             }
                             else {
                                 swal("error", "Transform false", "error")

@@ -73,5 +73,12 @@ namespace OnlineStore.Controllers
                 return Json("NO", JsonRequestBehavior.DenyGet); ;
             }
         }
+
+        [Route("Detail")]
+        public ActionResult GetOrderDetail(int OrderID)
+        {
+            OrdersService ordersService = new OrdersService();
+            return View(ordersService.GetDetails(OrderID));
+        }
     }
 }
