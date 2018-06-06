@@ -1,4 +1,6 @@
-﻿using OSLibrary.Sevices;
+﻿using OSLibrary.Models;
+using OSLibrary.Sevices;
+using OSLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -118,6 +120,56 @@ namespace OnlineStore.Controllers
                 TempData["Message"] = "請先登入會員";
                 return RedirectToAction("AdminLoginPage", "Login");
             }
+        }
+        [HttpGet]
+        public ActionResult GetStock(Stock model)
+        {
+            StockService stockService = new StockService();
+            return View(stockService.GetStock(model));
+        }
+        [HttpPost]
+        public ActionResult UpdateStockQunatity(Stock model)
+        {
+            StockService stockService = new StockService();
+            stockService.UpdateStock(model);
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+        [HttpPost]
+        public ActionResult PurchaseQunatity(int Product_ID,string Color,string Size,int Qunatity)
+        {
+            StockService stockService = new StockService();
+            if(stockService.PurchaseStock(Product_ID, Size, Color, Qunatity))
+            {
+                TempData["stock"] = 1;
+            }
+            else
+            {
+                TempData["stock"] = 0;
+            }
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        [HttpGet]
+        public ActionResult CreateStock()
+        {
+            ProductService productService = new ProductService();
+            ViewBag.Products = productService.GetProductsOfCreateStock();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateStock(CreateStock stock)
+        {
+            StockService stockService = new StockService();
+            if (stockService.CreateStock(stock))
+            {
+                TempData["CreateStock"] = 1;
+            }
+            else
+            {
+                TempData["CreateStock"] = 0;
+            }
+            return Redirect(Request.UrlReferrer.ToString());
         }
     }
 }

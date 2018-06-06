@@ -18,8 +18,8 @@ namespace OSLibrary.ADO.NET.Repositories
         private SqlConnection connection = new SqlConnection(SqlConnect.str);
         public void Create(Stock model)
         {
-            var sql = "INSERT INTO Stock VALUES (@Product_ID,@Quantity,@Size,@Color)";
-            var exec = connection.Execute(sql, model);
+            var sql = "INSERT INTO Stock (Product_ID,Color,Size,Quantity) VALUES (@Product_ID,@Color,@Size,0)";
+            connection.Execute(sql, model);
         }
         public void Update(SqlConnection connection, Stock model, IDbTransaction transaction)
         {
@@ -41,6 +41,11 @@ namespace OSLibrary.ADO.NET.Repositories
         {
             var sql = "SELECT * FROM Stock WHERE Product_ID = @Product_ID and Size=@Size and Color = @Color";
             return connection.QueryFirstOrDefault<Stock>(sql, new { Product_ID, Size, Color });
+        }
+        public int GetQuantityByPK(int Product_ID, string Size, string Color)
+        {
+            var sql = "SELECT Quantity FROM Stock WHERE Product_ID = @Product_ID and Size=@Size and Color = @Color";
+            return connection.QueryFirstOrDefault<int>(sql, new { Product_ID, Size, Color });
         }
         public IEnumerable<Stock> GetByProductID(int Product_ID)
         {
@@ -70,6 +75,11 @@ namespace OSLibrary.ADO.NET.Repositories
         {
             var sql = "SELECT p.Product_ID , p.Product_Name , s.Color ,s.Size , s.Quantity FROM Stock as s INNER JOIN Products as p on s.Product_ID = p.Product_ID";
             return connection.Query<StockDetail>(sql);
+        }
+        public StockDetail GetStock(int Product_ID, string Size, string Color)
+        {
+            var sql = "SELECT * FROM Stock as s INNER JOIN Products as p on s.Product_ID = p.Product_ID WHERE p.Product_ID = @Product_ID and s.Size=@Size and s.Color = @Color";
+            return connection.QueryFirstOrDefault<StockDetail>(sql, new { Product_ID,Size,Color });
         }
     }
 }

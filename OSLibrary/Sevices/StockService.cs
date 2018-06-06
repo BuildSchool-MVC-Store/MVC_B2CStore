@@ -16,5 +16,52 @@ namespace OSLibrary.Sevices
         {
             return RepositoryContainer.GetInstance<StockRepository>().GetAllOfBackStage();
         }
+        public void UpdateStock(Stock stock)
+        {
+            RepositoryContainer.GetInstance<StockRepository>().Update(stock);
+        }
+        public bool CreateStock(CreateStock stock)
+        {
+            try
+            {
+                RepositoryContainer.GetInstance<StockRepository>().Create(new Stock {
+                    Product_ID = stock.Product_ID,
+                    Color = stock.Color,
+                    Size = stock.Size,
+                    Quantity = 0
+                });
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            
+        }
+        public StockDetail GetStock(Stock stock)
+        {
+            return RepositoryContainer.GetInstance<StockRepository>().GetStock(stock.Product_ID, stock.Size, stock.Color);
+        }
+        public bool PurchaseStock(int Product_ID, string Size, string Color, int Quantity)
+        {
+            var repository = RepositoryContainer.GetInstance<StockRepository>();
+            int nowQuantity = repository.GetQuantityByPK(Product_ID, Size, Color);
+            try
+            {
+                repository.Update(new Stock
+                {
+                    Product_ID = Product_ID,
+                    Size = Size,
+                    Color = Color,
+                    Quantity = nowQuantity + Quantity
+                });
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
     }
 }

@@ -1,0 +1,88 @@
+﻿@model OSLibrary.ViewModels.CreateStock
+
+@{
+    ViewBag.Title = "CreateStock";
+    Layout = "~/Views/Shared/_LayoutBackStagePage.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="breadcrumb-holder">
+                <h1 class="main-title float-left">Create Stock</h1>
+                <ol class="breadcrumb float-right">
+                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item">Stocks</li>
+                    <li class="breadcrumb-item active">Create Stock</li>
+                </ol>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h3>
+                        <i class="fas fa-plus"></i> Create Stock
+                    </h3>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("CreateStock", "BackStage"))
+                    {
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            @{
+                                var list = ViewBag.Products as IEnumerable<OSLibrary.ViewModels.ProductMain>;
+                                var items = new SelectList(list, "Product_ID", "Product_Name");
+                            }
+                            @Html.DropDownList("Product_ID", items, new { @Class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label>Size</label>
+                            <select class="form-control" name="Size">
+                                <option>XS</option>
+                                <option>S</option>
+                                <option>M</option>
+                                <option>L</option>
+                                <option>XL</option>
+                                <option>XXL</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Color</label>
+                            @Html.TextBoxFor(model => model.Color, new { @class = "form-control", @placeholder = "Enter Color" })
+                            @Html.ValidationMessageFor(model => model.Color, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group text-right m-b-0">
+                            <button class="btn btn-primary" type="submit">
+                                Submit
+                            </button>
+                            <button type="reset" class="btn btn-secondary m-l-5">
+                                Cancel
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- end card-->
+        </div>
+    </div>
+</div>
+@if (TempData["CreateStock"] != null)
+{
+    <script>
+        let bool = "@TempData["CreateStock"]";
+        if (bool == 1) {
+            swal("Create Stock Success!", {
+                icon: "success",
+            });
+        }
+        else {
+            swal("Create Stock Error!", {
+                icon: "error",
+            });
+        }
+
+    </script>
+}

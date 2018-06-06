@@ -65,5 +65,9 @@ namespace OSLibrary.Sevices
         {
             return RepositoryContainer.GetInstance<ProductsRepository>().GetAll();
         }
+        public IEnumerable<ProductMain> GetProductsOfCreateStock()
+        {
+            return RepositoryContainer.GetInstance<ProductsRepository>().GetIDandName();
+        }
     }
 }

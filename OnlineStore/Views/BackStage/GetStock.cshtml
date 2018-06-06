@@ -1,0 +1,69 @@
+﻿@model OSLibrary.ViewModels.StockDetail
+
+@{
+    ViewBag.Title = "GetStock";
+    Layout = "~/Views/Shared/_LayoutBackStagePage.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="breadcrumb-holder">
+                <h1 class="main-title float-left">Update Stock</h1>
+                <ol class="breadcrumb float-right">
+                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item">Stocks</li>
+                    <li class="breadcrumb-item active">Update Stock</li>
+                </ol>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h3>
+                        <i class="far fa-edit"></i> Update Stock
+                    </h3>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("UpdateStockQunatity", "BackStage", FormMethod.Post, new { @class = "data-parsley-validate,novalidate" }))
+                    {
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <input type="text" readonly="readonly" value="@Model.Product_ID" name="Product_ID" data-parsley-trigger="change" required placeholder="Enter Product Name" class="form-control" id="">
+                        </div>
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <input type="text" readonly="readonly" value="@Model.Product_Name" data-parsley-trigger="change" required placeholder="Enter Product Name" class="form-control" id="">
+                        </div>
+                        <div class="form-group">
+                            <label>Color</label>
+                            <input type="text" readonly="readonly" value="@Model.Color" class="form-control" name="Color" id="" aria-describedby="helpId" placeholder="Enter Color">
+                        </div>
+                        <div class="form-group">
+                            <label>Size</label>
+                            <input type="text" readonly="readonly" value="@Model.Size" class="form-control" name="Size" id="" aria-describedby="helpId" placeholder="Enter Size">
+                        </div>
+                        <div class="form-group">
+                            <label>Quantity</label>
+                            <input type="text" value="@Model.Quantity" class="form-control" name="Quantity" id="" aria-describedby="helpId" placeholder="Enter Size">
+                        </div>
+                        <div class="form-group text-right m-b-0">
+                            <button class="btn btn-primary" type="submit">
+                                Submit
+                            </button>
+                            <button type="reset" class="btn btn-secondary m-l-5">
+                                Cancel
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- end card-->
+        </div>
+    </div>
+</div>
+

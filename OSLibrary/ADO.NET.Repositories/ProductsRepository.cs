@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OSLibrary.Models;
 using System.Configuration;
+using OSLibrary.ViewModels;
 
 namespace OSLibrary.ADO.NET.Repositories
 {
@@ -40,6 +41,13 @@ namespace OSLibrary.ADO.NET.Repositories
             var sql = "SELECT * FROM Products";
             return connection.Query<Products>(sql);
         }
+
+        public IEnumerable<ProductMain> GetIDandName()
+        {
+            var sql = "SELECT Product_ID,Product_Name FROM Products";
+            return connection.Query<ProductMain>(sql);
+        }
+
         public IEnumerable<Products> GetByProduct_Types_Name(string CategoryName)
         {
             var sql = "SELECT * FROM Products WHERE CategoryName = @CategoryName";

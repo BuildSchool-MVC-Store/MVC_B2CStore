@@ -26,7 +26,7 @@
             <div class="card mb-3 mt-3">
                 <div class="card-header">
                     <span class="pull-right">
-                        <a href="createProducts.html" class="btn btn-primary btn-sm mr-3">
+                        <a href="@Url.Action("CreateStock","BackStage")" class="btn btn-primary btn-sm mr-3">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                         </a>
                     </span>
@@ -42,9 +42,9 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Product Name</th>
+                                <th>color</th>
                                 <th>Size</th>
                                 <th>Quantity</th>
-                                <th>color</th>
                                 <th>Update</th>
                                 <th>Stock</th>
                             </tr>
@@ -52,23 +52,23 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td>@item.Product_ID</td>
-                                <td>@item.Product_Name</td>
-                                <td>@item.Color</td>
-                                <td>@item.Size</td>
-                                <td>@item.Quantity</td>
-                                <td>
-                                    <a class="btn btn-warning btn-sm" href="updateStocks.html" role="button">
-                                        <i class="far fa-edit"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a class="btn btn-success btn-sm" href="#" role="button">
-                                        <i class="fas fa-boxes"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>@item.Product_ID</td>
+                                    <td>@item.Product_Name</td>
+                                    <td>@item.Color</td>
+                                    <td>@item.Size</td>
+                                    <td>@item.Quantity</td>
+                                    <td>
+                                        <a class="btn btn-warning btn-sm" href="@Url.Action("GetStock","BackStage",new { Product_ID = item.Product_ID, Color = item.Color , Size = item.Size })">
+                                            <i class="far fa-edit"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="Purchase(@item.Product_ID,'@item.Product_Name.ToString()','@item.Color','@item.Size')">
+                                            <i class="fas fa-boxes"></i>
+                                        </a>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -79,7 +79,16 @@
     </div>
 </div>
 
-
+<script>
+    function Purchase(Product_ID, ProductName, Color, Size) {
+        $('#model_Product_ID').val(Product_ID);
+        $('#model_ProductName').val(ProductName);
+        $('#model_color').val(Color);
+        $('#model_size').val(Size);
+        $('input[name="Qunatity"]').val("");
+        $('#stock').modal();
+    }
+</script>
 @if (TempData["Message"] != null)
 {
     <script type="text/javascript">
@@ -91,5 +100,68 @@
             });
 
         TempData.Remove("Message");
+    </script>
+}
+
+<div class="modal fade bd-example-modal-sm" id="stock" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Purchase</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <style>
+                input {
+                    background-color: snow;
+                }
+            </style>
+            @using (Html.BeginForm("PurchaseQunatity", "BackStage"))
+            {
+                <div class="modal-body">
+                    <div class="row text-center">
+                        <div class="col-12">
+                            <input id="model_ProductName" type="text" readonly="readonly" data-parsley-trigger="change" required placeholder="Enter Product Name" class="form-control">
+                        </div>
+                        <div class="col-12 mt-1">
+                            <input id="model_color" type="text" readonly="readonly" name="Color" data-parsley-trigger="change" required placeholder="Enter Product Name" class="form-control">
+                        </div>
+                        <div class="col-12 mt-1">
+                            <input id="model_size" type="text" readonly="readonly" name="Size" data-parsley-trigger="change" required placeholder="Enter Product Name" class="form-control">
+                        </div>
+                        <div class="col-6 mt-1" style="line-height: 35px ;height: 35px;">
+                            <b>Qunatity : </b>
+                        </div>
+                        <div class="col-6 mt-1" style="line-height: 35px ;height: 35px;">
+                            <input type="number" name="Qunatity" class="form-control" aria-describedby="helpId" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input id="model_Product_ID" type="hidden" readonly="readonly" name="Product_ID" data-parsley-trigger="change" required placeholder="Enter Product Name" class="form-control">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@if (TempData["stock"] != null)
+{
+    <script>
+        console.log("?");
+        let bool = "@TempData["stock"]";
+        if (bool == 1) {
+            swal("Purchase Stock Success!", {
+                icon: "success",
+            });
+        }
+        else {
+            swal("Purchase Stock Error!", {
+                icon: "error",
+            });
+        }
+
     </script>
 }
