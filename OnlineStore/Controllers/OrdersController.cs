@@ -51,13 +51,21 @@ namespace OnlineStore.Controllers
                 return Redirect(Request.UrlReferrer.ToString());
             }
         }
-
-        [Route("{status}")]
-        public ActionResult GetOrderByStatus(int status)
+        [HttpGet]
+        [Route("status")]
+        public ActionResult GetOrderByStatus(int status,string account)
         {
+
             OrdersService ordersService = new OrdersService();
-            return PartialView(ordersService.GetOrders(status).OrderByDescending(x=>x.Order_Date) );
-        }
+            if(account ==null)
+            {
+                return PartialView(ordersService.GetOrders(status).OrderByDescending(x => x.Order_Date));
+            }
+            else
+            {
+                return PartialView(ordersService.GetOrders(status).Where(x => x.Account == account).OrderByDescending(x => x.Order_Date));
+            }
+        }                                                                                                                            
 
         [HttpPost]
         [Route("UpdateOrderStatus")]

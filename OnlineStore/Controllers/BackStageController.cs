@@ -53,11 +53,13 @@ namespace OnlineStore.Controllers
                 return RedirectToAction("AdminLoginPage", "Login");
             }
         }
-        public ActionResult GetOrders()
+        [HttpGet]
+        public ActionResult GetOrders(string Account)
         {
             var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
             if (cookie.Status == cookieStatus.Match && cookie.Authority == Character.Employee)
             {
+                TempData["Account"] = Account;
                 return View();
             }
             else
@@ -66,6 +68,7 @@ namespace OnlineStore.Controllers
                 return RedirectToAction("AdminLoginPage", "Login");
             }
         }
+
         [HttpPost]
         public ActionResult GetOrdersStatus(int status)
         {

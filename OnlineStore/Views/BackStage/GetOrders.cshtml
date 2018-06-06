@@ -77,15 +77,34 @@
     </div>
 </div>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-    $(function () {
-        $('#content').load("/Orders/-1")
-        $('#pills-tab a').click(function () {
-            $('#content').load("/Orders/" + $(this).attr("name"));
-            $('#pills-tab a').removeClass("active");
-            $(this).addClass("active");
+@if (TempData["Account"] == null)
+{
+    <script>
+        $(function () {
+            $('#content').load("/Orders/status?status=-1")
+            $('#pills-tab a').click(function () {
+                $('#content').load("/Orders/status?status=" + $(this).attr("name"));
+                $('#pills-tab a').removeClass("active");
+                $(this).addClass("active");
+            });
         });
-    });
+    </script>
+}
+else
+{
+    <script>
+        $(function () {
+            console.log("@TempData["Account"]");
+            $('#content').load("/Orders/status?status=-1&account=" + "@TempData["Account"]");
+            $('#pills-tab a').click(function () {
+                $('#content').load("/Orders/status?status=" + $(this).attr("name")+"&account="+"@TempData["Account"]");
+                $('#pills-tab a').removeClass("active");
+                $(this).addClass("active");
+            });
+        });
+    </script>
+}
+<script>
     function ChangeStatus(id, status) {
         console.log(id, status)
         console.log(document.querySelector('a.nav-link.active').name);
@@ -115,7 +134,7 @@
                                 swal("Transform Order is " + result + "!", {
                                     icon: "success",
                                 });
-                                $('#content').load("/Orders/" + (status+1))
+                                $('#content').load("/Orders/" + (status + 1))
                             }
                             else {
                                 swal("error", "Transform false", "error")
@@ -126,7 +145,7 @@
                     });
                 }
             });
-        
+
     };
 </script>
 
