@@ -110,14 +110,27 @@
                             <td>
                                 @item.Order_Date
                             </td>
-                            <td>
-                                <select>
-                                    <option value="">@item.Order_Check</option>
-                                    <option value="">備貨中</option>
-                                    <option value="">已出貨</option>
-                                    <option value="">已取貨</option>
-                                </select>
-                            </td>
+
+                            @switch (item.Order_Check)
+                            {
+                                case "0":
+                                    <td> 新訂單</td>
+                                    break;
+                                case "1":
+                                    <td>處理中 </td>break;
+                                case "2":
+                                    <td> 已出貨</td>
+                                    break;
+                                case "3":
+                                    <td>已完成</td>
+                                    break;
+                                case "4":
+                                    <td>已取消</td>
+                                    break;
+                                default:
+                                    <td>退貨</td>
+                                    break;
+                            }
                             <td>
                                 2018/05/25
                             </td>
@@ -125,18 +138,10 @@
                                 @item.Total
                             </td>
                             <td>
-                                <select>
-                                    <option value="">@item.Pay</option>
-                                    <option value="">貨到付款</option>
-                                    <option value="">超商取貨付款</option>
-                                </select>
+                                @item.Pay
                             </td>
                             <td>
-                                <select>
-                                    <option value="">@item.Transport</option>
-                                    <option value="">宅配</option>
-                                    <option value="">超商取貨</option>
-                                </select>
+                                @item.Transport
                             </td>
                             <td class="text-center">
                                 <i class="fas fa-pencil-alt"></i>
