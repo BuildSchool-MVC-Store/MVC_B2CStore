@@ -63,7 +63,7 @@
                                     <td> @String.Format("{0:0,0}", @item.Price)</td>
                                     <td>
                                         <a class="btn btn-warning btn-sm" href="@Url.Action("UpdateOrderDetail","BackStage",new {
-                                                                               item
+                                                                              item.Order_Details_ID
                                                                            })" role="button">
                                             <i class="far fa-edit"></i>
                                         </a>
