@@ -62,7 +62,9 @@
                                     <td class="price" > @String.Format("{0:0,0}", @item.UnitPrice)</td>
                                     <td class="price" > @String.Format("{0:0,0}", @item.Price)</td>
                                     <td>
-                                        <a class="btn btn-warning btn-sm" href="updateOrderDetails.html" role="button">
+                                        <a class="btn btn-warning btn-sm" href="@Url.Action("UpdateOrderDetail","BackStage",new {
+                                                                               item
+                                                                           })" role="button">
                                             <i class="far fa-edit"></i>
                                         </a>
                                     </td>

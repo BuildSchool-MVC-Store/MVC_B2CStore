@@ -171,5 +171,12 @@ namespace OnlineStore.Controllers
             }
             return Redirect(Request.UrlReferrer.ToString());
         }
+
+        [HttpGet]
+        public ActionResult UpdateOrderDetail(Person_OrderDetail model)
+        {
+            return View();
+        }
+
     }
 }
