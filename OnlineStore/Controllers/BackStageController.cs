@@ -173,9 +173,15 @@ namespace OnlineStore.Controllers
         }
 
         [HttpGet]
-        public ActionResult UpdateOrderDetail(Person_OrderDetail model)
+        public ActionResult UpdateOrderDetail(int Order_Details_ID)
         {
-            return View();
+            Order_DetailsService order_DetailsService = new Order_DetailsService();
+            ProductService productService = new ProductService();
+            var orderDetail = order_DetailsService.GetByOrderDetail_ID(Order_Details_ID);
+            ViewBag.Products = productService.GetProductsOfCreateStock();
+            ViewBag.ProductDetail = productService.GetProductDetail(orderDetail.Product_ID);
+            
+            return View(orderDetail);
         }
 
     }
