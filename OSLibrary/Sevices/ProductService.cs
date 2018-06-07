@@ -56,9 +56,7 @@ namespace OSLibrary.Sevices
                 Comments = products.Comments,
                 Price = products.UnitPrice,
                 Image = Image,
-                ColorSize = ColorSize,
-                Color = stock.Select(x => x.Color).Distinct().ToList(),
-                Size = stock.Select(x=>x.Size).Distinct().ToList()
+                ColorSize = ColorSize
             };
         }
         public IEnumerable<Products> GetProductOfBackstage()
