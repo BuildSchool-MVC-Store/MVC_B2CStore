@@ -59,7 +59,7 @@
                                     <td>@item.Product_Name</td>
                                     <td>@item.Gender</td>
                                     <td>@item.CategoryName</td>
-                                    <td style="text-align:right">@String.Format("{0:0,0}", (decimal)item.UnitPrice)</td>
+                                    <td style="text-align:right"><p class="price"> @String.Format("{0:0,0}", (decimal)item.UnitPrice)</p></td>
                                     @if (item.Online == "YES")
                                     {
                                         <td><i style="color:#006DC0; font-size:25px" class="fas fa-check-circle"></i></td>
