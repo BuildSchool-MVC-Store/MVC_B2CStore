@@ -4,89 +4,101 @@
     ViewBag.Title = "UpdateOrderDetail";
     Layout = "~/Views/Shared/_LayoutBackStagePage.cshtml";
 }
-
-<h2>UpdateOrderDetail</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Person_OrderDetail</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Order_Details_ID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Order_Details_ID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Order_Details_ID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Product_ID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Product_ID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Product_ID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Product_Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Product_Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Product_Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.size, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.size, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.size, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UnitPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UnitPrice, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+@{
+    var list = ViewBag.Products as IEnumerable<OSLibrary.ViewModels.ProductMain>;
+    var items = new SelectList(list, "Product_ID", "Product_Name");
+    var product_detail = ViewBag.ProductDetail as OSLibrary.ViewModels.ProductDetail;
+    var Coloritems = product_detail.ColorSize.Keys.ToList();
+    string test = "";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="breadcrumb-holder">
+                <h1 class="main-title float-left">Update OrderDetail</h1>
+                <ol class="breadcrumb float-right">
+                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item">OrderDetails</li>
+                    <li class="breadcrumb-item active">Update OrderDetail</li>
+                </ol>
+                <div class="clearfix"></div>
             </div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    <!-- end row -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h3>
+                        <i class="far fa-edit"></i> Update OrderDetail
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form action="#" data-parsley-validate novalidate>
+                        <div class="form-group">
+                            <label>Product No.</label>
+                            @Html.DropDownList("Product_ID", items, Model.Product_Name, new { @Class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label>Color</label>
+                            <select name="Color" class="form-control">
+                                @foreach (var item in Coloritems)
+                                {
+                                    if (Model.Color == item)
+                                    {
+                                        <option value="@item" selected="selected">@item</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Size</label>
+                            <select class="form-control">
+                                @foreach (var item in product_detail.ColorSize[Model.Color])
+                                {
+                                    if (Model.size == item)
+                                    {
+                                        <option value="@item" selected="selected">@item</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Quantity</label>
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                        </div>
+                        <div class="form-group text-right m-b-0">
+                            <button class="btn btn-primary" type="submit">
+                                Submit
+                            </button>
+                            <button type="reset" class="btn btn-secondary m-l-5">
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- end card-->
+        </div>
+    </div>
 </div>
+<script>
+    $('select[name=Color]').change(function () {
+        let test = @product_detail.ColorSize;
+        console.log(test);
+
+   });
+</script>
