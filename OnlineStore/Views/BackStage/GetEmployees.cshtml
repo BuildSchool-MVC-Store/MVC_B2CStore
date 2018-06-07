@@ -50,7 +50,7 @@
                                     <td>@item.Account</td>
                                     <td>@item.Name</td>
                                     <td>@item.Phone</td>
-                                    <td>@item.Birthday</td>
+                                    <td>@item.Birthday.ToShortDateString()</td>
                                     <td>
                                         <a class="btn btn-warning btn-sm" href="@Url.Action("GetEmployee", "BackStage",new {item.Account})" role="button">
                                             <i class="far fa-edit"></i>
