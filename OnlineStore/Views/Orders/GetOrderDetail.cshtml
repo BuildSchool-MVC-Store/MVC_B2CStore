@@ -44,8 +44,8 @@
                                 <th>Color</th>
                                 <th>Size</th>
                                 <th>Quantity</th>
-                                <th>UnitPrice</th>
-                                <th>Price</th>
+                                <th >UnitPrice</th>
+                                <th>Total</th>
                                 <th>Update</th>
                                 <th>Delete</th>
                             </tr>
@@ -59,8 +59,8 @@
                                     <td>@item.Color</td>
                                     <td>@item.size</td>
                                     <td>@item.Quantity</td>
-                                    <td> @String.Format("{0:0,0}", @item.UnitPrice)</td>
-                                    <td> @String.Format("{0:0,0}", @item.Price)</td>
+                                    <td class="price" > @String.Format("{0:0,0}", @item.UnitPrice)</td>
+                                    <td class="price" > @String.Format("{0:0,0}", @item.Price)</td>
                                     <td>
                                         <a class="btn btn-warning btn-sm" href="@Url.Action("UpdateOrderDetail","BackStage",new {
                                                                               item.Order_Details_ID

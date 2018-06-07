@@ -6,7 +6,7 @@
 
 .side ul li {
     color: #676D3E;
-    font-size:20px;
+    font-size:18px;
     font-weight: bold;
     list-style: none;
     line-height: 36px;
@@ -32,11 +32,6 @@
     .right-content p:first-child {
         margin-top: 10px;
     }
-
-.side > ul > li:hover {
-    position: relative;
-    right: 3px;
-}
 
 .main {
     text-align: center;

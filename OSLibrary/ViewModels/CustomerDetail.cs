@@ -21,7 +21,7 @@ namespace OSLibrary.ViewModels
         public int Order_ID { get; set; }
         public DateTime Order_Date { get; set; }
         public decimal Total { get; set; }
-        public string Order_Check { get; set; }
+        public int Order_Check { get; set; }
         public List<Person_OrderDetail> details { get; set; }
     }
     public class Person_OrderDetail
