@@ -128,17 +128,17 @@ namespace OnlineStore.Controllers
             return View(stockService.GetStock(model));
         }
         [HttpPost]
-        public ActionResult UpdateStockQunatity(Stock model)
+        public ActionResult UpdateStockQuantity(Stock model)
         {
             StockService stockService = new StockService();
             stockService.UpdateStock(model);
             return Redirect(Request.UrlReferrer.ToString());
         }
         [HttpPost]
-        public ActionResult PurchaseQunatity(int Product_ID,string Color,string Size,int Qunatity)
+        public ActionResult PurchaseQuantity(int Product_ID,string Color,string Size,int Quantity)
         {
             StockService stockService = new StockService();
-            if(stockService.PurchaseStock(Product_ID, Size, Color, Qunatity))
+            if(stockService.PurchaseStock(Product_ID, Size, Color, Quantity))
             {
                 TempData["stock"] = 1;
             }
