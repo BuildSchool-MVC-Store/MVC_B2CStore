@@ -42,7 +42,7 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Product Name</th>
-                                <th>color</th>
+                                <th>Color</th>
                                 <th>Size</th>
                                 <th>Quantity</th>
                                 <th>Update</th>
@@ -117,7 +117,7 @@
                     background-color: snow;
                 }
             </style>
-            @using (Html.BeginForm("PurchaseQunatity", "BackStage"))
+            @using (Html.BeginForm("PurchaseQuantity", "BackStage"))
             {
                 <div class="modal-body">
                     <div class="row text-center">
@@ -130,11 +130,11 @@
                         <div class="col-12 mt-1">
                             <input id="model_size" type="text" readonly="readonly" name="Size" data-parsley-trigger="change" required placeholder="Enter Product Name" class="form-control">
                         </div>
-                        <div class="col-6 mt-1" style="line-height: 35px ;height: 35px;">
-                            <b>Qunatity : </b>
+                        <div class="col-4 mt-1" style="line-height: 35px ;height: 35px;">
+                            <b>Quantity : </b>
                         </div>
-                        <div class="col-6 mt-1" style="line-height: 35px ;height: 35px;">
-                            <input type="number" name="Qunatity" class="form-control" aria-describedby="helpId" placeholder="">
+                        <div class="col-8 mt-1" style="line-height: 35px ;height: 35px;">
+                            <input type="number" name="Quantity" class="form-control" aria-describedby="helpId" placeholder="">
                         </div>
                     </div>
                 </div>
@@ -153,12 +153,12 @@
         console.log("?");
         let bool = "@TempData["stock"]";
         if (bool == 1) {
-            swal("Purchase Stock Success!", {
+            swal("Purchase Success!", {
                 icon: "success",
             });
         }
         else {
-            swal("Purchase Stock Error!", {
+            swal("Purchase Error!", {
                 icon: "error",
             });
         }
