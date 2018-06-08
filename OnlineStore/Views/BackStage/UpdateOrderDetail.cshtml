@@ -7,9 +7,8 @@
 @{
     var list = ViewBag.Products as IEnumerable<OSLibrary.ViewModels.ProductMain>;
     var items = new SelectList(list, "Product_ID", "Product_Name");
-    var product_detail = ViewBag.ProductDetail as OSLibrary.ViewModels.ProductDetail;
+    var product_detail = TempData["ProductDetail"] as OSLibrary.ViewModels.ProductDetail;
     var Coloritems = product_detail.ColorSize.Keys.ToList();
-    string test = "";
 }
 <div class="container-fluid">
     <div class="row">
@@ -35,10 +34,23 @@
                     </h3>
                 </div>
                 <div class="card-body">
-                    <form action="#" data-parsley-validate novalidate>
+                    @using (Html.BeginForm("UpdateOrderDetail", "BackStage"))
+                    {
                         <div class="form-group">
                             <label>Product No.</label>
-                            @Html.DropDownList("Product_ID", items, Model.Product_Name, new { @Class = "form-control" })
+                            <select name="Product_ID" class="form-control">
+                                @foreach (var item in items)
+                                {
+                                    if (Model.Product_ID == Convert.ToInt32(item.Value))
+                                    {
+                                        <option value="@item.Value" selected="selected">@item.Text</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Value">@item.Text</option>
+                                    }
+                                }
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Color</label>
@@ -58,7 +70,7 @@
                         </div>
                         <div class="form-group">
                             <label>Size</label>
-                            <select class="form-control">
+                            <select name="size" class="form-control">
                                 @foreach (var item in product_detail.ColorSize[Model.Color])
                                 {
                                     if (Model.size == item)
@@ -74,13 +86,23 @@
                         </div>
                         <div class="form-group">
                             <label>Quantity</label>
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
+                            <select name="Quantity" class="form-control">
+                                @for (int i = 1; i <= 6; i++)
+                                {
+                                    if (i == Model.Quantity)
+                                    {
+                                        <option value="@i" selected="selected">@i</option>
+
+                                    }
+                                    else
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                }
                             </select>
                         </div>
                         <div class="form-group text-right m-b-0">
+                            <input type="hidden" name="Order_Details_ID" value="@Model.Order_Details_ID" />
                             <button class="btn btn-primary" type="submit">
                                 Submit
                             </button>
@@ -88,7 +110,7 @@
                                 Cancel
                             </button>
                         </div>
-                    </form>
+                    }
                 </div>
             </div>
             <!-- end card-->
@@ -97,8 +119,35 @@
 </div>
 <script>
     $('select[name=Color]').change(function () {
-        let test = @product_detail.ColorSize;
-        console.log(test);
-
-   });
+        let test = @Html.Raw(Json.Encode(product_detail.ColorSize));
+        changeSelectValue('select[name=size]', test[$(this).val()])
+    });
+    function changeSelectValue(selectname, selectvalue) {
+        $(selectname).html("");
+        for (var i in selectvalue) {
+            $(selectname).append($('<option>').val(selectvalue[i]).html(selectvalue[i]))
+        }
+    }
+    $('select[name=Product_ID]').change(function () {
+        location.href = "@Url.Action("UpdateOrderDetail", "BackStage",new {Model.Order_Details_ID })&Product_ID=" + $(this).val();
+    });
 </script>
+
+@if (TempData["UpdateOrderDetail"] != null)
+{
+    <script>
+        console.log("?");
+        let bool = "@TempData["UpdateOrderDetail"]";
+        if (bool == 1) {
+            swal("Update Order Detail Success!", {
+                icon: "success",
+            });
+        }
+        else {
+            swal("Update Order Detail Error!", {
+                icon: "error",
+            });
+        }
+
+    </script>
+}
