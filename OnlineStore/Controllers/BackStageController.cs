@@ -173,16 +173,44 @@ namespace OnlineStore.Controllers
         }
 
         [HttpGet]
-        public ActionResult UpdateOrderDetail(int Order_Details_ID)
+        public ActionResult UpdateOrderDetail(int Order_Details_ID,int? Product_ID)
         {
             Order_DetailsService order_DetailsService = new Order_DetailsService();
             ProductService productService = new ProductService();
             var orderDetail = order_DetailsService.GetByOrderDetail_ID(Order_Details_ID);
             ViewBag.Products = productService.GetProductsOfCreateStock();
-            ViewBag.ProductDetail = productService.GetProductDetail(orderDetail.Product_ID);
-            
+
+            if (Product_ID == null)
+            {
+                TempData["ProductDetail"] = productService.GetProductDetail(orderDetail.Product_ID);
+            }
+            else
+            {
+                TempData["ProductDetail"] = null;
+                var temp = productService.GetProductDetail((int)Product_ID);
+                TempData["ProductDetail"] = temp;
+                orderDetail.Product_ID = (int)Product_ID;
+                orderDetail.Color = temp.ColorSize.Keys.ToList()[0];
+                orderDetail.size = "";
+                orderDetail.Quantity = 1;
+            }
             return View(orderDetail);
         }
+        [HttpPost]
+        public ActionResult UpdateOrderDetail(Person_OrderDetail person_OrderDetail)
+        {
+            Order_DetailsService order_DetailsService = new Order_DetailsService();
+            if(order_DetailsService.UpdateOrderDetail(person_OrderDetail))
+            {
+                TempData["UpdateOrderDetail"] = 1;
 
+            }
+            else
+            {
+                TempData["UpdateOrderDetail"] = 0;
+
+            }
+            return Redirect(Request.UrlReferrer.ToString());
+        }
     }
 }
