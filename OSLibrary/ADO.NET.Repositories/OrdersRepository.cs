@@ -122,5 +122,13 @@ namespace OSLibrary.ADO.NET.Repositories
                 var exec = connection.Execute(sql, new { Order_ID , Order_Check = Status });
             }
         }
+        public void UpdateTotalMoney(int Order_ID)
+        {
+            using (SqlConnection connection = new SqlConnection(strConnection))
+            {
+                var sql = "UPDATE Orders SET Total = (SELECT SUM(Price)+60 FROM Order_Details WHERE Order_ID = @Order_ID) WHERE Order_ID = @Order_ID";
+                var exec = connection.Execute(sql, new { Order_ID});
+            }
+        }
     }
 }

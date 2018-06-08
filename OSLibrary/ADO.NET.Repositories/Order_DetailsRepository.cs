@@ -32,7 +32,7 @@ namespace OSLibrary.ADO.NET.Repositories
         {
             using (SqlConnection connection = new SqlConnection(SqlConnect.str))
             {
-                var sql = "UPDATE Order_Details SET Order_ID = @Order_ID, Product_ID = @Product_ID, Quantity = @Quantity, Price = @Price, Discount = @Discount, size = @size ,Color = @Color WHERE Order_Details_ID = @Order_Details_ID";
+                var sql = "UPDATE Order_Details SET Product_ID = @Product_ID, Quantity = @Quantity, Price = @Price, Discount = @Discount, size = @size ,Color = @Color WHERE Order_Details_ID = @Order_Details_ID";
                 connection.Execute(sql, model);
             }
         }
