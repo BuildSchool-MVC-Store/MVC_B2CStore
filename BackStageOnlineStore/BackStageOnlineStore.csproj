@@ -345,7 +345,6 @@
     <Content Include="Views\BackStageOrder\SelectOrderByOrder_ID.cshtml" />
     <Content Include="Views\BackStageOrder\SelectOrderByAccount.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
-    <Content Include="Views\BackStageOrder\SelectOrderByOrder_Check.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
