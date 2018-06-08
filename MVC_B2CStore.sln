@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSLibraryTests", "OSLibrary
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackStageOnlineStore", "BackStageOnlineStore\BackStageOnlineStore.csproj", "{8EBB5874-2A6B-4172-94C7-8AC5342E66E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity", "Identity\Identity.csproj", "{BB348CB8-9775-474C-BB8F-CD10B0E39C5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{8EBB5874-2A6B-4172-94C7-8AC5342E66E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EBB5874-2A6B-4172-94C7-8AC5342E66E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EBB5874-2A6B-4172-94C7-8AC5342E66E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB348CB8-9775-474C-BB8F-CD10B0E39C5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB348CB8-9775-474C-BB8F-CD10B0E39C5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB348CB8-9775-474C-BB8F-CD10B0E39C5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB348CB8-9775-474C-BB8F-CD10B0E39C5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
