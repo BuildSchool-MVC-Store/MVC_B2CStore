@@ -67,16 +67,20 @@
                 <div class="col">
                     <b> 訂單狀態:</b>
                     <div class="form-check form-check-inline">
-                        <button class="btn btn-outline-secondary fa fa-search" type="submit"> 未出貨</button>
-                      </div>
-                    <div class="form-check form-check-inline">
-                    <button class="btn btn-outline-secondary fa fa-search" type="submit"> 已出貨</button>
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <label class="form-check-label" for="inlineCheckbox1">未出貨</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <button class="btn btn-outline-secondary fa fa-search" type="submit"> 已取貨</button>
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                        <label class="form-check-label" for="inlineCheckbox2">已出貨</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                        <label class="form-check-label" for="inlineCheckbox3">已取貨</label>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -100,54 +104,52 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>@item.Order_ID</td>
-                        <td>@item.Account</td>
-                        <td>
-                            @item.Order_Date
-                        </td>
-                      
-                       
-                    @switch (item.Order_Check)
-                    {
-                        case "0":
-                    <td>新訂單</td>
-                            break;
-                        case "1":
-                    <td>處理中</td>
-                            break;
-                        case "2":
-                    <td>已出貨</td>
-                            break;
-                        case "3":
-                    <td>已完成</td>
-                            break;
-                        case "4":
-                    <td>已取消</td>
-                            break;
-                        default:
-                    <td>退貨</td>
-                            break;
-                    }
-                    <td>
-                        2018/05/25
-                    </td>
-                    <td>
-                        @item.Total
-                    </td>
-                    <td>
-                        @item.Pay
-                    </td>
-                    <td>
-                        @item.Transport
-                    </td>
-                    <td class="text-center">
-                        <i class="fas fa-pencil-alt"></i>
-                    </td>
-                    <td class="text-center">
-                        <i class="fas fa-trash-alt"></i>
-                    </td>
-                    </tr>
+                        <tr>
+                            <td>@item.Order_ID</td>
+                            <td>@item.Account</td>
+                            <td>
+                                @item.Order_Date
+                            </td>
+
+                            @switch (item.Order_Check)
+                            {
+                                case "0":
+                                    <td> 新訂單</td>
+                                    break;
+                                case "1":
+                                    <td>處理中 </td>break;
+                                case "2":
+                                    <td> 已出貨</td>
+                                    break;
+                                case "3":
+                                    <td>已完成</td>
+                                    break;
+                                case "4":
+                                    <td>已取消</td>
+                                    break;
+                                default:
+                                    <td>退貨</td>
+                                    break;
+                            }
+                            <td>
+                                2018/05/25
+                            </td>
+                            <td>
+                                @item.Total
+                            </td>
+                            <td>
+                                @item.Pay
+                            </td>
+                            <td>
+                                @item.Transport
+                            </td>
+                            <td class="text-center">
+                                <i class="fas fa-pencil-alt"></i>
+                            </td>
+                            <td class="text-center">
+                                <i class="fas fa-trash-alt"></i>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
