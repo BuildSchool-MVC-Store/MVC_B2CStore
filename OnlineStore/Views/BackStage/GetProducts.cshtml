@@ -26,7 +26,7 @@
             <div class="card mb-3 mt-3">
                 <div class="card-header">
                     <span class="pull-right">
-                        <a href="createProducts.html" class="btn btn-primary btn-sm mr-3">
+                        <a href="createProducts.html" class="btn btn-primary btn-sm">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                         </a>
                     </span>
@@ -37,14 +37,14 @@
 
                 <div class="card-body">
 
-                    <table id="example1" class="table table-bordered table-responsive-xl table-hover display">
+                    <table id="example1" class="table table-bordered table-responsive-xl table-hover display text-center">
                         <thead>
                             <tr>
                                 <th>No.</th>
                                 <th>Product Name</th>
                                 <th>Gender</th>
                                 <th>Category</th>
-                                <th style="width:5%">Unitprice</th>
+                                <th>Unitprice</th>
                                 <th>Status</th>
                                 <th>Stock</th>
                                 <th>Update</th>
@@ -59,7 +59,7 @@
                                     <td>@item.Product_Name</td>
                                     <td>@item.Gender</td>
                                     <td>@item.CategoryName</td>
-                                    <td style="text-align:right"><p class="price"> @String.Format("{0:0,0}", (decimal)item.UnitPrice)</p></td>
+                                    <td class="price" style="text-align:right">@String.Format("{0:0,0}", (decimal)item.UnitPrice)</td>
                                     @if (item.Online == "YES")
                                     {
                                         <td><i style="color:#006DC0; font-size:25px" class="fas fa-check-circle"></i></td>
