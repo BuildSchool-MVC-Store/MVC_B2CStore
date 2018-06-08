@@ -100,48 +100,54 @@
                     </tr>
                 </thead>
                 <tbody>
-                  
-                        <tr>
-                            <td>@Model.Order_ID</td>
-                            <td>@Model.Account</td>
-                            <td>
-                                @Model.Order_Date
-                            </td>
-                            <td>
-                                <select>
-                                    <option value="">@Model.Order_Check</option>
-                                    <option value="">備貨中</option>
-                                    <option value="">已出貨</option>
-                                    <option value="">已取貨</option>
-                                </select>
-                            </td>
-                            <td>
-                                2018/05/25
-                            </td>
-                            <td>
-                                @Model.Total
-                            </td>
-                            <td>
-                                <select>
-                                    <option value="">@Model.Pay</option>
-                                    <option value="">貨到付款</option>
-                                    <option value="">超商取貨付款</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select>
-                                    <option value="">@Model.Transport</option>
-                                    <option value="">宅配</option>
-                                    <option value="">超商取貨</option>
-                                </select>
-                            </td>
-                            <td class="text-center">
-                                <i class="fas fa-pencil-alt"></i>
-                            </td>
-                            <td class="text-center">
-                                <i class="fas fa-trash-alt"></i>
-                            </td>
-                        </tr>
+
+                    <tr>
+                        <td>@Model.Order_ID</td>
+                        <td>@Model.Account</td>
+                        <td>
+                            @Model.Order_Date
+                        </td>
+
+                        @switch (Model.Order_Check)
+                        {
+                            case "0":
+                                <td>新訂單</td>
+                                break;
+                            case "1":
+                                <td>處理中</td>
+                                break;
+                            case "2":
+                                <td>已出貨</td>
+                                break;
+                            case "3":
+                                <td>已完成</td>
+                                break;
+                            case "4":
+                                <td>已取消</td>
+                                break;
+                            default:
+                                <td>退貨</td>
+                                break;
+                        }
+                        <td>
+                            2018/05/25
+                        </td>
+                        <td>
+                            @Model.Total
+                        </td>
+                        <td>
+                           @Model.Pay
+                        </td>
+                        <td>
+                           @Model.Transport
+                        </td>
+                        <td class="text-center">
+                            <i class="fas fa-pencil-alt"></i>
+                        </td>
+                        <td class="text-center">
+                            <i class="fas fa-trash-alt"></i>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
