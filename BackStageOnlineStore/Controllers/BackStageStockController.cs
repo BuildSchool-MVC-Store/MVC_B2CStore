@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace BackStageOnlineStore.Controllers
 {
+    [Authorize]
     [RoutePrefix("Stock")]
     public class BackStageStockController : Controller
     {

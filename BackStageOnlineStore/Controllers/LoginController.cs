@@ -19,7 +19,7 @@ namespace BackStageOnlineStore.Controllers
                 return RedirectToAction("Index", "Home");//登入後導向後台主畫面
             return View();
         }
-
+        
         [HttpPost]
         public ActionResult Login(LoginViewModel loginemployee)
         {
