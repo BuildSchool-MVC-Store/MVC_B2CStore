@@ -9,6 +9,7 @@ namespace BackStageOnlineStore.Controllers
     [RoutePrefix("Home")]
     public class HomeController : Controller
     {
+        [Authorize]
         [Route("")]
         public ActionResult Index()
         {

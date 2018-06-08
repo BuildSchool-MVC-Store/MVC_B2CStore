@@ -12,7 +12,6 @@ namespace OnlineStore.Controllers
     [RoutePrefix("Products")]
     public class ProductsController : Controller
     {
-        [Route("")]
         [Route("Index")]
         // GET: Products
         public ActionResult Index()
@@ -29,8 +28,9 @@ namespace OnlineStore.Controllers
         [Route("{ProductID}")]
         public ActionResult ProductDetail(int ProductID)
         {
-            var result = new ProductService();
-            return View(result.GetProductDetail(ProductID));
+            return View();
+            //var result = new ProductService();
+            //return View(result.GetProductDetail(ProductID));
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace BackStageOnlineStore.Controllers
 {
+    [Authorize]
     [RoutePrefix("Product")]
     public class BackStageProductController : Controller
     {
