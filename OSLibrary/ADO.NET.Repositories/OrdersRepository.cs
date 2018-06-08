@@ -97,5 +97,15 @@ namespace OSLibrary.ADO.NET.Repositories
                 return connection.QueryFirstOrDefault<Orders>(sql, new { Account });
             }
         }
+     
+        public IEnumerable<Orders> GetOrdersByCheck(int Order_Check)
+        {
+            using (SqlConnection connection = new SqlConnection(strConnection))
+            {
+                var sql = "SELECT * FROM Orders WHERE Order_Check = @Order_Check ORDER BY Order_Date DESC";
+                return connection.Query<Orders>(sql, new { Order_Check });
+            }
+        }
+
     }
 }
