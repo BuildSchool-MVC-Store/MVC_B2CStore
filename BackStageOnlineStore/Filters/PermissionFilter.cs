@@ -14,7 +14,8 @@ namespace BackStageOnlineStore.Filters
             base.OnAuthorization(filterContext);
             if(filterContext.Result is HttpUnauthorizedResult)
             {
-                
+                CheckPermission(filterContext);
+                return;
             }
         }
 
