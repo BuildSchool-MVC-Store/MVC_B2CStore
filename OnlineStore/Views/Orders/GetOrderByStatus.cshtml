@@ -56,9 +56,12 @@
             </a>
         </td>
         <td>
-            <a class="btn btn-sm transform" href="javascript:void(0)" onclick="ChangeStatus(@item.Order_ID,@item.Order_Check)" style="background-color:rgb(122, 209, 173)">
-                <i class="fas fa-arrow-right" style="color:white"></i>
-            </a>
+            @if (@item.Order_Check < 3)
+            {
+                <a class="btn btn-sm transform" href="javascript:void(0)" onclick="ChangeStatus(@item.Order_ID,@item.Order_Check)" style="background-color:rgb(122, 209, 173)">
+                    <i class="fas fa-arrow-right" style="color:white"></i>
+                </a>
+            }
         </td>
     </tr>
 }
