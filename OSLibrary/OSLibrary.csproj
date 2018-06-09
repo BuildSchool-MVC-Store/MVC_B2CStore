@@ -78,6 +78,7 @@
     <Compile Include="Models\SqlConnect.cs" />
     <Compile Include="Models\Stock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sevices\CategoryService.cs" />
     <Compile Include="Sevices\CustomerService.cs" />
     <Compile Include="Sevices\EmployeeService.cs" />
     <Compile Include="Sevices\OrdersService.cs" />
