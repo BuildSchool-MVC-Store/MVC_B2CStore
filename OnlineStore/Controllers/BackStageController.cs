@@ -27,6 +27,7 @@ namespace OnlineStore.Controllers
                 return RedirectToAction("AdminLoginPage", "Login");
             }
         }
+        [HttpGet]
         public ActionResult GetCustomers()
         {
             var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
@@ -41,6 +42,8 @@ namespace OnlineStore.Controllers
                 return RedirectToAction("AdminLoginPage", "Login");
             }
         }
+        //======================================================================================= Product
+        [HttpGet]
         public ActionResult GetProducts()
         {
             var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
@@ -55,12 +58,36 @@ namespace OnlineStore.Controllers
                 return RedirectToAction("AdminLoginPage", "Login");
             }
         }
-        public ActionResult GetProduct(int Prdouct_ID)
+        [HttpGet]
+        public ActionResult GetProduct(int Product_ID)
         {
+            ProductService productService = new ProductService();
+            return View(productService.GetProduct(Product_ID));
+        }
 
+        [HttpPost]
+        public ActionResult UpdateProduct(Products model)
+        {
+            ProductService productService = new ProductService();
+            if(productService.UpdateProduct(model))
+            {
+                TempData["UpdateProduct"] = 1;
+            }
+            else
+            {
+                TempData["UpdateProduct"] = 0;
+            }
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+        //===================================================================================== ProdustImages
+        [HttpGet]
+        public ActionResult GetProductImages(int? Product_ID)
+        {
+            return View(productService.Ge);
         }
 
 
+        //====================================================================================== Orders
         [HttpGet]
         public ActionResult GetOrders(string Account)
         {
@@ -92,7 +119,7 @@ namespace OnlineStore.Controllers
                 return RedirectToAction("AdminLoginPage", "Login");
             }
         }
-
+        // =========================================================================================== Employee
         public ActionResult GetEmployees()
         {
             var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
@@ -176,8 +203,6 @@ namespace OnlineStore.Controllers
             ViewBag.Products = productService.GetProductsOfCreateStock();
             return View();
         }
-
-
 
         [HttpPost]
         public ActionResult CreateStock(CreateStock stock)
