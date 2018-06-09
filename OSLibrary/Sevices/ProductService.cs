@@ -67,5 +67,21 @@ namespace OSLibrary.Sevices
         {
             return RepositoryContainer.GetInstance<ProductsRepository>().GetIDandName();
         }
+        public Products GetProduct(int Product_ID)
+        {
+            return RepositoryContainer.GetInstance<ProductsRepository>().GetByProduct_ID(Product_ID);
+        }
+        public bool UpdateProduct(Products mode)
+        {
+            try
+            {
+                RepositoryContainer.GetInstance<ProductsRepository>().Update(mode);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
