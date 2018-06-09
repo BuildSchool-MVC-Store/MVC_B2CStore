@@ -52,6 +52,12 @@ namespace OSLibrary.ADO.NET.Repositories
             var sql = "SELECT * FROM Stock WHERE Product_ID = @Product_ID";
             return connection.Query<Stock>(sql, new { Product_ID });
         }
+        public IEnumerable<StockDetail> GetByProductIDOfBackStage(int Product_ID)
+        {
+            var sql = "SELECT p.Product_ID , p.Product_Name , s.Color ,s.Size , s.Quantity FROM Stock as s INNER JOIN Products as p on s.Product_ID = p.Product_ID WHERE s.Product_ID = @Product_ID";
+            return connection.Query<StockDetail>(sql,new { Product_ID});
+        }
+
 
         public IEnumerable<Stock> GetAll()
         {
