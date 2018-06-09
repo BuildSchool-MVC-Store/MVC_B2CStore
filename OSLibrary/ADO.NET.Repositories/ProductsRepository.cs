@@ -23,8 +23,8 @@ namespace OSLibrary.ADO.NET.Repositories
         }
         public void Update(Products model)
         {
-            var sql = ("UPDATE Products SET Product_Name=@Product_Name,UnitPrice=@UnitPrice,CategoryName=@CategoryName,Gender=@Gender WHERE Product_ID=@Product_ID");
-            var exec = connection.Execute(sql);
+            var sql = ("UPDATE Products SET Product_Name=@Product_Name,UnitPrice=@UnitPrice,CategoryName=@CategoryName,Gender=@Gender,Comments=@Comments,Online=@Online WHERE Product_ID=@Product_ID");
+            connection.Execute(sql,model);
         }
         public void Delete(int Product_ID)
         {
