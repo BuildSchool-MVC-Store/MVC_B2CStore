@@ -22,6 +22,7 @@
     <div class="row">
 
         <div class="col">
+            <a class="btn" style="background-color:#4980B5;color:#fff;" href="@Url.Action("GetOrders", "BackStage")"><i class="fas fa-reply"></i>&nbsp;Back</a>
             <div class="card mb-3 mt-3">
                 <div class="card-header">
                     <span class="pull-right">
@@ -59,8 +60,8 @@
                                     <td>@item.Color</td>
                                     <td>@item.size</td>
                                     <td>@item.Quantity</td>
-                                    <td class="price text-right" > @String.Format("{0:0,0}", @item.UnitPrice)</td>
-                                    <td class="price text-right" > @String.Format("{0:0,0}", @item.Price)</td>
+                                    <td class="price text-right"> @String.Format("{0:0,0}", @item.UnitPrice)</td>
+                                    <td class="price text-right"> @String.Format("{0:0,0}", @item.Price)</td>
                                     <td>
                                         <a class="btn btn-warning btn-sm" href="@Url.Action("UpdateOrderDetail","BackStage",new {
                                                                               item.Order_Details_ID
