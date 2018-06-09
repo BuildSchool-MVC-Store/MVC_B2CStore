@@ -26,6 +26,7 @@ namespace OSLibrary.ViewModels
     }
     public class Person_OrderDetail
     {
+        public int Order_ID { get; set; }
         public int Order_Details_ID { get; set; }
         public int Product_ID { get; set; }
         public string Product_Name { get; set; }
