@@ -63,18 +63,36 @@
             <div class="row mt-1">
                 <div class="col">
                     <b> 訂單狀態:</b>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label" for="inlineCheckbox1">未出貨</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label" for="inlineCheckbox2">已出貨</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                        <label class="form-check-label" for="inlineCheckbox3">已取貨</label>
-                    </div>
+                </div>
+                <div class="col">
+                    @using (Html.BeginForm("SelectOrder_CheckIs0", "BackStageOrder"))
+            {<button class="btn btn-outline-secondary fa fa-search" type="submit"> 新訂單 </button>
+    }
+                </div>
+                <div class="col">
+                    @using (Html.BeginForm("SelectOrder_CheckIs1", "BackStageOrder"))
+            {<button class="btn btn-outline-secondary fa fa-search" type="submit"> 處理中 </button>
+    }
+                </div>
+                <div class="col">
+                    @using (Html.BeginForm("SelectOrder_CheckIs2", "BackStageOrder"))
+            {<button class="btn btn-outline-secondary fa fa-search" type="submit"> 已出貨 </button>
+    }
+                </div>
+                <div class="col">
+                    @using (Html.BeginForm("SelectOrder_CheckIs3", "BackStageOrder"))
+            {<button class="btn btn-outline-secondary fa fa-search" type="submit"> 已完成 </button>
+    }
+                </div>
+                <div class="col">
+                    @using (Html.BeginForm("SelectOrder_CheckIs4", "BackStageOrder"))
+            {<button class="btn btn-outline-secondary fa fa-search" type="submit"> 已取消</button>
+    }
+                </div>
+                <div class="col">
+                    @using (Html.BeginForm("SelectOrder_CheckIs5", "BackStageOrder"))
+            {<button class="btn btn-outline-secondary fa fa-search" type="submit"> 退貨</button>
+    }
                 </div>
             </div>
 
@@ -108,12 +126,7 @@
                                 @item.Order_Date
                             </td>
                             <td>
-                                <select>
-                                    <option value="">@item.Order_Check</option>
-                                    <option value="">備貨中</option>
-                                    <option value="">已出貨</option>
-                                    <option value="">已取貨</option>
-                                </select>
+                                @item.Order_Check
                             </td>
                             <td>
                                 2018/05/25
@@ -122,18 +135,10 @@
                                 @item.Total
                             </td>
                             <td>
-                                <select>
-                                    <option value="">@item.Pay</option>
-                                    <option value="">貨到付款</option>
-                                    <option value="">超商取貨付款</option>
-                                </select>
+                                @item.Pay
                             </td>
                             <td>
-                                <select>
-                                    <option value="">@item.Transport</option>
-                                    <option value="">宅配</option>
-                                    <option value="">超商取貨</option>
-                                </select>
+                               @item.Transport
                             </td>
                             <td class="text-center">
                                 <i class="fas fa-pencil-alt"></i>

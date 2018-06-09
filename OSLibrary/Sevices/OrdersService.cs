@@ -118,8 +118,30 @@ namespace OSLibrary.Sevices
             return Orders_R.GetByOrder_ID(Order_ID);
         }
 
-
-
+        public IEnumerable<Orders> BackStageGetOrder_CheckIs0()
+        {
+            return new OrdersRepository().GetOrderByOrder_CheckIs0();
+        }
+        public IEnumerable<Orders> BackStageGetOrder_CheckIs1()
+        {
+            return new OrdersRepository().GetOrderByOrder_CheckIs1();
+        }
+        public IEnumerable<Orders> BackStageGetOrder_CheckIs2()
+        {
+            return new OrdersRepository().GetOrderByOrder_CheckIs2();
+        }
+        public IEnumerable<Orders> BackStageGetOrder_CheckIs3()
+        {
+            return new OrdersRepository().GetOrderByOrder_CheckIs3();
+        }
+        public IEnumerable<Orders> BackStageGetOrder_CheckIs4()
+        {
+            return new OrdersRepository().GetOrderByOrder_CheckIs4();
+        }
+        public IEnumerable<Orders> BackStageGetOrder_CheckIs5()
+        {
+            return new OrdersRepository().GetOrderByOrder_CheckIs5();
+        }
 
     }
 }
