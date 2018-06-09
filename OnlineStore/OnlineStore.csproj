@@ -340,6 +340,7 @@
     <Content Include="Views\BackStage\GetStocks.cshtml" />
     <Content Include="Views\BackStage\GetEmployee.cshtml" />
     <Content Include="Views\BackStage\UpdateOrderDetail.cshtml" />
+    <Content Include="Views\BackStage\GetProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OSLibrary\OSLibrary.csproj">
