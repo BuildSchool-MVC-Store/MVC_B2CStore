@@ -73,7 +73,7 @@ namespace OSLibrary.ADO.NET.Repositories
         {
             using (SqlConnection connection = new SqlConnection(SqlConnect.str))
             {
-                var sql = "SELECT od.Order_Details_ID, od.Product_ID, p.Product_Name, Quantity,size,Color,p.UnitPrice, Price FROM Order_Details as od INNER JOIN Products as p on p.Product_ID = od.Product_ID WHERE Order_ID = @Order_ID";
+                var sql = "SELECT od.Order_ID ,od.Order_Details_ID, od.Product_ID, p.Product_Name, Quantity,size,Color,p.UnitPrice, Price FROM Order_Details as od INNER JOIN Products as p on p.Product_ID = od.Product_ID WHERE Order_ID = @Order_ID";
                 return connection.Query<Person_OrderDetail>(sql, new { Order_ID });
             }
         }
@@ -82,7 +82,7 @@ namespace OSLibrary.ADO.NET.Repositories
         {
             using (SqlConnection connection = new SqlConnection(SqlConnect.str))
             {
-                var sql = "SELECT od.Order_Details_ID, od.Product_ID, p.Product_Name, Quantity,size,Color,p.UnitPrice, Price FROM Order_Details as od INNER JOIN Products as p on p.Product_ID = od.Product_ID WHERE Order_Details_ID = @Order_Details_ID";
+                var sql = "SELECT od.Order_ID,od.Order_Details_ID, od.Product_ID, p.Product_Name, Quantity,size,Color,p.UnitPrice, Price FROM Order_Details as od INNER JOIN Products as p on p.Product_ID = od.Product_ID WHERE Order_Details_ID = @Order_Details_ID";
                 return connection.QueryFirstOrDefault<Person_OrderDetail>(sql, new { Order_Details_ID });
             }
         }
