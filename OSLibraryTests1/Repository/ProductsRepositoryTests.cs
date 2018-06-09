@@ -47,15 +47,17 @@ namespace OSLibraryTests.ADO.NET.Repositories
             ProductsRepository repository = new ProductsRepository();
             var model = new Products
             {
-                Product_ID = 5,
-                Product_Name = "機能外套(限量)",
-                UnitPrice = 1500,
-                CategoryName = "外套",
-                Gender = "女"
+                Product_ID = 1,
+                Product_Name = "超級鬆緊帶寬鬆內褲",
+                UnitPrice = 650,
+                CategoryName = "UNDERWEAR",
+                Gender = "WOMEN",
+                Online = "YES",
+                Comments = "超級寬鬆"
             };
             repository.Update(model);
-            var result = repository.GetByProduct_ID(5);
-            Assert.IsTrue(result.UnitPrice == 1500);
+            var result = repository.GetByProduct_ID(1);
+            Assert.IsTrue(result.UnitPrice == 650);
         }
 
         [TestMethod]

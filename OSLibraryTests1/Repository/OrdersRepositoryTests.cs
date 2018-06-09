@@ -49,7 +49,7 @@ namespace OSLibraryTests.ADO.NET.Repositories
                     Account = "Osborn",
                     Pay = "超商取貨",
                     Transport = "物流",
-                    Order_Check = "運送中",
+                    Order_Check = 1,
                     Total = 680,
                     TranMoney = 0
                 };
@@ -81,13 +81,13 @@ namespace OSLibraryTests.ADO.NET.Repositories
                 Account = "Osborn",
                 Pay = "超商取貨",
                 Transport = "物流",
-                Order_Check = "運送中",
+                Order_Check = 1,
                 Total = 680,
                 TranMoney = 0
             };
             repository.Update(model);
             var result = repository.GetByOrder_ID(6);
-            Assert.IsTrue(result.Order_Check == "備貨中");
+            Assert.IsTrue(result.Order_Check == 1);
         }
 
         [TestMethod]
