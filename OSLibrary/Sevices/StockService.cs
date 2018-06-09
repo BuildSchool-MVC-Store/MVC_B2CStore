@@ -14,8 +14,13 @@ namespace OSLibrary.Sevices
     {
         public IEnumerable<StockDetail> GetAll()
         {
-            return RepositoryContainer.GetInstance<StockRepository>().GetAllOfBackStage();
+            return RepositoryContainer.GetInstance<StockRepository>().GetAllOfBackStage().OrderBy(x=>x.Product_ID).ThenBy(x=>x.Color);
         }
+        public IEnumerable<StockDetail> GetProduct_ID(int Product_ID)
+        {
+            return RepositoryContainer.GetInstance<StockRepository>().GetByProductIDOfBackStage(Product_ID).OrderBy(x=>x.Color);
+        }
+
         public void UpdateStock(Stock stock)
         {
             RepositoryContainer.GetInstance<StockRepository>().Update(stock);
@@ -38,6 +43,7 @@ namespace OSLibrary.Sevices
             }
             
         }
+
         public StockDetail GetStock(Stock stock)
         {
             return RepositoryContainer.GetInstance<StockRepository>().GetStock(stock.Product_ID, stock.Size, stock.Color);
