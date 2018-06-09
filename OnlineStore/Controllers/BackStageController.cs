@@ -55,6 +55,12 @@ namespace OnlineStore.Controllers
                 return RedirectToAction("AdminLoginPage", "Login");
             }
         }
+        public ActionResult GetProduct(int Prdouct_ID)
+        {
+
+        }
+
+
         [HttpGet]
         public ActionResult GetOrders(string Account)
         {
@@ -107,13 +113,23 @@ namespace OnlineStore.Controllers
             EmployeeService employeeService = new EmployeeService();
             return View(employeeService.GetEmployeeDetail(Account));
         }
-        public ActionResult GetStocks()
+        
+
+        [HttpGet]
+        public ActionResult GetStocks(int? Product_ID)
         {
             var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
             if (cookie.Status == cookieStatus.Match && cookie.Authority == Character.Employee)
             {
                 StockService stockService = new StockService();
-                return View(stockService.GetAll());
+                if(Product_ID == null)
+                {
+                    return View(stockService.GetAll());
+                }
+                else
+                {
+                    return View(stockService.GetProduct_ID((int)Product_ID));
+                }
             }
             else
             {
@@ -121,12 +137,16 @@ namespace OnlineStore.Controllers
                 return RedirectToAction("AdminLoginPage", "Login");
             }
         }
+
+
         [HttpGet]
         public ActionResult GetStock(Stock model)
         {
             StockService stockService = new StockService();
             return View(stockService.GetStock(model));
         }
+
+
         [HttpPost]
         public ActionResult UpdateStockQuantity(Stock model)
         {
@@ -156,6 +176,8 @@ namespace OnlineStore.Controllers
             ViewBag.Products = productService.GetProductsOfCreateStock();
             return View();
         }
+
+
 
         [HttpPost]
         public ActionResult CreateStock(CreateStock stock)
