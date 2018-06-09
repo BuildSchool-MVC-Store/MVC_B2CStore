@@ -21,6 +21,9 @@
     <div class="row">
 
         <div class="col">
+            <div id="back">
+
+            </div>
             <div class="card mb-3 mt-3">
                 <div class="card-header">
                     <h3>
@@ -94,6 +97,8 @@ else
 {
     <script>
         $(function () {
+            $('#back').html('<a class="btn" style="background-color:#4980B5;color:#fff;"href="@Url.Action("GetCustomers", "BackStage")" ><i class="fas fa-reply"></i>&nbsp;Back</a>');
+
             console.log("@TempData["Account"]");
             $('#content').load("/Orders/status?status=-1&account=" + "@TempData["Account"]");
             $('#pills-tab a').click(function () {
