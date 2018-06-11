@@ -106,4 +106,16 @@ namespace Identity
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
     }
+
+    public class ApplicationRoleManager : RoleManager<IdentityRole>//新增角色管理員相關的程式
+    {
+        public ApplicationRoleManager(IRoleStore<IdentityRole, string> roleStore) : base(roleStore)
+        {
+        }
+
+        public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
+        {
+            return new ApplicationRoleManager(new RoleStore<IdentityRole>(context.Get<ApplicationDbContext>()));
+        }
+    }
 }
