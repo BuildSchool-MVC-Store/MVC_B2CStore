@@ -97,5 +97,61 @@ namespace OSLibrary.ADO.NET.Repositories
                 return connection.QueryFirstOrDefault<Orders>(sql, new { Account });
             }
         }
+
+        public IEnumerable<Orders> GetOrderByOrder_CheckIs0()
+        {
+            using (SqlConnection connection = new SqlConnection(strConnection))
+            {
+                var sql = "SELECT * FROM Orders WHERE Order_Check =0";
+                return connection.Query<Orders>(sql);
+            }
+
+        }
+
+        public IEnumerable<Orders> GetOrderByOrder_CheckIs1()
+        {
+            using (SqlConnection connection = new SqlConnection(strConnection))
+            {
+                var sql = "SELECT * FROM Orders WHERE Order_Check =1";
+                return connection.Query<Orders>(sql);
+            }
+
+        }
+        public IEnumerable<Orders> GetOrderByOrder_CheckIs2()
+        {
+            using (SqlConnection connection = new SqlConnection(strConnection))
+            {
+                var sql = "SELECT * FROM Orders WHERE Order_Check =2";
+                return connection.Query<Orders>(sql);
+            }
+
+        }
+        public IEnumerable<Orders> GetOrderByOrder_CheckIs3()
+        {
+            using (SqlConnection connection = new SqlConnection(strConnection))
+            {
+                var sql = "SELECT * FROM Orders WHERE Order_Check =3";
+                return connection.Query<Orders>(sql);
+            }
+
+        }
+        public IEnumerable<Orders> GetOrderByOrder_CheckIs4()
+        {
+            using (SqlConnection connection = new SqlConnection(strConnection))
+            {
+                var sql = "SELECT * FROM Orders WHERE Order_Check =4";
+                return connection.Query<Orders>(sql);
+            }
+
+        }
+        public IEnumerable<Orders> GetOrderByOrder_CheckIs5()
+        {
+            using (SqlConnection connection = new SqlConnection(strConnection))
+            {
+                var sql = "SELECT * FROM Orders WHERE Order_Check =-1";
+                return connection.Query<Orders>(sql);
+            }
+
+        }
     }
 }

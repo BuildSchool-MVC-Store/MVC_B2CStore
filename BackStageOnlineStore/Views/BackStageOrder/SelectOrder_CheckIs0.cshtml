@@ -1,10 +1,9 @@
 ﻿@model IEnumerable<OSLibrary.Models.Orders>
 
 @{
-    ViewBag.Title = "SelectOrder";
+    ViewBag.Title = "SelectOrder_CheckIs0";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 <ol class="breadcrumb">
     <li class="breadcrumb-item ">
@@ -69,34 +68,35 @@
                 </div>
                 <div class="col">
                     @using (Html.BeginForm("SelectOrder_CheckIs0", "BackStageOrder"))
-            {<button class="btn btn-outline-secondary fa fa-search" type="submit"> 新訂單 </button>
-    }
+        {<button class="btn btn-outline-secondary fa fa-search" type="submit"> 新訂單 </button>
+}
                 </div>
                 <div class="col">
                     @using (Html.BeginForm("SelectOrder_CheckIs1", "BackStageOrder"))
-            {<button class="btn btn-outline-secondary fa fa-search" type="submit"> 處理中 </button>
-    }
+        {<button class="btn btn-outline-secondary fa fa-search" type="submit"> 處理中 </button>
+}
                 </div>
                 <div class="col">
                     @using (Html.BeginForm("SelectOrder_CheckIs2", "BackStageOrder"))
-            {<button class="btn btn-outline-secondary fa fa-search" type="submit"> 已出貨 </button>
-    }
+        {<button class="btn btn-outline-secondary fa fa-search" type="submit"> 已出貨 </button>
+}
                 </div>
                 <div class="col">
                     @using (Html.BeginForm("SelectOrder_CheckIs3", "BackStageOrder"))
-            {<button class="btn btn-outline-secondary fa fa-search" type="submit"> 已完成 </button>
-    }
+        {<button class="btn btn-outline-secondary fa fa-search" type="submit"> 已完成 </button>
+}
                 </div>
                 <div class="col">
                     @using (Html.BeginForm("SelectOrder_CheckIs4", "BackStageOrder"))
-            {<button class="btn btn-outline-secondary fa fa-search" type="submit"> 已取消</button>
-    }
+        {<button class="btn btn-outline-secondary fa fa-search" type="submit"> 已取消</button>
+}
                 </div>
                 <div class="col">
                     @using (Html.BeginForm("SelectOrder_CheckIs5", "BackStageOrder"))
-            {<button class="btn btn-outline-secondary fa fa-search" type="submit"> 退貨</button>
-    }
+        {<button class="btn btn-outline-secondary fa fa-search" type="submit"> 退貨</button>
+}
                 </div>
+            </div>
             </div>
 
         </div>

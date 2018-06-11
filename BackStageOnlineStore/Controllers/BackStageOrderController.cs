@@ -42,6 +42,32 @@ namespace BackStageOnlineStore.Controllers
         {
             return View();
         }
+        public ActionResult SelectOrder_CheckIs0()
+        {
+            OrdersService ordersService = new OrdersService();
+            return View(ordersService.BackStageGetOrder_CheckIs0());
+        }
+        public ActionResult SelectOrder_CheckIs1()
+        {
+            OrdersService ordersService = new OrdersService();
+            return View(ordersService.BackStageGetOrder_CheckIs1());
+        }
+        public ActionResult SelectOrder_CheckIs2()
+        {
+            OrdersService ordersService = new OrdersService();
+            return View(ordersService.BackStageGetOrder_CheckIs2());
+        }
+        public ActionResult SelectOrder_CheckIs3()
+        {
+            OrdersService ordersService = new OrdersService();
+            return View(ordersService.BackStageGetOrder_CheckIs3());
+        }
+        public ActionResult SelectOrder_CheckIs4()
+        {
+            OrdersService ordersService = new OrdersService();
+            return View(ordersService.BackStageGetOrder_CheckIs4());
+        }
+
 
         //下面OrderDetails
 
