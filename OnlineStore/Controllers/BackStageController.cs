@@ -65,6 +65,30 @@ namespace OnlineStore.Controllers
             return View(productService.GetProduct(Product_ID));
         }
 
+        [HttpGet]
+        public ActionResult CreateProduct()
+        {
+            CategoryService categoryService = new CategoryService();
+            ViewBag.category = categoryService.GetCategory();
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult CreateProduct(Products products)
+        {
+            ProductService productService = new ProductService();
+            if (productService.CreateProduct(products))
+            {
+                TempData["CreateProduct"] = 1;
+            }
+            else
+            {
+                TempData["CreateProduct"] = 0;
+            }
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
         [HttpPost]
         public ActionResult UpdateProduct(Products model)
         {
