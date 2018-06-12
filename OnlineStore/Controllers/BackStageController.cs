@@ -92,7 +92,7 @@ namespace OnlineStore.Controllers
         public ActionResult UpdateProduct(Products model)
         {
             ProductService productService = new ProductService();
-            if(productService.UpdateProduct(model))
+            if (productService.UpdateProduct(model))
             {
                 TempData["UpdateProduct"] = 1;
             }
@@ -143,6 +143,33 @@ namespace OnlineStore.Controllers
             }
         }
         // =========================================================================================== OrderDetail↓
+
+        [HttpGet]
+        public ActionResult CreateOrderDetail(int OrderID)
+        {
+            Order_DetailsService order_DetailsService = new Order_DetailsService();
+            ProductService productService = new ProductService();
+            ViewBag.OrderID = OrderID;
+            ViewBag.Products = productService.GetProductsOfCreateStock();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CreateOrderDetail(Person_OrderDetail person_OrderDetail)
+        {
+            Order_DetailsService order_DetailsService = new Order_DetailsService();
+            if (order_DetailsService.UpdateOrderDetail(person_OrderDetail))
+            {
+                TempData["CreateOrderDetail"] = 1;
+
+            }
+            else
+            {
+                TempData["CreateOrderDetail"] = 0;
+
+            }
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
         [HttpGet]
         public ActionResult UpdateOrderDetail(int Order_Details_ID, int? Product_ID)
         {
@@ -157,7 +184,6 @@ namespace OnlineStore.Controllers
             }
             else
             {
-                TempData["ProductDetail"] = null;
                 var temp = productService.GetProductDetail((int)Product_ID);
                 TempData["ProductDetail"] = temp;
                 orderDetail.Product_ID = (int)Product_ID;
@@ -198,6 +224,8 @@ namespace OnlineStore.Controllers
             }
             return Redirect(Request.UrlReferrer.ToString());
         }
+
+
         // =========================================================================================== Employee ↓
         public ActionResult GetEmployees()
         {
@@ -228,7 +256,7 @@ namespace OnlineStore.Controllers
             if (cookie.Status == cookieStatus.Match && cookie.Authority == Character.Employee)
             {
                 StockService stockService = new StockService();
-                if(Product_ID == null)
+                if (Product_ID == null)
                 {
                     return View(stockService.GetAll());
                 }
@@ -261,10 +289,10 @@ namespace OnlineStore.Controllers
             return Redirect(Request.UrlReferrer.ToString());
         }
         [HttpPost]
-        public ActionResult PurchaseQuantity(int Product_ID,string Color,string Size,int Quantity)
+        public ActionResult PurchaseQuantity(int Product_ID, string Color, string Size, int Quantity)
         {
             StockService stockService = new StockService();
-            if(stockService.PurchaseStock(Product_ID, Size, Color, Quantity))
+            if (stockService.PurchaseStock(Product_ID, Size, Color, Quantity))
             {
                 TempData["stock"] = 1;
             }
