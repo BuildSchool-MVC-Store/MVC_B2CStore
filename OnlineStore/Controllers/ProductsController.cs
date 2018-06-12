@@ -29,8 +29,15 @@ namespace OnlineStore.Controllers
         [Route("{ProductID}")]
         public ActionResult ProductDetail(int ProductID)
         {
-            var result = new ProductService();
-            return View(result.GetProductDetail(ProductID));
+            var productService = new ProductService();
+            return View(productService.GetProductDetail(ProductID));
+        }
+        [HttpGet]
+        [Route("GetProductCS")]
+        public ActionResult GetProductCS(int ProductID)
+        {
+            var productService = new ProductService();
+            return PartialView(productService.GetProductDetail(ProductID));
         }
     }
 }
