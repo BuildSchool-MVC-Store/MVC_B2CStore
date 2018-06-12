@@ -70,7 +70,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-danger btn-sm" id="del" href="#" role="button">
+                                        <a class="btn btn-danger btn-sm" id="del" href="@Url.Action("DeleteOrderDetail","BackStage",new { item.Order_Details_ID})" role="button">
                                             <i class="far fa-trash-alt"></i>
                                         </a>
                                     </td>
@@ -85,3 +85,22 @@
         </div>
     </div>
 </div>
+
+@if (TempData["DeleteOrderDetail"] != null)
+{
+    <script>
+        console.log("?");
+        let bool = "@TempData["DeleteOrderDetail"]";
+        if (bool == 1) {
+            swal("Update Order Detail Success!", {
+                icon: "success",
+            });
+        }
+        else {
+            swal("Update Order Detail Error!", {
+                icon: "error",
+            });
+        }
+
+    </script>
+}
