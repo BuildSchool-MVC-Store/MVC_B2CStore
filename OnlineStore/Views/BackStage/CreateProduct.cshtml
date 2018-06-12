@@ -1,0 +1,107 @@
+﻿@model OSLibrary.Models.Products
+
+@{
+    ViewBag.Title = "CreateProduct";
+    Layout = "~/Views/Shared/_LayoutBackStagePage.cshtml";
+
+    var category = ViewBag.category as IEnumerable<OSLibrary.Models.Category>;
+    var selectCategory = category.Select(x => new SelectListItem
+    {
+        Text = x.CategoryName.ToString(),
+        Value = x.CategoryName.ToString()
+    });
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="breadcrumb-holder">
+                <h1 class="main-title float-left">Create Product</h1>
+                <ol class="breadcrumb float-right">
+                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item">Products</li>
+                    <li class="breadcrumb-item active">Create Product</li>
+                </ol>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h3>
+                        <i class="fas fa-plus"></i> Create Product
+                    </h3>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            @Html.EditorFor(model => model.Product_Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Product_Name, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <select name="Gender" class="form-control">
+                                <option value="WOMEN">WOMEN</option>
+                                <option value="MEN">MEN</option>
+                                <option value="KIDS">KIDS</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            @Html.DropDownListFor(Model => Model.CategoryName, selectCategory, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label>UnitPrice</label>
+                            @Html.EditorFor(model => model.UnitPrice, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select name="Online" class="form-control">
+                                <option value="YES">上架中</option>
+                                <option value="NO">已下架</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Textarea</label>
+                            @Html.EditorFor(model => model.Comments, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Comments, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group text-right m-b-0">
+                            <button class="btn btn-primary" type="submit">
+                                Submit
+                            </button>
+                            <button type="reset" class="btn btn-secondary m-l-5">
+                                Cancel
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- end card-->
+        </div>
+    </div>
+</div>
+
+@if (TempData["CreateProduct"] != null)
+{
+    <script>
+        let bool = "@TempData["CreateProduct"]";
+        if (bool == 1) {
+            swal("Create Stock Success!", {
+                icon: "success",
+            });
+        }
+        else {
+            swal("Create Stock Error!", {
+                icon: "error",
+            });
+        }
+
+    </script>
+}
