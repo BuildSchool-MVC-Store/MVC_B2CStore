@@ -86,6 +86,7 @@ namespace OnlineStore.Controllers
         public ActionResult GetOrderDetail(int OrderID)
         {
             OrdersService ordersService = new OrdersService();
+            ViewBag.OrderID = OrderID;
             return View(ordersService.GetDetails(OrderID));
         }
     }
