@@ -13,9 +13,9 @@ namespace OSLibrary.Sevices
 {
     public class ProductService
     {
+        static private ProductsRepository productsRepository = RepositoryContainer.GetInstance<ProductsRepository>();
         public IEnumerable<ProductModel> GetAllProducts()
         {
-            ProductsRepository productsRepository = new ProductsRepository();
             ProductImageRepository imageRepository = new ProductImageRepository();
             var products = new List<ProductModel>();
             foreach (var item in productsRepository.GetAll())
@@ -36,12 +36,12 @@ namespace OSLibrary.Sevices
         }
         public ProductDetail GetProductDetail(int ProdcutID)
         {
-            ProductImageRepository imageRepository = new ProductImageRepository();
-            ProductsRepository productsRepository = new ProductsRepository();
-            StockRepository stockRepository = new StockRepository();
+            var imageRepository = RepositoryContainer.GetInstance<ProductImageRepository>();
+            var stockRepository = RepositoryContainer.GetInstance<StockRepository>();
+
             var products = productsRepository.GetByProduct_ID(ProdcutID);
             var allImage = imageRepository.GetByProduct_ID(ProdcutID);
-            var Image = allImage.Select(x=> "/Images/Products/" + x.Image).ToList();
+            var Image = allImage.Select(x => "/Images/Products/" + x.Image).ToList();
             var stock = stockRepository.GetByProductID(ProdcutID);
             Dictionary<string, List<string>> ColorSize = new Dictionary<string, List<string>>();
             foreach (var color in stock.Select(x => x.Color).Distinct())
@@ -61,21 +61,35 @@ namespace OSLibrary.Sevices
         }
         public IEnumerable<Products> GetProductOfBackstage()
         {
-            return RepositoryContainer.GetInstance<ProductsRepository>().GetAll();
+            return productsRepository.GetAll();
         }
+
+        public bool CreateProduct(Products products)
+        {
+            try
+            {
+                productsRepository.Create(products);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public IEnumerable<ProductMain> GetProductsOfCreateStock()
         {
-            return RepositoryContainer.GetInstance<ProductsRepository>().GetIDandName();
+            return productsRepository.GetIDandName();
         }
         public Products GetProduct(int Product_ID)
         {
-            return RepositoryContainer.GetInstance<ProductsRepository>().GetByProduct_ID(Product_ID);
+            return productsRepository.GetByProduct_ID(Product_ID);
         }
         public bool UpdateProduct(Products mode)
         {
             try
             {
-                RepositoryContainer.GetInstance<ProductsRepository>().Update(mode);
+                productsRepository.Update(mode);
                 return true;
             }
             catch
