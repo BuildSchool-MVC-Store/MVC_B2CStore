@@ -42,7 +42,7 @@ namespace OnlineStore.Controllers
                 return RedirectToAction("AdminLoginPage", "Login");
             }
         }
-        //======================================================================================= Product
+        //=================================================================================================== Product↓
         [HttpGet]
         public ActionResult GetProducts()
         {
@@ -73,7 +73,6 @@ namespace OnlineStore.Controllers
             return View();
         }
 
-
         [HttpPost]
         public ActionResult CreateProduct(Products products)
         {
@@ -103,7 +102,7 @@ namespace OnlineStore.Controllers
             }
             return Redirect(Request.UrlReferrer.ToString());
         }
-        //===================================================================================== ProdustImages
+        //===================================================================================== ProdustImages↓
         [HttpGet]
         public ActionResult GetProductImages(int? Product_ID)
         {
@@ -111,7 +110,7 @@ namespace OnlineStore.Controllers
         }
 
 
-        //====================================================================================== Orders
+        //====================================================================================== Orders↓
         [HttpGet]
         public ActionResult GetOrders(string Account)
         {
@@ -143,7 +142,63 @@ namespace OnlineStore.Controllers
                 return RedirectToAction("AdminLoginPage", "Login");
             }
         }
-        // =========================================================================================== Employee
+        // =========================================================================================== OrderDetail↓
+        [HttpGet]
+        public ActionResult UpdateOrderDetail(int Order_Details_ID, int? Product_ID)
+        {
+            Order_DetailsService order_DetailsService = new Order_DetailsService();
+            ProductService productService = new ProductService();
+            var orderDetail = order_DetailsService.GetByOrderDetail_ID(Order_Details_ID);
+            ViewBag.Products = productService.GetProductsOfCreateStock();
+
+            if (Product_ID == null)
+            {
+                TempData["ProductDetail"] = productService.GetProductDetail(orderDetail.Product_ID);
+            }
+            else
+            {
+                TempData["ProductDetail"] = null;
+                var temp = productService.GetProductDetail((int)Product_ID);
+                TempData["ProductDetail"] = temp;
+                orderDetail.Product_ID = (int)Product_ID;
+                orderDetail.Color = temp.ColorSize.Keys.ToList()[0];
+                orderDetail.size = "";
+                orderDetail.Quantity = 1;
+            }
+            return View(orderDetail);
+        }
+        [HttpPost]
+        public ActionResult UpdateOrderDetail(Person_OrderDetail person_OrderDetail)
+        {
+            Order_DetailsService order_DetailsService = new Order_DetailsService();
+            if (order_DetailsService.UpdateOrderDetail(person_OrderDetail))
+            {
+                TempData["UpdateOrderDetail"] = 1;
+
+            }
+            else
+            {
+                TempData["UpdateOrderDetail"] = 0;
+
+            }
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+        public ActionResult DeleteOrderDetail(int Order_Details_ID)
+        {
+            Order_DetailsService order_DetailsService = new Order_DetailsService();
+            if (order_DetailsService.DeleteOrderDetail(Order_Details_ID))
+            {
+                TempData["DeleteOrderDetail"] = 1;
+
+            }
+            else
+            {
+                TempData["DeleteOrderDetail"] = 0;
+
+            }
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+        // =========================================================================================== Employee ↓
         public ActionResult GetEmployees()
         {
             var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
@@ -164,8 +219,8 @@ namespace OnlineStore.Controllers
             EmployeeService employeeService = new EmployeeService();
             return View(employeeService.GetEmployeeDetail(Account));
         }
-        
 
+        // =========================================================================================== Stock
         [HttpGet]
         public ActionResult GetStocks(int? Product_ID)
         {
@@ -243,45 +298,5 @@ namespace OnlineStore.Controllers
             return Redirect(Request.UrlReferrer.ToString());
         }
 
-        [HttpGet]
-        public ActionResult UpdateOrderDetail(int Order_Details_ID,int? Product_ID)
-        {
-            Order_DetailsService order_DetailsService = new Order_DetailsService();
-            ProductService productService = new ProductService();
-            var orderDetail = order_DetailsService.GetByOrderDetail_ID(Order_Details_ID);
-            ViewBag.Products = productService.GetProductsOfCreateStock();
-
-            if (Product_ID == null)
-            {
-                TempData["ProductDetail"] = productService.GetProductDetail(orderDetail.Product_ID);
-            }
-            else
-            {
-                TempData["ProductDetail"] = null;
-                var temp = productService.GetProductDetail((int)Product_ID);
-                TempData["ProductDetail"] = temp;
-                orderDetail.Product_ID = (int)Product_ID;
-                orderDetail.Color = temp.ColorSize.Keys.ToList()[0];
-                orderDetail.size = "";
-                orderDetail.Quantity = 1;
-            }
-            return View(orderDetail);
-        }
-        [HttpPost]
-        public ActionResult UpdateOrderDetail(Person_OrderDetail person_OrderDetail)
-        {
-            Order_DetailsService order_DetailsService = new Order_DetailsService();
-            if(order_DetailsService.UpdateOrderDetail(person_OrderDetail))
-            {
-                TempData["UpdateOrderDetail"] = 1;
-
-            }
-            else
-            {
-                TempData["UpdateOrderDetail"] = 0;
-
-            }
-            return Redirect(Request.UrlReferrer.ToString());
-        }
     }
 }
