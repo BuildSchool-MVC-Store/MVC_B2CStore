@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "ProductDetail";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var color = Model.ColorSize.Keys.ToList();
 }
 @using System;
 <div class="container catcontent">
@@ -42,7 +43,7 @@
                             <div class="row">
                                 <div class="col-12 mt-2 mb-3 product_color">
                                     <h5 class="mb-3">Color</h5>
-                                    @foreach (var item in Model.Color)
+                                    @foreach (var item in color)
                                     {
                                         <a href="javascript:">@item</a>
                                     }
@@ -50,7 +51,7 @@
 
                                 <div class="col-12 mt-2 mb-3 product_size">
                                     <h5 class="mb-3">Size</h5>
-                                    @foreach (var item in Model.ColorSize[Model.Color[0]])
+                                    @foreach (var item in Model.ColorSize[color[0]])
                                     {
                                         <a href="javascript:">@item</a>
                                     }

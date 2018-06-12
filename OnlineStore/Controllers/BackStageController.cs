@@ -83,7 +83,7 @@ namespace OnlineStore.Controllers
         [HttpGet]
         public ActionResult GetProductImages(int? Product_ID)
         {
-            return View(productService.Ge);
+            return View();
         }
 
 
