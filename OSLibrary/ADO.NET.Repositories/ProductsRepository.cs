@@ -15,11 +15,11 @@ namespace OSLibrary.ADO.NET.Repositories
 {
     public class ProductsRepository : IRepository<Products>
     {
-        private SqlConnection connection = new SqlConnection(SqlConnect.str);
+        static private SqlConnection connection = new SqlConnection(SqlConnect.str);
         public void Create(Products model)
         {
-            var sql = ("INSERT INTO Products (Product_Name,UnitPrice,CategoryName,Gender) VALUES (@Product_Name,@UnitPrice,@CategoryName,@Gender)");
-            var exec = connection.Execute(sql);
+            var sql = ("INSERT INTO Products (Product_Name,UnitPrice,CategoryName,Gender,Online) VALUES (@Product_Name,@UnitPrice,@CategoryName,@Gender,@Online)");
+            connection.Execute(sql,model);
         }
         public void Update(Products model)
         {
@@ -29,7 +29,7 @@ namespace OSLibrary.ADO.NET.Repositories
         public void Delete(int Product_ID)
         {
             var sql = ("DELETE FROM Products WHERE Product_ID=@Product_ID");
-            var exec = connection.Execute(sql, new { Product_ID });
+            connection.Execute(sql, new { Product_ID });
         }
         public Products GetByProduct_ID(int Product_ID)
         {
