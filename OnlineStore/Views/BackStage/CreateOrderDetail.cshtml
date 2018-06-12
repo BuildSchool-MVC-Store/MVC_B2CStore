@@ -1,0 +1,77 @@
+﻿@model OSLibrary.Models.Order_Details
+
+@{
+    ViewBag.Title = "CreateOrderDetail";
+    Layout = "~/Views/Shared/_LayoutBackStagePage.cshtml";
+    var list = ViewBag.Products as IEnumerable<OSLibrary.ViewModels.ProductMain>;
+    var items = new SelectList(list, "Product_ID", "Product_Name");
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="breadcrumb-holder">
+                <h1 class="main-title float-left">Create OrderDetail</h1>
+                <ol class="breadcrumb float-right">
+                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item">OrderDetails</li>
+                    <li class="breadcrumb-item active">Create OrderDetail</li>
+                </ol>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h3>
+                        <i class="fas fa-plus"></i> Create OrderDetail
+                    </h3>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        <div class="form-group">
+                            <label>Order No.</label>
+                            <input readonly="readonly" class="form-control" type="text" name="Order_ID" value="@ViewBag.OrderID" />
+                        </div>
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <select name="Product_ID" class="form-control">
+                                @foreach (var item in items)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            </select>
+                        </div>
+                        <div id="ColorAndSize">
+                            @{Html.RenderAction("GetProductCS", "Products", new { ProductID = list.ToList()[0].Product_ID });}
+                        </div>
+                        <div class="form-group">
+                            <label>Quantity</label>
+                            <select class="form-control" name="Quantity">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                        </div>
+                        <div class="form-group text-right m-b-0">
+                            <button class="btn btn-primary" type="submit">
+                                Submit
+                            </button>
+                            <button type="reset" class="btn btn-secondary m-l-5">
+                                Cancel
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $("select[name=Product_ID]").change(function () {
+        $('#ColorAndSize').load("/Products/GetProductCS?ProductID=" + $(this).val());
+    });
+</script>
