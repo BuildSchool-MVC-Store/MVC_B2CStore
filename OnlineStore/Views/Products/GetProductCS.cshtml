@@ -1,0 +1,35 @@
+﻿@model OSLibrary.ViewModels.ProductDetail
+@{
+    var color = Model.ColorSize.Keys.ToList();
+}
+<div class="form-group">
+    <label>Color</label>
+    <select name="Color" class="form-control">
+        @foreach (var item in color)
+        {
+            <option value="@item">@item</option>
+        }
+    </select>
+</div>
+<div class="form-group">
+    <label>Size</label>
+    <select name="size" class="form-control">
+        @foreach (var item in Model.ColorSize[color[0]])
+        {
+            <option value="@item">@item</option>
+        }
+    </select>
+</div>
+
+<script>
+    $('select[name=Color]').change(function () {
+        let colorandsize = @Html.Raw(Json.Encode(Model.ColorSize));
+        changeSelectValue('select[name=size]', colorandsize[$(this).val()])
+    });
+    function changeSelectValue(selectname, selectvalue) {
+        $(selectname).html("");
+        for (var i in selectvalue) {
+            $(selectname).append($('<option>').val(selectvalue[i]).html(selectvalue[i]))
+        }
+    }
+</script>
