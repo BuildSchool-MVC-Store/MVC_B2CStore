@@ -8,13 +8,6 @@ namespace OSLibrary.Models
 
     public partial class Customers
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Customers()
-        {
-            Orders = new HashSet<Orders>();
-            Shopping_Cart = new HashSet<Shopping_Cart>();
-        }
-
         [Key]
         [StringLength(50)]
         public string Account { get; set; }
@@ -37,11 +30,5 @@ namespace OSLibrary.Models
 
         [Column(TypeName = "date")]
         public DateTime Birthday { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Orders> Orders { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Shopping_Cart> Shopping_Cart { get; set; }
     }
 }

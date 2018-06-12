@@ -8,11 +8,6 @@ namespace OSLibrary.Models
 
     public partial class Orders
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Orders()
-        {
-            Order_Details = new HashSet<Order_Details>();
-        }
 
         [Key]
         public int Order_ID { get; set; }
@@ -38,10 +33,5 @@ namespace OSLibrary.Models
 
         [Column(TypeName = "money")]
         public decimal? TranMoney { get; set; }
-
-        public virtual Customers Customers { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order_Details> Order_Details { get; set; }
     }
 }

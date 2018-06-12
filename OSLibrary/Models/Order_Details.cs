@@ -30,8 +30,5 @@ namespace OSLibrary.Models
         [StringLength(50)]
         public string Color { get; set; }
 
-        public virtual Orders Orders { get; set; }
-
-        public virtual Products Products { get; set; }
     }
 }
