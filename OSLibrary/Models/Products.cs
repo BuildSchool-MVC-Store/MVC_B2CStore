@@ -25,6 +25,7 @@ namespace OSLibrary.Models
         public string Product_Name { get; set; }
 
         [Column(TypeName = "money")]
+        [Range(0,100000,ErrorMessage ="價錢必須大於0")]
         public decimal UnitPrice { get; set; }
 
         [Required]
