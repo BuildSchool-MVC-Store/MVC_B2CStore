@@ -62,9 +62,8 @@ namespace OSLibrary.Sevices
             try
             {
                 Order_DetailsRepository.Create(order_Details);
-                var order_ID = Order_DetailsRepository.GetByOrder_Details_ID(order_Detail_ID).Order_ID;
                 var o = RepositoryContainer.GetInstance<OrdersRepository>();
-                o.UpdateTotalMoney(order_ID);
+                o.UpdateTotalMoney(order_Details.Order_ID);
                 return true;
             }
             catch
