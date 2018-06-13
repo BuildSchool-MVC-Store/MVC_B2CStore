@@ -22,8 +22,11 @@
     <!-- end row -->
     <div class="row">
         <div class="col">
-            <a class="btn mb-3" style="background-color:#4980B5;color:#fff;" href="javascript:window.history.back();" role="button"><i class="fas fa-reply"></i>&nbsp;Back</a>
+            @if (ViewBag.notall == 0)
+            {
+                <a class="btn mb-3" style="background-color:#4980B5;color:#fff;" href="javascript:window.history.back();" role="button"><i class="fas fa-reply"></i>&nbsp;Back</a>
 
+            }
             <div class="card mb-3 mt-3">
                 <div class="card-header">
                     <span class="pull-right">

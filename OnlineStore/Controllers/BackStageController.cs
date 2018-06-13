@@ -262,6 +262,7 @@ namespace OnlineStore.Controllers
                 }
                 else
                 {
+                    ViewBag.notall =0;
                     return View(stockService.GetProduct_ID((int)Product_ID));
                 }
             }
