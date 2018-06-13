@@ -61,6 +61,24 @@ namespace OSLibrary.Sevices
         {
             try
             {
+                var product = RepositoryContainer.GetInstance<ProductsRepository>().GetByProduct_ID(order_Details.Product_ID);
+                var stock = RepositoryContainer.GetInstance<StockRepository>();
+                var productstock = stock.GetQuantityByPK(order_Details.Product_ID, order_Details.size, order_Details.Color);
+                if (stock.CheckInventory(order_Details.Product_ID, order_Details.size, order_Details.Color, order_Details.Quantity))
+                {
+                    stock.Update(new Stock
+                    {
+                        Product_ID = order_Details.Product_ID,
+                        Color = order_Details.Color,
+                        Quantity = productstock - order_Details.Quantity,
+                        Size = order_Details.size
+                    });
+                }
+                else
+                {
+                    throw new Exception();
+                }
+                order_Details.Price = product.UnitPrice * order_Details.Quantity;
                 Order_DetailsRepository.Create(order_Details);
                 var o = RepositoryContainer.GetInstance<OrdersRepository>();
                 o.UpdateTotalMoney(order_Details.Order_ID);

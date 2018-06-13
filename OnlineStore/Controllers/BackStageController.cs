@@ -154,10 +154,10 @@ namespace OnlineStore.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CreateOrderDetail(Person_OrderDetail person_OrderDetail)
+        public ActionResult CreateOrderDetail(Order_Details order_Details)
         {
             Order_DetailsService order_DetailsService = new Order_DetailsService();
-            if (order_DetailsService.UpdateOrderDetail(person_OrderDetail))
+            if (order_DetailsService.CreateOrderDetail(order_Details))
             {
                 TempData["CreateOrderDetail"] = 1;
 
@@ -262,6 +262,7 @@ namespace OnlineStore.Controllers
                 }
                 else
                 {
+                    ViewBag.notall =0;
                     return View(stockService.GetProduct_ID((int)Product_ID));
                 }
             }
