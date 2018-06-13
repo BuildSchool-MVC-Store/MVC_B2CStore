@@ -26,7 +26,7 @@
             <div class="card mb-3 mt-3">
                 <div class="card-header">
                     <span class="pull-right">
-                        <a href="createProducts.html" class="btn btn-primary btn-sm">
+                        <a href="createProducts.html" class="btn btn-sm" style="background-color:#4980b5;color:#fff;">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                         </a>
                     </span>
@@ -42,8 +42,10 @@
                             <tr>
                                 <th>Account</th>
                                 <th>Name</th>
-                                <th>Phone</th>
                                 <th>Birthday</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
                                 <th>Update</th>
                                 <th>Delete</th>
                             </tr>
@@ -54,8 +56,10 @@
                                 <tr>
                                     <td>@item.Account</td>
                                     <td>@item.Name</td>
-                                    <td>@item.Phone</td>
                                     <td>@item.Birthday.ToShortDateString()</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.Phone</td>
+                                    <td>@item.Address</td>
                                     <td>
                                         <a class="btn btn-warning btn-sm" href="@Url.Action("GetEmployee", "BackStage",new {item.Account})" role="button">
                                             <i class="far fa-edit"></i>
