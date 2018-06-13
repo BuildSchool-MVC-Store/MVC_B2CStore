@@ -115,6 +115,10 @@ namespace OSLibrary.Sevices
         {
             return RepositoryContainer.GetInstance<OrdersRepository>().GetAll();
         }
+        public Orders GetOrder(int OrderID)
+        {
+            return RepositoryContainer.GetInstance<OrdersRepository>().GetByOrder_ID(OrderID);
+        }
         public IEnumerable<Orders> GetOrders(int status)
         {
             if(status == -1)
