@@ -21,7 +21,7 @@
     <!-- end row -->
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-
+            <a class="btn mb-3" style="background-color:#4980B5;color:#fff;" href="javascript:window.history.back();" role="button"><i class="fas fa-reply"></i>&nbsp;Back</a>
             <div class="card mb-3">
                 <div class="card-header">
                     <h3>
@@ -30,40 +30,40 @@
                 </div>
                 <div class="card-body">
                     @using (Html.BeginForm("CreateStock", "BackStage"))
-                    {
-                        <div class="form-group">
-                            <label>Product Name</label>
-                            @{
-                                var list = ViewBag.Products as IEnumerable<OSLibrary.ViewModels.ProductMain>;
-                                var items = new SelectList(list, "Product_ID", "Product_Name");
-                            }
-                            @Html.DropDownList("Product_ID", items, new { @Class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            <label>Size</label>
-                            <select class="form-control" name="Size">
-                                <option>XS</option>
-                                <option>S</option>
-                                <option>M</option>
-                                <option>L</option>
-                                <option>XL</option>
-                                <option>XXL</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Color</label>
-                            @Html.TextBoxFor(model => model.Color, new { @class = "form-control", @placeholder = "Enter Color" })
-                            @Html.ValidationMessageFor(model => model.Color, null, new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group text-right m-b-0">
-                            <button class="btn btn-primary" type="submit">
-                                Submit
-                            </button>
-                            <button type="reset" class="btn btn-secondary m-l-5">
-                                Cancel
-                            </button>
-                        </div>
+            {
+                <div class="form-group">
+                    <label>Product Name</label>
+                    @{
+                var list = ViewBag.Products as IEnumerable<OSLibrary.ViewModels.ProductMain>;
+                var items = new SelectList(list, "Product_ID", "Product_Name");
                     }
+                    @Html.DropDownList("Product_ID", items, new { @Class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Size</label>
+                    <select class="form-control" name="Size">
+                        <option>XS</option>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                        <option>XL</option>
+                        <option>XXL</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Color</label>
+                    @Html.TextBoxFor(model => model.Color, new { @class = "form-control", @placeholder = "Enter Color" })
+                    @Html.ValidationMessageFor(model => model.Color, null, new { @class = "text-danger" })
+                </div>
+                <div class="form-group text-right m-b-0">
+                    <button class="btn btn-primary" type="submit">
+                        Submit
+                    </button>
+                    <button type="reset" class="btn btn-secondary m-l-5">
+                        Cancel
+                    </button>
+                </div>
+    }
                 </div>
             </div>
             <!-- end card-->
