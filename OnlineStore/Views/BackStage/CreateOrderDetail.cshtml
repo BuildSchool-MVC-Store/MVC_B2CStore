@@ -23,6 +23,8 @@
     <!-- end row -->
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <a class="btn mb-3" style="background-color:#4980B5;color:#fff;" href="@Url.Action("GetOrderDetail","Orders",new { OrderID =  ViewBag.OrderID })" role="button"><i class="fas fa-reply"></i>&nbsp;Back</a>
+
             <div class="card mb-3">
                 <div class="card-header">
                     <h3>
@@ -75,3 +77,22 @@
         $('#ColorAndSize').load("/Products/GetProductCS?ProductID=" + $(this).val());
     });
 </script>
+
+@if (TempData["CreateOrderDetail"] != null)
+{
+    <script>
+        console.log("?");
+        let bool = "@TempData["UpdateOrderDetail"]";
+        if (bool == 1) {
+            swal("Update Order Detail Success!", {
+                icon: "success",
+            });
+        }
+        else {
+            swal("Update Order Detail Error!", {
+                icon: "error",
+            });
+        }
+
+    </script>
+}
