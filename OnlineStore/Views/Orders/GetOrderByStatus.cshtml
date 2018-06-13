@@ -46,15 +46,22 @@
             </a>
         </td>
         <td>
-            <a class="btn btn-warning btn-sm" href="#" role="button">
-                <i class="far fa-edit"></i>
-            </a>
+            @if (@item.Order_Check < 2)
+            {
+                <a class="btn btn-warning btn-sm" href="@Url.Action("UpdateOrder","BackStage",new { OrderID = item.Order_ID })" role="button">
+                    <i class="far fa-edit"></i>
+                </a>
+            }
         </td>
         <td>
-            <a class="btn btn-danger btn-sm" id="del" href="#" role="button">
-                <i class="far fa-trash-alt"></i>
-            </a>
+            @if (@item.Order_Check < 3)
+            {
+                <a class="btn btn-danger btn-sm" id="del" href="#" role="button">
+                    <i class="far fa-trash-alt"></i>
+                </a>
+            }
         </td>
+            
         <td>
             @if (@item.Order_Check < 3)
             {

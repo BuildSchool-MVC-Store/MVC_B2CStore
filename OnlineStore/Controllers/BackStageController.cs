@@ -142,6 +142,21 @@ namespace OnlineStore.Controllers
                 return RedirectToAction("AdminLoginPage", "Login");
             }
         }
+        [HttpGet]
+        public ActionResult UpdateOrder(int OrderID)
+        {
+            OrdersService ordersService = new OrdersService();
+
+            return View(ordersService.GetOrder(OrderID));
+        }
+
+        [HttpPost]
+        public ActionResult UpdateOrder(Orders orders)
+        {
+            OrdersService ordersService = new OrdersService();
+
+            return View();
+        }
         // =========================================================================================== OrderDetail↓
 
         [HttpGet]

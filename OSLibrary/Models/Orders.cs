@@ -33,5 +33,8 @@ namespace OSLibrary.Models
 
         [Column(TypeName = "money")]
         public decimal? TranMoney { get; set; }
+
+        [StringLength(200)]
+        public string Address { get; set; }
     }
 }
