@@ -126,45 +126,45 @@
                             </div>
                             <div class="col-12" id="order_@item.Order_ID" style="display:none ;border: 1px solid #ABACAE">
                                 <div class="row ordernav">
-                                    <div class="col">
+                                    <div class="col-2">
                                         <p>商品編號</p>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-3">
                                         <p>商品名稱</p>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-2">
                                         <p>尺寸</p>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-1">
                                         <p>顏色</p>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-2">
                                         <p>訂購數量</p>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-2">
                                         <p>小計</p>
                                     </div>
                                 </div>
                                 @foreach (var detail in item.details)
                                 {
                                     <div class="row ordernav_content">
-                                        <div class="col">
+                                        <div class="col-2">
                                             <p>@detail.Product_ID </p>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-3">
                                             <p>@detail.Product_Name</p>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-2">
                                             <p>@detail.size</p>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-1">
                                             <p>@detail.Color</p>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-2">
                                             <p>@detail.Quantity</p>
                                         </div>
-                                        <div class="col">
-                                            <p>@detail.Price</p>
+                                        <div class="col-2">
+                                            <p class="price">@String.Format("{0:0,0}", @detail.Price)</p>
                                         </div>
                                     </div>
                                 }
