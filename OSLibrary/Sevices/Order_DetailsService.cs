@@ -61,6 +61,8 @@ namespace OSLibrary.Sevices
         {
             try
             {
+                var product = RepositoryContainer.GetInstance<ProductsRepository>().GetByProduct_ID(order_Details.Product_ID);
+                order_Details.Price = product.UnitPrice * order_Details.Quantity;
                 Order_DetailsRepository.Create(order_Details);
                 var o = RepositoryContainer.GetInstance<OrdersRepository>();
                 o.UpdateTotalMoney(order_Details.Order_ID);
