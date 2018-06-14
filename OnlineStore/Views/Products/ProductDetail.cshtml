@@ -126,7 +126,7 @@
             for (let i of value[$color.toString()]) {
                 console.log(i);
                 $('.product_size ul').append($('<li>').addClass('product_li').append($('<a>').attr('href', "javascript:").html(i).click(function () {
-                    $('.product_size').removeClass('choose');
+                    $('.product_size li a').removeClass('choose');
                     $(this).addClass('choose');
                     $('input[name="size"]').val($(this).html());
                 })));
