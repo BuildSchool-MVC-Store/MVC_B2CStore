@@ -9,7 +9,7 @@
         @foreach (var item in Model)
         {
             <li>
-                <a href="#">@item.CategoryName</a>
+                <a href="@Url.Action("Index","Products",new { @item.CategoryName , ViewBag.Gender})">@item.CategoryName</a>
             </li>
         }
     </ul>
