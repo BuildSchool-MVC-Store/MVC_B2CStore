@@ -25,10 +25,10 @@
                 </div>
                 <div class="col-4">
                     <!--右商品細節-->
-                    @*去ShoppingCart的Controller 去找 AddtoShoppingCart的 function 
-                    如果按下 有 type=submit button時 跑 AddtoShoppingCart的 function
-                    AddtoShopingCart 的參數 都是由 name = "ID" ,"Name","color","size"
-                    Color 跟 size 都是由jQuery去放值的 他如果換選擇時 會更新 input 的value*@
+                    @*去ShoppingCart的Controller 去找 AddtoShoppingCart的 function
+                        如果按下 有 type=submit button時 跑 AddtoShoppingCart的 function
+                        AddtoShopingCart 的參數 都是由 name = "ID" ,"Name","color","size"
+                        Color 跟 size 都是由jQuery去放值的 他如果換選擇時 會更新 input 的value*@
                     @using (Html.BeginForm("AddtoShoppingCart", "ShoppingCart"))
                     {
                         <input name="ID" type="hidden" value="@Model.ID" />
@@ -43,18 +43,26 @@
                             <div class="row">
                                 <div class="col-12 mt-2 mb-3 product_color">
                                     <h5 class="mb-3">Color</h5>
-                                    @foreach (var item in color)
-                                    {
-                                        <a href="javascript:">@item</a>
-                                    }
+                                    <ul>
+                                        @foreach (var item in color)
+                                        {
+                                            <li class="product_li">
+                                                <a href="javascript:">@item</a>
+                                            </li>
+                                        }
+                                    </ul>
                                 </div>
 
                                 <div class="col-12 mt-2 mb-3 product_size">
                                     <h5 class="mb-3">Size</h5>
-                                    @foreach (var item in Model.ColorSize[color[0]])
-                                    {
-                                        <a href="javascript:">@item</a>
-                                    }
+                                    <ul>
+                                        @foreach (var item in Model.ColorSize[color[0]])
+                                        {
+                                            <li class="product_li">
+                                                <a href="javascript:">@item</a>
+                                            </li>
+                                        }
+                                    </ul>
                                 </div>
                                 <div class="col-12 mt-2">
                                     <h5>Quantity</h5>
@@ -106,27 +114,27 @@
 
 <script>
     var value = @Html.Raw(Json.Encode(Model.ColorSize));
-    $('.product_color>a').click(function () {
-        $('.product_color>a').removeClass('choose');
+    $('.product_color li').click(function () {
+        $('.product_color li').removeClass('choose');
         let $color = $('input[name="color"]').val();
         if ($color != $(this).html()) {
             $('input[name="size"]').val("");
             $(this).addClass('choose');
-            $('input[name="color"]').val($(this).html());
-            $('.product_size').find("a").remove();
+            $('input[name="color"]').val($(this).find('a').html());
+            $('.product_size').find("li").remove();
             let $color = $('input[name="color"]').val();
             for (let i of value[$color.toString()]) {
                 console.log(i);
-                $('.product_size').append($('<a>').attr('href', "javascript:").html(i).click(function () {
-                    $('.product_size>a').removeClass('choose');
+                $('.product_size ul').append($('<li>').addClass('product_li').append($('<a>').attr('href', "javascript:").html(i).click(function () {
+                    $('.product_size').removeClass('choose');
                     $(this).addClass('choose');
                     $('input[name="size"]').val($(this).html());
-                }));
+                })));
             }
         }
     });
-    $('.product_size>a').click(function () {
-        $('.product_size>a').removeClass('choose');
+    $('.product_size li').click(function () {
+        $('.product_size li').removeClass('choose');
         $(this).addClass('choose');
         $('input[name="size"]').val($(this).html());
     });
