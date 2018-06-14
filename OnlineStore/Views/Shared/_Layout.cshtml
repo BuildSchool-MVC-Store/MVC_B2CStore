@@ -35,12 +35,12 @@
                     <ul class="nav justify-content-end topside">
                         @{Html.RenderAction("LoginPage", "Login");}
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Index","Customer")">
+                            <a class="nav-link" href="@Url.Action("Index", "Customer")">
                                 <i class="fas fa-user"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("ShoppingCart","ShoppingCart")">
+                            <a class="nav-link" href="@Url.Action("ShoppingCart", "ShoppingCart")">
                                 <i class="fas fa-shopping-basket"></i>
                             </a>
                         </li>
@@ -198,36 +198,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                @using (Html.BeginForm("Register", "Register"))
-                {
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-8 mx-auto">
-                                <div class="form-group" id="account">
-                                    <label>
-                                        帳號&nbsp;
-                                        <span class="signword">Account</span>
-                                    </label>
-                                    <input type="text" class="form-control" name="username" id="" aria-describedby="helpId" placeholder="">
-                                    <label class="password">
-                                        密碼&nbsp;
-                                        <span class="signword">Password</span>
-                                    </label>
-                                    <input type="password" class="form-control" name="password" id="" aria-describedby="helpId" placeholder="">
-                                    <label>
-                                        信箱&nbsp;
-                                        <span class="signword">Email</span>
-                                    </label>
-                                    <input type="email" class="form-control" name="email" id="" aria-describedby="helpId" placeholder="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn" type="submit">註冊</button>
-                        <button class="btn" href="#" role="button" data-dismiss="modal">取消</button>
-                    </div>
-                }
+                @{Html.RenderAction("Signin", "Register");}
             </div>
         </div>
     </div>

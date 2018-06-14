@@ -1,4 +1,5 @@
-﻿using OSLibrary.Sevices;
+﻿using OnlineStore.Models;
+using OSLibrary.Sevices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,28 +12,26 @@ namespace OnlineStore.Controllers
     public class RegisterController : Controller
     {
         // GET: Register
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult Signin()
         {
-            return View();
+            return PartialView();
         }
         [Route("")]
         [HttpPost]
-        public ActionResult Register(string username,string email,string password)
+        public ActionResult Register(RegisterModel register)
         {
             CustomerService customerService = new CustomerService();
-            if(customerService.CreateAccount(username, email, password))
+            if(customerService.CreateAccount(register.Account,register.Email,register.Password))
             {
+                TempData["Message"] = "註冊成功";
                 return RedirectToAction("Index","Home"); 
             }
             else
             {
-                return JavaScript("alert('帳號已存在');");
+                TempData["Message"] = "帳號重複或系統錯誤";
+                return RedirectToAction("Index", "Home");
             }
-        }
-        [HttpGet]
-        public ActionResult Register()
-        {
-            return PartialView();
         }
     }
 }

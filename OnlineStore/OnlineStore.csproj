@@ -167,6 +167,7 @@
     <Compile Include="Models\CustomerChangeModel.cs" />
     <Compile Include="Models\EmployeeViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -345,6 +346,7 @@
     <Content Include="Views\BackStage\CreateOrderDetail.cshtml" />
     <Content Include="Views\Products\GetProductCS.cshtml" />
     <Content Include="Views\BackStage\UpdateOrder.cshtml" />
+    <Content Include="Views\Register\Signin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OSLibrary\OSLibrary.csproj">
@@ -376,7 +378,6 @@
   <ItemGroup>
     <Folder Include="Images\Products\KIDS\" />
     <Folder Include="Images\Products\MEN\" />
-    <Folder Include="Views\Register\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
