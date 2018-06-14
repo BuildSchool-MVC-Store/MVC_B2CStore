@@ -5,7 +5,7 @@
 }
 <div class="container catcontent">
     <div class="row">
-        @{Html.RenderAction("GetCategory");}
+        @{Html.RenderAction("GetCategory",new { ViewBag.Gender });}
         <div class="col-10 right-content">
             <div class="row">
                 @foreach (var item in Model)
