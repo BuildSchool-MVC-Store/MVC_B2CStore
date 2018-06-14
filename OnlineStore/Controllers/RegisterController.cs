@@ -29,5 +29,10 @@ namespace OnlineStore.Controllers
                 return JavaScript("alert('帳號已存在');");
             }
         }
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return PartialView();
+        }
     }
 }
