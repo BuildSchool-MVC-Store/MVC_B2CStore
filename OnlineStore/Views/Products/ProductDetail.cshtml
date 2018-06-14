@@ -125,11 +125,12 @@
             let $color = $('input[name="color"]').val();
             for (let i of value[$color.toString()]) {
                 console.log(i);
-                $('.product_size ul').append($('<li>').addClass('product_li').append($('<a>').attr('href', "javascript:").html(i).click(function () {
-                    $('.product_size li a').removeClass('choose');
+                $('.product_size ul').append($('<li>').addClass('product_li').html(i).click(function () {
+                    //append($('<a>').attr('href', "javascript:")
+                    $('.product_size li').removeClass('choose');
                     $(this).addClass('choose');
                     $('input[name="size"]').val($(this).html());
-                })));
+                }));
             }
         }
     });
