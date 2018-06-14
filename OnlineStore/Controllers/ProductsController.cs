@@ -15,15 +15,31 @@ namespace OnlineStore.Controllers
         [Route("")]
         [Route("Index")]
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(string CategoryName,string Gender)
         {
             var result = new ProductService();
-            IEnumerable<ProductModel> list = result.GetAllProducts();
+            IEnumerable<ProductModel> list;
+            if (CategoryName != null && Gender != null)
+            {
+                list = result.GetAllProducts().Where(x => x.CategoryName == CategoryName && x.Gender == Gender);
+                ViewBag.Gender = Gender;
+
+            }
+            else if (Gender != null && CategoryName == null)
+            {
+                list = result.GetAllProducts().Where(x => x.Gender == Gender);
+                ViewBag.Gender = Gender;
+            }
+            else
+            {
+                list = result.GetAllProducts();        
+            }
             return View(list);
         }
-        public ActionResult GetCategory()
+        public ActionResult GetCategory(string Gender)
         {
             var result = new CategoryRepository();
+            ViewBag.Gender = Gender;
             return PartialView(result.GetAll());
         }
         [Route("{ProductID}")]
