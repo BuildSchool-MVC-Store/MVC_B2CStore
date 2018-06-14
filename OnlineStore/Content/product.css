@@ -70,16 +70,17 @@
 }
 
 .product_li {
-    text-align:center;
+    text-align: center;
     list-style: none;
-    border: 1px solid black;
+    border: 1px solid #bebebe;
     padding: 5px 10px;
     margin-right: 15px;
-    width:40px;
+    width: 40px;
 }
 
-.input-group li:hover {
+.product_li:hover {
     background-color: #676D3E;
+    cursor: pointer;
 }
 
 .input-group ul li > a {
@@ -116,7 +117,6 @@
     color: #FFF !important;
 }
 .product_size > a {
-    font-family: monospace;
     font-size:20px;
     border: 1px solid #bebebe;
     background-color: rgb(255, 254, 250);
