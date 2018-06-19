@@ -233,6 +233,26 @@
         TempData.Remove("Message");
         </script>
     }
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120936579-1"></script>
+    <script>
+        let hash = ['A','B','C','D','E','F','G','H','I','J']
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-120936579-1');
+
+        $.getJSON('http://gd.geobytes.com/GetCityDetails?callback=?', function (data) {
+            let ip = data.geobytesremoteip;
+            for (let i = 0; i < hash.length;i++) {
+                ip = ip.replace(new RegExp(i, "g"), hash[i]);
+            }
+            console.log(ip);
+            gtag('set', { 'user_id': ip });
+        });
+    </script>
+
 </body>
 
 </html>
