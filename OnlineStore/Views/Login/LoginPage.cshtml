@@ -5,20 +5,20 @@
 }
 @if (ViewBag.IsAuthenticated)
 {
-    <li class="nav-item">
-        <a class="nav-link">Hi , @ViewBag.Username</a>
+    <li>
+        <p>@ViewBag.Username</p>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="@Url.Action("Logout","Login")">Sign Out</a>
+    <li>
+        <a href="@Url.Action("Logout","Login")">Sign Out</a>
     </li>
 }
 else
 {
-    <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target="#signinmodel" style="cursor:pointer;">Sign in</a>
+    <li>
+        <a data-toggle="modal" data-target="#signinmodel" style="cursor:pointer;">Sign in</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target="#registermodel" style="cursor:pointer;">Sign up</a>
+    <li>
+        <a data-toggle="modal" data-target="#registermodel" style="cursor:pointer;">Sign up</a>
     </li>
 }

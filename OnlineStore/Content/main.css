@@ -7,33 +7,26 @@ body {
     background-color: rgb(255, 254, 250);
 }
 
-.header {
-    background-color: white;
-    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2))
-}
-
 .title {
     padding-top: 20px;
     text-align: center;
 }
 
+
 .content {
     width: 50%;
     padding: 0;
+    margin-top: -5px;
+    z-index: -1;
 }
 
 img {
     max-width: 100%;
 }
 
-.secondimage {
-    padding: 80px 30px;
-    background: rgb(255, 254, 250);
-}
-
 .thirdimage {
     width: 50%;
-    padding: 0 0 120px 0;
+    padding: 0;
 }
 
 .header a {
@@ -67,12 +60,22 @@ footer {
     color: rgb(255, 254, 246);
 }
 
+
+.footer-link > ul {
+    display: flex;
+    list-style: none;
+}
+
+.footer-link a {
+    padding: 10px;
+}
+
 .main-menu {
     margin-bottom: 3px;
 }
 
 .aboutus {
-    margin: 40px 0 40px 0;
+    padding: 40px 0 40px 0;
 }
 
     .aboutus > ul {
@@ -83,9 +86,37 @@ footer {
             list-style: none;
         }
 
+.menu-toggle {
+    display: none;
+}
 .topside {
     padding: 15px 30px 0 0;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
 }
+
+    .topside a {
+        display: block;
+        width: 70px;
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+        text-decoration: none;
+        transition-property: background;
+        transition-duration: .5s;
+    }
+
+    .topside p {
+        display: block;
+        width: 100px;
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+        transition-property: background;
+        transition-duration: .5s;
+    }
+
 
     .gototop {
         position: fixed;
@@ -333,3 +364,43 @@ select {
 }
 
 /*shoppingcart.css*/
+
+
+
+@media screen and (max-width: 540px) {
+    
+    .menu-toggle {
+        display:block;
+        padding: 10px 0 0 110px;
+    }
+
+    .container {
+        width: 100%;
+        position: relative;
+    }
+    .topside {
+        position: absolute;
+        right: 0;
+        z-index: 100;
+        flex-direction: column;
+        width: 100%;
+        background-color: #eee;
+        display: none;
+    }
+    .topside a {
+        padding-left: 10px;
+    }
+    .secondimage {
+        flex-direction: column;
+        text-align: center;
+    }
+    .secondimage img {
+        width: 70%;
+    }
+    .aboutus-title {
+        display: none;
+    }
+    .footer-link a {
+        padding-right: 40px;
+    }
+}
