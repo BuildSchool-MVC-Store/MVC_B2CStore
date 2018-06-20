@@ -5,21 +5,26 @@
 }
 <div class="container catcontent">
     <div class="row">
-        @{Html.RenderAction("GetCategory",new { ViewBag.Gender });}
+        @{Html.RenderAction("GetCategory", new { ViewBag.Gender });}
         <div class="col-10 right-content">
             <div class="row">
-                @foreach (var item in Model)
-                {
-                    <div class="col-3" name="@item.CategoryName">
-                        <a href= "/Products/@item.ProductID" >
-                            <img src=@item.ImageUrl>
-                        </a>
-                        <a href="#">
-                            <p>@item.Name</p>
-                        </a>
-                        <p class="price">@String.Format("{0:0,0}", item.Price)</p>
-                    </div>
-                }
+                <div class="col">
+                    <!--name="item.CategoryName"-->
+                    <ul class="product-index" style="list-style:none;display:flex">
+                        @foreach (var item in Model)
+                        {
+                            <li style="width:220px; padding: 10px;flex-direction:column">
+                                <a href="/Products/@item.ProductID">
+                                    <img src=@item.ImageUrl>
+                                </a>
+                                <a href="#">
+                                    <p>@item.Name</p>
+                                </a>
+                                <p class="price">@String.Format("{0:0,0}", item.Price)</p>
+                            </li>
+                        }
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

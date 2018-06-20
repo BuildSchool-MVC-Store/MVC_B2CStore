@@ -1,6 +1,6 @@
 .catcontent {
     width: 100%;
-    margin-top: 140px;
+    margin-top: 60px;
     margin-bottom: 20px;
 }
 
@@ -166,4 +166,18 @@
 
 .price::before {
     content: "NT$ ";
+}
+
+@media screen and (max-width: 540px) {
+    .catcontent {
+        margin-top: 10px;
+    }
+    .product-index {
+        padding-left: 100px;
+        flex-direction: column;
+        z-index: -1;
+    }
+    .product-index img {
+        
+    }
 }

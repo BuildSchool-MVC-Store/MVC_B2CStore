@@ -368,7 +368,6 @@ select {
 
 
 @media screen and (max-width: 540px) {
-    
     .menu-toggle {
         display:block;
         padding: 10px 0 0 110px;
