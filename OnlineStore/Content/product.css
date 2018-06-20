@@ -5,7 +5,7 @@
 }
 
 .side > ul{
-    padding-left:0;
+    padding-left:130px;
 }
 .side ul li {
     color: #676D3E;
@@ -180,7 +180,8 @@
         flex-direction: column;
         z-index: -1;
     }
-    .product-index img {
-        
+    .side ul {
+        padding-left: 20px;
+        padding-top: 15px;
     }
 }
