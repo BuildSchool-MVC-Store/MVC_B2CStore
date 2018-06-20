@@ -4,6 +4,9 @@
     margin-bottom: 20px;
 }
 
+.side > ul{
+    padding-left:0;
+}
 .side ul li {
     color: #676D3E;
     font-size:18px;
