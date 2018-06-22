@@ -13,9 +13,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
           crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Jaldi' rel='stylesheet'>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
+    
     <!-- Google Tag Manager -->
     <script>
     (function (w, d, s, l, i) {
@@ -32,6 +30,9 @@
 
 
 <body>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
     <div class="container-fluid" style="background-color:#fff;filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2))">
         <div class="header">
             <div class="row">
@@ -268,7 +269,18 @@
         </script>
     }
     <!-- Global site tag (gtag.js) - Google Analytics -->
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120936579-1"></script>
+    <script>
+        var ip;
+        $.getJSON('http://gd.geobytes.com/GetCityDetails?callback=?', function (data) {
+            ip = data.geobytesremoteip;
+            for (let i = 0; i < hash.length; i++) {
+                ip = ip.replace(new RegExp(i, "g"), hash[i]);
+            }
+
+        });
+    </script>
     <script>
         let hash = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
         window.dataLayer = window.dataLayer || [];
@@ -276,15 +288,8 @@
         gtag('js', new Date());
 
         gtag('config', 'UA-120936579-1');
-        let ip;
-        $.getJSON('http://gd.geobytes.com/GetCityDetails?callback=?', function (data) {
-            let ip = data.geobytesremoteip;
-            ip = data.geobytesremoteip;
-            for (let i = 0; i < hash.length; i++) {
-                ip = ip.replace(new RegExp(i, "g"), hash[i]);
-            }
-        });
-        ga('set', 'userId', ip); // 使用已登入的 user_id 設定 User ID。
+        gtag('set', { 'user_id': 'USER_ID' });
+
     </script>
     <!-- Google Tag Manager (noscript) -->
     <noscript>
