@@ -19,6 +19,11 @@ namespace OnlineStore.Controllers
             var cookie = CookieCheck.check(Request.Cookies[FormsAuthentication.FormsCookieName]);
             if (cookie.Status == cookieStatus.Match && cookie.Authority == Character.Employee)
             {
+                OrdersService ordersService = new OrdersService();
+                CustomerService customerService = new CustomerService();
+                ViewBag.OrdersNum = ordersService.GetOrders(false);
+                ViewBag.NewOrdersNum = ordersService.GetOrders(true);
+                ViewBag.CustomerNum = customerService.GetAll().Count();
                 return View();
             }
             else

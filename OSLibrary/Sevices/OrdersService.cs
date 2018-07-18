@@ -131,6 +131,19 @@ namespace OSLibrary.Sevices
                 return RepositoryContainer.GetInstance<OrdersRepository>().GetByStatus(status);
             }
         }
+        public int GetOrders(bool newOrders)
+        {
+            var result = RepositoryContainer.GetInstance<OrdersRepository>().GetAll();
+            if (newOrders)
+            {
+                var today = DateTime.Today.AddDays(-7);
+                return result.Where(x => DateTime.Compare(x.Order_Date, today) > 0).Count();
+            }
+            else
+            {
+                return result.Count();
+            }
+        }
         public bool UpdateOrdersStatus(int Order_ID,int Status)
         {
             try
